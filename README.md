@@ -2,7 +2,7 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.3.0 adds a visual browser workbench:** choose a skill, filter supports, inspect tradeoffs, explore conditional connections, and copy snapshot-specific links. The bundled cross-checked preview includes eight skills, eight supports, and two source-documented skill interactions. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
+**v0.4.0 adds conditional build connections and unique directions:** choose a skill, filter supports, inspect tradeoffs, explore conditional connections, and copy snapshot-specific links. The bundled cross-checked preview includes sixteen skills, eight supports, ten source-documented skill interactions, and two selected unique conversion modifiers. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
 
 ## Open the browser lab
 
@@ -41,14 +41,14 @@ Use `npm run lab -- spark --json` for machine-readable output with evidence link
 ## Included
 
 - Responsive browser interface sharing the command-line engine and validator.
-- Sixteen browser acceptance checks in addition to the engine tests.
+- Nineteen browser acceptance checks in addition to the engine tests.
 - Dependency-free JavaScript engine with AND, OR, NOT, and exclusion conditions from source skill types.
 - Snapshot validation, source provenance, league, patch, and engine version metadata.
 - Snapshot diffs for added, removed, and changed entities.
 - A guarded activation command with regression tests and a SHA-256 active pointer.
 - GitHub CI and a daily upstream commit watcher producing a downloadable report.
-- Twenty-six regression tests, including real source cases and importer failures.
-- A recorded cross-check of all 16 factual type records, with a checksum-bound audit.
+- Thirty-three regression tests, including real source cases and importer failures.
+- A recorded cross-check of all 24 skill/support records and two unique modifiers, with a checksum-bound audit.
 - The official sideways cascade restriction for Ice Nova + Frostbolt.
 - A narrow, nonexecuting PoB metadata importer and reproducible pinned-source snapshot.
 - Source-documented Ice Nova + Frostbolt and Lightning Arrow + Lightning Rod interactions.
@@ -98,4 +98,6 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-The checks cover selection, filtering, tradeoffs, conditional interactions, shared URLs, mobile overflow, data-integrity failure, unavailable snapshots, and server file boundaries. GitHub Actions also runs these checks. `npm test` continues to run the 26 dependency-free engine/data tests.
+The checks cover selection, filtering, tradeoffs, conditional interactions, shared URLs, mobile overflow, data-integrity failure, unavailable snapshots, and server file boundaries. GitHub Actions also runs these checks. `npm test` continues to run the 33 dependency-free engine/data tests.
+
+See [Conditional connections](docs/CONNECTIONS.md) for trigger assumptions, ailment pathways, unique conversion limits, and whole-setup context controls.

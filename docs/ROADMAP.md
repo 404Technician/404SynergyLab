@@ -19,3 +19,7 @@ Responsive browser UI with skill search, support filters, tradeoff warnings, sou
 ## Later
 
 Skill-to-skill interactions, weapon requirements, resource costs, passive/unique interactions, build constraints, historical comparison, and league impact analysis. Add numerical estimates only when the required model and underlying values are verifiable.
+
+## v0.4.0 — Conditional connections (delivered)
+
+Sixteen skills, ten conditional interactions, two uniques, whole-setup context toggles, source description fingerprints, trigger socket type checks and an expanded 26-record source audit. Live-client validation remains pending.

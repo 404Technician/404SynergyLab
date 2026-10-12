@@ -9,8 +9,8 @@ const cwd=resolve(directory);
 const revision=execFileSync('git',['rev-parse','HEAD'],{cwd,encoding:'utf8'}).trim();
 if (revision !== manifest.revision) throw new Error(`Expected pinned PoB revision ${manifest.revision}; received ${revision}`);
 const files={};
-for (const path of new Set(manifest.records.map(r=>r.path))) {
-  if (!/^src\/Data\/Skills\/(act|sup)_(int|dex|str)\.lua$/.test(path)) throw new Error('Unsupported source path');
+for (const path of new Set([...manifest.records,...(manifest.uniqueRecords ?? [])].map(r=>r.path))) {
+  if (!/^src\/Data\/(Skills\/(act|sup)_(int|dex|str)|Uniques\/(ring|gloves))\.lua$/.test(path)) throw new Error('Unsupported source path');
   // Read committed bytes, so local uncommitted edits cannot enter the snapshot.
   files[path]=execFileSync('git',['show',`${manifest.revision}:${path}`],{cwd,encoding:'utf8',maxBuffer:16*1024*1024});
 }

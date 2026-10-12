@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "id": "pob-bb52d6b-review1",
+  "id": "pob-bb52d6b-connections1",
   "league": "Forbidden Rites",
   "patch": "0.5.5e",
   "rulesVersion": "pob-skill-types-1",
@@ -10,7 +10,7 @@
     "checkedAt": "2026-10-12T16:05:30Z",
     "officialPatchUrl": "https://www.pathofexile.com/forum/view-thread/4009785",
     "officialLeagueUrl": "https://www.pathofexile.com/forum/view-thread/4000864",
-    "notes": "Selected base-effect skill types and support predicates corroborated against public PoE2DB records. Official 0.5.5e notes list no changes to these fields. Independent live-client validation and source-to-game patch binding remain pending."
+    "notes": "Selected base skill types, support predicates and unique conversion modifiers corroborated with public data records. Conditional interactions have pinned evidence. Live-client patch validation remains pending."
   },
   "repository": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
   "revision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
@@ -62,6 +62,54 @@
       "id": "leap-slam",
       "effectId": "LeapSlamPlayer",
       "path": "src/Data/Skills/act_str.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "flame-wall",
+      "effectId": "FlameWallPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "snap",
+      "effectId": "SnapPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "orb-of-storms",
+      "effectId": "OrbOfStormsPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "frost-bomb",
+      "effectId": "FrostBombPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "comet",
+      "effectId": "CometPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "shockchain-arrow",
+      "effectId": "ShockchainArrowPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "cast-on-critical",
+      "effectId": "MetaCastOnCritPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "cast-on-elemental-ailment",
+      "effectId": "MetaCastOnElementalAilmentPlayer",
+      "path": "src/Data/Skills/act_int.lua",
       "kind": "skill"
     },
     {
@@ -136,7 +184,8 @@
           ],
           "evidenceUrl": "https://www.pathofexile.com/forum/view-thread/3932540"
         }
-      ]
+      ],
+      "kind": "placement"
     },
     {
       "id": "lightning-arrow-rod",
@@ -150,7 +199,175 @@
         "Lightning Arrow Skill reduces this delay"
       ],
       "explanation": "Lightning Rod can receive chaining lightning beams; Lightning Arrow shortens the delay before its subsequent burst.",
-      "condition": "Requires a placed Lightning Rod and lightning beams chaining to it. No DPS multiplier is calculated."
+      "condition": "Requires a placed Lightning Rod and lightning beams chaining to it. No DPS multiplier is calculated.",
+      "kind": "placement"
+    },
+    {
+      "id": "spark-flame-wall",
+      "skillIds": [
+        "spark",
+        "flame-wall"
+      ],
+      "effectId": "FlameWallPlayer",
+      "descriptionSha256": "6c737b74b66abd4108a3ecee532fdfff4f6d61fe1d6993cf674618a05902bec1",
+      "kind": "projectile",
+      "explanation": "Spark projectiles can receive extra Fire damage when they travel through Flame Wall.",
+      "condition": "Projectiles must pass through the allied wall. Added Fire damage does not automatically make those projectiles ignite."
+    },
+    {
+      "id": "gas-arrow-flame-wall",
+      "skillIds": [
+        "gas-arrow",
+        "flame-wall"
+      ],
+      "effectId": "FlameWallPlayer",
+      "descriptionSha256": "6c737b74b66abd4108a3ecee532fdfff4f6d61fe1d6993cf674618a05902bec1",
+      "kind": "ailment",
+      "explanation": "An enemy ignited by Flame Wall can set off Gas Arrow gas when it touches the cloud.",
+      "condition": "Requires an actually ignited enemy touching the gas. Fire damage or burning ground alone is not enough.",
+      "restrictions": [
+        {
+          "contextFlag": "igniteDisabled",
+          "explanation": "Requires an actually ignited enemy touching the gas. Fire damage or burning ground alone is not enough.",
+          "sourceIds": [
+            "pob-skills"
+          ],
+          "evidenceUrl": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua"
+        }
+      ],
+      "additionalEvidence": [
+        {
+          "effectId": "GasArrowPlayer",
+          "path": "src/Data/Skills/act_dex.lua",
+          "descriptionSha256": "bd49a4db902e602d2c2160961b5a169ed62264d9d862a9013572833f0aa6bc9a"
+        }
+      ]
+    },
+    {
+      "id": "snap-frostbolt",
+      "skillIds": [
+        "snap",
+        "frostbolt"
+      ],
+      "effectId": "SnapPlayer",
+      "descriptionSha256": "ff4a82a606bce04766e46e3d88dc6f8c3fb8726b54d107e612a31bb00fe38db2",
+      "kind": "placement",
+      "explanation": "Snap can target a Frostbolt projectile to produce a larger cold blast.",
+      "condition": "Requires a Frostbolt projectile and targeting it with Snap. This route does not require a frozen enemy."
+    },
+    {
+      "id": "snap-flame-wall",
+      "skillIds": [
+        "snap",
+        "flame-wall"
+      ],
+      "effectId": "SnapPlayer",
+      "descriptionSha256": "ff4a82a606bce04766e46e3d88dc6f8c3fb8726b54d107e612a31bb00fe38db2",
+      "kind": "ailment",
+      "explanation": "An enemy ignited inside Flame Wall can supply the ailment Snap consumes for a fire blast.",
+      "condition": "The target must be ignited. Snap consumes the ailment; propagated blasts cannot keep spreading indefinitely.",
+      "restrictions": [
+        {
+          "contextFlag": "igniteDisabled",
+          "explanation": "The target must be ignited. Snap consumes the ailment; propagated blasts cannot keep spreading indefinitely.",
+          "sourceIds": [
+            "pob-skills"
+          ],
+          "evidenceUrl": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua"
+        }
+      ],
+      "additionalEvidence": [
+        {
+          "effectId": "FlameWallPlayer",
+          "path": "src/Data/Skills/act_int.lua",
+          "descriptionSha256": "6c737b74b66abd4108a3ecee532fdfff4f6d61fe1d6993cf674618a05902bec1"
+        }
+      ]
+    },
+    {
+      "id": "frost-bomb-ice-nova",
+      "skillIds": [
+        "frost-bomb",
+        "ice-nova"
+      ],
+      "effectId": "FrostBombPlayer",
+      "descriptionSha256": "edd41ca3b04b8c93f12e4cbf20d322c403acda0c75b762f57210ad9df5e6bb90",
+      "kind": "infusion",
+      "explanation": "Frost Bomb leaves a Cold Infusion after detonating; an available infusion can empower Ice Nova.",
+      "condition": "Wait for Frost Bomb to detonate, collect its remnant, and retain the infusion until Ice Nova consumes it.",
+      "additionalEvidence": [
+        {
+          "effectId": "IceNovaPlayer",
+          "path": "src/Data/Skills/act_int.lua",
+          "descriptionSha256": "2c95632843f63563092718ebbcdee80e52c52f386f6dec7a85fd02123ae35f0e"
+        }
+      ]
+    },
+    {
+      "id": "shockchain-lightning-rod",
+      "skillIds": [
+        "shockchain-arrow",
+        "lightning-rod"
+      ],
+      "effectId": "ShockchainArrowPlayer",
+      "descriptionSha256": "eae81116c48089d690319e73b9b58350bbe9cefbfafa4d324c257cf5cc1bf67a",
+      "kind": "ailment",
+      "explanation": "Shockchain Arrow creates a Lightning Rod after its final chain.",
+      "condition": "Requires an enemy with a Lightning Ailment to start the chain route. Shock is consumed; Electrocution is not consumed. Rod limits still apply."
+    },
+    {
+      "id": "crit-comet",
+      "skillIds": [
+        "cast-on-critical",
+        "comet"
+      ],
+      "effectId": "MetaCastOnCritPlayer",
+      "descriptionSha256": "d0e3ddab422a3c7e7cafb5852b23fb08dcf12171d5ae5e6b212ae641f1f71d24",
+      "kind": "trigger",
+      "explanation": "Cast on Critical can release a socketed Comet after reaching its Energy threshold.",
+      "condition": "Requires the active meta gem, a socketed Comet, and eligible critical hits generating Energy. Spirit, costs, Energy gain and trigger frequency are not simulated.",
+      "restrictions": [
+        {
+          "contextFlag": "criticalHitsDisabled",
+          "explanation": "Requires the active meta gem, a socketed Comet, and eligible critical hits generating Energy. Spirit, costs, Energy gain and trigger frequency are not simulated.",
+          "sourceIds": [
+            "pob-skills"
+          ],
+          "evidenceUrl": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua"
+        }
+      ],
+      "triggerCheck": {
+        "effectId": "SupportMetaCastOnCritPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "socketedSkillId": "comet"
+      }
+    },
+    {
+      "id": "ailment-comet",
+      "skillIds": [
+        "cast-on-elemental-ailment",
+        "comet"
+      ],
+      "effectId": "MetaCastOnElementalAilmentPlayer",
+      "descriptionSha256": "2d5f33c6f964961370f79bdff1e9a1c0e5b00b2dcacc235f4f107c7b6d3514a2",
+      "kind": "trigger",
+      "explanation": "Cast on Elemental Ailment can release a socketed Comet after enough Energy has accumulated.",
+      "condition": "Requires the active meta gem, a socketed Comet and actual qualifying Freeze, Shock or Ignite events. Elemental skill types alone do not establish Energy generation.",
+      "restrictions": [
+        {
+          "contextFlag": "elementalAilmentsDisabled",
+          "explanation": "Requires the active meta gem, a socketed Comet and actual qualifying Freeze, Shock or Ignite events. Elemental skill types alone do not establish Energy generation.",
+          "sourceIds": [
+            "pob-skills"
+          ],
+          "evidenceUrl": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua"
+        }
+      ],
+      "triggerCheck": {
+        "effectId": "SupportMetaCastOnElementalAilmentPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "socketedSkillId": "comet"
+      }
     }
   ],
   "curatedSources": [
@@ -160,6 +377,53 @@
       "revision": "0.5.0 patch notes; reviewed 2026-10-12",
       "retrievedAt": "2026-10-12T16:05:30Z",
       "license": "GGG patch notes; only a paraphrased mechanical restriction is recorded."
+    }
+  ],
+  "uniqueRecords": [
+    {
+      "id": "call-of-the-brotherhood",
+      "name": "Call of the Brotherhood",
+      "path": "src/Data/Uniques/ring.lua",
+      "requiredLine": "100% of Lightning Damage Converted to Cold Damage",
+      "conversion": {
+        "from": "Lightning",
+        "to": "Cold",
+        "percent": 100
+      }
+    },
+    {
+      "id": "blueflame-bracers",
+      "name": "Blueflame Bracers",
+      "path": "src/Data/Uniques/gloves.lua",
+      "requiredLine": "100% of Fire Damage Converted to Cold Damage",
+      "conversion": {
+        "from": "Fire",
+        "to": "Cold",
+        "percent": 100
+      }
+    }
+  ],
+  "uniqueIdeas": [
+    {
+      "id": "brotherhood-spark",
+      "skillId": "spark",
+      "itemId": "call-of-the-brotherhood",
+      "explanation": "Converts Spark's outgoing Lightning damage to Cold, changing its damage and ailment direction.",
+      "condition": "Equip this unique. Original skill types stay unchanged. Freeze is not guaranteed, and Shock-dependent plans need another check."
+    },
+    {
+      "id": "brotherhood-arrow",
+      "skillId": "lightning-arrow",
+      "itemId": "call-of-the-brotherhood",
+      "explanation": "Converts outgoing Lightning damage from Lightning Arrow to Cold.",
+      "condition": "Equip this ring. Skill types remain unchanged. Remaining Physical damage, extra damage and ailment outcomes are not calculated."
+    },
+    {
+      "id": "blueflame-fireball",
+      "skillId": "fireball",
+      "itemId": "blueflame-bracers",
+      "explanation": "Converts Fire damage from Fireball to Cold.",
+      "condition": "Equip these gloves. Conversion does not change skill types. Reassess any Ignite-dependent setup; freeze and total damage are not predicted."
     }
   ]
 }

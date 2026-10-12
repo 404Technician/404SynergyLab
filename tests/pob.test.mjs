@@ -78,7 +78,7 @@ skills["TestSupport"] = {
 \taddSkillTypes = { },
 }
 `;
-const manifest={...JSON.parse(readFileSync(new URL('../data/imports/pob-preview.json',import.meta.url))),records:[{id:'test-spell',effectId:'TestSpell',kind:'skill',path:'test.lua'},{id:'test-support',effectId:'TestSupport',kind:'support',path:'test.lua'}],interactions:[]};
+const manifest={...JSON.parse(readFileSync(new URL('../data/imports/pob-preview.json',import.meta.url))),uniqueRecords:undefined,uniqueIdeas:undefined,records:[{id:'test-spell',effectId:'TestSpell',kind:'skill',path:'test.lua'},{id:'test-support',effectId:'TestSupport',kind:'support',path:'test.lua'}],interactions:[]};
 test('narrow importer reads factual metadata without evaluating Lua', () => {
  const s=buildPobSnapshot(manifest,{'test.lua':source+'\nerror("This must never execute")\n'});
  assert.equal(s.entities.length,2);assert.deepEqual(s.entities[0].skillTypes,['Spell','Damage']);
