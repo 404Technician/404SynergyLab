@@ -1,5 +1,5 @@
 import { matchesTypeExpression, describeTypeExpression } from './type-expression.mjs';
-import { validateSnapshot } from './data.mjs';
+import { validateSnapshot } from './validation.mjs';
 export function analyze(snapshot, skillId, context={}) {
   if (!context || typeof context !== 'object' || (context.sidewaysCascade !== undefined && typeof context.sidewaysCascade !== 'boolean')) throw new Error('Invalid interaction context');
   validateSnapshot(snapshot);

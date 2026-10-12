@@ -4,7 +4,7 @@
 
 Use dependency-free JavaScript ESM on Node.js 22+. JSON snapshots keep the engine portable to a later browser interface. The initial product is a command-line engine and data pipeline foundation; no hosted site or database is required.
 
-The source-backed lab runs on the command line via `npm run lab`. A browser interface can later reuse `engine.mjs` and a pure validation module. The current `data.mjs` also imports Node crypto and must be split before browser integration.
+The browser lab uses the same engine.mjs and pure validation.mjs as the command-line lab. Node-only checksums, audit checks, diffs, and activation stay in data.mjs/audit.mjs. build-web.mjs validates the pinned audit before copying a small static module set to dist/. The browser checks the exact snapshot bytes with Web Crypto before displaying results. This is an integrity check, not a cryptographic signature or new factual validation. serve-web.mjs serves only dist/ on 127.0.0.1. npm start builds and runs it. Public hosting is not configured.
 
 ## Flow
 

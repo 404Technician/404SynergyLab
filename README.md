@@ -2,11 +2,25 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.2.1 adds a cross-checked real-data preview:** eight skills, eight supports, and two source-documented skill interactions. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
+**v0.3.0 adds a visual browser workbench:** choose a skill, filter supports, inspect tradeoffs, explore conditional connections, and copy snapshot-specific links. The bundled cross-checked preview includes eight skills, eight supports, and two source-documented skill interactions. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
 
-## Run locally
+## Open the browser lab
 
-Install Node.js 22 or newer. No npm packages or API keys are needed for the offline demo.
+From the project folder, run:
+
+```powershell
+npm start
+```
+
+Open **http://127.0.0.1:4173** in your browser. Keep the terminal open; press Ctrl+C to stop. No API keys, account, npm install, or live game connection is required to start the lab. `npm start` validates the source audit, builds the static assets, and serves only that build on localhost.
+
+You can search skills and supports, filter type matches, expand the source explanations, and toggle the sideways cascade context for Ice Nova. The copy-link button preserves the skill, snapshot, and context. Links work for someone serving the same build; they are not public hosted links. Different or unavailable snapshot links show an error instead of silently switching data.
+
+Do not open `web/index.html` directly as a local file. ES modules and data loading need the local server. `npm run web:build` creates the deployable static folder `dist/`; no public hosting is configured in this version.
+
+## Command-line lab
+
+Install Node.js 22 or newer. The browser and command-line lab have no runtime package dependencies.
 
 ```powershell
 cd 404SynergyLab
@@ -26,6 +40,8 @@ Use `npm run lab -- spark --json` for machine-readable output with evidence link
 
 ## Included
 
+- Responsive browser interface sharing the command-line engine and validator.
+- Sixteen browser acceptance checks in addition to the engine tests.
 - Dependency-free JavaScript engine with AND, OR, NOT, and exclusion conditions from source skill types.
 - Snapshot validation, source provenance, league, patch, and engine version metadata.
 - Snapshot diffs for added, removed, and changed entities.
@@ -71,3 +87,15 @@ git push -u origin feature/first-verified-skills
 ## Scope and license
 
 MIT applies to original project code and synthetic fixtures. Imported factual metadata retains upstream attribution; see [Third-party notices](THIRD_PARTY_NOTICES.md). Game descriptions, artwork, and numerical stat tables are not bundled. This project is not affiliated with Grinding Gear Games. No login, game client hooks, or gameplay automation is required.
+
+## Browser development checks
+
+Browser testing uses Playwright as a development dependency; ordinary use does not require it.
+
+```powershell
+npm ci
+npx playwright install chromium
+npm run test:browser
+```
+
+The checks cover selection, filtering, tradeoffs, conditional interactions, shared URLs, mobile overflow, data-integrity failure, unavailable snapshots, and server file boundaries. GitHub Actions also runs these checks. `npm test` continues to run the 26 dependency-free engine/data tests.

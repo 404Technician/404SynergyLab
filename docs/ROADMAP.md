@@ -12,9 +12,9 @@ Eight real skills, eight supports, two conditional interactions, provenance, a r
 
 All sixteen factual type records were compared with public PoE2DB pages. A checksum-bound audit records the reviewed fields. Official patch notes supplied a missing sideways cascade restriction for Ice Nova + Frostbolt. Target-patch confirmation remains pending; source agreement is not live-client validation.
 
-## v0.3.0 — Interactive lab
+## v0.3.0 — Interactive lab (delivered)
 
-Create a browser UI with skill selection, explained compatibility, evidence links, and clear patch/data-status display. Choose a hosting approach when the data slice works. Add shareable URLs containing snapshot and engine version.
+Responsive browser UI with skill search, support filters, tradeoff warnings, source details, conditional skill connections, cascade context, and visible target patch/data status. Shared URLs pin the bundled snapshot and context. The snapshot identifies its engine rules version; only the current bundle is served. Unavailable historical snapshots fail visibly. Start with npm start. Sixteen browser checks run in CI; public hosting remains a future decision.
 
 ## Later
 
