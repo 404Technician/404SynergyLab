@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "id": "fixture-v1",
+  "league": "TEST DATA \u2014 not a real league",
+  "patch": "fixture-1",
+  "rulesVersion": "tag-compatibility-1",
+  "status": "fixture",
+  "sources": [
+    {
+      "id": "local-fixture",
+      "url": "https://github.com/404Technician/404SynergyLab",
+      "revision": "fixture",
+      "license": "MIT \u2014 original synthetic test data",
+      "retrievedAt": "2026-10-12T00:00:00Z"
+    }
+  ],
+  "entities": [
+    {
+      "id": "demo-projectile",
+      "name": "Demo Projectile Spell",
+      "kind": "skill",
+      "tags": [
+        "spell",
+        "projectile"
+      ],
+      "sourceIds": [
+        "local-fixture"
+      ]
+    },
+    {
+      "id": "demo-strike",
+      "name": "Demo Melee Strike",
+      "kind": "skill",
+      "tags": [
+        "attack",
+        "melee"
+      ],
+      "sourceIds": [
+        "local-fixture"
+      ]
+    },
+    {
+      "id": "demo-projectile-support",
+      "name": "Demo Projectile Support",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "local-fixture"
+      ],
+      "compatibility": {
+        "status": "known",
+        "all": [
+          "projectile"
+        ],
+        "any": [],
+        "none": []
+      }
+    },
+    {
+      "id": "demo-attack-support",
+      "name": "Demo Attack Support",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "local-fixture"
+      ],
+      "compatibility": {
+        "status": "known",
+        "all": [
+          "attack"
+        ],
+        "any": [],
+        "none": [
+          "spell"
+        ]
+      }
+    },
+    {
+      "id": "demo-mixed-support",
+      "name": "Demo Spell or Attack Support",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "local-fixture"
+      ],
+      "compatibility": {
+        "status": "known",
+        "all": [],
+        "any": [
+          "spell",
+          "attack"
+        ],
+        "none": []
+      }
+    },
+    {
+      "id": "demo-unknown",
+      "name": "Unverified Support",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "local-fixture"
+      ],
+      "compatibility": {
+        "status": "unknown",
+        "all": [],
+        "any": [],
+        "none": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+import { readFile, writeFile, rename } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import { activationRecord } from '../src/data.mjs';
+const id = process.argv[2];
+if (!id || !/^[a-z0-9-]+$/.test(id)) throw new Error('Usage: node scripts/promote.mjs SNAPSHOT-ID');
+const root = new URL('../',import.meta.url);
+const bytes = await readFile(new URL(`data/snapshots/${id}.json`,root));
+const s = JSON.parse(bytes);
+if (s.id !== id) throw new Error('Filename and snapshot id mismatch');
+const test = spawnSync(process.execPath,['--test'],{cwd:root,stdio:'inherit'});
+const record = activationRecord(s,bytes,test.status === 0);
+const target = new URL('data/active.json',root);
+const tmp = new URL('data/active.json.tmp',root);
+await writeFile(tmp, JSON.stringify(record,null,2)+'\n');
+await rename(tmp,target);
+console.log(`Activated ${id}. Commit the active pointer and snapshot together.`);

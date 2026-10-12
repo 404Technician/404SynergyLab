@@ -1,0 +1,16 @@
+{
+  "sources": [
+    {
+      "id": "ggg-passives",
+      "repository": "grindinggear/poe2-skilltree-export",
+      "ref": "main",
+      "pinnedCommit": null
+    },
+    {
+      "id": "pob-skills",
+      "repository": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+      "ref": "dev",
+      "pinnedCommit": null
+    }
+  ]
+}
