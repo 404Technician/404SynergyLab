@@ -29,6 +29,7 @@ jobs:
           ref: bb52d6b368307457eb9c54bb13f1829993d390b1
           path: .upstream-pob
       - run: npm run import:pob -- .upstream-pob --check
+      - run: npm run discovery:check -- .upstream-pob
   browser:
     runs-on: ubuntu-latest
     steps:
