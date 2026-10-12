@@ -1,3 +1,4 @@
+import { analyzeCombination, validateCombination } from './src/combination.mjs';
 import { analyze } from './src/engine.mjs';
 const $=id=>document.getElementById(id);
 function element(tag, text, className) { const e=document.createElement(tag);if(text !== undefined)e.textContent=text;if(className)e.className=className;return e; }
@@ -7,10 +8,11 @@ const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
 let snapshot,meta,skills,selected='spark',filter='all',result;
+let combination={version:1,skillIds:[],supports:{},itemId:null};
 const contextInputs={sidewaysCascade:'sideways-cascade',criticalHitsDisabled:'critical-disabled',elementalAilmentsDisabled:'ailments-disabled',igniteDisabled:'ignite-disabled'};
 const contextParams={criticalHitsDisabled:'noCrit',elementalAilmentsDisabled:'noAilments',igniteDisabled:'noIgnite'};
 const readContext=()=>Object.fromEntries(Object.entries(contextInputs).map(([flag,id])=>[flag,$(id).checked]));
-function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}history.replaceState(null,'',url);}
+function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');history.replaceState(null,'',url);}
 function choose(id) { selected=id;render();updateUrl(); }
 function renderSkillList() {
   const query=$('skill-search').value.trim().toLowerCase();let count=0;
@@ -28,6 +30,16 @@ function renderSupports(){
     const explanation=r.status==='compatible' ? 'Matches the recorded conditions for this base skill effect.' : r.status==='unknown' ? 'This combination needs more context before it can be checked.' : 'The recorded support conditions exclude this base skill effect.';
     card.append(element('p',explanation));
     for(const warning of r.warnings ?? [])card.append(element('div',warning,'warning'));
+
+    const assign=element('label',undefined,'assign-support');
+    const checkbox=element('input');checkbox.type='checkbox';checkbox.dataset.assign=r.id;
+    checkbox.checked=(combination.supports[selected] ?? []).includes(r.id);
+    checkbox.addEventListener('change',()=>{
+      if(!combination.skillIds.includes(selected))combination.skillIds.push(selected);
+      const assigned=new Set(combination.supports[selected] ?? []);if(checkbox.checked)assigned.add(r.id);else assigned.delete(r.id);
+      combination.supports[selected]=[...assigned];renderCombination();updateUrl();
+    });
+    assign.append(checkbox,element('span','Assign to '+result.skill));card.append(assign);
     const details=element('details');details.append(element('summary','Why? & source'));
     const content=element('div',undefined,'evidence-content');content.append(element('p',r.reason),link('View source record ↗',r.evidenceUrl));details.append(content);card.append(details);$('support-list').append(card);
   }
@@ -39,7 +51,7 @@ function render(){
   $('skill-title').textContent=skill.name;document.title=`${skill.name} · 404 Synergy Lab`;
   $('skill-tags').replaceChildren(...friendlyTypes.filter(t=>skill.skillTypes.includes(t)).map(t=>element('span',t==='Area'?'Area of effect':t,'tag')));
   $('support-total').textContent=`${result.results.filter(r=>r.status==='compatible').length} type matches`;
-  const availableFlags=new Set(result.interactions.flatMap(r=>(r.restrictions ?? []).map(x=>x.contextFlag)));
+  const availableFlags=new Set([...result.interactions,...snapshot.interactions.filter(r=>r.skillIds.some(id=>combination.skillIds.includes(id)))].flatMap(r=>(r.restrictions ?? []).map(x=>x.contextFlag)));
   $('context-control').hidden=availableFlags.size===0;
   for(const label of document.querySelectorAll('[data-context]'))label.hidden=!availableFlags.has(label.dataset.context);
   renderSkillList();renderSupports();$('interactions').replaceChildren();
@@ -60,7 +72,40 @@ function render(){
     const condition=element('div',undefined,'condition-box');condition.append(element('strong','CONDITIONS & TRADEOFFS'),element('span',idea.condition));
     card.append(condition,link('Pinned item modifier ↗',idea.item.evidence.url));$('unique-list').append(card);
   }
+  renderCombination();
   if(!result.interactions.length)$('interactions').append(element('p','No reviewed skill interaction is recorded for this skill yet. This does not mean there are no possible synergies.','empty-note'));
+}
+
+function renderCombination() {
+  $('share').textContent='Copy link ↗';$('share-status').textContent='';$('share-fallback').hidden=true;
+  const review=analyzeCombination(snapshot,combination,readContext());
+  $('add-skill').textContent=combination.skillIds.includes(selected)?'In combination ✓':'Add to combination +';
+  $('add-skill').disabled=combination.skillIds.includes(selected);
+  $('combination-count').textContent=review.summary.skills+' skills · '+review.summary.supports+' assigned supports';
+  $('combination-skills').replaceChildren();
+  for(const id of combination.skillIds) {
+    const row=element('div',undefined,'combination-skill');const skill=skills.find(s=>s.id===id);
+    const open=element('button',skill.name);open.type='button';open.addEventListener('click',()=>choose(id));
+    const remove=element('button','Remove');remove.type='button';remove.setAttribute('aria-label','Remove '+skill.name+' from combination');
+    remove.addEventListener('click',()=>{combination.skillIds=combination.skillIds.filter(s=>s!==id);delete combination.supports[id];render();updateUrl();});
+    row.append(open,element('small',(combination.supports[id] ?? []).map(id=>snapshot.entities.find(e=>e.id===id).name).join(', ') || 'No assigned supports'),remove);$('combination-skills').append(row);
+  }
+  $('combination-item').value=combination.itemId||'';
+  $('combination-findings').replaceChildren();
+  if(!combination.skillIds.length && !combination.itemId) $('combination-findings').append(element('p','Add a skill or load the trigger example to begin. Supports are assigned to the skill currently on the workbench.','empty-note'));
+  else {
+    $('combination-findings').append(element('p',review.summary.conflicts+' known conflicts · '+review.summary.needsInput+' checks needing input','combination-summary'));
+    for(const finding of review.findings){const box=element('div',undefined,'build-finding '+finding.level);box.append(element('strong',finding.level==='conflict'?'CONFLICT':finding.level==='needs-input'?'NEEDS INPUT':'TRADEOFF'),element('p',finding.message));$('combination-findings').append(box);}
+    if(!review.findings.length)$('combination-findings').append(element('p','No conflict found by these partial checks. Full build validity is still unverified.','empty-note'));
+  }
+  $('combination-connections').replaceChildren();
+  for(const connection of review.connections) {
+    const box=element('article',undefined,'build-connection');box.dataset.buildConnection=connection.id;
+    box.append(element('strong',connection.skillIds.map(id=>skills.find(s=>s.id===id).name).join(' + ')),element('span',connection.status.toUpperCase().replaceAll('-',' '),'build-connection-status'));
+    if(connection.missingSkillIds.length)box.append(element('p','Missing partner: '+connection.missingSkillIds.map(id=>skills.find(s=>s.id===id).name).join(', ')));
+    box.append(element('p',connection.condition));for(const note of connection.extraConditions)box.append(element('p',note));
+    $('combination-connections').append(box);
+  }
 }
 async function start(){
   const responses=await Promise.all([fetch('./data/snapshot.json',{cache:'no-cache'}),fetch('./data/build.json',{cache:'no-cache'})]);
@@ -73,6 +118,7 @@ async function start(){
   const params=new URL(location.href).searchParams;
   if(params.has('snapshot')&&params.get('snapshot')!==snapshot.id)throw new Error('This link refers to a different data snapshot. Open the lab without the link parameters to use this preview.');
   const requested=params.get('skill');if(requested&&!skills.some(s=>s.id===requested))throw new Error('This skill is not in the bundled preview. Open the lab without the link parameters.');
+  if(params.has('build')){const raw=params.get('build');if(raw.length>12000)throw new Error('Combination link is too large.');combination=JSON.parse(raw);validateCombination(snapshot,combination);}
   selected=requested||'spark';$('sideways-cascade').checked=params.get('cascade')==='sideways';
   for(const [flag,key] of Object.entries(contextParams))$(contextInputs[flag]).checked=params.get(key)==='1';
   $('version').textContent=`v${meta.appVersion}`;$('patch-label').textContent=`Target patch ${snapshot.patch}`;$('league-label').textContent=snapshot.league;
@@ -82,6 +128,12 @@ async function start(){
   $('review-info').textContent=snapshot.patchValidation.notes;$('patch-source').href=snapshot.patchValidation.officialPatchUrl;
   document.querySelector('.sidebar-note p').textContent=`A focused set of ${skills.length} skills. More combinations will follow.`;
   for(const skill of skills){const button=element('button',undefined,'skill-button');button.type='button';button.dataset.id=skill.id;button.dataset.name=skill.name.toLowerCase();const name=element('span',skill.name);name.append(element('small',family(skill)));button.append(name,element('span','↗','skill-symbol'));button.lastChild.setAttribute('aria-hidden','true');button.addEventListener('click',()=>choose(skill.id));$('skill-list').append(button);}
+
+  for(const item of snapshot.items ?? []){const option=element('option',item.name);option.value=item.id;$('combination-item').append(option);}
+  $('add-skill').addEventListener('click',()=>{if(!combination.skillIds.includes(selected))combination.skillIds.push(selected);render();updateUrl();});
+  $('combination-item').addEventListener('change',()=>{combination.itemId=$('combination-item').value||null;renderCombination();updateUrl();});
+  $('clear-combination').addEventListener('click',()=>{combination={version:1,skillIds:[],supports:{},itemId:null};render();updateUrl();});
+  $('load-example').addEventListener('click',()=>{combination={version:1,skillIds:['spark','cast-on-critical','comet'],supports:{comet:['controlled-destruction']},itemId:null};selected='comet';for(const id of Object.values(contextInputs))$(id).checked=false;render();updateUrl();});
   $('skill-search').addEventListener('input',renderSkillList);$('support-search').addEventListener('input',renderSupports);
   for(const button of $('filters').children)button.addEventListener('click',()=>{filter=button.dataset.filter;for(const b of $('filters').children)b.setAttribute('aria-pressed',String(b===button));renderSupports();});
   for(const id of Object.values(contextInputs))$(id).addEventListener('change',()=>{render();updateUrl();});

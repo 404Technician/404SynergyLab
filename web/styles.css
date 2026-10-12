@@ -11,3 +11,19 @@
 .unique-card p{font-size:12px;line-height:1.7;color:var(--muted)}
 .unique-card a{font-size:11px}
 @media(max-width:720px){.skill-list{max-height:330px}.unique-grid{grid-template-columns:1fr}}
+
+.selected-panel{flex-wrap:wrap;gap:12px}.selected-panel>div{margin-right:auto}
+.assign-support{display:flex;gap:7px;align-items:flex-start;font-size:11px;line-height:1.6;color:var(--text);margin:7px 0 12px;cursor:pointer}.assign-support input{accent-color:var(--accent);margin-top:3px}
+.combination-panel{margin-bottom:28px;border:1px solid #495a50;border-radius:9px;background:#151f19;padding:20px}
+.combination-panel summary{font-size:12px;letter-spacing:1px;cursor:pointer}.combination-panel summary span{color:var(--muted);margin-left:14px;font-size:11px;letter-spacing:0}
+.combination-body{padding-top:17px}.combination-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:17px 0}
+.combination-actions button,.combination-skill button,.combination-actions select{background:#202b23;color:var(--text);border:1px solid #4d5d51;border-radius:5px;padding:8px 10px;font-size:11px}
+.combination-actions label{font-size:11px;color:var(--muted);margin-left:auto}
+.combination-skill{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.combination-skill small{font-size:11px;color:var(--muted);flex:1}.combination-review{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
+.combination-review h3{font-size:15px;margin:0 0 14px}.combination-summary{font-size:12px;color:var(--text)}
+.build-finding,.build-connection{padding:13px;margin-top:10px;border:1px solid var(--line);background:#171c1d;border-radius:6px}
+.build-finding strong,.build-connection-status{font-size:10px;letter-spacing:.7px;color:var(--amber)}.build-finding.conflict strong{color:var(--red)}
+.build-finding p,.build-connection p{font-size:11px;line-height:1.7;color:var(--muted);margin:8px 0 0}
+.build-connection strong{font-size:12px}.build-connection-status{display:block;margin-top:8px}
+@media(max-width:720px){.combination-panel{padding:16px}.combination-review{grid-template-columns:1fr}.combination-actions label{margin-left:0;width:100%}.combination-actions select{width:100%}.combination-panel summary span{display:block;margin:8px 0 0}}

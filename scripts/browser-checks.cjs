@@ -41,6 +41,20 @@ async function main(){
   await page.locator('.skill-button[data-id="flame-wall"]').click();await page.locator('#ignite-disabled').check();
   assert.match(await page.locator('[data-interaction="gas-arrow-flame-wall"] .connection-label').textContent(),/BLOCKED/);checks++;console.log('PASS: Ignite context blocks the gas detonation pathway');
   await page.locator('.skill-button[data-id="spark"]').click();assert.match(await page.locator('#unique-list').textContent(),/Call of the Brotherhood/);assert.match(await page.locator('#unique-list').textContent(),/types stay unchanged/);checks++;console.log('PASS: unique conversion is displayed without changing skill types');
+
+  await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
+  await page.locator('#load-example').click();assert.match(await page.locator('#combination-count').textContent(),/3 skills/);
+  assert.match(await page.locator('[data-build-connection="crit-comet"] .build-connection-status').textContent(),/CONDITIONAL/);checks++;console.log('PASS: example assigns Controlled Destruction to Comet without disabling Spark');
+  await page.locator('.skill-button[data-id="spark"]').click();await page.locator('[data-assign="controlled-destruction"]').check();
+  assert.match(await page.locator('[data-build-connection="crit-comet"] .build-connection-status').textContent(),/BLOCKED/);checks++;console.log('PASS: per-skill assignment detects generator conflict');
+  await page.locator('#combination-item').selectOption('call-of-the-brotherhood');await page.locator('[data-assign="brutality-1"]').check();
+  assert.match(await page.locator('#combination-findings').textContent(),/unique produces Cold damage/);checks++;console.log('PASS: unique conversion and Brutality conflict is visible');
+  await page.locator('#share').click();const combinationLink=await page.evaluate(()=>navigator.clipboard.readText());
+  const state=JSON.parse(new URL(combinationLink).searchParams.get('build'));assert.equal(state.itemId,'call-of-the-brotherhood');assert.ok(state.supports.spark.includes('controlled-destruction'));
+  await page.goto(combinationLink);await page.locator('#workspace').waitFor({state:'visible'});assert.match(await page.locator('[data-build-connection="crit-comet"] .build-connection-status').textContent(),/BLOCKED/);checks++;console.log('PASS: complete combination round-trips in the shared URL');
+  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),true);checks++;console.log('PASS: populated workbench fits a narrow screen');
+  await page.locator('#clear-combination').click();assert.match(await page.locator('#combination-count').textContent(),/0 skills/);checks++;console.log('PASS: clearing resets assignments and unique');
+  await page.goto(base+'/?build='+encodeURIComponent(JSON.stringify({version:1,skillIds:['missing'],supports:{},itemId:null})));await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: malformed combination reference hides results');
   await page.goto(`${base}/?snapshot=missing&skill=spark`);await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable historical snapshot hides results');
   await page.route('**/data/snapshot.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
   await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/saved source review/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered dataset hides results');
