@@ -10,7 +10,7 @@
       "id": "pob-skills",
       "repository": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
       "ref": "dev",
-      "pinnedCommit": null
+      "pinnedCommit": "bb52d6b368307457eb9c54bb13f1829993d390b1"
     }
   ]
 }

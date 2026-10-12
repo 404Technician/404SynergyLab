@@ -4,9 +4,9 @@
 
 Explainable synthetic skill/support compatibility; normalized snapshot contract; version metadata; diffs; guarded activation; regression tests; GitHub CI and upstream watcher configuration.
 
-## v0.2.0 — First real data slice
+## v0.2.0 — First real data preview (delivered)
 
-Review one pinned PoB export and relevant upstream rights. Normalize 5–10 real active skills and a small set of supports for one explicit league/patch. Verify restrictions and record unresolved conditions. Add real mechanics regression cases and activate only after review. This is the next blocking step before player-facing results.
+Eight real skills, eight supports, two conditional interactions, provenance, a repeatable nonexecuting importer, and source regression tests are delivered. The target patch remains unconfirmed for the source slice. Complete independent mechanics review before activating a verified snapshot.
 
 ## v0.3.0 — Interactive lab
 

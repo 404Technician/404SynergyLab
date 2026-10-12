@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 2,
+  "id": "pob-bb52d6b-preview",
+  "league": "Forbidden Rites",
+  "patch": "0.5.5e",
+  "rulesVersion": "pob-skill-types-1",
+  "status": "candidate",
+  "patchValidation": {
+    "status": "pending",
+    "checkedAt": "2026-10-12T15:00:00Z",
+    "officialPatchUrl": "https://www.pathofexile.com/forum/view-thread/4009785",
+    "officialLeagueUrl": "https://www.pathofexile.com/forum/view-thread/4000864",
+    "notes": "Target patch confirmed on the official forum. The pinned PoB revision predates 0.5.5e; selected fields have not been independently verified against the live game."
+  },
+  "repository": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "revision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "retrievedAt": "2026-10-12T15:00:00Z",
+  "records": [
+    {
+      "id": "spark",
+      "effectId": "SparkPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "fireball",
+      "effectId": "FireballPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "ice-nova",
+      "effectId": "IceNovaPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "frostbolt",
+      "effectId": "FrostboltPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "lightning-arrow",
+      "effectId": "LightningArrowPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "lightning-rod",
+      "effectId": "LightningRodPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "gas-arrow",
+      "effectId": "GasArrowPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "leap-slam",
+      "effectId": "LeapSlamPlayer",
+      "path": "src/Data/Skills/act_str.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "pierce-1",
+      "effectId": "SupportPiercePlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "chain-1",
+      "effectId": "SupportChainPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "fork",
+      "effectId": "SupportForkPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "projectile-acceleration-1",
+      "effectId": "SupportProjectileAccelerationPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "rapid-attacks-1",
+      "effectId": "SupportRapidAttacksPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "rapid-casting-1",
+      "effectId": "SupportRapidCastingPlayer",
+      "path": "src/Data/Skills/sup_int.lua",
+      "kind": "support"
+    },
+    {
+      "id": "controlled-destruction",
+      "effectId": "SupportControlledDestructionPlayer",
+      "path": "src/Data/Skills/sup_int.lua",
+      "kind": "support"
+    },
+    {
+      "id": "brutality-1",
+      "effectId": "SupportBrutalityPlayer",
+      "path": "src/Data/Skills/sup_str.lua",
+      "kind": "support"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "ice-nova-frostbolt",
+      "skillIds": [
+        "ice-nova",
+        "frostbolt"
+      ],
+      "effectId": "IceNovaPlayer",
+      "requiredDescriptionFragments": [
+        "targeting near a Frostbolt Projectile",
+        "originate from the Frostbolt"
+      ],
+      "explanation": "Ice Nova can originate from a nearby Frostbolt projectile when aimed near it.",
+      "condition": "Requires a Frostbolt projectile nearby and targeting near that projectile."
+    },
+    {
+      "id": "lightning-arrow-rod",
+      "skillIds": [
+        "lightning-arrow",
+        "lightning-rod"
+      ],
+      "effectId": "LightningRodPlayer",
+      "requiredDescriptionFragments": [
+        "Chaining Lightning beams can Chain to it",
+        "Lightning Arrow Skill reduces this delay"
+      ],
+      "explanation": "Lightning Rod can receive chaining lightning beams; Lightning Arrow shortens the delay before its subsequent burst.",
+      "condition": "Requires a placed Lightning Rod and lightning beams chaining to it. No DPS multiplier is calculated."
+    }
+  ]
+}

@@ -13,3 +13,17 @@ jobs:
       - run: npm test
       - run: npm run validate
       - run: npm run demo
+      - run: npm run lab -- lightning-arrow
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/checkout@v4
+        with:
+          repository: PathOfBuildingCommunity/PathOfBuilding-PoE2
+          ref: bb52d6b368307457eb9c54bb13f1829993d390b1
+          path: .upstream-pob
+      - run: npm run import:pob -- .upstream-pob --check
