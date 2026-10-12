@@ -2,7 +2,7 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.2.0 adds a real-data preview:** eight skills, eight supports, and two source-documented skill interactions. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
+**v0.2.1 adds a cross-checked real-data preview:** eight skills, eight supports, and two source-documented skill interactions. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
 
 ## Run locally
 
@@ -14,6 +14,8 @@ npm test
 npm run validate
 npm run lab -- lightning-arrow
 npm run lab -- ice-nova
+npm run lab -- ice-nova --sideways-cascade
+npm run audit:check
 npm run lab -- spark
 npm run lab -- --list
 ```
@@ -29,7 +31,9 @@ Use `npm run lab -- spark --json` for machine-readable output with evidence link
 - Snapshot diffs for added, removed, and changed entities.
 - A guarded activation command with regression tests and a SHA-256 active pointer.
 - GitHub CI and a daily upstream commit watcher producing a downloadable report.
-- Twenty-two regression tests, including real source cases and importer failures.
+- Twenty-six regression tests, including real source cases and importer failures.
+- A recorded cross-check of all 16 factual type records, with a checksum-bound audit.
+- The official sideways cascade restriction for Ice Nova + Frostbolt.
 - A narrow, nonexecuting PoB metadata importer and reproducible pinned-source snapshot.
 - Source-documented Ice Nova + Frostbolt and Lightning Arrow + Lightning Rod interactions.
 

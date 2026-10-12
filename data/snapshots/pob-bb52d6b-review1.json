@@ -1,0 +1,576 @@
+{
+  "schemaVersion": 2,
+  "id": "pob-bb52d6b-review1",
+  "league": "Forbidden Rites",
+  "patch": "0.5.5e",
+  "rulesVersion": "pob-skill-types-1",
+  "status": "candidate",
+  "patchValidation": {
+    "status": "pending",
+    "checkedAt": "2026-10-12T16:05:30Z",
+    "officialPatchUrl": "https://www.pathofexile.com/forum/view-thread/4009785",
+    "officialLeagueUrl": "https://www.pathofexile.com/forum/view-thread/4000864",
+    "notes": "Selected base-effect skill types and support predicates corroborated against public PoE2DB records. Official 0.5.5e notes list no changes to these fields. Independent live-client validation and source-to-game patch binding remain pending."
+  },
+  "importerVersion": "pob-metadata-2",
+  "sources": [
+    {
+      "id": "pob-skills",
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2",
+      "revision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+      "license": "PoB software: MIT notice retained in THIRD_PARTY_NOTICES.md. Underlying skill facts: (c) Grinding Gear Games; not relicensed by this project.",
+      "retrievedAt": "2026-10-12T15:00:00Z"
+    },
+    {
+      "id": "ggg-050-restriction",
+      "url": "https://www.pathofexile.com/forum/view-thread/3932540",
+      "revision": "0.5.0 patch notes; reviewed 2026-10-12",
+      "retrievedAt": "2026-10-12T16:05:30Z",
+      "license": "GGG patch notes; only a paraphrased mechanical restriction is recorded."
+    }
+  ],
+  "entities": [
+    {
+      "id": "spark",
+      "name": "Spark",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SparkPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 19901,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "74069a025c0aea1d59777105f31533fbced915d9be7487a18081a88913397008",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901"
+      },
+      "skillTypes": [
+        "Spell",
+        "Projectile",
+        "ProjectilesFromUser",
+        "Damage",
+        "Duration",
+        "Trappable",
+        "Totemable",
+        "Mineable",
+        "Multicastable",
+        "Triggerable",
+        "Lightning",
+        "Unleashable",
+        "Invokable",
+        "UsableWhileMoving"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "fireball",
+      "name": "Fireball",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "FireballPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 7374,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "6990d1a3d74c03b66c327440319e68058a86653427e320c70eee702b6797f994",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      },
+      "skillTypes": [
+        "Spell",
+        "Projectile",
+        "ProjectilesFromUser",
+        "Damage",
+        "Area",
+        "Trappable",
+        "Totemable",
+        "Mineable",
+        "Multicastable",
+        "Triggerable",
+        "Fire",
+        "Unleashable",
+        "AreaSpell",
+        "Invokable",
+        "UsableWhileMoving"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "ice-nova",
+      "name": "Ice Nova",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "IceNovaPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 12801,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "024888550af2f5827d379730a715b6e0277677c88262d3fe6399267ffeaf8e68",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L12801"
+      },
+      "skillTypes": [
+        "Spell",
+        "Damage",
+        "Area",
+        "Trappable",
+        "Totemable",
+        "Mineable",
+        "Multicastable",
+        "Triggerable",
+        "Cold",
+        "Unleashable",
+        "AreaSpell",
+        "Nova",
+        "Invokable",
+        "UsableWhileMoving",
+        "Cascadable",
+        "Duration",
+        "CreatesGroundEffect"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "frostbolt",
+      "name": "Frostbolt",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "FrostboltPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 9691,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "67935cb9cd5a39f28207551e9d49a1ab893c8fbfb0e21c91a0d814f524968076",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691"
+      },
+      "skillTypes": [
+        "Spell",
+        "Projectile",
+        "ProjectilesFromUser",
+        "Damage",
+        "Trappable",
+        "Totemable",
+        "Mineable",
+        "Multicastable",
+        "Cold",
+        "Triggerable",
+        "Unleashable",
+        "Area",
+        "UsableWhileMoving"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "lightning-arrow",
+      "name": "Lightning Arrow",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "LightningArrowPlayer",
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 4151,
+        "fileSha256": "4da51913bf22066af7be1a7a0ce5d3763adae18b5c5e0ff23ef1630da67762b6",
+        "recordSha256": "29f0b12e6c7087f45fdcab038c72243fed219f1017a64eda0a77619b710f7b1c",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4151"
+      },
+      "skillTypes": [
+        "Attack",
+        "RangedAttack",
+        "MirageArcherCanUse",
+        "Area",
+        "Projectile",
+        "ProjectilesFromUser",
+        "Totemable",
+        "Trappable",
+        "Mineable",
+        "Lightning",
+        "Triggerable",
+        "Barrageable",
+        "UsableWhileMoving",
+        "CanBecomeArrowRain",
+        "Chains",
+        "Bow"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "lightning-rod",
+      "name": "Lightning Rod",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "LightningRodPlayer",
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 4362,
+        "fileSha256": "4da51913bf22066af7be1a7a0ce5d3763adae18b5c5e0ff23ef1630da67762b6",
+        "recordSha256": "9c961a4c19fb2a71ffc83746aa2aef7e8ba89001601c7eb280123b53184c4599",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4362"
+      },
+      "skillTypes": [
+        "Attack",
+        "RangedAttack",
+        "Rain",
+        "Area",
+        "Barrageable",
+        "ProjectileSpeed",
+        "ProjectileNumber",
+        "Duration",
+        "UsableWhileMoving",
+        "Lightning",
+        "Sustained",
+        "ProjectileNoCollision",
+        "Bow",
+        "GroundTargetedProjectile",
+        "ObjectDurability",
+        "MirageArcherCanUse"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "gas-arrow",
+      "name": "Gas Arrow",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "GasArrowPlayer",
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 2855,
+        "fileSha256": "4da51913bf22066af7be1a7a0ce5d3763adae18b5c5e0ff23ef1630da67762b6",
+        "recordSha256": "0b48a0b96cd115f4b59875f983d584b25dba1c668d72264e83ec2a3f5c525a68",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L2855"
+      },
+      "skillTypes": [
+        "Attack",
+        "RangedAttack",
+        "Projectile",
+        "ProjectilesFromUser",
+        "Barrageable",
+        "Duration",
+        "UsableWhileMoving",
+        "CanBecomeArrowRain",
+        "Area",
+        "Chaos",
+        "Fire",
+        "Bow",
+        "GroundTargetedProjectile",
+        "CreatesGroundEffect",
+        "Limit",
+        "MirageArcherCanUse"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "leap-slam",
+      "name": "Leap Slam",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "LeapSlamPlayer",
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 8162,
+        "fileSha256": "2860cae594d0c41cc9b77035011677c2ba02c8109acae230c516a2b74fa1e674",
+        "recordSha256": "59c4f4dfabc630483ab90d7da3d476cffa81efc92110de91b9b42ee74050dc14",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L8162"
+      },
+      "skillTypes": [
+        "Attack",
+        "Area",
+        "Melee",
+        "Slam",
+        "Totemable",
+        "Travel",
+        "Jumping",
+        "ConsumesFullyBrokenArmour"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "pierce-1",
+      "name": "Pierce I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportPiercePlayer",
+        "path": "src/Data/Skills/sup_dex.lua",
+        "line": 3648,
+        "fileSha256": "d47478e912b683b24b1ea92388f6c4a993f97038d4a18a49710a743394cabb5f",
+        "recordSha256": "e5dea29c4a1a22852ef7d6c678b4cb076e1462e334063f602e25249c452867a5",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_dex.lua#L3648"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Projectile"
+        ],
+        "excludedTypes": [
+          "ProjectileNoCollision"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "chain-1",
+      "name": "Chain I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportChainPlayer",
+        "path": "src/Data/Skills/sup_dex.lua",
+        "line": 808,
+        "fileSha256": "d47478e912b683b24b1ea92388f6c4a993f97038d4a18a49710a743394cabb5f",
+        "recordSha256": "25230869fd351c923bdec8f5114ac6c9d68cd711ac287a33bd3ba1a3f2130038",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_dex.lua#L808"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Chains",
+          "Projectile"
+        ],
+        "excludedTypes": [
+          "CannotChain",
+          "ProjectileNoCollision"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "fork",
+      "name": "Fork",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportForkPlayer",
+        "path": "src/Data/Skills/sup_dex.lua",
+        "line": 2245,
+        "fileSha256": "d47478e912b683b24b1ea92388f6c4a993f97038d4a18a49710a743394cabb5f",
+        "recordSha256": "4445b46b39d662728475fd3a8f7d16528c185c113eb83edec79f90ba9281cca0",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_dex.lua#L2245"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Projectile"
+        ],
+        "excludedTypes": [
+          "ProjectileNoCollision"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "projectile-acceleration-1",
+      "name": "Projectile Acceleration I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportProjectileAccelerationPlayer",
+        "path": "src/Data/Skills/sup_dex.lua",
+        "line": 4254,
+        "fileSha256": "d47478e912b683b24b1ea92388f6c4a993f97038d4a18a49710a743394cabb5f",
+        "recordSha256": "380471b03d97cb498d63cb9a0bcb2c90d6355f7f6817f8415203be233b459664",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_dex.lua#L4254"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Projectile",
+          "ProjectileSpeed"
+        ],
+        "excludedTypes": [
+          "FixedSpeedProjectile"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "rapid-attacks-1",
+      "name": "Rapid Attacks I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportRapidAttacksPlayer",
+        "path": "src/Data/Skills/sup_dex.lua",
+        "line": 4613,
+        "fileSha256": "d47478e912b683b24b1ea92388f6c4a993f97038d4a18a49710a743394cabb5f",
+        "recordSha256": "08ffee73a4161c94499a7413275ca4aa77dde58e1852f86c3b139054804af132",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_dex.lua#L4613"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Attack",
+          "CrossbowAmmoSkill"
+        ],
+        "excludedTypes": [
+          "Herald",
+          "NoAttackOrCastTime"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "rapid-casting-1",
+      "name": "Rapid Casting I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportRapidCastingPlayer",
+        "path": "src/Data/Skills/sup_int.lua",
+        "line": 7541,
+        "fileSha256": "602614e225770f23d39ddc244500f72e333d0ba5bd976aef0e21620a546c0889",
+        "recordSha256": "9f1ce343fc435918cce26aa48c5997d085c8eb2a5ad20de1e17dad7d594c668c",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L7541"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Spell"
+        ],
+        "excludedTypes": [
+          "Instant",
+          "FixedCastTime",
+          "NoAttackOrCastTime"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "controlled-destruction",
+      "name": "Controlled Destruction",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportControlledDestructionPlayer",
+        "path": "src/Data/Skills/sup_int.lua",
+        "line": 2178,
+        "fileSha256": "602614e225770f23d39ddc244500f72e333d0ba5bd976aef0e21620a546c0889",
+        "recordSha256": "ecfc47e214a8f99b70336de58648f68e172a4da4264e619ca578430024e72570",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L2178"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Damage",
+          "Spell",
+          "AND"
+        ],
+        "excludedTypes": []
+      },
+      "warnings": [
+        "Prevents critical hits. Type compatibility does not establish a good build choice."
+      ]
+    },
+    {
+      "id": "brutality-1",
+      "name": "Brutality I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidence": {
+        "effectId": "SupportBrutalityPlayer",
+        "path": "src/Data/Skills/sup_str.lua",
+        "line": 1220,
+        "fileSha256": "02f01358216789d1c415d3dc94da6c9cb11d635995b0954d9d5829222840fda6",
+        "recordSha256": "491c89abf3e5c0a1863b805ff56693ce7cd7b23063008751c3b6f5c2a89eb891",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L1220"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Damage",
+          "Attack",
+          "DamageOverTime",
+          "CrossbowAmmoSkill"
+        ],
+        "excludedTypes": []
+      },
+      "warnings": [
+        "Disables elemental damage. This can undermine elemental skills despite matching their types.",
+        "Disables chaos damage."
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "id": "ice-nova-frostbolt",
+      "skillIds": [
+        "ice-nova",
+        "frostbolt"
+      ],
+      "explanation": "Ice Nova can originate from a nearby Frostbolt projectile when aimed near it.",
+      "condition": "Requires a Frostbolt projectile nearby and targeting near that projectile. This interaction does not apply while cascading sideways.",
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidenceUrl": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L12801",
+      "restrictions": [
+        {
+          "contextFlag": "sidewaysCascade",
+          "explanation": "Sideways cascading prevents Ice Nova from originating at a Frostbolt.",
+          "sourceIds": [
+            "ggg-050-restriction"
+          ],
+          "evidenceUrl": "https://www.pathofexile.com/forum/view-thread/3932540"
+        }
+      ]
+    },
+    {
+      "id": "lightning-arrow-rod",
+      "skillIds": [
+        "lightning-arrow",
+        "lightning-rod"
+      ],
+      "explanation": "Lightning Rod can receive chaining lightning beams; Lightning Arrow shortens the delay before its subsequent burst.",
+      "condition": "Requires a placed Lightning Rod and lightning beams chaining to it. No DPS multiplier is calculated.",
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "evidenceUrl": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4362"
+    }
+  ]
+}

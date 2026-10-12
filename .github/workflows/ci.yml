@@ -12,6 +12,7 @@ jobs:
           node-version: '22'
       - run: npm test
       - run: npm run validate
+      - run: npm run audit:check
       - run: npm run demo
       - run: npm run lab -- lightning-arrow
   provenance:

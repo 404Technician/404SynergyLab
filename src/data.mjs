@@ -53,6 +53,10 @@ export function validateSnapshot(s) {
       require(text(rule.id) && !interactionIds.has(rule.id), 'Duplicate interaction'); interactionIds.add(rule.id);
       require(strings(rule.skillIds) && rule.skillIds.length >= 2 && rule.skillIds.every(id => s.entities.some(e => e.id === id && e.kind === 'skill')), 'Invalid interaction skills');
       require(text(rule.explanation) && text(rule.condition) && /^https:\/\//.test(rule.evidenceUrl), 'Missing interaction evidence');
+      for (const restriction of rule.restrictions ?? []) {
+        require(restriction.contextFlag === 'sidewaysCascade' && text(restriction.explanation) && /^https:\/\//.test(restriction.evidenceUrl), 'Invalid interaction restriction');
+        require(strings(restriction.sourceIds) && restriction.sourceIds.length > 0 && restriction.sourceIds.every(id=>sourceIds.has(id)), 'Invalid restriction source');
+      }
       require(strings(rule.sourceIds) && rule.sourceIds.length > 0 && rule.sourceIds.every(id=>sourceIds.has(id)), 'Invalid interaction source');
     }
   }

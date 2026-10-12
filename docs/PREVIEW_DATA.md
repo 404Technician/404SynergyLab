@@ -1,11 +1,11 @@
-# Real-data preview: v0.2.0
+# Real-data preview: v0.2.1
 
 ## Provenance
 
 Source repository: PathOfBuildingCommunity/PathOfBuilding-PoE2.
 Pinned commit: bb52d6b368307457eb9c54bb13f1829993d390b1 (commit date: 2026-10-01).
-Snapshot: pob-bb52d6b-preview.
-Importer: pob-metadata-1.
+Snapshot: pob-bb52d6b-review1.
+Importer: pob-metadata-2.
 Status: candidate. Target league: Forbidden Rites. Target patch: 0.5.5e.
 
 The official forum confirms the target patch and event league. This is not evidence that every imported source record is updated for that patch. The source commit predates 0.5.5e. `patchValidation.status` remains pending and `data/active.json` remains null.
@@ -22,7 +22,7 @@ Only the base granted effect is checked. Secondary effects, gem levels, triggere
 
 ## Documented interactions
 
-- Ice Nova + Frostbolt: originating from a nearby Frostbolt is conditional on where Ice Nova is targeted.
+- Ice Nova + Frostbolt: originating from a nearby Frostbolt is conditional on where Ice Nova is targeted and is blocked while cascading sideways, as established by official 0.5.0 patch notes.
 - Lightning Arrow + Lightning Rod: chaining lightning can charge the rod; Lightning Arrow reduces the burst delay.
 
 The importer checks evidence fragments in the source description before accepting these manually selected interaction rules. Changed wording stops regeneration and requires review. No numerical synergy score or damage multiplier is invented.
@@ -53,3 +53,5 @@ The import manifest must use a new snapshot id for later revisions. Imported sta
 ## Source semantics
 
 https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Modules/CalcTools.lua
+
+See [Validation review](VALIDATION.md) for the cross-check scope and unresolved issues.

@@ -68,9 +68,9 @@ export function buildPobSnapshot(manifest, files) {
     const description=record && lineField(record.text,'description');
     if (!description || !rule.requiredDescriptionFragments.every(fragment=>description.includes(fragment))) throw new Error(`Interaction evidence changed: ${rule.id}`);
     const entity=entities.find(e=>e.evidence.effectId===rule.effectId);
-    return {id:rule.id,skillIds:rule.skillIds,explanation:rule.explanation,condition:rule.condition,sourceIds:['pob-skills'],evidenceUrl:entity.evidence.url};
+    return {id:rule.id,skillIds:rule.skillIds,explanation:rule.explanation,condition:rule.condition,sourceIds:['pob-skills'],evidenceUrl:entity.evidence.url, ...(rule.restrictions ? {restrictions:rule.restrictions} : {})};
   });
   return validateSnapshot({schemaVersion:2,id:manifest.id,league:manifest.league,patch:manifest.patch,rulesVersion:manifest.rulesVersion,status:'candidate',
-    patchValidation:manifest.patchValidation,importerVersion:'pob-metadata-1',sources:[{id:'pob-skills',url:`https://github.com/${manifest.repository}`,revision:manifest.revision,
-      license:'PoB software: MIT notice retained in THIRD_PARTY_NOTICES.md. Underlying skill facts: (c) Grinding Gear Games; not relicensed by this project.',retrievedAt:manifest.retrievedAt}],entities,interactions});
+    patchValidation:manifest.patchValidation,importerVersion:manifest.curatedSources ? 'pob-metadata-2' : 'pob-metadata-1',sources:[{id:'pob-skills',url:`https://github.com/${manifest.repository}`,revision:manifest.revision,
+      license:'PoB software: MIT notice retained in THIRD_PARTY_NOTICES.md. Underlying skill facts: (c) Grinding Gear Games; not relicensed by this project.',retrievedAt:manifest.retrievedAt}, ...(manifest.curatedSources ?? [])],entities,interactions});
 }

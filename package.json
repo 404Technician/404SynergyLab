@@ -1,6 +1,6 @@
 {
   "name": "404-synergy-lab",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,6 +12,7 @@
     "validate": "node scripts/validate.mjs",
     "sources:check": "node scripts/check-sources.mjs",
     "lab": "node scripts/lab.mjs",
-    "import:pob": "node scripts/import-pob.mjs"
+    "import:pob": "node scripts/import-pob.mjs",
+    "audit:check": "node scripts/check-audit.mjs"
   }
 }

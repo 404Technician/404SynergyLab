@@ -1,6 +1,7 @@
 import { matchesTypeExpression, describeTypeExpression } from './type-expression.mjs';
 import { validateSnapshot } from './data.mjs';
-export function analyze(snapshot, skillId) {
+export function analyze(snapshot, skillId, context={}) {
+  if (!context || typeof context !== 'object' || (context.sidewaysCascade !== undefined && typeof context.sidewaysCascade !== 'boolean')) throw new Error('Invalid interaction context');
   validateSnapshot(snapshot);
   if (!["tag-compatibility-1", "pob-skill-types-1"].includes(snapshot.rulesVersion)) throw new Error("Unsupported engine rules version");
   const skill = snapshot.entities.find(e => e.id === skillId && e.kind === 'skill');
@@ -9,7 +10,7 @@ export function analyze(snapshot, skillId) {
     snapshotId:snapshot.id, league:snapshot.league, patch:snapshot.patch,
     rulesVersion:snapshot.rulesVersion, dataStatus:snapshot.status,
     disclaimer:snapshot.schemaVersion === 2 ? 'Source skill-type compatibility for the base effect only. Candidate data is not verified for the target patch. No DPS ranking, socket, resource, minion, or complete build validation.' : 'Tag compatibility only. No DPS ranking or complete build validation.',
-    ...(snapshot.schemaVersion === 2 ? {patchValidation:snapshot.patchValidation.status,skillTypes:skill.skillTypes,interactions:snapshot.interactions.filter(r=>r.skillIds.includes(skillId)),evidenceUrl:skill.evidence.url} : {}),
+    ...(snapshot.schemaVersion === 2 ? {patchValidation:snapshot.patchValidation.status,skillTypes:skill.skillTypes,interactions:snapshot.interactions.filter(r=>r.skillIds.includes(skillId)).map(r=>({...r,status:(r.restrictions ?? []).some(x=>context[x.contextFlag] === true) ? 'blocked' : 'conditional'})),evidenceUrl:skill.evidence.url} : {}),
     skill:skill.name,
     results:snapshot.entities.filter(e => e.kind === 'support').map(support => {
       const c = support.compatibility;
