@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "pob-bb52d6b-connections1",
+  "rulesVersion": "discovery-1",
+  "status": "candidate",
+  "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "reviewedDate": "2026-10-12",
+  "items": [
+    {
+      "id": "call-of-the-brotherhood",
+      "name": "Call of the Brotherhood",
+      "conversion": {
+        "from": "Lightning",
+        "to": "Cold",
+        "percent": 100
+      },
+      "sourceIds": [
+        "pob-items"
+      ],
+      "evidence": {
+        "path": "src/Data/Uniques/ring.lua",
+        "line": 113,
+        "fileSha256": "6aa15bbe4e79d78d2f0b17f4494eeeb033c13a536bbf943ac2a30828e553ef41",
+        "recordSha256": "e10a6a115cc0498f3692f890c3317d30efcf3c45f1ee06e20846ac769b22dc90",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L113"
+      }
+    },
+    {
+      "id": "blueflame-bracers",
+      "name": "Blueflame Bracers",
+      "conversion": {
+        "from": "Fire",
+        "to": "Cold",
+        "percent": 100
+      },
+      "sourceIds": [
+        "pob-items"
+      ],
+      "evidence": {
+        "path": "src/Data/Uniques/gloves.lua",
+        "line": 290,
+        "fileSha256": "6c08f57e13bf4a4e0cfb930b89de31f31626eb69defac348b282a06bac94a3ed",
+        "recordSha256": "be08ddcc67a97262e09ab9e6d0aa3918f6c787f5e1c38bb434e6bca5d3488bc8",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L290"
+      }
+    },
+    {
+      "id": "the-three-dragons",
+      "name": "The Three Dragons",
+      "mechanic": "ailment-remapping",
+      "ailmentMap": [
+        {
+          "damage": "Fire",
+          "contributesTo": "Shock",
+          "replaces": "Flammability and Ignite"
+        },
+        {
+          "damage": "Cold",
+          "contributesTo": "Flammability and Ignite",
+          "replaces": "Chill and Freeze"
+        },
+        {
+          "damage": "Lightning",
+          "contributesTo": "Freeze",
+          "replaces": "Shock"
+        }
+      ],
+      "evidence": {
+        "path": "src/Data/Uniques/helmet.lua",
+        "line": 542,
+        "fileSha256": "eb069d4441184a296c5db8d2a947bc7c575251a39d8ed9affde542f12261aff3",
+        "recordSha256": "038f7a91b16333d21eabfc553c68e61b34a482fb2e6df50129718619ef28e2b4",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua"
+      },
+      "corroborationUrl": "https://poe2db.tw/us/The_Three_Dragons"
+    }
+  ],
+  "extraSupports": [
+    {
+      "id": "deep-freeze",
+      "name": "Deep Freeze",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Damage",
+          "Attack",
+          "CrossbowAmmoSkill"
+        ],
+        "excludedTypes": []
+      },
+      "warnings": [],
+      "evidence": {
+        "effectId": "SupportLastingFrostPlayer",
+        "path": "src/Data/Skills/sup_int.lua",
+        "line": 2986,
+        "fileSha256": "602614e225770f23d39ddc244500f72e333d0ba5bd976aef0e21620a546c0889",
+        "recordSha256": "7a81740ab8c4f2ce4798fbf2e13b624b7b7effedad18479d373baddaf664ef38",
+        "descriptionSha256": "1e0ea22fa05b009aeef1c8978d6e7d0ccb43919ab63fa3b4045180d2551c37e1",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L2986"
+      },
+      "corroborationUrl": "https://poe2db.tw/us/Deep_Freeze"
+    },
+    {
+      "id": "ignite-1",
+      "name": "Ignite I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Damage",
+          "Attack",
+          "CrossbowAmmoSkill"
+        ],
+        "excludedTypes": []
+      },
+      "warnings": [],
+      "evidence": {
+        "effectId": "SupportIgnitePlayer",
+        "path": "src/Data/Skills/sup_str.lua",
+        "line": 4408,
+        "fileSha256": "02f01358216789d1c415d3dc94da6c9cb11d635995b0954d9d5829222840fda6",
+        "recordSha256": "42987175348de1f269aa8e9ba8f5e22a82f37566920200f7ae813cff7e988c2f",
+        "descriptionSha256": "2022d1e1be98b511307a1ed776de66b5d86d38f8ad745f98fb5301b6639d9515",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L4408"
+      },
+      "corroborationUrl": "https://poe2db.tw/us/Ignite_I"
+    },
+    {
+      "id": "searing-flame-1",
+      "name": "Searing Flame I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Damage",
+          "Attack",
+          "CrossbowAmmoSkill"
+        ],
+        "excludedTypes": []
+      },
+      "warnings": [
+        "Increases Ignite damage at the expense of hit damage."
+      ],
+      "evidence": {
+        "effectId": "SupportDeadlyIgnitesPlayer",
+        "path": "src/Data/Skills/sup_str.lua",
+        "line": 6520,
+        "fileSha256": "02f01358216789d1c415d3dc94da6c9cb11d635995b0954d9d5829222840fda6",
+        "recordSha256": "7ac54ef35d512b2b1b01ea9905e722de43d41d572056e7bc25b53221d7c869da",
+        "descriptionSha256": "eb7e45d639f351d5583e77d3b0b3294ba6c624d307385350e66b81c3b163f160",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L6520"
+      },
+      "corroborationUrl": "https://poe2db.tw/us/Searing_Flame_I"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "cold-that-ignites",
+      "title": "Cold that ignites",
+      "itemId": "the-three-dragons",
+      "skillIds": [
+        "frostbolt",
+        "gas-arrow"
+      ],
+      "hook": "Turn Frostbolt's Cold hits into an Ignite direction, then use an ignited enemy to detonate Gas Arrow.",
+      "mechanics": "The helmet changes what Cold hit damage contributes to. Gas Arrow gas can explode when an ignited enemy touches it. This is a conditional mechanics link, not a guarantee that Frostbolt ignites.",
+      "play": [
+        "Equip the helmet and establish actual Ignite application with Frostbolt.",
+        "Place Gas Arrow gas where an ignited enemy can touch it.",
+        "Check whether the application and damage feel reliable in your current patch."
+      ],
+      "conditions": [
+        "Requires actual qualifying hits and Ignite application; raw Cold damage alone is not enough.",
+        "The Cold portion no longer supplies its usual Chill magnitude or Freeze buildup with this helmet.",
+        "A gas explosion still requires the ignited enemy to touch the cloud."
+      ],
+      "supports": [
+        {
+          "skillId": "frostbolt",
+          "supportId": "ignite-1",
+          "reason": "Supports the new Ignite direction by improving Flammability magnitude.",
+          "tradeoff": "Does not guarantee Ignite or simulate the final ailment magnitude."
+        },
+        {
+          "skillId": "frostbolt",
+          "supportId": "searing-flame-1",
+          "reason": "Can strengthen Ignites once the Cold-hit Ignite route actually works.",
+          "tradeoff": "Reduces hit damage; reassess application reliability and clearing."
+        },
+        {
+          "skillId": "frostbolt",
+          "supportId": "rapid-casting-1",
+          "reason": "Lets you cast Frostbolt more frequently.",
+          "tradeoff": "Extra casts cost resources; no cast-rate or Energy calculation is performed."
+        }
+      ],
+      "avoid": [
+        "Do not choose Deep Freeze for the helmet's Cold-to-Ignite route.",
+        "Extra Pierce is not an automatic upgrade: Frostbolt already pierces all targets."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua",
+        "https://poe2db.tw/us/The_Three_Dragons",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L2855"
+      ]
+    },
+    {
+      "id": "lightning-that-freezes",
+      "title": "Lightning that freezes",
+      "itemId": "the-three-dragons",
+      "skillIds": [
+        "spark",
+        "cast-on-elemental-ailment",
+        "comet"
+      ],
+      "hook": "Use Lightning hit damage as a Freeze-buildup direction, then explore an ailment-driven Comet trigger.",
+      "mechanics": "The helmet redirects Lightning hit damage toward Freeze buildup. Actual Freeze events can supply the ailment trigger's Energy; a socketed Comet is released only at its threshold.",
+      "play": [
+        "Equip the helmet and verify that Spark's Lightning hits actually build Freeze.",
+        "Activate Cast on Elemental Ailment and socket Comet.",
+        "Test Energy generation against the enemies you plan to fight."
+      ],
+      "conditions": [
+        "Freeze buildup is not guaranteed Freeze.",
+        "Requires enough Spirit, eligible Energy generation and the trigger threshold.",
+        "The Lightning portion no longer supplies its normal Shock chance via this modifier."
+      ],
+      "supports": [
+        {
+          "skillId": "spark",
+          "supportId": "deep-freeze",
+          "reason": "Extends freezes once Spark is actually inflicting them.",
+          "tradeoff": "Does not increase Freeze buildup or create Freeze by itself."
+        },
+        {
+          "skillId": "spark",
+          "supportId": "rapid-casting-1",
+          "reason": "Adds more cast opportunities for the Lightning-hit generator.",
+          "tradeoff": "Mana and actual hit behavior can be limiting."
+        },
+        {
+          "skillId": "comet",
+          "supportId": "controlled-destruction",
+          "reason": "A possible spell-hit damage direction for the socketed Comet.",
+          "tradeoff": "Prevents Comet's critical hits; this is not a critical-hit trigger setup."
+        }
+      ],
+      "avoid": [
+        "Do not assume Lightning types prove Freeze or trigger Energy.",
+        "Brutality would remove the elemental damage that this idea uses."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua",
+        "https://poe2db.tw/us/The_Three_Dragons",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2522",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L3725"
+      ]
+    },
+    {
+      "id": "fire-that-shocks",
+      "title": "Fire that shocks",
+      "itemId": "the-three-dragons",
+      "skillIds": [
+        "fireball",
+        "shockchain-arrow"
+      ],
+      "hook": "Explore Fireball as a Shock source for Shockchain Arrow instead of building it around Ignite.",
+      "mechanics": "Fire hit damage can contribute to Shock chance with the helmet. Shockchain Arrow needs a Lightning Ailment for its chain route and consumes Shock, so reapplication matters.",
+      "play": [
+        "Equip the helmet and verify Shock application from Fireball hits.",
+        "Use Shockchain Arrow against an actually affected target.",
+        "Plan how to reapply Shock after it is consumed."
+      ],
+      "conditions": [
+        "Shock chance contribution does not guarantee Shock.",
+        "Fire damage no longer contributes to its usual Flammability or Ignite magnitude via this modifier.",
+        "Weapon and attribute requirements for the attack are outside the concept check."
+      ],
+      "supports": [
+        {
+          "skillId": "fireball",
+          "supportId": "rapid-casting-1",
+          "reason": "Helps provide more opportunities to reapply Shock.",
+          "tradeoff": "Does not guarantee Shock or solve resource costs."
+        },
+        {
+          "skillId": "fireball",
+          "supportId": "controlled-destruction",
+          "reason": "Can be considered for the Fireball spell-hit component.",
+          "tradeoff": "Removes critical hits; damage and ailment outcomes still need verification."
+        },
+        {
+          "skillId": "shockchain-arrow",
+          "supportId": "rapid-attacks-1",
+          "reason": "Can help the attack portion act more frequently.",
+          "tradeoff": "Does not fix a missing Lightning Ailment."
+        }
+      ],
+      "avoid": [
+        "Ignite-oriented supports are not automatically useful for the helmet's Fire-to-Shock route."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua",
+        "https://poe2db.tw/us/The_Three_Dragons",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L7006"
+      ]
+    },
+    {
+      "id": "cold-fireballs",
+      "title": "Cold fireballs",
+      "itemId": "blueflame-bracers",
+      "skillIds": [
+        "fireball"
+      ],
+      "hook": "Keep Fireball's delivery style while changing its Fire damage component to Cold.",
+      "mechanics": "The gloves convert Fire damage to Cold without rewriting Fireball's skill types. That opens a Cold-damage direction, while ailment application still needs its own check.",
+      "play": [
+        "Equip the gloves and keep Fireball as the delivery skill.",
+        "Verify the final Cold damage and whether your setup can apply the intended ailments.",
+        "Choose hit damage, cast speed or actual Freeze duration according to that result."
+      ],
+      "conditions": [
+        "Skill types stay unchanged after conversion.",
+        "Other damage sources and conversion stages are not calculated.",
+        "Cold damage does not guarantee Freeze."
+      ],
+      "supports": [
+        {
+          "skillId": "fireball",
+          "supportId": "deep-freeze",
+          "reason": "Useful to explore if the converted Fireball actually inflicts Freeze.",
+          "tradeoff": "Only changes Freeze duration; it does not create Freeze."
+        },
+        {
+          "skillId": "fireball",
+          "supportId": "rapid-casting-1",
+          "reason": "Preserves a cast-speed direction for the same spell delivery.",
+          "tradeoff": "Check Mana usage."
+        },
+        {
+          "skillId": "fireball",
+          "supportId": "controlled-destruction",
+          "reason": "A possible spell-hit damage direction.",
+          "tradeoff": "Prevents critical hits; compare that tradeoff against your plan."
+        }
+      ],
+      "avoid": [
+        "Brutality removes the converted elemental damage.",
+        "Recheck Ignite-dependent plans after converting away the Fire component."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L290",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      ]
+    },
+    {
+      "id": "cold-spark-snap",
+      "title": "Cold sparks, then Snap",
+      "itemId": "call-of-the-brotherhood",
+      "skillIds": [
+        "spark",
+        "snap"
+      ],
+      "hook": "Explore converted Spark hits as a Cold ailment source, then consume an actual elemental ailment with Snap.",
+      "mechanics": "The ring converts Lightning damage to Cold. Snap can act on a Frozen, Shocked or Ignited enemy; this concept needs a real qualifying ailment from your final setup.",
+      "play": [
+        "Equip the ring and verify the final Cold-hit ailment behavior.",
+        "Use Spark to establish a qualifying target ailment.",
+        "Use Snap on that target and account for the consumed ailment."
+      ],
+      "conditions": [
+        "Converted Cold damage does not guarantee Freeze.",
+        "Removing Lightning damage means a Shock-dependent plan needs another check.",
+        "Snap consumes the qualifying ailment; its propagated blasts do not spread indefinitely."
+      ],
+      "supports": [
+        {
+          "skillId": "spark",
+          "supportId": "deep-freeze",
+          "reason": "Can give more time to act on a target once Spark actually inflicts Freeze.",
+          "tradeoff": "Does not provide Freeze buildup."
+        },
+        {
+          "skillId": "spark",
+          "supportId": "rapid-casting-1",
+          "reason": "Provides more casting opportunities for the generator.",
+          "tradeoff": "Resource costs and hit behavior remain uncalculated."
+        },
+        {
+          "skillId": "snap",
+          "supportId": "rapid-casting-1",
+          "reason": "A possible cast-speed direction for Snap.",
+          "tradeoff": "Does not remove Snap's cooldown or its target condition."
+        }
+      ],
+      "avoid": [
+        "Do not treat the skill's original Lightning type as proof of outgoing Lightning damage."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L113",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19051"
+      ]
+    },
+    {
+      "id": "frostbolt-delivery-point",
+      "title": "Frostbolt as a delivery point",
+      "itemId": null,
+      "skillIds": [
+        "frostbolt",
+        "ice-nova",
+        "snap"
+      ],
+      "hook": "Use Frostbolt as a moving target for a second spell rather than only as your damage projectile.",
+      "mechanics": "Ice Nova can originate from a nearby Frostbolt, and Snap can target one for a larger cold blast. These are different targeting routes with separate conditions.",
+      "play": [
+        "Send Frostbolt toward the area you want to affect.",
+        "Aim Ice Nova near the projectile, or target it with Snap.",
+        "Tune projectile speed so the moving target remains practical to use."
+      ],
+      "conditions": [
+        "Ice Nova cannot originate from Frostbolt while cascading sideways.",
+        "Snap's Frostbolt route requires an available projectile and targeting it.",
+        "No automatic cast sequence or resource budget is modeled."
+      ],
+      "supports": [
+        {
+          "skillId": "frostbolt",
+          "supportId": "projectile-acceleration-1",
+          "reason": "Can alter how quickly the delivery projectile reaches the target area.",
+          "tradeoff": "Faster is not always easier to target."
+        },
+        {
+          "skillId": "frostbolt",
+          "supportId": "rapid-casting-1",
+          "reason": "Provides more Frostbolt casting opportunities.",
+          "tradeoff": "More casts consume more resources."
+        },
+        {
+          "skillId": "ice-nova",
+          "supportId": "rapid-casting-1",
+          "reason": "A cast-speed direction for the follow-up spell.",
+          "tradeoff": "Does not bypass the positioning condition."
+        }
+      ],
+      "avoid": [
+        "Extra Pierce is not an automatic improvement because Frostbolt already pierces all targets."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L12801",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19051",
+        "https://www.pathofexile.com/forum/view-thread/3932540"
+      ]
+    }
+  ],
+  "limits": "Curated source-backed concepts, not playtested build recommendations. No DPS, ailment chance, trigger rate, gear budget or full build simulation."
+}

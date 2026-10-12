@@ -2,7 +2,7 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.5.0 adds a combination workbench:** assemble several skills, assign supports to individual skills, choose a unique, inspect known conflicts and missing conditions, and share the complete selection. choose a skill, filter supports, inspect tradeoffs, explore conditional connections, and copy snapshot-specific links. The bundled cross-checked preview includes sixteen skills, eight supports, ten source-documented skill interactions, and two selected unique conversion modifiers. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
+**v0.6.0 makes build discovery the primary flow:** start from a skill or a unique, explore six curated directions, and see why particular supports may help. Mechanics, play suggestions, conditions and tradeoffs explain each concept. The combination workbench is an optional secondary view. assemble several skills, assign supports to individual skills, choose a unique, inspect known conflicts and missing conditions, and share the complete selection. choose a skill, filter supports, inspect tradeoffs, explore conditional connections, and copy snapshot-specific links. The bundled cross-checked preview includes sixteen skills, eight supports, ten source-documented skill interactions, and two selected unique conversion modifiers. Data is pinned to a specific Path of Building commit. The target is Forbidden Rites / 0.5.5e, but game-patch validation is pending; this is candidate data, not an active verified snapshot. No numerical damage values or DPS predictions are bundled.
 
 ## Open the browser lab
 
@@ -41,13 +41,13 @@ Use `npm run lab -- spark --json` for machine-readable output with evidence link
 ## Included
 
 - Responsive browser interface sharing the command-line engine and validator.
-- Twenty-six browser acceptance checks in addition to the engine tests.
+- Thirty-one browser acceptance checks in addition to the engine tests.
 - Dependency-free JavaScript engine with AND, OR, NOT, and exclusion conditions from source skill types.
 - Snapshot validation, source provenance, league, patch, and engine version metadata.
 - Snapshot diffs for added, removed, and changed entities.
 - A guarded activation command with regression tests and a SHA-256 active pointer.
 - GitHub CI and a daily upstream commit watcher producing a downloadable report.
-- Forty-five regression tests, including real source cases and importer failures.
+- Fifty-four regression tests, including real source cases and importer failures.
 - A recorded cross-check of all 24 skill/support records and two unique modifiers, with a checksum-bound audit.
 - The official sideways cascade restriction for Ice Nova + Frostbolt.
 - A narrow, nonexecuting PoB metadata importer and reproducible pinned-source snapshot.
@@ -98,8 +98,10 @@ npx playwright install chromium
 npm run test:browser
 ```
 
-The checks cover selection, filtering, tradeoffs, conditional interactions, shared URLs, mobile overflow, data-integrity failure, unavailable snapshots, and server file boundaries. GitHub Actions also runs these checks. `npm test` continues to run the 45 dependency-free engine/data tests.
+The checks cover selection, filtering, tradeoffs, conditional interactions, shared URLs, mobile overflow, data-integrity failure, unavailable snapshots, and server file boundaries. GitHub Actions also runs these checks. `npm test` continues to run the 54 dependency-free engine/data tests.
 
 See [Conditional connections](docs/CONNECTIONS.md) for trigger assumptions, ailment pathways, unique conversion limits, and whole-setup context controls.
 
 See [Combination workbench](docs/WORKBENCH.md). Start with **Load trigger example**, then assign Controlled Destruction to Spark to see the Energy generator conflict. Assigning it only to Comet does not disable Spark's critical hits.
+
+Start with **Frostbolt** or **The Three Dragons** to try the discovery flow. See [Discovery Lab](docs/DISCOVERY.md). Skill/support type matches support the explanation; they are not sufficient evidence of a useful combination.

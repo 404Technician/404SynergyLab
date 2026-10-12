@@ -16,7 +16,7 @@ async function main(){
   const privateFile=await fetch(base+'/package.json');assert.equal(privateFile.status,404);checks++;console.log('PASS: server exposes only the browser build');
   const context=await browser.newContext({viewport:{width:1440,height:1050},permissions:['clipboard-read','clipboard-write']});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
+  await page.goto(base+'/?inspect=1');await page.locator('#workspace').waitFor({state:'visible'});
   assert.equal(await page.locator('#skill-title').textContent(),'Spark');assert.match(await page.locator('#data-notice').textContent(),/CANDIDATE DATA/);checks++;console.log('PASS: default Spark and candidate-data notice');
   assert.equal(await page.locator('.support-card').count(),8);checks++;console.log('PASS: all support cards loaded');
   await page.locator('[data-filter="compatible"]').click();assert.equal(await page.locator('.support-card.incompatible').count(),0);checks++;console.log('PASS: type-match filter');
@@ -35,14 +35,14 @@ async function main(){
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),true);checks++;console.log('PASS: narrow screen has no horizontal overflow');
   if(process.env.SCREENSHOT_DIR)await page.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'mobile.png'),fullPage:true});
 
-  await page.goto(base+'/?skill=cast-on-critical');await page.locator('#workspace').waitFor({state:'visible'});
+  await page.goto(base+'/?inspect=1&skill=cast-on-critical');await page.locator('#workspace').waitFor({state:'visible'});
   assert.match(await page.locator('.skill-button[data-id="cast-on-critical"] small').textContent(),/Meta gem/);
   await page.locator('#critical-disabled').check();assert.match(await page.locator('[data-interaction="crit-comet"] .connection-label').textContent(),/BLOCKED/);checks++;console.log('PASS: critical-hit context blocks the trigger pathway');
   await page.locator('.skill-button[data-id="flame-wall"]').click();await page.locator('#ignite-disabled').check();
   assert.match(await page.locator('[data-interaction="gas-arrow-flame-wall"] .connection-label').textContent(),/BLOCKED/);checks++;console.log('PASS: Ignite context blocks the gas detonation pathway');
   await page.locator('.skill-button[data-id="spark"]').click();assert.match(await page.locator('#unique-list').textContent(),/Call of the Brotherhood/);assert.match(await page.locator('#unique-list').textContent(),/types stay unchanged/);checks++;console.log('PASS: unique conversion is displayed without changing skill types');
 
-  await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
+  await page.goto(base+'/?inspect=1');await page.locator('#workspace').waitFor({state:'visible'});
   await page.locator('#load-example').click();assert.match(await page.locator('#combination-count').textContent(),/3 skills/);
   assert.match(await page.locator('[data-build-connection="crit-comet"] .build-connection-status').textContent(),/CONDITIONAL/);checks++;console.log('PASS: example assigns Controlled Destruction to Comet without disabling Spark');
   await page.locator('.skill-button[data-id="spark"]').click();await page.locator('[data-assign="controlled-destruction"]').check();
@@ -55,9 +55,20 @@ async function main(){
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth),true);checks++;console.log('PASS: populated workbench fits a narrow screen');
   await page.locator('#clear-combination').click();assert.match(await page.locator('#combination-count').textContent(),/0 skills/);checks++;console.log('PASS: clearing resets assignments and unique');
   await page.goto(base+'/?build='+encodeURIComponent(JSON.stringify({version:1,skillIds:['missing'],supports:{},itemId:null})));await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: malformed combination reference hides results');
+
+  await page.goto(base+'/');await page.locator('#workspace').waitFor({state:'visible'});
+  assert.equal(await page.locator('#advanced-checks').evaluate(e=>e.open),false);
+  assert.match(await page.locator('#discovery-ideas').textContent(),/Cold that ignites/);checks++;console.log('PASS: discovery is primary and skill checks are optional');
+  await page.locator('#start-unique').click();assert.equal(await page.locator('.discovery-card').count(),3);
+  assert.match(await page.locator('#discovery-ideas').textContent(),/Lightning that freezes/);checks++;console.log('PASS: unique-first reverse discovery finds documented directions');
+  await page.locator('#discovery-search').fill('cold that ignites');assert.equal(await page.locator('.discovery-card').count(),1);
+  await page.locator('.idea-details summary').click();assert.match(await page.locator('.idea-body').textContent(),/Ignite I/);assert.match(await page.locator('.idea-body').textContent(),/Tradeoff/);checks++;console.log('PASS: support reasons and tradeoffs are visible inside the idea');
+  await page.locator('.discovery-card .share-button').click();assert.equal(await page.locator('#advanced-checks').evaluate(e=>e.open),true);assert.equal(await page.locator('#skill-title').textContent(),'Frostbolt');checks++;console.log('PASS: optional source checks open for the idea skill');
+  await page.locator('#discovery-search').fill('');await page.setViewportSize({width:390,height:844});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: discovery cards fit a narrow screen');
   await page.goto(`${base}/?snapshot=missing&skill=spark`);await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable historical snapshot hides results');
   await page.route('**/data/snapshot.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
-  await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/saved source review/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered dataset hides results');
+  await page.goto(base+'/?inspect=1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/saved source review/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered dataset hides results');
   assert.deepEqual(errors,[]);checks++;console.log('PASS: no browser script errors');console.log(`${checks} browser checks passed.`);
  } finally {if(browser)await browser.close();server.kill();}
 }

@@ -1,3 +1,4 @@
+import { discover, validateDiscoveryCatalog } from './src/discovery.mjs';
 import { analyzeCombination, validateCombination } from './src/combination.mjs';
 import { analyze } from './src/engine.mjs';
 const $=id=>document.getElementById(id);
@@ -7,13 +8,14 @@ const labels={compatible:'TYPE MATCH',incompatible:'DOES NOT MATCH',unknown:'UNK
 const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
+let catalog,discoveryMode='skill',discoveryAnchor='frostbolt';
 let snapshot,meta,skills,selected='spark',filter='all',result;
 let combination={version:1,skillIds:[],supports:{},itemId:null};
 const contextInputs={sidewaysCascade:'sideways-cascade',criticalHitsDisabled:'critical-disabled',elementalAilmentsDisabled:'ailments-disabled',igniteDisabled:'ignite-disabled'};
 const contextParams={criticalHitsDisabled:'noCrit',elementalAilmentsDisabled:'noAilments',igniteDisabled:'noIgnite'};
 const readContext=()=>Object.fromEntries(Object.entries(contextInputs).map(([flag,id])=>[flag,$(id).checked]));
-function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');history.replaceState(null,'',url);}
-function choose(id) { selected=id;render();updateUrl(); }
+function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
+function choose(id) { selected=id;discoveryMode='skill';discoveryAnchor=id;render();updateUrl(); }
 function renderSkillList() {
   const query=$('skill-search').value.trim().toLowerCase();let count=0;
   for(const button of $('skill-list').children){button.hidden=!button.dataset.name.includes(query);if(!button.hidden)count++;button.setAttribute('aria-pressed',String(button.dataset.id===selected));}
@@ -72,7 +74,7 @@ function render(){
     const condition=element('div',undefined,'condition-box');condition.append(element('strong','CONDITIONS & TRADEOFFS'),element('span',idea.condition));
     card.append(condition,link('Pinned item modifier ↗',idea.item.evidence.url));$('unique-list').append(card);
   }
-  renderCombination();
+  renderDiscovery();renderCombination();
   if(!result.interactions.length)$('interactions').append(element('p','No reviewed skill interaction is recorded for this skill yet. This does not mean there are no possible synergies.','empty-note'));
 }
 
@@ -107,19 +109,55 @@ function renderCombination() {
     $('combination-connections').append(box);
   }
 }
+
+function renderDiscovery() {
+  $('start-skill').setAttribute('aria-pressed',String(discoveryMode==='skill'));$('start-unique').setAttribute('aria-pressed',String(discoveryMode==='unique'));
+  const anchors=discoveryMode==='skill'?skills:catalog.items;
+  $('discovery-anchor').replaceChildren(...anchors.map(a=>{const o=element('option',a.name);o.value=a.id;return o;}));$('discovery-anchor').value=discoveryAnchor;
+  const view=discover(snapshot,catalog,{kind:discoveryMode,id:discoveryAnchor}),query=$('discovery-search').value.trim().toLowerCase();
+  const ideas=view.ideas.filter(i=>(i.title+' '+i.hook).toLowerCase().includes(query));
+  $('discovery-count').textContent=ideas.length+' curated ideas for '+view.anchor.name+' · conditional concepts, not playtested builds';
+  $('discovery-ideas').replaceChildren();
+  if(!ideas.length){$('discovery-ideas').append(element('div',view.ideas.length?'No ideas match this search.':'No researched idea is in this small catalog for this starting point yet. Try Frostbolt, Spark, Fireball or The Three Dragons.','empty-support'));return;}
+  for(const idea of ideas){
+    const card=element('article',undefined,'discovery-card');card.dataset.idea=idea.id;
+    card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
+    const chips=element('div',undefined,'tag-row');for(const skill of idea.skills)chips.append(element('span',skill.name,'tag'));card.append(chips);
+    const more=element('details',undefined,'idea-details');more.append(element('summary','Mechanics, supports & tradeoffs'));
+    const body=element('div',undefined,'idea-body');body.append(element('h4','Why this is interesting'),element('p',idea.mechanics),element('h4','How to explore it'));
+    const steps=element('ol');for(const step of idea.play)steps.append(element('li',step));body.append(steps,element('h4','Support ideas — and why'));
+    for(const role of idea.supportIdeas){
+      const box=element('div',undefined,'discovery-support');box.dataset.ideaSupport=role.supportId;
+      box.append(element('strong',role.support.name+' → '+skills.find(s=>s.id===role.skillId).name),element('p',role.reason),element('small','Tradeoff: '+role.tradeoff),link('Support record ↗',role.support.evidence.url));body.append(box);
+    }
+    body.append(element('h4','Conditions & costs'));const conditions=element('ul');for(const c of idea.conditions)conditions.append(element('li',c));body.append(conditions,element('h4','Avoid the tempting mistake'));
+    const avoid=element('ul');for(const c of idea.avoid)avoid.append(element('li',c));body.append(avoid,element('h4','Evidence'));
+    for(const url of idea.evidenceUrls)body.append(link('Source ↗',url));
+    more.append(body);card.append(more);
+    const inspect=element('button','Inspect '+idea.skills[0].name+' checks ↗','share-button');inspect.type='button';
+    inspect.addEventListener('click',()=>{selected=idea.skills[0].id;$('advanced-checks').open=true;render();updateUrl();$('skill-title').scrollIntoView({block:'start',behavior:'auto'});});card.append(inspect);
+    $('discovery-ideas').append(card);
+  }
+}
 async function start(){
-  const responses=await Promise.all([fetch('./data/snapshot.json',{cache:'no-cache'}),fetch('./data/build.json',{cache:'no-cache'})]);
+  const responses=await Promise.all([fetch('./data/snapshot.json',{cache:'no-cache'}),fetch('./data/build.json',{cache:'no-cache'}),fetch('./data/catalog.json',{cache:'no-cache'})]);
   if(responses.some(r=>!r.ok))throw new Error('The bundled data could not be loaded.');
-  const [bytes,metadata]=await Promise.all([responses[0].arrayBuffer(),responses[1].json()]);meta=metadata;
+  const [bytes,metadata,catalogBytes]=await Promise.all([responses[0].arrayBuffer(),responses[1].json(),responses[2].arrayBuffer()]);meta=metadata;
   const sha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
   if(sha!==meta.snapshotSha256)throw new Error('The dataset does not match its saved source review. Rebuild or update the project.');
   snapshot=JSON.parse(new TextDecoder().decode(bytes));if(snapshot.id!==meta.snapshotId)throw new Error('Snapshot version mismatch.');
+
+  const catalogSha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',catalogBytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(catalogSha!==meta.catalogSha256)throw new Error('The idea catalog does not match this build. Rebuild or update the project.');
+  catalog=JSON.parse(new TextDecoder().decode(catalogBytes));validateDiscoveryCatalog(snapshot,catalog);
   skills=snapshot.entities.filter(s=>s.kind==='skill');
   const params=new URL(location.href).searchParams;
   if(params.has('snapshot')&&params.get('snapshot')!==snapshot.id)throw new Error('This link refers to a different data snapshot. Open the lab without the link parameters to use this preview.');
   const requested=params.get('skill');if(requested&&!skills.some(s=>s.id===requested))throw new Error('This skill is not in the bundled preview. Open the lab without the link parameters.');
   if(params.has('build')){const raw=params.get('build');if(raw.length>12000)throw new Error('Combination link is too large.');combination=JSON.parse(raw);validateCombination(snapshot,combination);}
-  selected=requested||'spark';$('sideways-cascade').checked=params.get('cascade')==='sideways';
+  selected=requested||(params.get('inspect')==='1'?'spark':'frostbolt');
+  discoveryMode=params.get('start')||'skill';discoveryAnchor=params.get('anchor')||(discoveryMode==='unique'?'the-three-dragons':selected);
+  discover(snapshot,catalog,{kind:discoveryMode,id:discoveryAnchor});$('advanced-checks').open=params.get('inspect')==='1';$('sideways-cascade').checked=params.get('cascade')==='sideways';
   for(const [flag,key] of Object.entries(contextParams))$(contextInputs[flag]).checked=params.get(key)==='1';
   $('version').textContent=`v${meta.appVersion}`;$('patch-label').textContent=`Target patch ${snapshot.patch}`;$('league-label').textContent=snapshot.league;
   const notice=$('data-notice');notice.replaceChildren(element('strong','CANDIDATE DATA'),element('span','Source metadata cross-checked. Live patch confirmation is pending; results are a preview.'));
@@ -134,6 +172,12 @@ async function start(){
   $('combination-item').addEventListener('change',()=>{combination.itemId=$('combination-item').value||null;renderCombination();updateUrl();});
   $('clear-combination').addEventListener('click',()=>{combination={version:1,skillIds:[],supports:{},itemId:null};render();updateUrl();});
   $('load-example').addEventListener('click',()=>{combination={version:1,skillIds:['spark','cast-on-critical','comet'],supports:{comet:['controlled-destruction']},itemId:null};selected='comet';for(const id of Object.values(contextInputs))$(id).checked=false;render();updateUrl();});
+
+  $('start-skill').addEventListener('click',()=>{discoveryMode='skill';discoveryAnchor=selected;$('discovery-search').value='';renderDiscovery();updateUrl();});
+  $('start-unique').addEventListener('click',()=>{discoveryMode='unique';discoveryAnchor='the-three-dragons';$('discovery-search').value='';renderDiscovery();updateUrl();});
+  $('discovery-anchor').addEventListener('change',()=>{discoveryAnchor=$('discovery-anchor').value;if(discoveryMode==='skill')selected=discoveryAnchor;$('discovery-search').value='';render();updateUrl();});
+  $('discovery-search').addEventListener('input',renderDiscovery);
+  $('advanced-checks').addEventListener('toggle',()=>updateUrl());
   $('skill-search').addEventListener('input',renderSkillList);$('support-search').addEventListener('input',renderSupports);
   for(const button of $('filters').children)button.addEventListener('click',()=>{filter=button.dataset.filter;for(const b of $('filters').children)b.setAttribute('aria-pressed',String(b===button));renderSupports();});
   for(const id of Object.values(contextInputs))$(id).addEventListener('change',()=>{render();updateUrl();});
