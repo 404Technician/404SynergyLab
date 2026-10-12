@@ -51,11 +51,30 @@ export function validateSnapshot(s) {
       require(text(rule.id) && !interactionIds.has(rule.id), 'Duplicate interaction'); interactionIds.add(rule.id);
       require(strings(rule.skillIds) && rule.skillIds.length >= 2 && rule.skillIds.every(id => s.entities.some(e => e.id === id && e.kind === 'skill')), 'Invalid interaction skills');
       require(text(rule.explanation) && text(rule.condition) && /^https:\/\//.test(rule.evidenceUrl), 'Missing interaction evidence');
+      if(rule.kind !== undefined) require(['placement','projectile','ailment','trigger','infusion'].includes(rule.kind), 'Invalid interaction kind');
+      if(rule.evidenceUrls !== undefined) require(strings(rule.evidenceUrls) && rule.evidenceUrls.every(url=>/^https:\/\//.test(url)), 'Invalid extra evidence');
       for (const restriction of rule.restrictions ?? []) {
-        require(restriction.contextFlag === 'sidewaysCascade' && text(restriction.explanation) && /^https:\/\//.test(restriction.evidenceUrl), 'Invalid interaction restriction');
+        require(['sidewaysCascade','criticalHitsDisabled','elementalAilmentsDisabled','igniteDisabled'].includes(restriction.contextFlag) && text(restriction.explanation) && /^https:\/\//.test(restriction.evidenceUrl), 'Invalid interaction restriction');
         require(strings(restriction.sourceIds) && restriction.sourceIds.length > 0 && restriction.sourceIds.every(id=>sourceIds.has(id)), 'Invalid restriction source');
       }
       require(strings(rule.sourceIds) && rule.sourceIds.length > 0 && rule.sourceIds.every(id=>sourceIds.has(id)), 'Invalid interaction source');
+    }
+  }
+
+  if(s.items !== undefined) {
+    require(Array.isArray(s.items) && Array.isArray(s.uniqueIdeas), 'Invalid unique items');
+    const itemIds=new Set();
+    for(const item of s.items) {
+      require(text(item.id) && !itemIds.has(item.id) && text(item.name), 'Duplicate or missing item');itemIds.add(item.id);
+      require(item.conversion && ['Fire','Lightning'].includes(item.conversion.from) && item.conversion.to==='Cold' && item.conversion.percent===100, 'Unsupported item conversion');
+      require(strings(item.sourceIds) && item.sourceIds.length>0 && item.sourceIds.every(id=>sourceIds.has(id)), 'Invalid item source');
+      require(item.evidence && /^https:\/\//.test(item.evidence.url), 'Missing item evidence');
+    }
+    const ideaIds=new Set();
+    for(const idea of s.uniqueIdeas) {
+      require(text(idea.id) && !ideaIds.has(idea.id), 'Duplicate item idea');ideaIds.add(idea.id);
+      require(itemIds.has(idea.itemId) && s.entities.some(e=>e.id===idea.skillId && e.kind==='skill'), 'Invalid item idea references');
+      require(text(idea.explanation) && text(idea.condition), 'Missing item idea conditions');
     }
   }
   if (s.status === 'verified') {

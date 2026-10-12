@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 2,
+  "id": "pob-bb52d6b-review1",
+  "league": "Forbidden Rites",
+  "patch": "0.5.5e",
+  "rulesVersion": "pob-skill-types-1",
+  "status": "candidate",
+  "patchValidation": {
+    "status": "pending",
+    "checkedAt": "2026-10-12T16:05:30Z",
+    "officialPatchUrl": "https://www.pathofexile.com/forum/view-thread/4009785",
+    "officialLeagueUrl": "https://www.pathofexile.com/forum/view-thread/4000864",
+    "notes": "Selected base-effect skill types and support predicates corroborated against public PoE2DB records. Official 0.5.5e notes list no changes to these fields. Independent live-client validation and source-to-game patch binding remain pending."
+  },
+  "repository": "PathOfBuildingCommunity/PathOfBuilding-PoE2",
+  "revision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "retrievedAt": "2026-10-12T15:00:00Z",
+  "records": [
+    {
+      "id": "spark",
+      "effectId": "SparkPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "fireball",
+      "effectId": "FireballPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "ice-nova",
+      "effectId": "IceNovaPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "frostbolt",
+      "effectId": "FrostboltPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "lightning-arrow",
+      "effectId": "LightningArrowPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "lightning-rod",
+      "effectId": "LightningRodPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "gas-arrow",
+      "effectId": "GasArrowPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "leap-slam",
+      "effectId": "LeapSlamPlayer",
+      "path": "src/Data/Skills/act_str.lua",
+      "kind": "skill"
+    },
+    {
+      "id": "pierce-1",
+      "effectId": "SupportPiercePlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "chain-1",
+      "effectId": "SupportChainPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "fork",
+      "effectId": "SupportForkPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "projectile-acceleration-1",
+      "effectId": "SupportProjectileAccelerationPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "rapid-attacks-1",
+      "effectId": "SupportRapidAttacksPlayer",
+      "path": "src/Data/Skills/sup_dex.lua",
+      "kind": "support"
+    },
+    {
+      "id": "rapid-casting-1",
+      "effectId": "SupportRapidCastingPlayer",
+      "path": "src/Data/Skills/sup_int.lua",
+      "kind": "support"
+    },
+    {
+      "id": "controlled-destruction",
+      "effectId": "SupportControlledDestructionPlayer",
+      "path": "src/Data/Skills/sup_int.lua",
+      "kind": "support"
+    },
+    {
+      "id": "brutality-1",
+      "effectId": "SupportBrutalityPlayer",
+      "path": "src/Data/Skills/sup_str.lua",
+      "kind": "support"
+    }
+  ],
+  "interactions": [
+    {
+      "id": "ice-nova-frostbolt",
+      "skillIds": [
+        "ice-nova",
+        "frostbolt"
+      ],
+      "effectId": "IceNovaPlayer",
+      "requiredDescriptionFragments": [
+        "targeting near a Frostbolt Projectile",
+        "originate from the Frostbolt"
+      ],
+      "explanation": "Ice Nova can originate from a nearby Frostbolt projectile when aimed near it.",
+      "condition": "Requires a Frostbolt projectile nearby and targeting near that projectile. This interaction does not apply while cascading sideways.",
+      "restrictions": [
+        {
+          "contextFlag": "sidewaysCascade",
+          "explanation": "Sideways cascading prevents Ice Nova from originating at a Frostbolt.",
+          "sourceIds": [
+            "ggg-050-restriction"
+          ],
+          "evidenceUrl": "https://www.pathofexile.com/forum/view-thread/3932540"
+        }
+      ]
+    },
+    {
+      "id": "lightning-arrow-rod",
+      "skillIds": [
+        "lightning-arrow",
+        "lightning-rod"
+      ],
+      "effectId": "LightningRodPlayer",
+      "requiredDescriptionFragments": [
+        "Chaining Lightning beams can Chain to it",
+        "Lightning Arrow Skill reduces this delay"
+      ],
+      "explanation": "Lightning Rod can receive chaining lightning beams; Lightning Arrow shortens the delay before its subsequent burst.",
+      "condition": "Requires a placed Lightning Rod and lightning beams chaining to it. No DPS multiplier is calculated."
+    }
+  ],
+  "curatedSources": [
+    {
+      "id": "ggg-050-restriction",
+      "url": "https://www.pathofexile.com/forum/view-thread/3932540",
+      "revision": "0.5.0 patch notes; reviewed 2026-10-12",
+      "retrievedAt": "2026-10-12T16:05:30Z",
+      "license": "GGG patch notes; only a paraphrased mechanical restriction is recorded."
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import { checksum, validateSnapshot } from './data.mjs';
-import { validateTypeExpression } from './type-expression.mjs';
+import { matchesTypeExpression, validateTypeExpression } from './type-expression.mjs';
 // This is a deliberately narrow reader for generated, single-line metadata.
 // It never evaluates Lua and stops when the selected record changes format.
 export function extractRecord(source, effectId) {
@@ -66,11 +66,35 @@ export function buildPobSnapshot(manifest, files) {
   const interactions=manifest.interactions.map(rule => {
     const record=selected.get(rule.effectId);
     const description=record && lineField(record.text,'description');
-    if (!description || !rule.requiredDescriptionFragments.every(fragment=>description.includes(fragment))) throw new Error(`Interaction evidence changed: ${rule.id}`);
+    if (!description || (rule.requiredDescriptionFragments && !rule.requiredDescriptionFragments.every(fragment=>description.includes(fragment))) || (rule.descriptionSha256 && checksum(description) !== rule.descriptionSha256)) throw new Error(`Interaction evidence changed: ${rule.id}`);
+
+    const evidenceUrls=[];
+    for(const extra of rule.additionalEvidence ?? []) {
+      const source=files[extra.path]; if(!source) throw new Error('Missing additional evidence file');
+      const other=extractRecord(source,extra.effectId);
+      if(checksum(lineField(other.text,'description')) !== extra.descriptionSha256) throw new Error('Additional interaction evidence changed');
+      evidenceUrls.push(`https://github.com/${manifest.repository}/blob/${manifest.revision}/${extra.path}#L${other.line}`);
+    }
+    if(rule.triggerCheck) {
+      const check=rule.triggerCheck, support=extractRecord(files[check.path],check.effectId);
+      const socketed=entities.find(e=>e.id===check.socketedSkillId && e.kind==='skill');
+      if(!socketed || !matchesTypeExpression(expression(support.text,'requireSkillTypes'),socketed.skillTypes) || matchesTypeExpression(expression(support.text,'excludeSkillTypes'),socketed.skillTypes)) throw new Error('Trigger socket type check failed');
+      evidenceUrls.push(`https://github.com/${manifest.repository}/blob/${manifest.revision}/${check.path}#L${support.line}`);
+    }
     const entity=entities.find(e=>e.evidence.effectId===rule.effectId);
-    return {id:rule.id,skillIds:rule.skillIds,explanation:rule.explanation,condition:rule.condition,sourceIds:['pob-skills'],evidenceUrl:entity.evidence.url, ...(rule.restrictions ? {restrictions:rule.restrictions} : {})};
+    return {id:rule.id,skillIds:rule.skillIds,explanation:rule.explanation,condition:rule.condition,sourceIds:['pob-skills'],evidenceUrl:entity.evidence.url, ...(rule.restrictions ? {restrictions:rule.restrictions} : {}), ...(rule.kind ? {kind:rule.kind} : {}), ...(evidenceUrls.length ? {evidenceUrls} : {})};
+  });
+
+  const items=(manifest.uniqueRecords ?? []).map(selection => {
+    const source=files[selection.path];
+    if(!source?.includes('Item data (c) Grinding Gear Games')) throw new Error('Missing unique item source notice');
+    const blocks=[...source.matchAll(/\[\[\r?\n([\s\S]*?)\]\]/g)].filter(m=>m[1].split(/\r?\n/)[0]===selection.name);
+    const parsed=selection.requiredLine.match(/^(\d+)% of (Fire|Lightning) Damage Converted to (Cold) Damage$/);
+    if(blocks.length!==1 || !blocks[0][1].split(/\r?\n/).includes(selection.requiredLine) || !parsed || Number(parsed[1])!==selection.conversion.percent || parsed[2]!==selection.conversion.from || parsed[3]!==selection.conversion.to) throw new Error('Unique conversion evidence changed');
+    const line=source.slice(0,blocks[0].index).split('\n').length;
+    return {id:selection.id,name:selection.name,conversion:selection.conversion,sourceIds:['pob-items'],evidence:{path:selection.path,line,fileSha256:checksum(source),recordSha256:checksum(blocks[0][1]),url:`https://github.com/${manifest.repository}/blob/${manifest.revision}/${selection.path}#L${line}`}};
   });
   return validateSnapshot({schemaVersion:2,id:manifest.id,league:manifest.league,patch:manifest.patch,rulesVersion:manifest.rulesVersion,status:'candidate',
-    patchValidation:manifest.patchValidation,importerVersion:manifest.curatedSources ? 'pob-metadata-2' : 'pob-metadata-1',sources:[{id:'pob-skills',url:`https://github.com/${manifest.repository}`,revision:manifest.revision,
-      license:'PoB software: MIT notice retained in THIRD_PARTY_NOTICES.md. Underlying skill facts: (c) Grinding Gear Games; not relicensed by this project.',retrievedAt:manifest.retrievedAt}, ...(manifest.curatedSources ?? [])],entities,interactions});
+    patchValidation:manifest.patchValidation,importerVersion:manifest.uniqueRecords ? 'pob-metadata-3' : manifest.curatedSources ? 'pob-metadata-2' : 'pob-metadata-1',sources:[{id:'pob-skills',url:`https://github.com/${manifest.repository}`,revision:manifest.revision,
+      license:'PoB software: MIT notice retained in THIRD_PARTY_NOTICES.md. Underlying skill facts: (c) Grinding Gear Games; not relicensed by this project.',retrievedAt:manifest.retrievedAt}, ...(manifest.curatedSources ?? []), ...(items.length ? [{id:'pob-items',url:`https://github.com/${manifest.repository}`,revision:manifest.revision,retrievedAt:manifest.retrievedAt,license:'Selected factual conversion modifiers; underlying item data (c) Grinding Gear Games.'}] : [])],entities,interactions, ...(items.length ? {items,uniqueIdeas:manifest.uniqueIdeas} : {})});
 }

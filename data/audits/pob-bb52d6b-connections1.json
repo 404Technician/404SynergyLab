@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "pob-bb52d6b-connections1",
+  "snapshotSha256": "e3ef7a317ca58f0acc22e92ca2376453546675f44a87dd0b24060d59a99bcb66",
+  "checkedAt": "2026-10-12",
+  "method": "Manual public-page comparison of selected factual type fields; checksums preserve the reviewed values. This is not a live scraper or in-game test.",
+  "records": [
+    {
+      "entityId": "spark",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "011c24f00288ee64e5dbdfcc11614a503c2d5e1fac983783d5363774b3a006a0",
+      "sourceUrl": "https://poe2db.tw/us/Spark",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "fireball",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "5bfe78b9117d9d3fdf31617d58ac43b2126e80b1e1d6a4fa3c39277a6791c12e",
+      "sourceUrl": "https://poe2db.tw/us/Fireball",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "ice-nova",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "914d0b09ab0eda2406ab852c93e4ab211788c9b649da3e89651c63fdf0907f1c",
+      "sourceUrl": "https://poe2db.tw/us/Ice_Nova",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "frostbolt",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "591f8fbf67bb0fa10a7a86bd89a3fcd8a92d07a0ec63631a3eff6a351e3939a6",
+      "sourceUrl": "https://poe2db.tw/us/Frostbolt",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "lightning-arrow",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "a95e1d7841e43cdff9664ff336729ca5a409938affbee65da650024cbce2014c",
+      "sourceUrl": "https://poe2db.tw/us/Lightning_Arrow",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "lightning-rod",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "76a7e5985f1c751d59ef9d34d05fafe498cc42f2f3f39fefcb7ee54ef705f137",
+      "sourceUrl": "https://poe2db.tw/us/Lightning_Rod",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "gas-arrow",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "4e63033e83a2d4c9cf72850b96ca4fc21ea53f68daca4af8ee763a5a45e51a89",
+      "sourceUrl": "https://poe2db.tw/us/Gas_Arrow",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "leap-slam",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "34be8fe71a8bcddf9e6891d773bee8ed0eecfa1cb188840d4ef5cb1b732820df",
+      "sourceUrl": "https://poe2db.tw/us/Leap_Slam",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "pierce-1",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "7c947903abff868eb85af904901d829db63df51a80eaea26622c7d12737e901a",
+      "sourceUrl": "https://poe2db.tw/us/Pierce_I",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "chain-1",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "f23e5f3dd00ca1e23b61b0dab72eb4dfa009606eec018f93f1abf337ff54e1e8",
+      "sourceUrl": "https://poe2db.tw/us/Chain_I",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "fork",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "7c947903abff868eb85af904901d829db63df51a80eaea26622c7d12737e901a",
+      "sourceUrl": "https://poe2db.tw/us/Fork",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "projectile-acceleration-1",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "053720d4bb303930472537fa42455c5fbd0f14a0593a30033424c91bc6d45bca",
+      "sourceUrl": "https://poe2db.tw/us/Projectile_Acceleration_I",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "rapid-attacks-1",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "703fcca01216c2b1c6a2a2fe9fbadb1b76c4cf741dd8ffcd3f332dd3454bddcc",
+      "sourceUrl": "https://poe2db.tw/us/Rapid_Attacks_I",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "rapid-casting-1",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "d56b4fff7d934a944eee69f4ab4b9836365b3d63572dc954104302a3d62b4152",
+      "sourceUrl": "https://poe2db.tw/us/Rapid_Casting_I",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "controlled-destruction",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "7ebf6e479af59eed68bb5caf456cadcb3bfeeec153027c94a8dcd08c75dbed27",
+      "sourceUrl": "https://poe2db.tw/us/Controlled_Destruction",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "brutality-1",
+      "fields": [
+        "requiredTypes",
+        "excludedTypes"
+      ],
+      "observedSha256": "03a1b66905539e1e452f58d535912b7980dce521c3884039537d1286693bac94",
+      "sourceUrl": "https://poe2db.tw/us/Brutality_I",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "cast-on-critical",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "840cc0f06c66bf1ecaf77549685456e0cea5b191bc1ee667ef2b457dc444aa8e",
+      "sourceUrl": "https://poe2db.tw/us/Cast_on_Critical",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "cast-on-elemental-ailment",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "28911e7c069476cc3a7abff7c51f9f938e877171ebd9b4d61c03952b8f388503",
+      "sourceUrl": "https://poe2db.tw/us/Cast_on_Elemental_Ailment",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "snap",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "b1ef3f642ff9db4d38bea949a98375027e5005ebdc3c79eea56b1e0e76e10048",
+      "sourceUrl": "https://poe2db.tw/us/Snap",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "flame-wall",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "02ff840d120a087740c36b5571a614ae3693756d02afb8c30b70668222b0ed2c",
+      "sourceUrl": "https://poe2db.tw/us/Flame_Wall",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "orb-of-storms",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "a2c4996e29062875d49a8cc224b97e7831cfd562538e7120d8b7acdd245800c2",
+      "sourceUrl": "https://poe2db.tw/us/Orb_of_Storms",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "frost-bomb",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "e7c09961770b27beae8b037b6a43de02417db7101193a5833987140983c7fcbb",
+      "sourceUrl": "https://poe2db.tw/us/Frost_Bomb",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "comet",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "2d94b847adf9acdd23f36929ca94b8819e956e953b070eac9fa3d9b1ccedb85a",
+      "sourceUrl": "https://poe2db.tw/us/Comet",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "shockchain-arrow",
+      "fields": [
+        "skillTypes"
+      ],
+      "observedSha256": "f4730a7e884e22ab2f4e54b242a0dee9997848e5310f372f422c4401eb36faea",
+      "sourceUrl": "https://poe2db.tw/us/Shockchain_Arrow",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "call-of-the-brotherhood",
+      "fields": [
+        "conversion"
+      ],
+      "observedSha256": "fa599e29f65e23732feb5fcb4b8f81a6579229355fb6e3a228ce08319ad76c8a",
+      "sourceUrl": "https://poe2db.tw/us/Call_of_the_Brotherhood",
+      "result": "corroborated"
+    },
+    {
+      "entityId": "blueflame-bracers",
+      "fields": [
+        "conversion"
+      ],
+      "observedSha256": "1ef3f506a52231673d5327a5f248ffd775f50e1122d72be42e868d5f11df317e",
+      "sourceUrl": "https://poe2db.tw/us/Blueflame_Bracers",
+      "result": "corroborated"
+    }
+  ],
+  "patchDelta": {
+    "fromSourceCommitDate": "2026-10-01",
+    "targetPatch": "0.5.5e",
+    "sourceUrl": "https://www.pathofexile.com/forum/view-thread/4009785",
+    "finding": "No selected skill-type, support predicate, or interaction changes listed in the 0.5.5e notes. Absence of a listed change does not establish complete patch correctness."
+  },
+  "unresolved": [
+    "PoE2DB pages were not retrieved from a version-pinned 0.5.5e export.",
+    "No independent live-client test has been performed.",
+    "Support combinations, secondary effects, weapon and resource requirements remain out of scope."
+  ]
+}

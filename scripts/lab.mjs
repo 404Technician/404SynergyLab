@@ -11,7 +11,7 @@ if (args.includes('--list')) {
   console.log('Available skills:\n'+skills.map(e=>`  ${e.id.padEnd(18)} ${e.name}`).join('\n'));
 } else {
   const id=args.find(a=>!a.startsWith('--')) || 'spark';
-  const result=analyze(snapshot,id,{sidewaysCascade:args.includes('--sideways-cascade')});
+  const result=analyze(snapshot,id,{sidewaysCascade:args.includes('--sideways-cascade'),criticalHitsDisabled:args.includes('--no-crit'),elementalAilmentsDisabled:args.includes('--no-ailments'),igniteDisabled:args.includes('--no-ignite')});
   if (args.includes('--json')) console.log(JSON.stringify(result,null,2));
   else {
     console.log(`404 SYNERGY LAB — ${result.skill}\nTarget: ${result.league} / ${result.patch}\nSnapshot: ${result.snapshotId}\nCANDIDATE DATA — target patch not yet verified\n`);
@@ -26,6 +26,8 @@ if (args.includes('--list')) {
       for (const restriction of interaction.restrictions ?? []) console.log(`  Restriction source: ${restriction.evidenceUrl}`);
     }
     if (!result.interactions.length) console.log('  No reviewed interaction recorded for this skill yet.');
+    if(result.uniqueIdeas.length) console.log('\nUNIQUE DIRECTIONS');
+    for(const idea of result.uniqueIdeas) console.log(`\n${idea.item.name}\n  ${idea.explanation}\n  ${idea.condition}`);
     console.log(`\nLimits: ${result.disclaimer}\nUse --json for evidence links, --list for skills, or --sideways-cascade to check that context.`);
   }
 }
