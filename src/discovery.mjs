@@ -13,6 +13,7 @@ export function validateDiscoveryCatalog(snapshot,catalog) {
   need(Array.isArray(r.skillIds)&&r.skillIds.length>0&&new Set(r.skillIds).size===r.skillIds.length&&r.skillIds.every(id=>snapshot.entities.some(e=>e.kind==='skill'&&e.id===id)),'Unknown idea skill');
   for(const k of ['title','hook','mechanics'])need(typeof r[k]==='string'&&r[k].length>0,'Missing idea explanation');
   for(const k of ['play','conditions','avoid','evidenceUrls'])need(Array.isArray(r[k])&&r[k].length>0&&r[k].every(s=>typeof s==='string'&&s.length>0),'Missing idea conditions/evidence');
+  const plan=r.buildPlan;need(plan&&['playstyle','firstTest','stopIf'].every(k=>typeof plan[k]==='string'&&plan[k].trim().length>0)&&['components','nextChecks'].every(k=>Array.isArray(plan[k])&&plan[k].length>0&&plan[k].every(v=>typeof v==='string'&&v.trim().length>0)),'Missing build experiment plan');
   need(r.evidenceUrls.every(u=>/^https:\/\//.test(u)),'Unsafe idea evidence URL');need(Array.isArray(r.supports)&&r.supports.length>0,'Missing idea supports');
   for(const role of r.supports){need(r.skillIds.includes(role.skillId)&&supports.has(role.supportId)&&role.reason&&role.tradeoff,'Invalid support role');need(analyze(augmented,role.skillId).results.find(s=>s.id===role.supportId)?.status==='compatible','Idea support no longer matches its target');}
  }return augmented;
