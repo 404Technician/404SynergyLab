@@ -234,7 +234,7 @@ function initChains(){
   chainInput.confirmedEvents=['ailment','critical','minion-death'].filter(e=>$('chain-confirm-'+e).checked);renderChains(ruleRecord);updateUrl();
  });
  $('chain-use-source').addEventListener('click',()=>{
-  const r=ruleRecord;if(!r)return;
+  const r=ruleRecord;if(!r)return;chainInput.confirmedEvents=[];
   if(chainExplorer.generators.some(e=>e.id===r.id)){chainInput.generatorId=r.id;chainInput.confirmedEvents=[];}
   else if(chainExplorer.payoffs.some(e=>e.id===r.id))chainInput.payoffId=r.id;
   else if(chainExplorer.items.some(e=>e.id===r.id))chainInput.itemId=r.id;

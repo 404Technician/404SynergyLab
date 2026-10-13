@@ -61,7 +61,7 @@ export function createChainExplorer(reference,mechanics,data){
     if(route.modifier)reasons.push(route.modifier.variants.length?'Requires source item variant '+route.modifier.variants.join(' or ')+'.':'Requires this exact equipped conversion modifier.');
     reasons.push('Verify actor ownership, target susceptibility, Energy threshold/rate, socket slots, Spirit, costs, cooldowns, equipment and target-patch behavior.');
     const steps=[entries.get(g.id).name,...route.steps,eventStep,'Energy for '+entries.get(rule.id).name,'Maximum Energy reached',entries.get(p.id).name+' socketed and triggered'];
-    results.push({id:[g.id,rule.id,p.id,route.type,...route.items].join(':'),generatorId:g.id,payoffId:p.id,triggerId:rule.id,event:rule.event,itemIds:route.items,status:blocked.length?'blocked':confirmedEvents.includes(rule.event)?'conditional':'needs-input',steps,reasons:[...blocked,...reasons],evidenceUrls:[g.evidence.url,...route.evidence,rule.evidence.url,p.evidence.url,...Object.values(supports).map(s=>s.evidence.url)]});
+    results.push({id:[g.id,rule.id,p.id,route.type,...route.items,...route.steps].join(':'),generatorId:g.id,payoffId:p.id,triggerId:rule.id,event:rule.event,itemIds:route.items,status:blocked.length?'blocked':confirmedEvents.includes(rule.event)?'conditional':'needs-input',steps,reasons:[...blocked,...reasons],evidenceUrls:[g.evidence.url,...route.evidence,rule.evidence.url,p.evidence.url,...Object.values(supports).map(s=>s.evidence.url)]});
    }
   }
   return {chains:results,limits:data.limits};

@@ -60,3 +60,9 @@ test('invalid selections and event contexts fail closed',()=>{
  assert.throws(()=>run({confirmedEvents:['any-hit']}),/Invalid chain context/);
  assert.throws(()=>run({generatorSupportId:'spark'}),/Unknown chain support/);
 });
+
+test('switching conversion source does not silently retain a nonparticipating item',()=>{
+ const routes=run({generatorId:'spark',itemId:'call-of-the-brotherhood'});
+ assert.equal(routes.length,1);assert.equal(routes[0].event,'ailment');assert.deepEqual(routes[0].itemIds,['call-of-the-brotherhood']);
+ assert.match(routes[0].steps.join(' '),/Lightning → Cold.*Actual Freeze/);
+});
