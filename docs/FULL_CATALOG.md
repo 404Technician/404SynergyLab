@@ -19,7 +19,7 @@ Choose A skill, A support or A unique. Search names, tags or base types and opti
 
 An unresearched record is available as a starting point but receives no invented combination. Support-first discovery reuses existing recipes which reference that support. The advanced sidebar is labelled as reviewed shortcuts and still uses its audited base records; selecting a new catalog record does not manufacture support matches or alter the engine.
 
-URLs preserve the source starting point, including records with no researched ideas. Missing records or failed catalog integrity checks hide results rather than replacing the source silently.
+URLs preserve the source starting point and full catalog version, including records with no researched ideas. Missing records or failed catalog integrity checks hide results rather than replacing the source silently.
 
 ## Reproduce or update
 

@@ -103,6 +103,8 @@ async function main(){
   await page.locator('#catalog-category').selectOption('');await page.locator('#catalog-search').fill('From Nothing');
   assert.match(await page.locator('#catalog-record').textContent(),/Variable unique/);checks++;console.log('PASS: generated unique families are included without fabricated rolled modifiers');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: full catalog controls fit a narrow screen');
+  assert.match(page.url(),/reference=pob-bb52d6b-full-catalog1/);checks++;console.log('PASS: links retain the full catalog version');
+  await page.goto(base+'/?reference=unavailable-catalog');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different source catalog/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable source catalog version does not silently switch data');
   await page.goto(`${base}/?snapshot=missing&skill=spark`);await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable historical snapshot hides results');
   await page.route('**/data/snapshot.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
   await page.goto(base+'/?inspect=1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/saved source review/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered dataset hides results');
