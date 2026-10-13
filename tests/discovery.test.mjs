@@ -32,3 +32,37 @@ test('catalog from another snapshot cannot silently attach',()=>{
 test('ideas remain conditional concepts rather than guaranteed builds',()=>{
  const r=discover(snapshot,catalog,{kind:'unique',id:'the-three-dragons'});assert.equal(r.status,'candidate');assert.ok(r.ideas.every(i=>i.evidenceStatus.includes('not playtested')));assert.match(r.limits,/No DPS/);
 });
+
+test('discovery-only minions do not enter the audited base workbench',()=>{
+ const augmented=validateDiscoveryCatalog(snapshot,catalog);
+ assert.ok(augmented.entities.some(e=>e.id==='unearth'));
+ assert.equal(snapshot.entities.some(e=>e.id==='unearth'),false);
+ const unearth=augmented.entities.find(e=>e.id==='unearth');
+ assert.ok(unearth.minionSkillTypes.includes('Attack'));
+ assert.equal(unearth.skillTypes.includes('Attack'),false);
+ assert.equal(discover(snapshot,catalog,{kind:'skill',id:'unearth'}).ideas.length,2);
+});
+test('additional support context cannot silently become a confirmed type match',()=>{
+ const r=discover(snapshot,catalog,{kind:'skill',id:'unearth'}).ideas.find(i=>i.id==='unearth-bone-bombs');
+ assert.equal(r.supportIdeas.find(s=>s.supportId==='infernal-legion-1').typeStatus,'unknown');
+ const broken=structuredClone(catalog);delete broken.recipes.find(i=>i.id===r.id).supports[0].contextRequired;
+ assert.throws(()=>validateDiscoveryCatalog(snapshot,broken),/explicit context/);
+ const mismatch=structuredClone(catalog);mismatch.recipes.find(i=>i.id==='living-lightning-arrow').supports[0].skillId='comet';
+ assert.throws(()=>validateDiscoveryCatalog(snapshot,mismatch),/support role/);
+});
+test('unknown context does not bypass recorded support predicates',()=>{
+ const broken=structuredClone(catalog),idea=broken.recipes.find(r=>r.id==='unearth-bone-bombs');
+ idea.skillIds.push('comet');idea.supports[0].skillId='comet';
+ assert.throws(()=>validateDiscoveryCatalog(snapshot,broken),/no longer matches/);
+});
+test('minion death socket rules reject Unearth and allow Comet',()=>{
+ const r=discover(snapshot,catalog,{kind:'skill',id:'cast-on-minion-death'}).ideas[0];
+ assert.equal(r.triggerRoute.socketedSkillId,'comet');assert.match(r.avoid.join(' '),/Do not socket Unearth/);
+ const broken=structuredClone(catalog),idea=broken.recipes.find(i=>i.id===r.id);idea.skillIds.push('unearth');idea.triggerRoute.socketedSkillId='unearth';
+ assert.throws(()=>validateDiscoveryCatalog(snapshot,broken),/socket is excluded/);
+});
+test('swarm idea warns about losing Lightning and does not promise a self-generating swarm',()=>{
+ const r=discover(snapshot,catalog,{kind:'skill',id:'lightning-arrow'}).ideas.find(i=>i.id==='living-lightning-arrow');
+ assert.match(r.avoid.join(' '),/Call of the Brotherhood/);assert.match(r.avoid.join(' '),/swarm can create more swarms/);
+ assert.equal(r.supportIdeas.find(s=>s.supportId==='living-lightning').typeStatus,'unknown');
+});

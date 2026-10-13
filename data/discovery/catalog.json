@@ -4,7 +4,7 @@
   "rulesVersion": "discovery-1",
   "status": "candidate",
   "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
-  "reviewedDate": "2026-10-12",
+  "reviewedDate": "2026-10-13",
   "items": [
     {
       "id": "call-of-the-brotherhood",
@@ -164,6 +164,123 @@
         "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L6520"
       },
       "corroborationUrl": "https://poe2db.tw/us/Searing_Flame_I"
+    },
+    {
+      "id": "minion-instability",
+      "name": "Minion Instability",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "SupportMinionInstabilityPlayer",
+        "path": "src/Data/Skills/sup_int.lua",
+        "line": 6927,
+        "fileSha256": "602614e225770f23d39ddc244500f72e333d0ba5bd976aef0e21620a546c0889",
+        "recordSha256": "aeea2a63c93f0aea21681c0d92182e9ad5f6728e25a72919260dc8f2629a662d",
+        "descriptionSha256": "3ac75ec50dd2d94d00e6f4b44d35d717bfa1d03fad5acca7e4dd8427e5ee1438",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6927"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "CreatesMinion"
+        ],
+        "excludedTypes": [
+          "MinionsAreUndamagable"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "infernal-legion-1",
+      "name": "Infernal Legion I",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "SupportInfernalLegionPlayer",
+        "path": "src/Data/Skills/sup_str.lua",
+        "line": 4615,
+        "fileSha256": "02f01358216789d1c415d3dc94da6c9cb11d635995b0954d9d5829222840fda6",
+        "recordSha256": "26961fc4f9b38eb8ab3cfdfcae9a16590b4f5a59349bdc84d984167e223b9745",
+        "descriptionSha256": "8f5e114b95c0dbebf2a09f9d1029e18b98f438ac322140b0e744c4619859a9a1",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L4615"
+      },
+      "compatibility": {
+        "status": "unknown",
+        "requiredTypes": [
+          "CreatesMinion"
+        ],
+        "excludedTypes": [
+          "MinionsAreUndamagable"
+        ],
+        "note": "Additional support context is not simulated; verify the final setup in game."
+      },
+      "warnings": []
+    },
+    {
+      "id": "minion-mastery",
+      "name": "Minion Mastery",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "SupportMinionMasteryPlayer",
+        "path": "src/Data/Skills/sup_int.lua",
+        "line": 6963,
+        "fileSha256": "602614e225770f23d39ddc244500f72e333d0ba5bd976aef0e21620a546c0889",
+        "recordSha256": "7cc0fc86081d00cc9d18a6643bab1401303f1501257f8bbebeffdf43e945afab",
+        "descriptionSha256": "79f4807df527d245dd33685fd055826e5e00290d810b4ea34bf9999e8c40f5e1",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6963"
+      },
+      "compatibility": {
+        "status": "known",
+        "requiredTypes": [
+          "Minion"
+        ],
+        "excludedTypes": [
+          "SingleLevelSkill"
+        ]
+      },
+      "warnings": []
+    },
+    {
+      "id": "living-lightning",
+      "name": "Living Lightning",
+      "kind": "support",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "SupportLivingLightningPlayer",
+        "path": "src/Data/Skills/sup_int.lua",
+        "line": 6297,
+        "fileSha256": "602614e225770f23d39ddc244500f72e333d0ba5bd976aef0e21620a546c0889",
+        "recordSha256": "6ea086701300dc489addfbf3697a1bc462a545ff8dc08abd35ae35ec4b6bc344",
+        "descriptionSha256": "ec38df03f2f1409cbd290caf660155e87e5b7bc775cb733327ef04657a10f18f",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6297"
+      },
+      "compatibility": {
+        "status": "unknown",
+        "requiredTypes": [
+          "Attack",
+          "Damage"
+        ],
+        "excludedTypes": [],
+        "note": "Additional support context is not simulated; verify the final setup in game."
+      },
+      "warnings": []
     }
   ],
   "recipes": [
@@ -562,7 +679,581 @@
           "Choose an ascendancy and passive path only after the core mechanic behaves as intended."
         ]
       }
+    },
+    {
+      "id": "unearth-bone-bombs",
+      "title": "Bone constructs as walking bombs",
+      "skillIds": [
+        "unearth"
+      ],
+      "itemId": null,
+      "hook": "Explore Unearth minions that burn nearby enemies and explode at Low Life, rather than only attacking.",
+      "mechanics": "Unearth creates temporary Bone Constructs from eligible remains. Infernal Legion can damage supported minions over time; Minion Instability requires Low Life, so an explosion depends on reaching that state before expiry.",
+      "play": [
+        "Create Bone Constructs from eligible remains.",
+        "Try Infernal Legion I and Minion Instability on Unearth.",
+        "Observe whether the constructs reach Low Life and explode before they expire."
+      ],
+      "conditions": [
+        "Needs eligible remains to create the constructs.",
+        "Damageable minions, actual Low Life and remaining lifetime are decisive.",
+        "Minion recovery, resistance and survival can change the timing; no explosion rate is calculated."
+      ],
+      "supports": [
+        {
+          "skillId": "unearth",
+          "supportId": "infernal-legion-1",
+          "reason": "Explore self-damage and nearby Ignite as the route toward Low Life.",
+          "tradeoff": "Additional support context and self-damage timing require an in-game test.",
+          "contextRequired": true
+        },
+        {
+          "skillId": "unearth",
+          "supportId": "minion-instability",
+          "reason": "Provides the explosion when a supported minion reaches Low Life.",
+          "tradeoff": "Expiry by itself is not evidence of a Low-Life explosion."
+        }
+      ],
+      "avoid": [
+        "Do not assume temporary Bone Constructs are qualifying persistent deaths for Cast on Minion Death.",
+        "Do not assume generic player Fire damage or conversion scales a minion explosion."
+      ],
+      "buildPlan": {
+        "playstyle": "Manually summon temporary constructs and explore delayed explosions; this is not a self-sustaining loop.",
+        "components": [
+          "Unearth",
+          "Eligible remains",
+          "Infernal Legion I and Minion Instability"
+        ],
+        "firstTest": "Do the constructs visibly explode at Low Life before their duration ends?",
+        "stopIf": "If they expire, recover too quickly or die before approaching enemies, reconsider the timing plan.",
+        "nextChecks": [
+          "Measure Mana sustain, reservation and recovery before adding more skills.",
+          "Test a defensive plan while the core mechanic is active.",
+          "Compare pack clearing with a single tougher enemy; record the game patch.",
+          "Choose an ascendancy, passive path and gear budget after the core mechanic passes its test."
+        ]
+      },
+      "sourceCheckIds": [
+        "unearth-corpses",
+        "instability-life",
+        "infernal-life",
+        "persistent-death"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21924",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L4615",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6927",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2754"
+      ]
+    },
+    {
+      "id": "sacrifice-bone-army",
+      "title": "A reviving army feeds a temporary one",
+      "skillIds": [
+        "unearth",
+        "sacrifice",
+        "skeletal-warrior"
+      ],
+      "itemId": null,
+      "hook": "Explore Sacrifice as a supply route for Unearth when ordinary monster corpses are scarce.",
+      "mechanics": "Sacrifice permits undead Reviving Minions to be used in place of corpses. Unearth uses eligible remains to create temporary Bone Constructs. This is a conditional supply direction, with slower revival and competition between the two armies.",
+      "play": [
+        "Establish undead Reviving Skeletal Warriors and activate Sacrifice.",
+        "Check whether Unearth can use those minions in your current patch.",
+        "Measure how quickly the original army returns and how many constructs you can sustain."
+      ],
+      "conditions": [
+        "Requires eligible undead Reviving Minions and enough reservation capacity.",
+        "Sacrifice slows revival; consuming the persistent army can remove protection.",
+        "Bone Construct lifetime and minion caps are not simulated."
+      ],
+      "supports": [
+        {
+          "skillId": "unearth",
+          "supportId": "minion-mastery",
+          "reason": "Explore an additional Unearth level after the supply route works.",
+          "tradeoff": "Does not solve reservation, revival delay or missing eligible remains."
+        }
+      ],
+      "avoid": [
+        "Do not describe consumed minions as a free or instant infinite corpse supply.",
+        "Keep separate checks for temporary constructs and reviving minions."
+      ],
+      "buildPlan": {
+        "playstyle": "Manually turn part of a reviving army into temporary attackers.",
+        "components": [
+          "Unearth",
+          "Sacrifice",
+          "An eligible undead Reviving Minion source"
+        ],
+        "firstTest": "Can Unearth use the selected reviving minions, and can their return keep up?",
+        "stopIf": "If the main army spends too much time absent, reconsider the supply rate and defenses.",
+        "nextChecks": [
+          "Measure Mana sustain, reservation and recovery before adding more skills.",
+          "Test a defensive plan while the core mechanic is active.",
+          "Compare pack clearing with a single tougher enemy; record the game patch.",
+          "Choose an ascendancy, passive path and gear budget after the core mechanic passes its test."
+        ]
+      },
+      "sourceCheckIds": [
+        "unearth-corpses",
+        "sacrifice-reviving",
+        "warrior-revival"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21924",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L17225",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6963"
+      ]
+    },
+    {
+      "id": "persistent-death-comet",
+      "title": "A fallen warrior calls down Comet",
+      "skillIds": [
+        "skeletal-warrior",
+        "cast-on-minion-death",
+        "comet"
+      ],
+      "itemId": null,
+      "hook": "Explore suitable persistent minion deaths as an Energy source for a socketed Comet.",
+      "mechanics": "Cast on Minion Death records Energy from killed Persistent Minions and triggers eligible socketed spells at its threshold. Skeletal Warriors are a reviving candidate; Infernal Legion is a possible way to damage them. Whether their deaths qualify and sustain the trigger must be tested.",
+      "play": [
+        "Activate Cast on Minion Death with Comet socketed.",
+        "Use a suitably levelled reviving warrior source and test a qualifying death.",
+        "Only then explore Infernal Legion I as a repeatable death route."
+      ],
+      "conditions": [
+        "Requires actual qualifying killed Persistent Minions, not merely an expired temporary summon.",
+        "Underlevelled minions incur an Energy penalty.",
+        "Spirit, revival delay, Energy threshold and triggered Mana costs remain uncalculated."
+      ],
+      "supports": [
+        {
+          "skillId": "skeletal-warrior",
+          "supportId": "infernal-legion-1",
+          "reason": "Explore minion self-damage as a candidate death route.",
+          "tradeoff": "The final death qualification and repeat interval are untested.",
+          "contextRequired": true
+        },
+        {
+          "skillId": "comet",
+          "supportId": "controlled-destruction",
+          "reason": "Explore spell-hit damage on the triggered payoff.",
+          "tradeoff": "Removes Comet critical hits; does not increase Energy from minion deaths."
+        }
+      ],
+      "avoid": [
+        "Do not socket Unearth in this meta gem: its source socket rules exclude spells that create minions.",
+        "Do not replace the persistent generator with temporary Bone Constructs and assume it still works."
+      ],
+      "buildPlan": {
+        "playstyle": "Explore automatic Comets after qualifying warrior deaths; establish the generator first.",
+        "components": [
+          "Reviving Skeletal Warriors",
+          "Cast on Minion Death with Comet socketed",
+          "A tested route to qualifying warrior deaths"
+        ],
+        "firstTest": "Does a killed warrior generate Energy and eventually release Comet?",
+        "stopIf": "If deaths do not qualify, Energy is too slow or revival removes your defenses, stop before investing.",
+        "nextChecks": [
+          "Measure Mana sustain, reservation and recovery before adding more skills.",
+          "Test a defensive plan while the core mechanic is active.",
+          "Compare pack clearing with a single tougher enemy; record the game patch.",
+          "Choose an ascendancy, passive path and gear budget after the core mechanic passes its test."
+        ]
+      },
+      "sourceCheckIds": [
+        "persistent-death",
+        "death-socket",
+        "warrior-revival",
+        "infernal-life"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2754",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L4615",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2871"
+      ],
+      "triggerRoute": {
+        "sourceCheckId": "death-socket",
+        "socketedSkillId": "comet"
+      }
+    },
+    {
+      "id": "cold-fireball-comet",
+      "title": "Cold fireballs call down Comet",
+      "skillIds": [
+        "fireball",
+        "cast-on-elemental-ailment",
+        "comet"
+      ],
+      "itemId": "blueflame-bracers",
+      "hook": "Explore Fireball converted to Cold as the manual generator for an ailment-driven Comet follow-up.",
+      "mechanics": "Blueflame Bracers convert Fire damage to Cold while leaving skill types intact. Actual qualifying elemental ailment events can supply Cast on Elemental Ailment; conversion alone does not prove that Fireball can sustain the trigger.",
+      "play": [
+        "Equip the conversion gloves and verify final Cold hits.",
+        "Establish actual qualifying ailments on your intended enemies.",
+        "Activate the meta gem with Comet socketed and measure trigger consistency."
+      ],
+      "conditions": [
+        "Requires real qualifying ailment events and sufficient Energy.",
+        "Conversion alone does not guarantee Freeze.",
+        "Spirit and triggered resource costs need a separate budget."
+      ],
+      "supports": [
+        {
+          "skillId": "fireball",
+          "supportId": "deep-freeze",
+          "reason": "Explore longer freezes if the converted Fireball actually freezes.",
+          "tradeoff": "Does not create Freeze or directly increase Energy generation."
+        },
+        {
+          "skillId": "comet",
+          "supportId": "controlled-destruction",
+          "reason": "Explore damage on the triggered payoff.",
+          "tradeoff": "Critical hits are disabled on Comet; assess that tradeoff separately."
+        }
+      ],
+      "avoid": [
+        "Do not assume the original Fire skill type means your converted hits still supply Ignite.",
+        "Brutality removes the elemental damage this direction uses."
+      ],
+      "buildPlan": {
+        "playstyle": "Cast converted Fireball manually and explore Comet as an automatic ailment follow-up.",
+        "components": [
+          "Fireball",
+          "Blueflame Bracers",
+          "Cast on Elemental Ailment with Comet socketed"
+        ],
+        "firstTest": "Do the converted hits actually produce ailments and repeat Comets against a tougher enemy?",
+        "stopIf": "If the trigger only works on weak packs, reconsider the generator before treating it as a bossing direction.",
+        "nextChecks": [
+          "Measure Mana sustain, reservation and recovery before adding more skills.",
+          "Test a defensive plan while the core mechanic is active.",
+          "Compare pack clearing with a single tougher enemy; record the game patch.",
+          "Choose an ascendancy, passive path and gear budget after the core mechanic passes its test."
+        ]
+      },
+      "sourceCheckIds": [],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L2986",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L290"
+      ]
+    },
+    {
+      "id": "living-lightning-arrow",
+      "title": "Arrows leave a living lightning swarm",
+      "skillIds": [
+        "lightning-arrow"
+      ],
+      "itemId": null,
+      "hook": "Explore a bow skill that creates an additional swarm when its hits actually deal Lightning damage.",
+      "mechanics": "Living Lightning creates separate minions from supported damaging Lightning hits. It does not modify skills used by minions. This is a player-hit generation concept, not conversion of an existing minion army.",
+      "play": [
+        "Try Living Lightning on Lightning Arrow without converting away its Lightning damage.",
+        "Verify swarm creation from actual damaging hits.",
+        "Check swarm behavior against packs and a single tougher target."
+      ],
+      "conditions": [
+        "The supported hit must actually deal Lightning damage.",
+        "Player and minion damage scaling are separate checks.",
+        "Support context, minion limits and refresh behavior are not simulated."
+      ],
+      "supports": [
+        {
+          "skillId": "lightning-arrow",
+          "supportId": "living-lightning",
+          "reason": "Explore additional chaining minions generated by Lightning hits.",
+          "tradeoff": "Ignores minion skill types; the final support context and minion behavior need verification.",
+          "contextRequired": true
+        },
+        {
+          "skillId": "lightning-arrow",
+          "supportId": "rapid-attacks-1",
+          "reason": "Explore more attack opportunities for the generator.",
+          "tradeoff": "Mana and actual Lightning-hit frequency can still limit the setup."
+        }
+      ],
+      "avoid": [
+        "Call of the Brotherhood can remove the Lightning damage this generation route requires; do not assume original skill types prove outgoing damage.",
+        "Do not assume the swarm can create more swarms through its own attacks."
+      ],
+      "buildPlan": {
+        "playstyle": "Manually fire a bow attack and explore its generated minions as a second damage source.",
+        "components": [
+          "Lightning Arrow",
+          "Living Lightning",
+          "Actual outgoing Lightning damage"
+        ],
+        "firstTest": "Do supported Lightning Arrow hits create the swarm, and does it remain useful on a single target?",
+        "stopIf": "If conversion removes qualifying damage or the swarm contributes little in practice, reconsider the secondary damage plan.",
+        "nextChecks": [
+          "Measure Mana sustain, reservation and recovery before adding more skills.",
+          "Test a defensive plan while the core mechanic is active.",
+          "Compare pack clearing with a single tougher enemy; record the game patch.",
+          "Choose an ascendancy, passive path and gear budget after the core mechanic passes its test."
+        ]
+      },
+      "sourceCheckIds": [
+        "living-lightning-hits"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6297"
+      ]
     }
   ],
-  "limits": "Curated source-backed concepts, not playtested build recommendations. No DPS, ailment chance, trigger rate, gear budget or full build simulation."
+  "limits": "Curated source-backed concepts, not playtested build recommendations. No DPS, ailment chance, trigger rate, gear budget or full build simulation.",
+  "extraSkills": [
+    {
+      "id": "unearth",
+      "name": "Unearth",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "UnearthPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 21924,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "34f9aebb2317e2fb3932395d9a67aea837e6c9dfa5fd94a53d8b20c04cd5c6af",
+        "descriptionSha256": "83427b9dfca471bac9f454534d6e6ce74b7f72640a1d4d3a0227a07922a0e898",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21924"
+      },
+      "skillTypes": [
+        "Spell",
+        "Physical",
+        "Duration",
+        "Area",
+        "Minion",
+        "Unleashable",
+        "UsableWhileMoving",
+        "CreatesMinion",
+        "Damage",
+        "TargetsDestructibleCorpses",
+        "Limit",
+        "Triggerable",
+        "Necrotic",
+        "Totemable"
+      ],
+      "minionSkillTypes": [
+        "Attack",
+        "Melee",
+        "MeleeSingleTarget",
+        "Area"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "sacrifice",
+      "name": "Sacrifice",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "SacrificePlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 17225,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "fd6846bb12cd028be729f27c921da47b5c745ca3a3b37c25eaa28d4626072cb0",
+        "descriptionSha256": "49e3f660c145f3c0230ceefef54b811e6fd2d4a5effd71414a147a667dd43e92",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L17225"
+      },
+      "skillTypes": [
+        "OngoingSkill",
+        "HasReservation",
+        "Buff",
+        "Persistent",
+        "Minion",
+        "ReserveInAllSets",
+        "AttackInPlace"
+      ],
+      "minionSkillTypes": [],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "skeletal-warrior",
+      "name": "Skeletal Warrior Minion",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "SummonSkeletalWarriorsPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18924,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "9aca11f6b1c19c4749ff03ca6dd74b03f63b2539f39a36920fa593d38313123a",
+        "descriptionSha256": "12a1055981866e8edad734a30fe612be2280bab1b0f35f124487b45eddfbd4e7",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+      },
+      "skillTypes": [
+        "Minion",
+        "MinionsCanExplode",
+        "CreatesMinion",
+        "CreatesUndeadMinion",
+        "CreatesSkeletonMinion",
+        "HasReservation",
+        "Persistent",
+        "MultipleReservation",
+        "Physical"
+      ],
+      "minionSkillTypes": [
+        "Attack",
+        "Melee",
+        "MeleeSingleTarget",
+        "Area"
+      ],
+      "cannotBeSupported": false
+    },
+    {
+      "id": "cast-on-minion-death",
+      "name": "Cast on Minion Death",
+      "kind": "skill",
+      "tags": [],
+      "sourceIds": [
+        "pob-skills"
+      ],
+      "reviewScope": "discovery-only",
+      "evidence": {
+        "effectId": "MetaCastOnMinionDeathPlayer",
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 2754,
+        "fileSha256": "da6cfd70e6e1335e48653b8a2d6574fe45da98909660cd7582b28dd37b7ae716",
+        "recordSha256": "9fac9f949228606c81af69094bd9cf99f669c665676c537ea8718a335adaebb3",
+        "descriptionSha256": "784f801d35b9241caea6ece43807b391b3060da845e0f9aea6aa5ec1afddff84",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2754"
+      },
+      "skillTypes": [
+        "HasReservation",
+        "OngoingSkill",
+        "Meta",
+        "Persistent",
+        "Buff",
+        "Minion",
+        "CanHaveMultipleOngoingSkillInstances",
+        "GeneratesEnergy",
+        "Triggers",
+        "AttackInPlace"
+      ],
+      "minionSkillTypes": [],
+      "cannotBeSupported": false
+    }
+  ],
+  "mechanicChecks": [
+    {
+      "id": "unearth-corpses",
+      "effectId": "UnearthPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "recordSha256": "34f9aebb2317e2fb3932395d9a67aea837e6c9dfa5fd94a53d8b20c04cd5c6af",
+      "descriptionSha256": "83427b9dfca471bac9f454534d6e6ce74b7f72640a1d4d3a0227a07922a0e898",
+      "requiredFragments": [
+        "Corpses and dead Reviving Minions",
+        "short-lived Bone Construct"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21924"
+    },
+    {
+      "id": "sacrifice-reviving",
+      "effectId": "SacrificePlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "recordSha256": "fd6846bb12cd028be729f27c921da47b5c745ca3a3b37c25eaa28d4626072cb0",
+      "descriptionSha256": "49e3f660c145f3c0230ceefef54b811e6fd2d4a5effd71414a147a667dd43e92",
+      "requiredFragments": [
+        "undead Reviving Minions",
+        "in place of Corpses",
+        "Revive more slowly"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L17225"
+    },
+    {
+      "id": "persistent-death",
+      "effectId": "MetaCastOnMinionDeathPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "recordSha256": "9fac9f949228606c81af69094bd9cf99f669c665676c537ea8718a335adaebb3",
+      "descriptionSha256": "784f801d35b9241caea6ece43807b391b3060da845e0f9aea6aa5ec1afddff84",
+      "requiredFragments": [
+        "Persistent Minions is Killed",
+        "underlevelled Minions",
+        "Cannot socket Spells which create Minions"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2754"
+    },
+    {
+      "id": "death-socket",
+      "effectId": "SupportMetaCastOnMinionDeathPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "recordSha256": "588f43c2700a86a5ee624b2b4cf6ee672b885e7a171cee27a3773f68d0341e63",
+      "requiredFragments": [],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2871",
+      "requiredTypes": [
+        "Spell",
+        "Triggerable",
+        "AND"
+      ],
+      "excludedTypes": [
+        "CreatesMinion",
+        "InbuiltTrigger"
+      ]
+    },
+    {
+      "id": "warrior-revival",
+      "effectId": "SummonSkeletalWarriorsPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "recordSha256": "9aca11f6b1c19c4749ff03ca6dd74b03f63b2539f39a36920fa593d38313123a",
+      "descriptionSha256": "12a1055981866e8edad734a30fe612be2280bab1b0f35f124487b45eddfbd4e7",
+      "requiredFragments": [
+        "Reviving Skeletal Warriors"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+    },
+    {
+      "id": "instability-life",
+      "effectId": "SupportMinionInstabilityPlayer",
+      "path": "src/Data/Skills/sup_int.lua",
+      "recordSha256": "aeea2a63c93f0aea21681c0d92182e9ad5f6728e25a72919260dc8f2629a662d",
+      "descriptionSha256": "3ac75ec50dd2d94d00e6f4b44d35d717bfa1d03fad5acca7e4dd8427e5ee1438",
+      "requiredFragments": [
+        "when reduced to Low Life"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6927"
+    },
+    {
+      "id": "infernal-life",
+      "effectId": "SupportInfernalLegionPlayer",
+      "path": "src/Data/Skills/sup_str.lua",
+      "recordSha256": "26961fc4f9b38eb8ab3cfdfcae9a16590b4f5a59349bdc84d984167e223b9745",
+      "descriptionSha256": "8f5e114b95c0dbebf2a09f9d1029e18b98f438ac322140b0e744c4619859a9a1",
+      "requiredFragments": [
+        "can be damaged",
+        "causing them and enemies near them to Ignite"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_str.lua#L4615"
+    },
+    {
+      "id": "living-lightning-hits",
+      "effectId": "SupportLivingLightningPlayer",
+      "path": "src/Data/Skills/sup_int.lua",
+      "recordSha256": "6ea086701300dc489addfbf3697a1bc462a545ff8dc08abd35ae35ec4b6bc344",
+      "descriptionSha256": "ec38df03f2f1409cbd290caf660155e87e5b7bc775cb733327ef04657a10f18f",
+      "requiredFragments": [
+        "when dealing Lightning damage",
+        "Chaining Attacks",
+        "Does not modify skills used by Minions"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6297"
+    }
+  ]
 }
