@@ -29,3 +29,5 @@ SOFTWARE.
 ```
 
 Upstream includes further third-party notices for components which are not imported here. Full notice: https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/LICENSE.md
+
+The full reference catalog also imports factual names, gem categories/tags, weapon requirements, unique base types and source variant labels from the same pinned generated sources. It covers static unique records and generated unique family headers without copying their descriptions or numerical modifier tables. Source file and record hashes plus immutable links retain provenance. GGG game content is not relicensed under this project's MIT license.

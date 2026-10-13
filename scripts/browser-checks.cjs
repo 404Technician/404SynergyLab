@@ -81,9 +81,36 @@ async function main(){
   await swarm.getByText('Mechanics, supports & tradeoffs',{exact:true}).click();assert.match(await swarm.textContent(),/Call of the Brotherhood/);assert.match(await swarm.locator('[data-idea-support="living-lightning"]').textContent(),/CONTEXT REQUIRED/);checks++;console.log('PASS: living swarm explains conversion conflicts and unknown support context');
   await page.locator('#start-unique').click();await page.locator('#discovery-anchor').selectOption('blueflame-bracers');assert.equal(await page.locator('.discovery-card').count(),2);assert.match(await page.locator('#discovery-ideas').textContent(),/Cold fireballs call down Comet/);checks++;console.log('PASS: conversion unique reveals its new trigger direction');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: expanded discovery fits a narrow screen');
+  await page.locator('#start-skill').click();
+  assert.equal(await page.locator('#discovery-anchor option').count(),399);
+  assert.match(await page.locator('#catalog-count').textContent(),/399 skills.*567 supports.*443 uniques/);checks++;console.log('PASS: complete source catalog counts are visible');
+  await page.locator('#catalog-search').fill('Essence Drain');
+  assert.equal(await page.locator('#discovery-anchor option').count(),1);
+  assert.match(await page.locator('#catalog-record h3').textContent(),/Essence Drain/);
+  assert.match(await page.locator('#discovery-ideas').textContent(),/No researched combination/);
+  assert.equal(await page.locator('#load-error').isVisible(),false);checks++;console.log('PASS: previously uncovered skill is selectable without inventing a synergy');
+  const uncovered=page.url(),uncoveredPage=await context.newPage();await uncoveredPage.goto(uncovered);await uncoveredPage.locator('#workspace').waitFor({state:'visible'});
+  assert.match(await uncoveredPage.locator('#catalog-record h3').textContent(),/Essence Drain/);await uncoveredPage.close();checks++;console.log('PASS: uncovered source starting point restores from its URL');
+  await page.locator('#catalog-search').fill('certainly-not-a-record');assert.equal(await page.locator('#discovery-anchor').isDisabled(),true);
+  assert.match(await page.locator('#catalog-record').textContent(),/No source records/);checks++;console.log('PASS: full catalog search has an explicit empty state');
+  await page.locator('#start-support').click();assert.equal(await page.locator('#discovery-anchor option').count(),567);
+  assert.match(await page.locator('#catalog-record h3').textContent(),/Living Lightning/);assert.match(await page.locator('#discovery-ideas').textContent(),/living lightning swarm/);checks++;console.log('PASS: support-first discovery connects the complete support index to researched concepts');
+  await page.locator('#start-unique').click();assert.equal(await page.locator('#discovery-anchor option').count(),443);
+  await page.locator('#catalog-search').fill("Atziri's Rule");assert.match(await page.locator('#catalog-record h3').textContent(),/Atziri's Rule/);
+  assert.match(await page.locator('#catalog-record').textContent(),/Reflecting Staff/);assert.match(await page.locator('#discovery-ideas').textContent(),/No researched combination/);checks++;console.log('PASS: full unique catalog includes Atziri staff with a truthful review state');
+  await page.locator('#catalog-search').fill('');await page.locator('#catalog-category').selectOption('helmet');
+  assert.ok(await page.locator('#discovery-anchor option').count()>3);assert.match(await page.locator('#catalog-record .eyebrow').textContent(),/helmet/);checks++;console.log('PASS: unique category filter narrows the full source catalog');
+  await page.locator('#catalog-category').selectOption('');await page.locator('#catalog-search').fill('From Nothing');
+  assert.match(await page.locator('#catalog-record').textContent(),/Variable unique/);checks++;console.log('PASS: generated unique families are included without fabricated rolled modifiers');
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: full catalog controls fit a narrow screen');
+  assert.match(page.url(),/reference=pob-bb52d6b-full-catalog1/);checks++;console.log('PASS: links retain the full catalog version');
+  await page.goto(base+'/?reference=unavailable-catalog');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different source catalog/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable source catalog version does not silently switch data');
   await page.goto(`${base}/?snapshot=missing&skill=spark`);await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable historical snapshot hides results');
   await page.route('**/data/snapshot.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
   await page.goto(base+'/?inspect=1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/saved source review/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered dataset hides results');
+  await page.unroute('**/data/snapshot.json');
+  await page.route('**/data/reference.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
+  await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/full catalog does not match/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered full source catalog hides results');
   assert.deepEqual(errors,[]);checks++;console.log('PASS: no browser script errors');console.log(`${checks} browser checks passed.`);
  } finally {if(browser)await browser.close();server.kill();}
 }

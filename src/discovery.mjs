@@ -40,11 +40,11 @@ export function validateDiscoveryCatalog(snapshot,catalog) {
 }
 export function discover(snapshot,catalog,anchor) {
  const augmented=validateDiscoveryCatalog(snapshot,catalog);
- if(!anchor||!['skill','unique'].includes(anchor.kind))throw new Error('Invalid discovery starting point');
- const target=anchor.kind==='skill'?augmented.entities.find(e=>e.kind==='skill'&&e.id===anchor.id):catalog.items.find(i=>i.id===anchor.id);
+ if(!anchor||!['skill','support','unique'].includes(anchor.kind))throw new Error('Invalid discovery starting point');
+ const target=anchor.kind==='unique'?catalog.items.find(i=>i.id===anchor.id):augmented.entities.find(e=>e.kind===anchor.kind&&e.id===anchor.id);
  if(!target)throw new Error('Unknown discovery starting point');
  return {anchor:{...anchor,name:target.name},snapshotId:snapshot.id,status:catalog.status,limits:catalog.limits,
- ideas:catalog.recipes.filter(r=>anchor.kind==='skill'?r.skillIds.includes(anchor.id):r.itemId===anchor.id).map(r=>({...r,item:r.itemId?catalog.items.find(i=>i.id===r.itemId):null,
+ ideas:catalog.recipes.filter(r=>anchor.kind==='skill'?r.skillIds.includes(anchor.id):anchor.kind==='unique'?r.itemId===anchor.id:r.supports.some(role=>role.supportId===anchor.id)).map(r=>({...r,item:r.itemId?catalog.items.find(i=>i.id===r.itemId):null,
  skills:r.skillIds.map(id=>augmented.entities.find(e=>e.id===id)),
  supportIdeas:r.supports.map(role=>({...role,support:augmented.entities.find(e=>e.id===role.supportId),typeStatus:analyze(augmented,role.skillId).results.find(s=>s.id===role.supportId).status})),
  evidenceStatus:'conditional source-backed concept; not playtested'}))};

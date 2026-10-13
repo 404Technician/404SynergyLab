@@ -48,3 +48,14 @@
 .advanced-body{padding-top:24px}
 @media(max-width:1000px){.discovery-grid{grid-template-columns:1fr}}
 @media(max-width:720px){.discovery-card{padding:20px}.discovery-card h3{font-size:23px}.discovery-controls select,.discovery-controls input{width:100%}.discovery-panel h2{font-size:24px}}
+
+.catalog-record{margin:18px 0;padding:20px;background:var(--panel, #102025);border:1px solid #294045;border-radius:12px;overflow-wrap:anywhere}
+.catalog-record h3{margin:6px 0 12px;font-size:1.35rem}
+.catalog-record a{display:inline-block;margin:10px 18px 0 0}
+.discovery-controls select,.discovery-controls input{min-width:0;max-width:100%}
+#catalog-category{flex:1 1 140px}
+#catalog-search{flex:2 1 240px}
+#discovery-anchor{flex:2 1 240px;width:100%}
+@media(max-width:600px){.catalog-record{padding:14px}.discovery-controls select,.discovery-controls input{width:100%}}
+
+.discovery-controls .filters{flex-wrap:wrap;max-width:100%}
