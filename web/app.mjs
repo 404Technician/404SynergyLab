@@ -8,6 +8,7 @@ const labels={compatible:'TYPE MATCH',incompatible:'DOES NOT MATCH',unknown:'UNK
 const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
+let discoverySkills;
 let catalog,discoveryMode='skill',discoveryAnchor='frostbolt';
 let snapshot,meta,skills,selected='spark',filter='all',result;
 let combination={version:1,skillIds:[],supports:{},itemId:null};
@@ -112,13 +113,13 @@ function renderCombination() {
 
 function renderDiscovery() {
   $('start-skill').setAttribute('aria-pressed',String(discoveryMode==='skill'));$('start-unique').setAttribute('aria-pressed',String(discoveryMode==='unique'));
-  const anchors=discoveryMode==='skill'?skills:catalog.items;
+  const anchors=discoveryMode==='skill'?discoverySkills:catalog.items;
   $('discovery-anchor').replaceChildren(...anchors.map(a=>{const o=element('option',a.name);o.value=a.id;return o;}));$('discovery-anchor').value=discoveryAnchor;
   const view=discover(snapshot,catalog,{kind:discoveryMode,id:discoveryAnchor}),query=$('discovery-search').value.trim().toLowerCase();
   const ideas=view.ideas.filter(i=>(i.title+' '+i.hook).toLowerCase().includes(query));
   $('discovery-count').textContent=ideas.length+' curated ideas for '+view.anchor.name+' · conditional concepts, not playtested builds';
   $('discovery-ideas').replaceChildren();
-  if(!ideas.length){$('discovery-ideas').append(element('div',view.ideas.length?'No ideas match this search.':'No researched idea is in this small catalog for this starting point yet. Try Frostbolt, Spark, Fireball or The Three Dragons.','empty-support'));return;}
+  if(!ideas.length){$('discovery-ideas').append(element('div',view.ideas.length?'No ideas match this search.':'No researched idea is in this small catalog for this starting point yet. Try Unearth, Lightning Arrow, Frostbolt, Fireball or The Three Dragons.','empty-support'));return;}
   for(const idea of ideas){
     const card=element('article',undefined,'discovery-card');card.dataset.idea=idea.id;
     card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
@@ -128,7 +129,7 @@ function renderDiscovery() {
     const steps=element('ol');for(const step of idea.play)steps.append(element('li',step));body.append(steps,element('h4','Support ideas — and why'));
     for(const role of idea.supportIdeas){
       const box=element('div',undefined,'discovery-support');box.dataset.ideaSupport=role.supportId;
-      box.append(element('strong',role.support.name+' → '+skills.find(s=>s.id===role.skillId).name),element('p',role.reason),element('small','Tradeoff: '+role.tradeoff),link('Support record ↗',role.support.evidence.url));body.append(box);
+      box.append(element('strong',role.support.name+' → '+idea.skills.find(s=>s.id===role.skillId).name),element('p',role.reason),element('small',role.typeStatus==='unknown'?'CONTEXT REQUIRED · Verify this support in game':(idea.skills.find(s=>s.id===role.skillId).reviewScope?'BASE TYPES MATCH · Minion behavior untested':'BASE TYPES MATCH')),element('small','Tradeoff: '+role.tradeoff),link('Support record ↗',role.support.evidence.url));body.append(box);
     }
     body.append(element('h4','Conditions & costs'));const conditions=element('ul');for(const c of idea.conditions)conditions.append(element('li',c));body.append(conditions,element('h4','Avoid the tempting mistake'));
     const avoid=element('ul');for(const c of idea.avoid)avoid.append(element('li',c));body.append(avoid,element('h4','Evidence'));
@@ -139,8 +140,10 @@ function renderDiscovery() {
     const components=element('ul');for(const component of idea.buildPlan.components)components.append(element('li',component));
     planBody.append(components,element('h4','Test the mechanic first'),element('p',idea.buildPlan.firstTest),element('h4','Reconsider the idea if'),element('p',idea.buildPlan.stopIf),element('h4','Before calling this a full build'));
     const checks=element('ol');for(const check of idea.buildPlan.nextChecks)checks.append(element('li',check));planBody.append(checks,element('p','Experiment only: no validated ascendancy, passive tree, gear budget or endgame rating yet.','muted'));plan.append(planBody);card.append(plan);
-    const inspect=element('button','Inspect '+idea.skills[0].name+' checks ↗','share-button');inspect.type='button';
-    inspect.addEventListener('click',()=>{selected=idea.skills[0].id;$('advanced-checks').open=true;render();updateUrl();$('skill-title').scrollIntoView({block:'start',behavior:'auto'});});card.append(inspect);
+    const inspectable=idea.skills.find(s=>skills.some(base=>base.id===s.id));
+    if(!inspectable){card.append(element('p','Discovery-only minion concept: use the source links and in-game test plan. Full minion checks are not available yet.','muted'));$('discovery-ideas').append(card);continue;}
+    const inspect=element('button','Inspect '+inspectable.name+' checks ↗','share-button');inspect.type='button';
+    inspect.addEventListener('click',()=>{selected=inspectable.id;$('advanced-checks').open=true;render();updateUrl();$('skill-title').scrollIntoView({block:'start',behavior:'auto'});});card.append(inspect);
     $('discovery-ideas').append(card);
   }
 }
@@ -155,7 +158,7 @@ async function start(){
   const catalogSha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',catalogBytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
   if(catalogSha!==meta.catalogSha256)throw new Error('The idea catalog does not match this build. Rebuild or update the project.');
   catalog=JSON.parse(new TextDecoder().decode(catalogBytes));validateDiscoveryCatalog(snapshot,catalog);
-  skills=snapshot.entities.filter(s=>s.kind==='skill');
+  skills=snapshot.entities.filter(s=>s.kind==='skill');discoverySkills=[...skills,...catalog.extraSkills];
   const params=new URL(location.href).searchParams;
   if(params.has('snapshot')&&params.get('snapshot')!==snapshot.id)throw new Error('This link refers to a different data snapshot. Open the lab without the link parameters to use this preview.');
   const requested=params.get('skill');if(requested&&!skills.some(s=>s.id===requested))throw new Error('This skill is not in the bundled preview. Open the lab without the link parameters.');
@@ -165,7 +168,7 @@ async function start(){
   discover(snapshot,catalog,{kind:discoveryMode,id:discoveryAnchor});$('advanced-checks').open=params.get('inspect')==='1';$('sideways-cascade').checked=params.get('cascade')==='sideways';
   for(const [flag,key] of Object.entries(contextParams))$(contextInputs[flag]).checked=params.get(key)==='1';
   $('version').textContent=`v${meta.appVersion}`;$('patch-label').textContent=`Target patch ${snapshot.patch}`;$('league-label').textContent=snapshot.league;
-  const notice=$('data-notice');notice.replaceChildren(element('strong','CANDIDATE DATA'),element('span','Source metadata cross-checked. Live patch confirmation is pending; results are a preview.'));
+  const notice=$('data-notice');notice.replaceChildren(element('strong','CANDIDATE DATA'),element('span','Base snapshot cross-checked; discovery records pinned to sources. Live patch confirmation is pending.'));
   $('review-summary').textContent=`${meta.corroborated} source records cross-checked`;
   $('snapshot-info').textContent=`Snapshot: ${snapshot.id} · Rule version: ${snapshot.rulesVersion}`;
   $('review-info').textContent=snapshot.patchValidation.notes;$('patch-source').href=snapshot.patchValidation.officialPatchUrl;
@@ -180,7 +183,7 @@ async function start(){
 
   $('start-skill').addEventListener('click',()=>{discoveryMode='skill';discoveryAnchor=selected;$('discovery-search').value='';renderDiscovery();updateUrl();});
   $('start-unique').addEventListener('click',()=>{discoveryMode='unique';discoveryAnchor='the-three-dragons';$('discovery-search').value='';renderDiscovery();updateUrl();});
-  $('discovery-anchor').addEventListener('change',()=>{discoveryAnchor=$('discovery-anchor').value;if(discoveryMode==='skill')selected=discoveryAnchor;$('discovery-search').value='';render();updateUrl();});
+  $('discovery-anchor').addEventListener('change',()=>{discoveryAnchor=$('discovery-anchor').value;if(discoveryMode==='skill'&&skills.some(s=>s.id===discoveryAnchor))selected=discoveryAnchor;$('discovery-search').value='';render();updateUrl();});
   $('discovery-search').addEventListener('input',renderDiscovery);
   $('advanced-checks').addEventListener('toggle',()=>updateUrl());
   $('skill-search').addEventListener('input',renderSkillList);$('support-search').addEventListener('input',renderSupports);

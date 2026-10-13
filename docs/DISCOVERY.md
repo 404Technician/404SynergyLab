@@ -23,3 +23,13 @@ Skill and unique lookup returns the same underlying recipe. A starting point wit
 ## Build experiment plans (v0.6.1)
 
 Each concept includes its expected playstyle, core components, a first mechanic test, a reason to reconsider it, and remaining resource, defense, clear/boss and ascendancy checks. These are testing prompts, not new verified game facts or endgame ratings. Plans are required by catalog validation and included in its browser integrity hash.
+
+## Expanded concepts (v0.7.0)
+
+Five more ideas add minion generation, a supply mechanic, a death trigger, conversion with an ailment trigger, and a player-hit-generated swarm. Their research and exclusions are documented in [Discovery research](DISCOVERY_RESEARCH.md).
+
+The discovery catalog has four supplemental skill profiles. Their player skill types and minion attack types are stored separately; they are never added to the audited base workbench. The primary selector exposes them as discovery-only starting points. An idea without a base skill has no advanced-check button; the minion-death idea can inspect Comet only.
+
+Unknown support context requires an explicit contextRequired marker on its role. Recorded predicates are still checked, so unknown context cannot bypass an exclusion. The browser shows CONTEXT REQUIRED rather than a match for these roles. In-game minion damage, support interactions, lifetime, recovery, death qualification and revival timing remain untested.
+
+Source CI checks all supplemental entity fingerprints, types, support predicates and context status. Eight mechanic records additionally bind description fragments or the minion-death socket predicates. The Comet route is validated against those socket predicates; substituting Unearth is rejected. The main importer continues to reject unsupported minion imports.
