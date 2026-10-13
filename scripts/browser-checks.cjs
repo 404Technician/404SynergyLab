@@ -120,6 +120,33 @@ async function main(){
   assert.match(await page.locator('#rule-links').textContent(),/Mirror of Refraction/);
   await page.locator('#rule-links .rule-open').first().click();assert.match(await page.locator('#catalog-record h3').textContent(),/Mirror of Refraction/);checks++;console.log('PASS: granted skill relation opens its source catalog record');
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: mechanical source links fit a narrow screen');
+
+  await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
+  await page.locator('#chain-generator').selectOption('fireball');
+  await page.locator('#chain-item').selectOption('blueflame-bracers');
+  await page.locator('#chain-remap').check();
+  assert.match(await page.locator('#chain-results').textContent(),/Fire → Cold[\s\S]*Three Dragons[\s\S]*Actual Ignite[\s\S]*Energy[\s\S]*Comet/);
+  assert.equal(await page.locator('[data-chain-status="needs-input"]').count(),1);checks++;console.log('PASS: conversion and remapping produce an ordered, conditional trigger experiment');
+  await page.locator('#chain-confirm-ailment').check();assert.equal(await page.locator('[data-chain-status="conditional"]').count(),1);
+  const chainLink=page.url();const chainRestore=await context.newPage();await chainRestore.goto(chainLink);await chainRestore.locator('#workspace').waitFor({state:'visible'});
+  assert.equal(await chainRestore.locator('#chain-generator').inputValue(),'fireball');assert.equal(await chainRestore.locator('#chain-item').inputValue(),'blueflame-bracers');
+  assert.equal(await chainRestore.locator('#chain-remap').isChecked(),true);assert.equal(await chainRestore.locator('#chain-confirm-ailment').isChecked(),true);
+  await chainRestore.close();checks++;console.log('PASS: versioned chain selections and confirmations survive sharing');
+  await page.locator('#chain-generator').selectOption('spark');assert.equal(await page.locator('#chain-confirm-ailment').isChecked(),false);
+  await page.locator('#chain-item').selectOption('');await page.locator('#chain-remap').uncheck();
+  await page.locator('#chain-generator-support').selectOption('controlled-destruction');
+  assert.equal(await page.locator('[data-chain-event="critical"]').getAttribute('data-chain-status'),'blocked');
+  await page.locator('#chain-generator-support').selectOption('');
+  await page.locator('#chain-payoff-support').selectOption('controlled-destruction');
+  assert.equal(await page.locator('[data-chain-event="critical"]').getAttribute('data-chain-status'),'needs-input');checks++;console.log('PASS: support restriction applies to its assigned chain role');
+  await page.locator('#chain-payoff-support').selectOption('');await page.locator('#chain-generator').selectOption('skeletal-warrior');
+  assert.match(await page.locator('#chain-results').textContent(),/persistent minion is actually killed/);assert.equal(await page.locator('[data-chain-event="minion-death"]').count(),1);
+  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: minion death chain fits the narrow screen');
+  await page.goto(base+'/?chains=missing');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different chain rules/);checks++;console.log('PASS: unavailable historical chain rules fail closed');
+  await page.route('**/data/chains.json',async route=>{const response=await route.fetch();await route.fulfill({response,body:await response.text()+' '});});
+  await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/chains do not match/);
+  await page.unroute('**/data/chains.json');checks++;console.log('PASS: changed chain source data hides results');
+
   await page.goto(base+'/?mechanics=unavailable-rules');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different mechanics/);checks++;console.log('PASS: unavailable rule version hides results instead of substituting newer mechanics');
   await page.goto(`${base}/?snapshot=missing&skill=spark`);await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable historical snapshot hides results');
   await page.route('**/data/snapshot.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
