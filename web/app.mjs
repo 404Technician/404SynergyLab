@@ -122,7 +122,7 @@ function renderDiscovery() {
   for(const idea of ideas){
     const card=element('article',undefined,'discovery-card');card.dataset.idea=idea.id;
     card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
-    const chips=element('div',undefined,'tag-row');for(const skill of idea.skills)chips.append(element('span',skill.name,'tag'));card.append(chips);
+    const chips=element('div',undefined,'tag-row');for(const skill of idea.skills)chips.append(element('span',skill.name,'tag'));card.append(chips,element('p',idea.buildPlan.playstyle,'muted'));
     const more=element('details',undefined,'idea-details');more.append(element('summary','Mechanics, supports & tradeoffs'));
     const body=element('div',undefined,'idea-body');body.append(element('h4','Why this is interesting'),element('p',idea.mechanics),element('h4','How to explore it'));
     const steps=element('ol');for(const step of idea.play)steps.append(element('li',step));body.append(steps,element('h4','Support ideas — and why'));
@@ -134,6 +134,11 @@ function renderDiscovery() {
     const avoid=element('ul');for(const c of idea.avoid)avoid.append(element('li',c));body.append(avoid,element('h4','Evidence'));
     for(const url of idea.evidenceUrls)body.append(link('Source ↗',url));
     more.append(body);card.append(more);
+    const plan=element('details',undefined,'idea-details');plan.append(element('summary','Turn this idea into a build experiment'));
+    const planBody=element('div',undefined,'idea-body');planBody.append(element('h4','Core components'));
+    const components=element('ul');for(const component of idea.buildPlan.components)components.append(element('li',component));
+    planBody.append(components,element('h4','Test the mechanic first'),element('p',idea.buildPlan.firstTest),element('h4','Reconsider the idea if'),element('p',idea.buildPlan.stopIf),element('h4','Before calling this a full build'));
+    const checks=element('ol');for(const check of idea.buildPlan.nextChecks)checks.append(element('li',check));planBody.append(checks,element('p','Experiment only: no validated ascendancy, passive tree, gear budget or endgame rating yet.','muted'));plan.append(planBody);card.append(plan);
     const inspect=element('button','Inspect '+idea.skills[0].name+' checks ↗','share-button');inspect.type='button';
     inspect.addEventListener('click',()=>{selected=idea.skills[0].id;$('advanced-checks').open=true;render();updateUrl();$('skill-title').scrollIntoView({block:'start',behavior:'auto'});});card.append(inspect);
     $('discovery-ideas').append(card);

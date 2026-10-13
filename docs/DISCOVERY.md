@@ -19,3 +19,7 @@ The discovery catalog is bound to the existing candidate snapshot. The build val
 Reference pages corroborated the selected modifiers and support predicates on 2026-10-12. Source agreement does not establish live-patch behavior. Both the base data and catalog remain candidate previews.
 
 Skill and unique lookup returns the same underlying recipe. A starting point without researched content has an explicit empty state; no generic tag-based synergy is invented. URL parameters start/anchor preserve the discovery view; inspect=1 opens the optional checks.
+
+## Build experiment plans (v0.6.1)
+
+Each concept includes its expected playstyle, core components, a first mechanic test, a reason to reconsider it, and remaining resource, defense, clear/boss and ascendancy checks. These are testing prompts, not new verified game facts or endgame ratings. Plans are required by catalog validation and included in its browser integrity hash.

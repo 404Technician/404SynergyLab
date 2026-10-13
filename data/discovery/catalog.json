@@ -216,7 +216,23 @@
         "https://poe2db.tw/us/The_Three_Dragons",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L2855"
-      ]
+      ],
+      "buildPlan": {
+        "playstyle": "A manual spell-and-bow sequence: apply Ignite, then place gas.",
+        "components": [
+          "Frostbolt as the ailment source",
+          "Gas Arrow as the follow-up",
+          "The Three Dragons as the required mechanic"
+        ],
+        "firstTest": "Can Frostbolt reliably apply Ignite, and can that enemy detonate your gas?",
+        "stopIf": "If application or weapon switching feels unreliable, stop before investing in damage gear.",
+        "nextChecks": [
+          "Measure Mana sustain and, where relevant, Spirit and trigger costs.",
+          "Choose and test a defensive plan before attempting harder content.",
+          "Test clearing and a single tougher enemy separately; record the game patch.",
+          "Choose an ascendancy and passive path only after the core mechanic behaves as intended."
+        ]
+      }
     },
     {
       "id": "lightning-that-freezes",
@@ -269,7 +285,23 @@
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2522",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L3725"
-      ]
+      ],
+      "buildPlan": {
+        "playstyle": "Cast Spark manually; explore Comet as an automatic follow-up after qualifying ailment events.",
+        "components": [
+          "Spark as the manual generator",
+          "Cast on Elemental Ailment with socketed Comet",
+          "The Three Dragons as the required mechanic"
+        ],
+        "firstTest": "Does Spark actually Freeze your intended enemies and supply enough Energy for repeated Comets?",
+        "stopIf": "If the trigger stalls on tougher enemies, the concept needs a different generator or resource plan.",
+        "nextChecks": [
+          "Measure Mana sustain and, where relevant, Spirit and trigger costs.",
+          "Choose and test a defensive plan before attempting harder content.",
+          "Test clearing and a single tougher enemy separately; record the game patch.",
+          "Choose an ascendancy and passive path only after the core mechanic behaves as intended."
+        ]
+      }
     },
     {
       "id": "fire-that-shocks",
@@ -319,7 +351,23 @@
         "https://poe2db.tw/us/The_Three_Dragons",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L7006"
-      ]
+      ],
+      "buildPlan": {
+        "playstyle": "Alternate a spell with a bow attack, reapplying the consumed ailment.",
+        "components": [
+          "Fireball as the Shock source",
+          "Shockchain Arrow as the follow-up",
+          "The Three Dragons as the required mechanic"
+        ],
+        "firstTest": "Can Fireball reapply Shock consistently enough for your attack sequence?",
+        "stopIf": "If swapping weapons or reapplying Shock interrupts play too much, reconsider this two-skill direction.",
+        "nextChecks": [
+          "Measure Mana sustain and, where relevant, Spirit and trigger costs.",
+          "Choose and test a defensive plan before attempting harder content.",
+          "Test clearing and a single tougher enemy separately; record the game patch.",
+          "Choose an ascendancy and passive path only after the core mechanic behaves as intended."
+        ]
+      }
     },
     {
       "id": "cold-fireballs",
@@ -367,7 +415,22 @@
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L290",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
-      ]
+      ],
+      "buildPlan": {
+        "playstyle": "Keep a manually cast Fireball playstyle and explore Cold damage and crowd control.",
+        "components": [
+          "Fireball as the delivery skill",
+          "Blueflame Bracers as the required conversion"
+        ],
+        "firstTest": "Does the converted Fireball produce the Cold damage and ailments you intend?",
+        "stopIf": "If Freeze is unreliable, treat this as a conversion experiment rather than a proven control build.",
+        "nextChecks": [
+          "Measure Mana sustain and, where relevant, Spirit and trigger costs.",
+          "Choose and test a defensive plan before attempting harder content.",
+          "Test clearing and a single tougher enemy separately; record the game patch.",
+          "Choose an ascendancy and passive path only after the core mechanic behaves as intended."
+        ]
+      }
     },
     {
       "id": "cold-spark-snap",
@@ -416,7 +479,23 @@
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L113",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19051"
-      ]
+      ],
+      "buildPlan": {
+        "playstyle": "Cast Spark, then manually use Snap on a target with a qualifying ailment.",
+        "components": [
+          "Spark as the ailment source",
+          "Snap as the follow-up",
+          "Call of the Brotherhood as the required conversion"
+        ],
+        "firstTest": "Can converted Spark establish a qualifying ailment before you use Snap?",
+        "stopIf": "If targets rarely qualify or Snap feels awkward, reconsider the follow-up rather than assuming more cast speed fixes it.",
+        "nextChecks": [
+          "Measure Mana sustain and, where relevant, Spirit and trigger costs.",
+          "Choose and test a defensive plan before attempting harder content.",
+          "Test clearing and a single tougher enemy separately; record the game patch.",
+          "Choose an ascendancy and passive path only after the core mechanic behaves as intended."
+        ]
+      }
     },
     {
       "id": "frostbolt-delivery-point",
@@ -467,7 +546,22 @@
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L12801",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19051",
         "https://www.pathofexile.com/forum/view-thread/3932540"
-      ]
+      ],
+      "buildPlan": {
+        "playstyle": "Manually position Frostbolt and aim a follow-up spell at the moving projectile.",
+        "components": [
+          "Frostbolt as the delivery projectile",
+          "Ice Nova or Snap as a follow-up; test each route separately"
+        ],
+        "firstTest": "Can you consistently target the projectile with your chosen follow-up?",
+        "stopIf": "If positioning feels clunky, change the delivery or targeting plan before spending on damage.",
+        "nextChecks": [
+          "Measure Mana sustain and, where relevant, Spirit and trigger costs.",
+          "Choose and test a defensive plan before attempting harder content.",
+          "Test clearing and a single tougher enemy separately; record the game patch.",
+          "Choose an ascendancy and passive path only after the core mechanic behaves as intended."
+        ]
+      }
     }
   ],
   "limits": "Curated source-backed concepts, not playtested build recommendations. No DPS, ailment chance, trigger rate, gear budget or full build simulation."
