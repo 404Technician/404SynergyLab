@@ -2,11 +2,11 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.8.0 adds the complete pinned source catalog: 399 skills, 567 supports, and 443 uniques.** Search by name, tag or category and start from any imported record. All registered gem/item skills and unique source records are covered, including eight generated unique families. Legacy/source variants and unverified game availability remain visible.
+**v0.9.0 adds general source rules across the complete catalog.** Select any skill or support to inspect source-type checks, or explore recognized conversion, granted-skill and explicit item-trigger relationships. Known destination-damage and critical-hit restrictions can block the corresponding mechanic link. These are conditional source links, not full build recommendations.
 
-The eleven researched concepts stay separate from the full index. Catalog inclusion does not imply a working synergy, current-patch availability, support compatibility or endgame viability. Records without a researched combination have an explicit empty state and source links. Advanced checks continue to use the audited sixteen-skill base snapshot; the full catalog does not silently expand the calculation engine.
+The engine has structural profiles for 399 skills and 567 supports, and recognizes selected mechanics on 104 of 443 uniques. The remaining 339 uniques are explicitly unmodeled. The catalog still includes all 443 uniques, and the eleven curated build experiments remain available. Minion actor context, item versions and support tradeoffs stay visible.
 
-A reproducible import and source fingerprints bind the catalog to Path of Building revision `bb52d6b368307457eb9c54bb13f1829993d390b1`. The target remains Forbidden Rites / 0.5.5e with live-game confirmation pending. See [Full catalog coverage](docs/FULL_CATALOG.md).
+Mechanical profiles and shared rule scenarios are versioned and checksum-bound. Pinned-source reconstruction verifies the extraction. The target remains Forbidden Rites / 0.5.5e with live-game confirmation pending. See [General mechanic rules](docs/MECHANICS.md) and [Full catalog coverage](docs/FULL_CATALOG.md).
 
 ## Open the browser lab
 

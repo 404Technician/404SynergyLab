@@ -20,7 +20,7 @@ async function main(){
   assert.equal(await page.locator('#skill-title').textContent(),'Spark');assert.match(await page.locator('#data-notice').textContent(),/CANDIDATE DATA/);checks++;console.log('PASS: default Spark and candidate-data notice');
   assert.equal(await page.locator('.support-card').count(),8);checks++;console.log('PASS: all support cards loaded');
   await page.locator('[data-filter="compatible"]').click();assert.equal(await page.locator('.support-card.incompatible').count(),0);checks++;console.log('PASS: type-match filter');
-  await page.locator('#support-search').fill('Brutality');assert.equal(await page.locator('.support-card').count(),1);assert.match(await page.locator('.warning').first().textContent(),/elemental/);checks++;console.log('PASS: support search keeps tradeoff visible');
+  await page.locator('#support-search').fill('Brutality');assert.equal(await page.locator('.support-card').count(),1);assert.match(await page.locator('#support-list .warning').first().textContent(),/elemental/);checks++;console.log('PASS: support search keeps tradeoff visible');
   await page.locator('#support-search').fill('does-not-exist');assert.equal(await page.locator('.empty-support').count(),1);checks++;console.log('PASS: empty filter state');
   await page.locator('#support-search').fill('');await page.locator('[data-filter="all"]').click();
   await page.locator('.skill-button[data-id="ice-nova"]').click();assert.equal(await page.locator('#context-control').isVisible(),true);
@@ -105,12 +105,31 @@ async function main(){
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: full catalog controls fit a narrow screen');
   assert.match(page.url(),/reference=pob-bb52d6b-full-catalog1/);checks++;console.log('PASS: links retain the full catalog version');
   await page.goto(base+'/?reference=unavailable-catalog');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different source catalog/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable source catalog version does not silently switch data');
+  await page.goto(base+'/?start=skill&anchor=spark');await page.locator('#workspace').waitFor({state:'visible'});
+  assert.match(await page.locator('#rule-coverage').textContent(),/104 \/ 443/);
+  assert.ok(await page.locator('[data-rule-kind="conversion"]').count()>0);assert.ok(await page.locator('[data-rule-kind="trigger"]').count()>0);checks++;console.log('PASS: general rules reveal item mechanics beyond curated recipes and expose coverage limits');
+  await page.locator('#rule-no-elemental').check();assert.ok(await page.locator('[data-rule-kind="conversion"][data-rule-status="blocked"]').count()>0);
+  assert.match(page.url(),/ruleNoElemental=1/);assert.match(page.url(),/mechanics=pob-bb52d6b-mechanics1/);checks++;console.log('PASS: known destination-damage conflict is displayed and preserved in the URL');
+  const ruleLink=page.url(),ruleRestored=await context.newPage();await ruleRestored.goto(ruleLink);await ruleRestored.locator('#workspace').waitFor({state:'visible'});
+  assert.equal(await ruleRestored.locator('#rule-no-elemental').isChecked(),true);await ruleRestored.close();checks++;console.log('PASS: rule scenario round-trips through a shared link');
+  await page.locator('#rule-support-panel summary').click();await page.locator('#rule-support-search').fill('Brutality I');
+  assert.match(await page.locator('#rule-support-results').textContent(),/elemental-damage restriction/);checks++;console.log('PASS: harmful support tradeoff remains visible beside a base type match');
+  await page.locator('#catalog-search').fill('Essence Drain');assert.match(await page.locator('#rule-support-count').textContent(),/base-type matches/);
+  assert.ok(await page.locator('#rule-support-results').textContent());checks++;console.log('PASS: a noncurated skill receives full-catalog source checks without invented item links');
+  await page.locator('#start-unique').click();await page.locator('#catalog-search').fill("Atziri's Rule");
+  assert.match(await page.locator('#rule-links').textContent(),/Mirror of Refraction/);
+  await page.locator('#rule-links .rule-open').first().click();assert.match(await page.locator('#catalog-record h3').textContent(),/Mirror of Refraction/);checks++;console.log('PASS: granted skill relation opens its source catalog record');
+  await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: mechanical source links fit a narrow screen');
+  await page.goto(base+'/?mechanics=unavailable-rules');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different mechanics/);checks++;console.log('PASS: unavailable rule version hides results instead of substituting newer mechanics');
   await page.goto(`${base}/?snapshot=missing&skill=spark`);await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable historical snapshot hides results');
   await page.route('**/data/snapshot.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
   await page.goto(base+'/?inspect=1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/saved source review/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered dataset hides results');
   await page.unroute('**/data/snapshot.json');
   await page.route('**/data/reference.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
   await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/full catalog does not match/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered full source catalog hides results');
+  await page.unroute('**/data/reference.json');
+  await page.route('**/data/mechanics.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
+  await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/mechanics do not match/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: changed mechanical source profiles fail integrity checking');
   assert.deepEqual(errors,[]);checks++;console.log('PASS: no browser script errors');console.log(`${checks} browser checks passed.`);
  } finally {if(browser)await browser.close();server.kill();}
 }

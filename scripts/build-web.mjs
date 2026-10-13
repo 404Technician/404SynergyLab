@@ -1,5 +1,6 @@
 import { readFile, mkdir, copyFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
+import { validateMechanics } from '../src/mechanics.mjs';
 import { validateReferenceCatalog } from '../src/reference-catalog.mjs';
 import { validateDiscoveryCatalog } from '../src/discovery.mjs';
 import { checksum } from '../src/data.mjs';
@@ -17,14 +18,19 @@ export async function buildWeb() {
   const referenceBytes=await readFile(new URL('data/catalog/'+referenceManifest.id+'.json',root));
   const reference=validateReferenceCatalog(JSON.parse(referenceBytes));
   if(reference.sourceRevision!==referenceManifest.revision||reference.targetPatch!==snapshot.patch||reference.targetLeague!==snapshot.league)throw new Error('Full catalog target mismatch');
+  const mechanicsManifest=JSON.parse(await readFile(new URL('data/mechanics/manifest.json',root)));
+  const mechanicsBytes=await readFile(new URL('data/mechanics/'+mechanicsManifest.id+'.json',root));
+  const mechanics=validateMechanics(reference,JSON.parse(mechanicsBytes));
+  if(mechanics.id!==mechanicsManifest.id||mechanics.rulesVersion!==mechanicsManifest.rulesVersion)throw new Error('Mechanic manifest mismatch');
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
   for(const name of ['index.html','styles.css','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
-  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
+  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
   await writeFile(new URL('data/snapshot.json',dist),snapshotBytes);
   await writeFile(new URL('data/catalog.json',dist),catalogBytes);
   await writeFile(new URL('data/reference.json',dist),referenceBytes);
-  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id},null,2)+'\n');
+  await writeFile(new URL('data/mechanics.json',dist),mechanicsBytes);
+  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id,mechanicsId:mechanics.id,mechanicsSha256:checksum(mechanicsBytes)},null,2)+'\n');
   return dist;
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {await buildWeb();console.log('Built the audited browser lab in dist/.');}
