@@ -1,3 +1,4 @@
+import {validateChains} from '../src/chains.mjs';
 import { readFile, mkdir, copyFile, writeFile } from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
 import { validateMechanics } from '../src/mechanics.mjs';
@@ -22,15 +23,18 @@ export async function buildWeb() {
   const mechanicsBytes=await readFile(new URL('data/mechanics/'+mechanicsManifest.id+'.json',root));
   const mechanics=validateMechanics(reference,JSON.parse(mechanicsBytes));
   if(mechanics.id!==mechanicsManifest.id||mechanics.rulesVersion!==mechanicsManifest.rulesVersion)throw new Error('Mechanic manifest mismatch');
+  const chainsBytes=await readFile(new URL('data/chains/pob-bb52d6b-chains1.json',root));
+  const chains=validateChains(reference,mechanics,JSON.parse(chainsBytes));
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
   for(const name of ['index.html','styles.css','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
-  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
+  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
   await writeFile(new URL('data/snapshot.json',dist),snapshotBytes);
   await writeFile(new URL('data/catalog.json',dist),catalogBytes);
   await writeFile(new URL('data/reference.json',dist),referenceBytes);
   await writeFile(new URL('data/mechanics.json',dist),mechanicsBytes);
-  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id,mechanicsId:mechanics.id,mechanicsSha256:checksum(mechanicsBytes)},null,2)+'\n');
+  await writeFile(new URL('data/chains.json',dist),chainsBytes);
+  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id,mechanicsId:mechanics.id,mechanicsSha256:checksum(mechanicsBytes),chainsId:chains.id,chainsSha256:checksum(chainsBytes)},null,2)+'\n');
   return dist;
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {await buildWeb();console.log('Built the audited browser lab in dist/.');}

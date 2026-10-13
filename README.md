@@ -2,11 +2,13 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.9.0 adds general source rules across the complete catalog.** Select any skill or support to inspect source-type checks, or explore recognized conversion, granted-skill and explicit item-trigger relationships. Known destination-damage and critical-hit restrictions can block the corresponding mechanic link. These are conditional source links, not full build recommendations.
+**v0.10.0 adds source-backed multi-step mechanic experiments.** Follow a generator through optional conversion and The Three Dragons, an actual ailment or critical hit, Energy accumulation, and a socketed spell. Persistent-minion death is a separate modeled event. Generator and payoff supports are checked separately, including blocked critical and elemental routes.
 
-The engine has structural profiles for 399 skills and 567 supports, and recognizes selected mechanics on 104 of 443 uniques. The remaining 339 uniques are explicitly unmodeled. The catalog still includes all 443 uniques, and the eleven curated build experiments remain available. Minion actor context, item versions and support tradeoffs stay visible.
+The new selector covers 84 possible generators (75 player damage candidates plus nine positively identified reviving-minion skills), 68 possible socketed spells, six conversion uniques and The Three Dragons. Tags establish candidates, not actual hits or events. Confirm an event for the selected generator to move a route from **needs input** to **conditional**; it never becomes a verified build. Changing the generator or its damage setup clears that confirmation.
 
-Mechanical profiles and shared rule scenarios are versioned and checksum-bound. Pinned-source reconstruction verifies the extraction. The target remains Forbidden Rites / 0.5.5e with live-game confirmation pending. See [General mechanic rules](docs/MECHANICS.md) and [Full catalog coverage](docs/FULL_CATALOG.md).
+The complete source catalog remains available: 399 skills, 567 supports and 443 uniques. Selected general mechanics are recognized on 104 uniques; 339 still need modifier models. These bounded chains model one conversion unique and an optional remapping helmet, three meta trigger types and one payoff. Recursive trigger feedback, arbitrary item stacking, damage/rate calculations, ascendancy overrides and full builds remain outside the model.
+
+Source records, socket predicates, remapping modifiers and support restrictions are verified against the pinned PoB revision in CI. Shared experiments include the chain rule version and all role selections. The target remains Forbidden Rites / 0.5.5e with live-game confirmation pending. See [Chain research and limits](docs/CHAINS.md), [General mechanic rules](docs/MECHANICS.md) and [Full catalog coverage](docs/FULL_CATALOG.md).
 
 ## Open the browser lab
 

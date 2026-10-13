@@ -1,0 +1,304 @@
+{
+  "schemaVersion": 1,
+  "id": "pob-bb52d6b-chains1",
+  "rulesVersion": "mechanic-chains-1",
+  "status": "candidate",
+  "referenceId": "pob-bb52d6b-full-catalog1",
+  "mechanicsId": "pob-bb52d6b-mechanics1",
+  "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "rules": [
+    {
+      "id": "cast-on-elemental-ailment",
+      "event": "ailment",
+      "effectId": "MetaCastOnElementalAilmentPlayer",
+      "supportEffectId": "SupportMetaCastOnElementalAilmentPlayer",
+      "description": "While active, gains Energy when you Freeze, Shock, or Ignite enemies, and triggers socketed spells on reaching maximum Energy.",
+      "requiredTypes": [
+        "Spell",
+        "Triggerable",
+        "AND"
+      ],
+      "excludedTypes": [
+        "InbuiltTrigger"
+      ],
+      "addedTypes": [
+        "Triggered"
+      ],
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 2522,
+        "recordSha256": "d3b3bd98132b8b30eb253b9f898cacfd2792eb4c8351f63ee9ebefc0d2805b8b",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2522"
+      },
+      "sourceAssertions": [
+        {
+          "record": "MetaCastOnElementalAilmentPlayer",
+          "text": "description = \"While active, gains Energy when you Freeze, Shock, or Ignite enemies, and triggers socketed spells on reaching maximum Energy.\""
+        },
+        {
+          "record": "SupportMetaCastOnElementalAilmentPlayer",
+          "text": "requireSkillTypes = { SkillType.Spell, SkillType.Triggerable, SkillType.AND, },"
+        },
+        {
+          "record": "SupportMetaCastOnElementalAilmentPlayer",
+          "text": "excludeSkillTypes = { SkillType.InbuiltTrigger, },"
+        },
+        {
+          "record": "SupportMetaCastOnElementalAilmentPlayer",
+          "text": "addSkillTypes = { SkillType.Triggered, },"
+        }
+      ]
+    },
+    {
+      "id": "cast-on-critical",
+      "event": "critical",
+      "effectId": "MetaCastOnCritPlayer",
+      "supportEffectId": "SupportMetaCastOnCritPlayer",
+      "description": "While active, gains Energy when you Critically Hit enemies and triggers socketed Spells on reaching maximum Energy.",
+      "requiredTypes": [
+        "Spell",
+        "Triggerable",
+        "AND"
+      ],
+      "excludedTypes": [
+        "InbuiltTrigger"
+      ],
+      "addedTypes": [
+        "Triggered"
+      ],
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 2056,
+        "recordSha256": "9be07f532887236328890187604b202980090d51c7bae1faa1c7b5e64148a8d6",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2056"
+      },
+      "sourceAssertions": [
+        {
+          "record": "MetaCastOnCritPlayer",
+          "text": "description = \"While active, gains Energy when you Critically Hit enemies and triggers socketed Spells on reaching maximum Energy.\""
+        },
+        {
+          "record": "SupportMetaCastOnCritPlayer",
+          "text": "requireSkillTypes = { SkillType.Spell, SkillType.Triggerable, SkillType.AND, },"
+        },
+        {
+          "record": "SupportMetaCastOnCritPlayer",
+          "text": "excludeSkillTypes = { SkillType.InbuiltTrigger, },"
+        },
+        {
+          "record": "SupportMetaCastOnCritPlayer",
+          "text": "addSkillTypes = { SkillType.Triggered, },"
+        }
+      ]
+    },
+    {
+      "id": "cast-on-minion-death",
+      "event": "minion-death",
+      "effectId": "MetaCastOnMinionDeathPlayer",
+      "supportEffectId": "SupportMetaCastOnMinionDeathPlayer",
+      "description": "While active, gains Energy when one of your Persistent Minions is Killed, and triggers socketed Spells upon reaching maximum Energy. Very underlevelled Minions will incur an Energy generation penalty. Cannot socket Spells which create Minions.",
+      "requiredTypes": [
+        "Spell",
+        "Triggerable",
+        "AND"
+      ],
+      "excludedTypes": [
+        "CreatesMinion",
+        "InbuiltTrigger"
+      ],
+      "addedTypes": [
+        "Triggered"
+      ],
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 2754,
+        "recordSha256": "9fac9f949228606c81af69094bd9cf99f669c665676c537ea8718a335adaebb3",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2754"
+      },
+      "sourceAssertions": [
+        {
+          "record": "MetaCastOnMinionDeathPlayer",
+          "text": "description = \"While active, gains Energy when one of your Persistent Minions is Killed, and triggers socketed Spells upon reaching maximum Energy. Very underlevelled Minions will incur an Energy generation penalty. Cannot socket Spells which create Minions.\""
+        },
+        {
+          "record": "SupportMetaCastOnMinionDeathPlayer",
+          "text": "requireSkillTypes = { SkillType.Spell, SkillType.Triggerable, SkillType.AND, },"
+        },
+        {
+          "record": "SupportMetaCastOnMinionDeathPlayer",
+          "text": "excludeSkillTypes = { SkillType.CreatesMinion, SkillType.InbuiltTrigger, },"
+        },
+        {
+          "record": "SupportMetaCastOnMinionDeathPlayer",
+          "text": "addSkillTypes = { SkillType.Triggered, },"
+        }
+      ]
+    }
+  ],
+  "persistent": [
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalArsonist",
+      "effectId": "SummonSkeletalArsonistsPlayer",
+      "description": "Activate to summon bomb-throwing, Reviving Skeletal Arsonists that can detonate other Minions on Command.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18047,
+        "recordSha256": "fb2bece57ff904a5d4a5766f3b3df28b112a90279ebd7cc25bc5153d6f5c3515",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18047"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalBrute",
+      "effectId": "SummonSkeletalBrutesPlayer",
+      "description": "Activate to summon hard-hitting, Reviving Skeletal Brutes that can Stun Primed enemies and Warcry on Command. This Warcry Intimidates nearby enemies and Consumes Freeze on enemies and allies to deal damage in an Area around them.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18171,
+        "recordSha256": "b657ec79443e5d197b7e9a431163cf2bba9de69f31454c55156d5419d3414130",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18171"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalCleric",
+      "effectId": "SummonSkeletalClericsPlayer",
+      "description": "Activate to summon Reviving Skeletal Clerics that heal other minions and revive fallen Skeletons.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18295,
+        "recordSha256": "94653fc5de15c130422101d6e7ea539a900ea47c8e5d41e618c0d5b61a91ce8c",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18295"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalFrostMage",
+      "effectId": "SummonSkeletalFrostMagesPlayer",
+      "description": "Activate to summon Reviving Skeletal Frost Mages that can envelop your Minions in an icy shield on Command.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18419,
+        "recordSha256": "c9812f0956393628f52ef649f3d00eaa196a618a9905d9d34aa282f2518949d2",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18419"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver",
+      "effectId": "SummonSkeletalReaversPlayer",
+      "description": "Activate to summon aggressive, Reviving Skeletal Reavers that can enrage on Command. Skeletal Reavers do more Attack Damage and gain increased Attack speed based on their Rage",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18543,
+        "recordSha256": "54e56cb56c42207527985611680171aeb3eeeefeef94cab28a16dd62116a01a1",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalSniper",
+      "effectId": "SummonSkeletalSnipersPlayer",
+      "description": "Activate to summon long-ranged, Reviving Skeletal Snipers that can fire a gas arrow on Command.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18677,
+        "recordSha256": "fb834997a7c392e6a8e1a190ecd1f864b7537562611f2237dd650e12d54de192",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18677"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalStormMage",
+      "effectId": "SummonSkeletalStormMagesPlayer",
+      "description": "Activate to summon Reviving Skeletal Storm Mages that can call down a lightning strike on dead Skeletons on Command.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18800,
+        "recordSha256": "e2e61fbb8ca4fc7ced89af2a205df9afbbdeeca76ded8886b74e53da29088613",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18800"
+      }
+    },
+    {
+      "id": "skeletal-warrior",
+      "effectId": "SummonSkeletalWarriorsPlayer",
+      "description": "Activate to summon Reviving Skeletal Warriors.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 18924,
+        "recordSha256": "9aca11f6b1c19c4749ff03ca6dd74b03f63b2539f39a36920fa593d38313123a",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSummonSpectre",
+      "effectId": "SummonSpectrePlayer",
+      "description": "Summon the spirit of the bound monster as a Reviving Minion.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 20125,
+        "recordSha256": "97f89e342b2a8fed91c3e48c807092e6f46eee910e024f027c3ff1bd680738ea",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L20125"
+      }
+    }
+  ],
+  "remapper": {
+    "id": "the-three-dragons",
+    "map": {
+      "Fire": "Shock",
+      "Cold": "Ignite",
+      "Lightning": "Freeze"
+    },
+    "evidence": {
+      "path": "src/Data/Uniques/helmet.lua",
+      "line": 542,
+      "recordSha256": "038f7a91b16333d21eabfc553c68e61b34a482fb2e6df50129718619ef28e2b4",
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L542"
+    },
+    "sourceAssertions": [
+      "Fire Damage from Hits Contributes to Shock Chance instead of Flammability and Ignite Magnitudes",
+      "Cold Damage from Hits Contributes to Flammability and Ignite Magnitudes instead of Chill Magnitude or Freeze Buildup",
+      "Lightning Damage from Hits Contributes to Freeze Buildup instead of Shock Chance"
+    ]
+  },
+  "limits": "Bounded candidate chains: one player conversion, optional Three Dragons, one event, one meta trigger, one socketed payoff. No recursive trigger feedback or live-build verification.",
+  "restrictions": [
+    {
+      "id": "brutality-1",
+      "effectId": "SupportBrutalityPlayer",
+      "path": "src/Data/Skills/sup_str.lua",
+      "flag": "noElementalDamage",
+      "assertions": [
+        "description = \"Supports any skill that deals damage, boosting its Physical damage at the expense of all other Damage Types.\"",
+        "\"deal_no_elemental_damage\"",
+        "\"base_deal_no_chaos_damage\""
+      ]
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBrutalitySupportTwo",
+      "effectId": "SupportBrutalityPlayerTwo",
+      "path": "src/Data/Skills/sup_str.lua",
+      "flag": "noElementalDamage",
+      "assertions": [
+        "description = \"Supports any skill that deals damage, boosting its Physical damage at the expense of all other Damage Types.\"",
+        "\"deal_no_elemental_damage\"",
+        "\"base_deal_no_chaos_damage\""
+      ]
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBrutalitySupportThree",
+      "effectId": "SupportBrutalityPlayerThree",
+      "path": "src/Data/Skills/sup_str.lua",
+      "flag": "noElementalDamage",
+      "assertions": [
+        "description = \"Supports any skill that deals damage, boosting its Physical damage at the expense of all other Damage Types, as well as giving Hits from that skill a chance to ignore Physical Damage reduction.\"",
+        "\"deal_no_elemental_damage\"",
+        "\"base_deal_no_chaos_damage\""
+      ]
+    },
+    {
+      "id": "controlled-destruction",
+      "effectId": "SupportControlledDestructionPlayer",
+      "path": "src/Data/Skills/sup_int.lua",
+      "flag": "noCriticalHits",
+      "assertions": [
+        "description = \"Supports Spells that Hit enemies, boosting their damage but preventing them from dealing Critical Hits.\"",
+        "\"global_cannot_crit\""
+      ]
+    }
+  ]
+}
