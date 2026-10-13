@@ -1,6 +1,6 @@
 {
   "name": "404-synergy-lab",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -18,7 +18,8 @@
     "web:build": "node scripts/build-web.mjs",
     "test:browser": "node scripts/browser-checks.cjs",
     "discovery:check": "node scripts/check-discovery-source.mjs",
-    "catalog:import": "node scripts/import-catalog.mjs"
+    "catalog:import": "node scripts/import-catalog.mjs",
+    "mechanics:import": "node scripts/import-mechanics.mjs"
   },
   "devDependencies": {
     "playwright": "1.51.1"
