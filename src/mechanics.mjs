@@ -47,8 +47,8 @@ export function createMechanicExplorer(reference,data) {
    const possible=m.from==='Elemental'?skill.damageHints.some(t=>['Fire','Cold','Lightning'].includes(t)):skill.damageHints.includes(m.from);if(!possible)return;
    const blocked=(context.noElementalDamage&&['Fire','Cold','Lightning'].includes(m.to))||(context.noChaosDamage&&m.to==='Chaos');
    links.push({id:'conversion:'+skill.id+':'+item.id+':'+m.evidence.line,kind:'conversion',skillId:skill.id,itemId:item.id,status:blocked?'blocked':'conditional',title:entries.get(skill.id).name+' + '+entries.get(item.id).name,
-    explanation:'If the skill deals outgoing '+m.from+' damage, this modifier converts '+m.percent+'% of that component to '+m.to+'. Skill types alone do not establish that damage.',
-    conditions:[variantCondition(m),'Player damage only; no minion conversion is inferred.','Actual damage, other conversions, ailments, resources and equipment constraints require further checks.',...(blocked?['The destination damage component is disabled; other damage components may still work.']:[])],evidenceUrls:[skill.evidence.url,m.evidence.url]});
+    explanation:'Potential '+m.from+' → '+m.to+' route ('+m.percent+'% source modifier) if the skill has a qualifying player-damage component. Skill types alone do not establish that component.',
+    conditions:[variantCondition(m),'Player damage only; no minion conversion is inferred.','Verify weapon/effect scope and whether the intended damage component can actually be converted.','Actual damage, other conversions, ailments, resources and equipment constraints require further checks.',...(blocked?['The destination damage component is disabled; other damage components may still work.']:[])],evidenceUrls:[skill.evidence.url,m.evidence.url]});
   };
   const grant=(skill,item,m)=>{
    const blocked=m.kind==='trigger'&&m.requiresCritical&&context.noCriticalHits;
