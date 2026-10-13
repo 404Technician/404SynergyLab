@@ -2,9 +2,11 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.7.0 expands discovery to eleven curated concepts**, including Unearth minion bombs, a Sacrifice supply direction, Comet from suitable persistent minion deaths, converted Fireball ailment triggers, and a Living Lightning swarm. Start from a skill or unique, inspect mechanics and support roles, then follow the build experiment plan. These are conditional source-backed ideas, not tested endgame builds.
+**v0.8.0 adds the complete pinned source catalog: 399 skills, 567 supports, and 443 uniques.** Search by name, tag or category and start from any imported record. All registered gem/item skills and unique source records are covered, including eight generated unique families. Legacy/source variants and unverified game availability remain visible.
 
-The advanced workbench retains its audited base snapshot: sixteen skills, eight supports, ten recorded interactions, and two conversion modifiers. Four additional discovery-only skill profiles and seven supplemental supports are checked against the pinned Path of Building source. Player and minion skill types remain separate. Additional support context is explicitly marked for in-game verification. The target remains Forbidden Rites / 0.5.5e with live-patch confirmation pending. No DPS predictions or full minion simulation are provided.
+The eleven researched concepts stay separate from the full index. Catalog inclusion does not imply a working synergy, current-patch availability, support compatibility or endgame viability. Records without a researched combination have an explicit empty state and source links. Advanced checks continue to use the audited sixteen-skill base snapshot; the full catalog does not silently expand the calculation engine.
+
+A reproducible import and source fingerprints bind the catalog to Path of Building revision `bb52d6b368307457eb9c54bb13f1829993d390b1`. The target remains Forbidden Rites / 0.5.5e with live-game confirmation pending. See [Full catalog coverage](docs/FULL_CATALOG.md).
 
 ## Open the browser lab
 
