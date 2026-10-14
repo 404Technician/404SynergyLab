@@ -48,3 +48,5 @@ Generator, payoff, item, support, scenario or event-selection changes reset obse
 The display data adds readable source information to all 443 unique and 567 support records; it does not add all of their mechanics to the combination engine. Research-backed ideas are primary. Theoretical candidates, source checks and the trigger workbench are collapsed by default. Item effects, role labels and first tests are visible on the researched cards.
 
 Regression tests cover source coverage, Radiant Grief variants, recipe discovery, cloud/hit distinction, Ambush and Arjun descriptions, incomplete/zero/invalid cadence inputs, Mana shortfalls and source-version rejection. Browser tests cover the default Gas Arrow layout, item and variant explanations, role-filtered supports, observation reset and sharing, blocked estimates, narrow-screen rendering and tampered detail data.
+
+Canonical-ID researched items are joined to the frozen source index in the app. The importer does not add a redundant reviewed-ID alias to such items: adding a new recipe must not silently rewrite an existing source snapshot. Legacy short-ID aliases remain reproducible.

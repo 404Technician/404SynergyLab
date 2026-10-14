@@ -66,9 +66,12 @@ export function buildReferenceCatalog(manifest,files,snapshot,discovery) {
   for(const m of source.matchAll(/\[\[\r?\n([\s\S]*?)\]\]/g)) {
    const lines=m[1].trimEnd().split(/\r?\n/),name=lines[0],base=lines[1];
    if(!name||!base)throw new Error('Missing unique header');
-   const match=discovery.items.find(e=>e.name===name);
    const category=path.split('/').at(-1).replace('.lua','');
-   entries.push({id:idFor('unique:'+category+':'+encodeURIComponent(name)+':'+encodeURIComponent(base),match?.id),name,base,kind:'unique',category,tags:[],origin:'unique',generated:false,
+   const canonicalId='unique:'+category+':'+encodeURIComponent(name)+':'+encodeURIComponent(base);
+   const reviewed=discovery.items.find(e=>e.name===name);
+   // Canonical-ID recipes join in the app; adding research must not mutate the frozen source index.
+   const match=reviewed?.id===canonicalId?undefined:reviewed;
+   entries.push({id:idFor(canonicalId,match?.id),name,base,kind:'unique',category,tags:[],origin:'unique',generated:false,
     variants:lines.filter(l=>l.startsWith('Variant: ')).map(l=>l.slice(9)),...(lines.find(l=>l.startsWith('League: '))?{league:lines.find(l=>l.startsWith('League: ')).slice(8)}:{}),
     ...(match?{reviewedId:match.id}:{}),availability:'unverified',evidence:{path,line:source.slice(0,m.index).split('\n').length,recordSha256:checksum(m[1]),url:sourceUrl(path)+'#L'+source.slice(0,m.index).split('\n').length}});
    staticUniques++;
