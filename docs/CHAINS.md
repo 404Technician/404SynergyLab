@@ -27,6 +27,10 @@ Persistent-minion candidates are positively identified by their source summon de
 
 Damage-type hints only propose a component to investigate. Native Fire→Ignite, Cold→Freeze and Lightning→Shock are a bounded baseline, inferred also from the explicit native mappings replaced by The Three Dragons. Weapon scope, actual hits, actor attribution, thresholds and target susceptibility remain conditions. Player conversion is never transferred to minions. Chaos routes have no modeled ailment; overrides such as Blackflame Covenant require separate rules.
 
+## Automatic discovery
+
+The catalog now proposes source-backed routes automatically. See [Automatic chain discovery](CHAIN_DISCOVERY.md) for the bounded search, source roles and filters. The manual workbench can focus on one event; loading an automatic proposal selects that event and clears confirmations.
+
 ## Experiments to try
 
 1. Fireball + Blueflame Bracers + The Three Dragons → potential Cold hit → actual Ignite → Cast on Elemental Ailment → Comet.

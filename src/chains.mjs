@@ -21,9 +21,10 @@ export function createChainExplorer(reference,mechanics,data){
  items.push(entries.get(data.remapper.id));
  function explore(input){
   if(!input||typeof input!=='object'||Array.isArray(input))throw new Error('Invalid chain selection');
-  const {generatorId,payoffId,itemId=null,remap=false,generatorSupportId=null,payoffSupportId=null,confirmedEvents=[],noElementalDamage=false,noChaosDamage=false,noCriticalHits=false}=input||{};
+  const {generatorId,payoffId,itemId=null,remap=false,generatorSupportId=null,payoffSupportId=null,confirmedEvents=[],focusEvent='all',noElementalDamage=false,noChaosDamage=false,noCriticalHits=false}=input||{};
   const g=profiles.get(generatorId),p=profiles.get(payoffId);
   if(g?.kind!=='skill'||p?.kind!=='skill'||(itemId&&!items.some(i=>i.id===itemId)))throw new Error('Unknown chain selection');
+  if(!['all','ailment','critical','minion-death'].includes(focusEvent))throw new Error('Invalid chain event focus');
   if(!Array.isArray(confirmedEvents)||confirmedEvents.some(e=>!['ailment','critical','minion-death'].includes(e))||[remap,noElementalDamage,noChaosDamage,noCriticalHits].some(x=>typeof x!=='boolean'))throw new Error('Invalid chain context');
   const supports={};for(const [role,id] of [['generator',generatorSupportId],['payoff',payoffSupportId]])if(id){const support=profiles.get(id);if(support?.kind!=='support')throw new Error('Unknown chain support');supports[role]=support;}
   const results=[];
@@ -64,7 +65,7 @@ export function createChainExplorer(reference,mechanics,data){
     results.push({id:[g.id,rule.id,p.id,route.type,...route.items,...route.steps].join(':'),generatorId:g.id,payoffId:p.id,triggerId:rule.id,event:rule.event,itemIds:route.items,status:blocked.length?'blocked':confirmedEvents.includes(rule.event)?'conditional':'needs-input',steps,reasons:[...blocked,...reasons],evidenceUrls:[g.evidence.url,...route.evidence,rule.evidence.url,p.evidence.url,...Object.values(supports).map(s=>s.evidence.url)]});
    }
   }
-  return {chains:results,limits:data.limits};
+  return {chains:focusEvent==='all'?results:results.filter(chain=>chain.event===focusEvent),limits:data.limits};
  }
  return {generators,payoffs,items,explore};
 }
