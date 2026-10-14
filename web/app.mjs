@@ -1,6 +1,7 @@
+import {validateExperimentDetails, validateCritTest, assessCriticalCadence} from './src/experiment-details.mjs';
 import {createChainDiscovery, chainDiscoveryVersion} from './src/chain-discovery.mjs';
 import { validateChains, createChainExplorer } from './src/chains.mjs';
-import { validateMechanics, createMechanicExplorer } from './src/mechanics.mjs';
+import { validateMechanics, createMechanicExplorer, checkSupportTypes } from './src/mechanics.mjs';
 import { validateReferenceCatalog, referenceEntries, resolveReference } from './src/reference-catalog.mjs';
 import { discover, validateDiscoveryCatalog } from './src/discovery.mjs';
 import { analyzeCombination, validateCombination } from './src/combination.mjs';
@@ -12,6 +13,7 @@ const labels={compatible:'TYPE MATCH',incompatible:'DOES NOT MATCH',unknown:'UNK
 const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
+let experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
 let suggestChains,chainIdeaKey,chainIdeaOffset=0;
 let chainsData,chainExplorer,chainInput={generatorId:'frostbolt',payoffId:'comet',itemId:null,remap:false,generatorSupportId:null,payoffSupportId:null,confirmedEvents:[],focusEvent:'all'};
 let referenceCatalog,mechanicsData,exploreMechanics,ruleRecord,ruleAnchor,ruleLimit=12,supportLimit=16;
@@ -21,7 +23,7 @@ let combination={version:1,skillIds:[],supports:{},itemId:null};
 const contextInputs={sidewaysCascade:'sideways-cascade',criticalHitsDisabled:'critical-disabled',elementalAilmentsDisabled:'ailments-disabled',igniteDisabled:'ignite-disabled'};
 const contextParams={criticalHitsDisabled:'noCrit',elementalAilmentsDisabled:'noAilments',igniteDisabled:'noIgnite'};
 const readContext=()=>Object.fromEntries(Object.entries(contextInputs).map(([flag,id])=>[flag,$(id).checked]));
-function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('chainIdeas',chainDiscoveryVersion);for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=$(id).value;if(value!==fallback)url.searchParams.set(key,value);else url.searchParams.delete(key);}url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
+function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('details',experimentDetails.id);for(const [id,key] of [['chain-ideas-panel','explore'],['chain-panel','workbench'],['rule-explorer','sourceChecks'],['crit-cadence','critCheck']]){if($(id).open)url.searchParams.set(key,'1');else url.searchParams.delete(key);}url.searchParams.set('chainIdeas',chainDiscoveryVersion);for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=$(id).value;if(value!==fallback)url.searchParams.set(key,value);else url.searchParams.delete(key);}url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
 function choose(id) { selected=id;discoveryMode='skill';discoveryAnchor=id;render();updateUrl(); }
 function renderSkillList() {
   const query=$('skill-search').value.trim().toLowerCase();let count=0;
@@ -121,20 +123,40 @@ function renderCombination() {
 function referenceView(kind,id) {
   const record=resolveReference(referenceCatalog,kind,id);
   if(!record)throw new Error('This starting point is not in the imported source catalog.');
+  if(record.kind==='unique'&&catalog.items.some(item=>item.id===record.id))return discover(snapshot,catalog,{kind,id:record.id});
   if(record.reviewedId)return discover(snapshot,catalog,{kind,id:record.reviewedId});
   return {anchor:{id:record.id,name:record.name,kind},status:'candidate',ideas:[],limits:catalog.limits};
 }
+function itemInfo(id,showName=true){
+ const record=referenceCatalog.entries.find(e=>e.id===id),detail=detailRecords.get(id);
+ const box=element('section',undefined,'item-info');box.dataset.itemInfo=id;
+ box.append(element('strong',showName?'Unique '+record.category+' · '+record.name:'What this item changes'));if(showName)box.append(element('p',record.base,'muted'));
+ if(!detail||detail.generated){box.append(element('p','Variable unique: generated modifiers are not expanded.','muted'));return box;}
+ const current=detail.modifiers.filter(m=>!m.variants.length||m.variants.includes('Current'));
+ const relevant=current.filter(m=>/Damage Converted|Damage from Hits Contributes|Presence.*Ignited/.test(m.text));
+ for(const mod of (relevant.length?relevant:current).slice(0,3))box.append(element('p',mod.text,'item-effect'));
+ if(detail.modifiers.some(m=>m.variants.length))box.append(element('small','Source variants differ. Check the modifier on your actual item.'));
+ const all=element('details');all.append(element('summary','All source stats & variants'));
+ const lines=element('ul');for(const mod of detail.modifiers)lines.append(element('li',(mod.variants.length?mod.variants.join(' / ')+': ':'')+mod.text));all.append(lines,link('Item source ↗',record.evidence.url));box.append(all);return box;
+}
 function renderReferenceRecord(record) {
-  const box=$('catalog-record');box.replaceChildren();
-  box.append(element('p',record.kind.toUpperCase()+' · '+record.category,'eyebrow'),element('h3',record.name));
-  if(record.base)box.append(element('p','Base: '+record.base));
-  if(record.weaponRequirements)box.append(element('p','Weapons: '+record.weaponRequirements));
-  const tags=element('div',undefined,'tag-row');for(const tag of record.tags)tags.append(element('span',tag,'tag'));box.append(tags);
-  if(record.legacy)box.append(element('p','Marked as legacy in this source record.','warning'));
-  if(record.variants?.length)box.append(element('p','Source variants: '+record.variants.join(', ')));
-  if(record.generated)box.append(element('p','Variable unique: modifiers are generated by the source and are not expanded in this catalog.'));
-  box.append(element('p','Imported source record. Availability and behavior in the target patch remain unverified.','muted'),link('View source record ↗',record.evidence.url));
-  if(record.effectEvidence)box.append(link('Skill mechanics source ↗',record.effectEvidence.url));
+ const box=$('catalog-record');box.replaceChildren(element('p',record.kind.toUpperCase()+' · '+record.category+(record.weaponRequirements?' · Requires '+record.weaponRequirements:record.base?' · '+record.base:''),'eyebrow'),element('h3',record.name));
+ if(record.kind==='unique')box.append(itemInfo(record.id,false));
+ else if(record.kind==='support')box.append(element('p',detailRecords.get(record.id)?.description||'No description is recorded in this source. Type checks are available.','muted'));
+ if(record.id==='gas-arrow')box.append(element('p',experimentDetails.gasArrow.summary,'mechanic-note'));
+ const details=element('details');details.append(element('summary','Record & source'));
+ const tags=element('div',undefined,'tag-row');for(const tag of record.tags)tags.append(element('span',tag,'tag'));details.append(tags);
+ if(record.legacy)details.append(element('p','Marked as legacy in this source record.','warning'));
+ details.append(element('p','Imported source record; target-patch behavior remains unverified.','muted'),link('View source record ↗',record.evidence.url));
+ if(record.effectEvidence)details.append(link('Skill mechanics source ↗',record.effectEvidence.url));box.append(details);
+}
+function syncManualAnchor(record){
+ if(manualAnchorId===record.id)return;manualAnchorId=record.id;
+ if(restoringManual){restoringManual=false;return;}chainInput.critTest={};chainInput.confirmedEvents=[];
+ const generator=chainExplorer.generators.some(e=>e.id===record.id);
+ if(generator)chainInput={...chainInput,generatorId:record.id,itemId:null,remap:false,generatorSupportId:null,payoffSupportId:null,confirmedEvents:[],focusEvent:'all',critTest:{}};
+ else if(chainExplorer.items.some(e=>e.id===record.id))chainInput={...chainInput,itemId:record.id,remap:false,confirmedEvents:[],critTest:{}};
+ else if(record.kind!=='support')$('chain-panel').open=false;
 }
 
 
@@ -188,16 +210,16 @@ function renderDiscovery() {
   if(!records.length){$('rule-explorer').hidden=true;$('chain-panel').hidden=true;$('chain-ideas-panel').hidden=true;$('catalog-record').replaceChildren(element('p','No source records match this search. Try another name, tag or category.','empty-note'));$('discovery-count').textContent='No catalog matches';return;}
   let record=resolveReference(referenceCatalog,discoveryMode,discoveryAnchor);
   if(!record||!records.some(e=>e.id===record.id))record=records[0];
-  discoveryAnchor=record.id;$('discovery-anchor').value=record.id;renderReferenceRecord(record);renderRules(record);renderChains(record);
+  discoveryAnchor=record.id;$('discovery-anchor').value=record.id;syncManualAnchor(record);renderReferenceRecord(record);renderRules(record);renderChains(record);
   const view=referenceView(discoveryMode,discoveryAnchor),query=$('discovery-search').value.trim().toLowerCase();
   const ideas=view.ideas.filter(i=>(i.title+' '+i.hook).toLowerCase().includes(query));
-  $('discovery-count').textContent=ideas.length+' curated ideas for '+view.anchor.name+' · conditional concepts, not playtested builds';
+  $('discovery-count').textContent=ideas.length+' researched ideas for '+view.anchor.name+' · mechanics checked, performance untested';
   $('discovery-ideas').replaceChildren();
   if(!ideas.length){$('discovery-ideas').append(element('div',view.ideas.length?'No ideas match this search.':'This record is imported. No researched combination is recorded for it yet; catalog inclusion does not establish a synergy.','empty-support'));return;}
   for(const idea of ideas){
     const card=element('article',undefined,'discovery-card');card.dataset.idea=idea.id;
     card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
-    const chips=element('div',undefined,'tag-row');for(const skill of idea.skills)chips.append(element('span',skill.name,'tag'));card.append(chips,element('p',idea.buildPlan.playstyle,'muted'));
+    const chips=element('div',undefined,'tag-row');for(const skill of idea.skills)chips.append(element('span',skill.name,'tag'));card.append(chips,element('p',idea.buildPlan.playstyle,'muted'));if(idea.item)card.append(itemInfo(idea.item.id));const firstTest=element('div',undefined,'first-test');firstTest.append(element('strong','First test'),element('p',idea.buildPlan.firstTest));card.append(firstTest);
     const more=element('details',undefined,'idea-details');more.append(element('summary','Mechanics, supports & tradeoffs'));
     const body=element('div',undefined,'idea-body');body.append(element('h4','Why this is interesting'),element('p',idea.mechanics),element('h4','How to explore it'));
     const steps=element('ol');for(const step of idea.play)steps.append(element('li',step));body.append(steps,element('h4','Support ideas — and why'));
@@ -234,24 +256,77 @@ function renderChainIdeas(record){
  const view=suggestChains(record.id,{...options,offset:chainIdeaOffset,limit:8});
  const payoff=referenceCatalog.entries.find(e=>e.id===view.payoffId);
  const roleLabels={generator:'generator',trigger:'meta trigger',payoff:'socketed payoff',item:'equipped unique',support:'generator or payoff support',unmodeled:'unmodeled source'};
- $('chain-ideas-scope').textContent='Starting with '+record.name+' as '+roleLabels[view.anchorRole]+'. Socketed payoff: '+payoff.name+'. Uses the damage/critical scenario and support choices from the workbench; event confirmations are always cleared.';
+ $('chain-ideas-scope').textContent=record.id==='gas-arrow'?'No continuous critical-hit path is modeled for Gas Arrow’s poison cloud. Start with the ignition ideas above; arrow and explosion hits need separate testing.':'Starting point: '+record.name+' ('+roleLabels[view.anchorRole]+'). Triggered spell: '+payoff.name+'. Candidates need an in-game setup and rate check.';
  $('chain-ideas-count').textContent='Showing '+(view.matched?chainIdeaOffset+1:0)+'–'+Math.min(chainIdeaOffset+8,view.matched)+' of '+view.matched+' matching paths / '+view.total+' modeled paths · '+view.blocked+' blocked before filters. Alphabetical order; no damage ranking.';
  $('chain-ideas-results').replaceChildren();
  if(!view.proposals.length)$('chain-ideas-results').append(element('p',view.anchorRole==='unmodeled'?'No chain role is modeled for this source yet. Its presence in the catalog does not establish a synergy.':view.total?'No paths match these filters. Inspect blocked paths or change the payoff, supports or scenario.':'No path is modeled for this source and payoff under the bounded chain rules.','empty-note'));
  for(const proposal of view.proposals){
   const card=element('article',undefined,'rule-card chain-idea');card.dataset.ideaChainStatus=proposal.status;card.dataset.ideaChainEvent=proposal.event;card.dataset.ideaAnchorRole=proposal.anchorRole;
-  card.append(element('span',proposal.status.toUpperCase().replaceAll('-',' '),'connection-label'),element('h4',proposal.title));
+  card.append(element('span',proposal.status==='blocked'?'BLOCKED':'MECHANIC CANDIDATE · UNTESTED','connection-label'),element('h4',proposal.title));
   if(record.kind==='support')card.append(element('p',record.name+' assigned to the '+(proposal.anchorRole==='generator-support'?'generator':'payoff')+'.'));
-  const steps=element('ol');for(const step of proposal.steps)steps.append(element('li',step));card.append(steps);
-  const details=element('details');details.append(element('summary','Conditions, blockers & sources'));
+  if(proposal.event==='critical')card.append(element('p','Critical-hit frequency and Energy gain have not been assessed. A type match does not establish an effective trigger setup.','muted'));for(const id of proposal.itemIds)card.append(itemInfo(id));const steps=element('ol');for(const step of proposal.steps)steps.append(element('li',step));
+  const details=element('details');details.append(element('summary','Steps, conditions & sources'),steps);
   const conditions=element('ul');for(const reason of proposal.reasons)conditions.append(element('li',reason));details.append(conditions);
   for(const url of [...new Set(proposal.evidenceUrls)])details.append(link('Pinned source ↗',url));card.append(details);
   const tryIdea=element('button','Try this chain','rule-open');tryIdea.type='button';tryIdea.addEventListener('click',()=>{
-   chainInput={...proposal.input,confirmedEvents:[]};renderChains(ruleRecord);updateUrl();$('chain-panel').scrollIntoView({block:'start',behavior:'auto'});
+   chainInput={...proposal.input,confirmedEvents:[],critTest:{}};$('chain-panel').open=true;if(proposal.event==='critical')$('crit-cadence').open=true;renderChains(ruleRecord);updateUrl();$('chain-panel').scrollIntoView({block:'start',behavior:'auto'});
   });card.append(tryIdea);$('chain-ideas-results').append(card);
  }
  $('chain-ideas-more').hidden=!view.hasMore;$('chain-ideas-previous').hidden=chainIdeaOffset===0;
 }
+const critInputs={hitsPerSecond:'crit-hits',critChance:'crit-chance',energyPerCrit:'crit-energy',energyRequired:'crit-required',manaPerTrigger:'crit-cost',manaPerSecond:'crit-sustain'};
+function fillChainSupports(){
+ const generator=profileRecords.get(chainInput.generatorId),payoff=profileRecords.get(chainInput.payoffId);
+ const triggered={...payoff,skillTypes:[...payoff.skillTypes,'Triggered']};
+ for(const [id,key,target,blank] of [['chain-generator-support','generatorSupportId',generator,'No source support'],['chain-payoff-support','payoffSupportId',triggered,'No triggered-spell support']]){
+  const options=[];const none=element('option',blank);none.value='';options.push(none);
+  for(const entry of referenceCatalog.entries.filter(e=>e.kind==='support')){
+   const check=checkSupportTypes(target,profileRecords.get(entry.id));
+   if((check.status==='incompatible'||entry.legacy)&&chainInput[key]!==entry.id)continue;
+   const label=(check.status==='incompatible'?'Excluded: ':check.status==='unknown'?'Context check: ':'')+entry.name;
+   const option=element('option',label);option.value=entry.id;option.title=detailRecords.get(entry.id)?.description||check.reason;options.push(option);
+  }
+  $(id).replaceChildren(...options);$(id).value=chainInput[key]||'';
+ }
+}
+function renderComponentInfo(){
+ const box=$('chain-component-info');box.replaceChildren();
+ const itemIds=[chainInput.itemId,...(chainInput.remap?['the-three-dragons']:[])].filter(Boolean);
+ if(!itemIds.length)box.append(element('p','No unique item is selected for this trigger experiment.','muted'));
+ for(const id of new Set(itemIds))box.append(itemInfo(id));
+ for(const [role,id,skillId] of [['Event-source',chainInput.generatorSupportId,chainInput.generatorId],['Triggered-spell',chainInput.payoffSupportId,chainInput.payoffId]]){
+  if(!id)continue;const record=referenceCatalog.entries.find(e=>e.id===id),info=element('section',undefined,'support-info');
+  info.append(element('strong',role+' support gem · '+record.name),element('p',detailRecords.get(id)?.description||'No source description is recorded; only type checks are available.','muted'));
+  const base=profileRecords.get(skillId),target=role==='Triggered-spell'?{...base,skillTypes:[...base.skillTypes,'Triggered']}:base,check=checkSupportTypes(target,profileRecords.get(id));
+  info.append(element('p',check.reason,check.status==='incompatible'?'warning':'muted'),link('Support source ↗',(record.effectEvidence||record.evidence).url));box.append(info);
+ }
+}
+function initCritTest(){
+ for(const [key,id] of Object.entries(critInputs))$(id).addEventListener('input',()=>{
+  const input={};for(const [field,control] of Object.entries(critInputs))if($(control).value!=='')input[field]=$(control).valueAsNumber;
+  try{validateCritTest(input);chainInput.critTest=input;showCritResult();updateUrl();}
+  catch{$('crit-result').replaceChildren(element('p','Use finite, nonnegative values; crit chance is 0–100% and the Energy requirement must be greater than zero.','warning'));}
+ });
+}
+function renderCritTest(view){
+ const critical=view.chains.find(c=>c.event==='critical');criticalBlocked=critical?.status==='blocked';$('crit-cadence').hidden=!critical;
+ for(const [key,id] of Object.entries(critInputs))$(id).value=chainInput.critTest?.[key]??'';
+ showCritResult();
+}
+function showCritResult(){
+ const result=assessCriticalCadence(chainInput.critTest||{}),box=$('crit-result');box.replaceChildren();
+ if(criticalBlocked)box.append(element('p','This critical-hit route is blocked by the selected setup. A cadence estimate cannot make an excluded support or disabled critical hit work.','warning'));
+ else if(result.status==='needs-input')box.append(element('p','Trigger frequency is not assessed. Enter qualifying hits, final crit chance, Energy per critical hit and the actual Energy requirement.','muted'));
+ else if(result.status==='no-energy')box.append(element('p','These observations produce no qualifying critical-hit Energy. This setup cannot sustain the modeled trigger from them.','warning'));
+ else{
+  const format=x=>x.toLocaleString('en',{maximumFractionDigits:3});
+  box.append(element('p','Estimated average: '+format(result.criticalHitsPerSecond)+' critical hits/s · '+format(result.energyPerSecond)+' Energy/s.'),element('p','Energy fill time: '+format(result.fillSeconds)+' s · Energy-only upper bound: '+format(result.castsPerSecond)+' triggers/s.'));
+  if(result.manaDemand!==null)box.append(element('p','Triggered-spell Mana demand at that upper bound: '+format(result.manaDemand)+'/s. This excludes the event-source cost.'));
+  if(result.manaShortfall!==null)box.append(element('p',result.manaShortfall?'Mana sustain shortfall: '+format(result.manaShortfall)+'/s before the event-source cost.':'The supplied Mana rate covers this modeled triggered-spell cost; the event source and other costs still need checking.',result.manaShortfall?'warning':'muted'));
+ }
+ const notes=element('ul');for(const note of experimentDetails.critNotes)notes.append(element('li',note));box.append(notes);
+}
+
 function initChains(){
  for(const id of ['chain-idea-status','chain-idea-event','chain-idea-search'])$(id).addEventListener(id==='chain-idea-search'?'input':'change',()=>{chainIdeaOffset=0;renderChainIdeas(ruleRecord);updateUrl();});
  $('chain-ideas-previous').addEventListener('click',()=>{chainIdeaOffset=Math.max(0,chainIdeaOffset-8);renderChainIdeas(ruleRecord);});
@@ -259,17 +334,17 @@ function initChains(){
  const fill=(id,records,blank)=>{const options=records.map(r=>{const o=element('option',r.name);o.value=r.id;return o;});if(blank){const o=element('option',blank);o.value='';options.unshift(o);}$(id).replaceChildren(...options);};
  fill('chain-generator',chainExplorer.generators);fill('chain-payoff',chainExplorer.payoffs);
  fill('chain-item',chainExplorer.items,'No conversion or remapping unique');
- const supports=referenceCatalog.entries.filter(e=>e.kind==='support');
- fill('chain-generator-support',supports,'No generator support');fill('chain-payoff-support',supports,'No payoff support');
+ initCritTest();
+ for(const [id,key] of [['chain-ideas-panel','explore'],['chain-panel','workbench'],['rule-explorer','sourceChecks'],['crit-cadence','critCheck']])$(id).addEventListener('toggle',()=>{if(snapshot&&experimentDetails)updateUrl();});
  for(const [id,key] of [['chain-focus-event','focusEvent'],['chain-generator','generatorId'],['chain-payoff','payoffId'],['chain-item','itemId'],['chain-generator-support','generatorSupportId'],['chain-payoff-support','payoffSupportId']]){
-  $(id).addEventListener('change',()=>{chainInput[key]=$(id).value||null;if(['generatorId','itemId','generatorSupportId'].includes(key))chainInput.confirmedEvents=[];renderChains(ruleRecord);updateUrl();});
+  $(id).addEventListener('change',()=>{chainInput[key]=$(id).value||null;chainInput.critTest={};if(['generatorId','itemId','generatorSupportId'].includes(key))chainInput.confirmedEvents=[];if(key==='focusEvent'&&chainInput.focusEvent==='critical')$('crit-cadence').open=true;renderChains(ruleRecord);updateUrl();});
  }
- $('chain-remap').addEventListener('change',()=>{chainInput.remap=$('chain-remap').checked;chainInput.confirmedEvents=[];renderChains(ruleRecord);updateUrl();});
+ $('chain-remap').addEventListener('change',()=>{chainInput.remap=$('chain-remap').checked;chainInput.confirmedEvents=[];chainInput.critTest={};renderChains(ruleRecord);updateUrl();});
  for(const event of ['ailment','critical','minion-death'])$('chain-confirm-'+event).addEventListener('change',()=>{
   chainInput.confirmedEvents=['ailment','critical','minion-death'].filter(e=>$('chain-confirm-'+e).checked);renderChains(ruleRecord);updateUrl();
  });
  $('chain-use-source').addEventListener('click',()=>{
-  const r=ruleRecord;if(!r)return;chainInput.confirmedEvents=[];
+  const r=ruleRecord;if(!r)return;chainInput.confirmedEvents=[];chainInput.critTest={};
   if(chainExplorer.generators.some(e=>e.id===r.id)){chainInput.generatorId=r.id;chainInput.confirmedEvents=[];}
   else if(chainExplorer.payoffs.some(e=>e.id===r.id))chainInput.payoffId=r.id;
   else if(chainExplorer.items.some(e=>e.id===r.id))chainInput.itemId=r.id;
@@ -279,31 +354,39 @@ function initChains(){
 }
 function renderChains(record){
  renderChainIdeas(record);
- $('chain-panel').hidden=false;
+ $('chain-panel').hidden=false;fillChainSupports();
  for(const [id,key] of [['chain-focus-event','focusEvent'],['chain-generator','generatorId'],['chain-payoff','payoffId'],['chain-item','itemId'],['chain-generator-support','generatorSupportId'],['chain-payoff-support','payoffSupportId']])$(id).value=chainInput[key]||(key==='focusEvent'?'all':'');
  $('chain-remap').checked=chainInput.remap;
  for(const event of ['ailment','critical','minion-death'])$('chain-confirm-'+event).checked=chainInput.confirmedEvents.includes(event);
  const usable=record&&(chainExplorer.generators.some(e=>e.id===record.id)||chainExplorer.payoffs.some(e=>e.id===record.id)||chainExplorer.items.some(e=>e.id===record.id)||record.kind==='support');
- $('chain-use-source').disabled=!usable;
- $('chain-use-source').textContent=usable?'Use '+record.name+' in this experiment':'Selected source has no modeled chain role yet';
+ $('chain-use-source').hidden=!usable;
+ $('chain-use-source').textContent='Use '+record.name+' as a component';
+ const source=referenceCatalog.entries.find(e=>e.id===chainInput.generatorId),payoff=referenceCatalog.entries.find(e=>e.id===chainInput.payoffId);
+ $('chain-active-title').textContent=source.name+' → '+payoff.name;
+ $('chain-active-scope').textContent='Event source: '+source.name+'. Catalog record: '+record.name+'. '+(record.id==='gas-arrow'?experimentDetails.gasArrow.critical:'The triggered spell is separately socketed; type matches alone do not establish effectiveness.');
+ renderComponentInfo();
  const view=chainExplorer.explore({...chainInput,noElementalDamage:$('rule-no-elemental').checked,noChaosDamage:$('rule-no-chaos').checked,noCriticalHits:$('rule-no-critical').checked});
+ const events=new Set(view.chains.map(chain=>chain.event));for(const event of ['ailment','critical','minion-death'])$('chain-confirm-'+event).closest('label').hidden=!events.has(event);
+ $('chain-remap').closest('label').hidden=chainInput.focusEvent==='critical'&&!chainInput.remap;
+ $('chain-item').closest('label').hidden=chainInput.focusEvent==='critical'&&!chainInput.itemId;
+
  $('chain-count').textContent=view.chains.length+' candidate paths · '+view.chains.filter(c=>c.status==='blocked').length+' blocked';
- $('chain-results').replaceChildren();
+ renderCritTest(view);$('chain-results').replaceChildren();
  if(!view.chains.length)$('chain-results').append(element('p','No route is modeled for these selections. A selected unique must participate in the chain; minion conversion and recursive trigger loops are outside these rules.','empty-note'));
  for(const chain of view.chains){
   const card=element('article',undefined,'rule-card');card.dataset.chainStatus=chain.status;card.dataset.chainEvent=chain.event;
-  card.append(element('h4',referenceCatalog.entries.find(e=>e.id===chain.triggerId).name+' · '+chain.status.toUpperCase().replaceAll('-',' ')));
-  const steps=element('ol');for(const step of chain.steps)steps.append(element('li',step));card.append(steps);
-  const conditions=element('ul');for(const reason of chain.reasons)conditions.append(element('li',reason));card.append(conditions);
-  const details=element('details');details.append(element('summary','Pinned sources'));
+  card.append(element('h4',referenceCatalog.entries.find(e=>e.id===chain.triggerId).name+' · '+(chain.status==='blocked'?'BLOCKED':chain.status==='conditional'?'EVENT CONFIRMED · PERFORMANCE UNTESTED':'SETUP AND EVENT CHECK NEEDED')));
+  if(chain.status==='blocked')card.append(element('p',chain.reasons[0],'warning'));if(chain.event==='critical')card.append(element('p','A critical hit alone is not an effectiveness check. Review sustained critical hits, Energy fill time and Mana below.','muted'));const steps=element('ol');for(const step of chain.steps)steps.append(element('li',step));
+  const conditions=element('ul');for(const reason of chain.reasons)conditions.append(element('li',reason));
+  const details=element('details');details.append(element('summary','Steps, checks & sources'),steps,conditions);
   for(const url of [...new Set(chain.evidenceUrls)])details.append(link('Source ↗',url));card.append(details);$('chain-results').append(card);
  }
 }
 
 async function start(){
-  const responses=await Promise.all([fetch('./data/snapshot.json',{cache:'no-cache'}),fetch('./data/build.json',{cache:'no-cache'}),fetch('./data/catalog.json',{cache:'no-cache'}),fetch('./data/reference.json',{cache:'no-cache'}),fetch('./data/mechanics.json',{cache:'no-cache'}),fetch('./data/chains.json',{cache:'no-cache'})]);
+  const responses=await Promise.all([fetch('./data/snapshot.json',{cache:'no-cache'}),fetch('./data/build.json',{cache:'no-cache'}),fetch('./data/catalog.json',{cache:'no-cache'}),fetch('./data/reference.json',{cache:'no-cache'}),fetch('./data/mechanics.json',{cache:'no-cache'}),fetch('./data/chains.json',{cache:'no-cache'}),fetch('./data/experiment-details.json',{cache:'no-cache'})]);
   if(responses.some(r=>!r.ok))throw new Error('The bundled data could not be loaded.');
-  const [bytes,metadata,catalogBytes,referenceBytes,mechanicsBytes,chainsBytes]=await Promise.all([responses[0].arrayBuffer(),responses[1].json(),responses[2].arrayBuffer(),responses[3].arrayBuffer(),responses[4].arrayBuffer(),responses[5].arrayBuffer()]);meta=metadata;
+  const [bytes,metadata,catalogBytes,referenceBytes,mechanicsBytes,chainsBytes,detailBytes]=await Promise.all([responses[0].arrayBuffer(),responses[1].json(),responses[2].arrayBuffer(),responses[3].arrayBuffer(),responses[4].arrayBuffer(),responses[5].arrayBuffer(),responses[6].arrayBuffer()]);meta=metadata;
   const sha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
   if(sha!==meta.snapshotSha256)throw new Error('The dataset does not match its saved source review. Rebuild or update the project.');
   snapshot=JSON.parse(new TextDecoder().decode(bytes));if(snapshot.id!==meta.snapshotId)throw new Error('Snapshot version mismatch.');
@@ -326,6 +409,11 @@ async function start(){
   if(chainsData.id!==meta.chainsId)throw new Error('Chain version mismatch.');
   chainExplorer=createChainExplorer(referenceCatalog,mechanicsData,chainsData);
   suggestChains=createChainDiscovery(referenceCatalog,chainExplorer,chainsData);
+  const detailSha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',detailBytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(detailSha!==meta.detailsSha256)throw new Error('The experiment details do not match this build.');
+  experimentDetails=validateExperimentDetails(referenceCatalog,JSON.parse(new TextDecoder().decode(detailBytes)));
+  if(experimentDetails.id!==meta.detailsId)throw new Error('Experiment details version mismatch.');
+  detailRecords=new Map(experimentDetails.entries.map(e=>[e.id,e]));profileRecords=new Map(mechanicsData.profiles.map(p=>[p.id,p]));
   skills=snapshot.entities.filter(s=>s.kind==='skill');
   const params=new URL(location.href).searchParams;
   if(params.has('snapshot')&&params.get('snapshot')!==snapshot.id)throw new Error('This link refers to a different data snapshot. Open the lab without the link parameters to use this preview.');
@@ -334,7 +422,10 @@ async function start(){
   if(params.has('chains')&&params.get('chains')!==chainsData.id)throw new Error('This link refers to different chain rules. Open the lab without link parameters to use this build.');
   if(params.has('chainIdeas')&&params.get('chainIdeas')!==chainDiscoveryVersion)throw new Error('This link refers to different chain discovery rules. Open the lab without link parameters to use this build.');
   for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=params.get(key)??fallback;$(id).value=value;if($(id).value!==value||value.length>300)throw new Error('Invalid chain discovery filters in this link.');}
-  if(params.has('chain')){const raw=params.get('chain');if(raw.length>6000)throw new Error('Chain link is too large.');chainInput=JSON.parse(raw);chainExplorer.explore(chainInput);if(!chainExplorer.generators.some(e=>e.id===chainInput.generatorId)||!chainExplorer.payoffs.some(e=>e.id===chainInput.payoffId))throw new Error('This chain selection is unavailable.');}
+  if(params.has('details')&&params.get('details')!==experimentDetails.id)throw new Error('This link refers to different experiment details.');
+  for(const [id,key] of [['chain-ideas-panel','explore'],['chain-panel','workbench'],['rule-explorer','sourceChecks'],['crit-cadence','critCheck']])$(id).open=params.get(key)==='1';
+  if(['ideaStatus','ideaEvent','ideaQuery'].some(key=>params.has(key)))$('chain-ideas-panel').open=true;
+  if(params.has('chain')){restoringManual=true;const raw=params.get('chain');if(raw.length>6000)throw new Error('Chain link is too large.');chainInput=JSON.parse(raw);validateCritTest(chainInput.critTest||{});chainExplorer.explore(chainInput);if(!chainExplorer.generators.some(e=>e.id===chainInput.generatorId)||!chainExplorer.payoffs.some(e=>e.id===chainInput.payoffId))throw new Error('This chain selection is unavailable.');}
   const requested=params.get('skill');if(requested&&!skills.some(s=>s.id===requested))throw new Error('This skill is not in the bundled preview. Open the lab without the link parameters.');
   if(params.has('build')){const raw=params.get('build');if(raw.length>12000)throw new Error('Combination link is too large.');combination=JSON.parse(raw);validateCombination(snapshot,combination);}
   selected=requested||(params.get('inspect')==='1'?'spark':'frostbolt');
@@ -360,7 +451,7 @@ async function start(){
   $('start-unique').addEventListener('click',()=>{discoveryMode='unique';discoveryAnchor='the-three-dragons';$('discovery-search').value='';$('catalog-search').value='';$('catalog-category').value='';renderDiscovery();updateUrl();});
   $('start-support').addEventListener('click',()=>{discoveryMode='support';discoveryAnchor='living-lightning';$('discovery-search').value='';$('catalog-search').value='';$('catalog-category').value='';renderDiscovery();updateUrl();});
   initChains();
-  for(const id of ['rule-no-elemental','rule-no-chaos','rule-no-critical'])$(id).addEventListener('change',()=>{chainInput.confirmedEvents=[];renderRules(ruleRecord);renderChains(ruleRecord);updateUrl();});
+  for(const id of ['rule-no-elemental','rule-no-chaos','rule-no-critical'])$(id).addEventListener('change',()=>{chainInput.confirmedEvents=[];chainInput.critTest={};renderRules(ruleRecord);renderChains(ruleRecord);updateUrl();});
   $('rule-more').addEventListener('click',()=>{ruleLimit+=12;renderRules(ruleRecord);});
   $('rule-support-more').addEventListener('click',()=>{supportLimit+=16;renderRules(ruleRecord);});
   $('rule-support-filter').addEventListener('change',()=>{supportLimit=16;renderRules(ruleRecord);});

@@ -73,6 +73,18 @@
         "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua"
       },
       "corroborationUrl": "https://poe2db.tw/us/The_Three_Dragons"
+    },
+    {
+      "id": "unique:helmet:Radiant%20Grief:Lace%20Hood",
+      "name": "Radiant Grief",
+      "mechanic": "presence-ignite",
+      "evidence": {
+        "path": "src/Data/Uniques/helmet.lua",
+        "line": 151,
+        "recordSha256": "aa1329be31811efc804c415da2dd7c1f3f3dd36ff6757bb1ef4591866f3386f3",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L151",
+        "fileSha256": "eb069d4441184a296c5db8d2a947bc7c575251a39d8ed9affde542f12261aff3"
+      }
     }
   ],
   "extraSupports": [
@@ -284,6 +296,120 @@
     }
   ],
   "recipes": [
+    {
+      "supports": [
+        {
+          "skillId": "gas-arrow",
+          "supportId": "rapid-attacks-1",
+          "reason": "Faster manual bow attacks can place clouds more quickly once detonation works.",
+          "tradeoff": "Does not ignite targets or make poison applications count as hits; extra attacks cost Mana."
+        }
+      ],
+      "play": [
+        "Equip Radiant Grief and check its actual Presence ignition modifier.",
+        "Place Gas Arrow gas where an enemy can enter your Presence and touch the cloud.",
+        "Watch for the actual enemy Ignite and explosion before scaling damage."
+      ],
+      "conditions": [
+        "An actually Ignited enemy must touch a cloud; Fire damage or burning ground alone is insufficient.",
+        "Gas Arrow requires a Bow. The cloud itself is not a continuous critical-hit generator.",
+        "Test clearing and a single tougher enemy separately; final damage and defenses are not modeled.",
+        "Requires an enemy within your Presence and the cloud; distant gas is not automatically detonated.",
+        "Current source item variant uses 200 Base Fire Damage for Ignite; the legacy variant uses 100.",
+        "Radiant Grief and The Three Dragons both occupy the helmet slot and cannot be worn together."
+      ],
+      "avoid": [
+        "Do not assume poison applications fill Cast on Critical Energy.",
+        "Do not use Brutality for the Fire explosion route."
+      ],
+      "sourceCheckIds": [
+        "gas-ignition"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L2855",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L151",
+        "https://www.pathofexile.com/forum/view-thread/3932540"
+      ],
+      "id": "gas-arrow-radiant-grief",
+      "title": "Gas clouds with a Presence ignition source",
+      "itemId": "unique:helmet:Radiant%20Grief:Lace%20Hood",
+      "skillIds": [
+        "gas-arrow"
+      ],
+      "hook": "Radiant Grief ignites enemies in your Presence; an ignited enemy touching your gas can detonate it.",
+      "mechanics": "The helmet supplies the Ignite condition for nearby enemies. Gas Arrow supplies the cloud and explosion. No critical-hit engine or second attack is required for this mechanic.",
+      "buildPlan": {
+        "playstyle": "A bow attack with nearby Presence ignition; one active skill for the core interaction.",
+        "components": [
+          "Gas Arrow with a Bow",
+          "Radiant Grief helmet",
+          "An enemy inside your Presence and touching the gas"
+        ],
+        "firstTest": "Place gas near an enemy, then move it within your Presence. Does the actual Ignite detonate the cloud?",
+        "stopIf": "If you must stand too close for your defenses or cannot get reliable cloud contact, do not invest in the damage setup yet.",
+        "nextChecks": [
+          "Check the helmet variant and actual Presence range.",
+          "Measure Mana sustain while attacking and compare boss detonation frequency with clearing.",
+          "Choose defenses and a passive/ascendancy plan only after the interaction is reliable."
+        ]
+      }
+    },
+    {
+      "supports": [
+        {
+          "skillId": "gas-arrow",
+          "supportId": "rapid-attacks-1",
+          "reason": "Faster manual bow attacks can place clouds more quickly once detonation works.",
+          "tradeoff": "Does not ignite targets or make poison applications count as hits; extra attacks cost Mana."
+        }
+      ],
+      "play": [
+        "Cast Flame Wall so an enemy inside its area is actually Ignited.",
+        "Place a Gas Arrow cloud where that Ignited enemy can touch it.",
+        "Test the explosion against a single enemy as well as packs; added Fire damage by itself is not the Ignite condition."
+      ],
+      "conditions": [
+        "An actually Ignited enemy must touch a cloud; Fire damage or burning ground alone is insufficient.",
+        "Gas Arrow requires a Bow. The cloud itself is not a continuous critical-hit generator.",
+        "Test clearing and a single tougher enemy separately; final damage and defenses are not modeled."
+      ],
+      "avoid": [
+        "Do not assume poison applications fill Cast on Critical Energy.",
+        "Do not use Brutality for the Fire explosion route."
+      ],
+      "sourceCheckIds": [
+        "gas-ignition",
+        "flame-wall-ignition"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L2855",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8228"
+      ],
+      "id": "gas-arrow-flame-wall",
+      "title": "Ignite the enemy, then detonate the gas",
+      "itemId": null,
+      "skillIds": [
+        "gas-arrow",
+        "flame-wall"
+      ],
+      "hook": "Flame Wall ignites enemies within its area. Move that ignited enemy into a Gas Arrow cloud to create the explosion.",
+      "mechanics": "A direct two-skill ignition-and-cloud interaction; no unique item or critical-hit trigger is required.",
+      "buildPlan": {
+        "playstyle": "A manual bow-and-spell sequence: place the wall and gas where an enemy crosses both.",
+        "components": [
+          "Gas Arrow with a Bow",
+          "Flame Wall as an Ignite source",
+          "An enemy touching the cloud while actually Ignited"
+        ],
+        "firstTest": "Put the wall and gas at the same encounter. Does an ignited enemy touching the cloud produce the explosion?",
+        "stopIf": "If actual Ignite or enemy contact cannot be reproduced, do not scale this as a detonation build.",
+        "nextChecks": [
+          "Check positioning against a single enemy as well as packs.",
+          "Measure the Mana cost of both actions and attack cadence.",
+          "Choose defenses and damage scaling only after the base interaction works."
+        ]
+      }
+    },
     {
       "id": "cold-that-ignites",
       "title": "Cold that ignites",
@@ -1254,6 +1380,29 @@
         "Does not modify skills used by Minions"
       ],
       "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/sup_int.lua#L6297"
+    },
+    {
+      "id": "gas-ignition",
+      "effectId": "GasArrowPlayer",
+      "path": "src/Data/Skills/act_dex.lua",
+      "recordSha256": "0b48a0b96cd115f4b59875f983d584b25dba1c668d72264e83ec2a3f5c525a68",
+      "descriptionSha256": "bd49a4db902e602d2c2160961b5a169ed62264d9d862a9013572833f0aa6bc9a",
+      "requiredFragments": [
+        "an Ignited enemy touches it",
+        "a Detonator skill"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L2855"
+    },
+    {
+      "id": "flame-wall-ignition",
+      "effectId": "FlameWallPlayer",
+      "path": "src/Data/Skills/act_int.lua",
+      "recordSha256": "d6e4461811312e414bdefa01294101fcee4a116122d52709910c0d731ba2d96b",
+      "descriptionSha256": "6c737b74b66abd4108a3ecee532fdfff4f6d61fe1d6993cf674618a05902bec1",
+      "requiredFragments": [
+        "Ignites everything within its area"
+      ],
+      "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8228"
     }
   ]
 }
