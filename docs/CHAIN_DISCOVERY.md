@@ -1,6 +1,6 @@
 # Automatic chain discovery
 
-The catalog selector is now an entry point to generated chain experiments, rather than requiring the user to choose all of the intermediate pieces manually. This feature introduces no additional game-mechanic assumptions: every proposal is evaluated by the same source-backed engine used by the manual workbench.
+Research-backed ideas are the default main view. Automatic candidates are available in the optional **Explore trigger candidates** panel. The catalog selector is an entry point to generated chain experiments, rather than requiring the user to choose all of the intermediate pieces manually. This feature introduces no additional game-mechanic assumptions: every proposal is evaluated by the same source-backed engine used by the manual workbench.
 
 ## Starting-point roles
 
@@ -26,7 +26,7 @@ Support and scenario selections affect every proposal. A support starting point 
 
 ## Browsing and trying an idea
 
-The default view shows paths needing input. Blocked paths are counted and can be inspected with the status filter; event and text filters narrow the results. Search includes skill, item, support, source-component and role text. Paths are sorted alphabetically and paginated in groups of eight. Changing the starting point, payoff, supports, scenario or filters returns to the first page. Pagination is not a recommendation score.
+The candidate panel defaults to unblocked but untested paths. Blocked paths are counted and can be inspected with the status filter; event and text filters narrow the results. Search includes skill, item, support, source-component and role text. Paths are sorted alphabetically and paginated in groups of eight. Changing the starting point, payoff, supports, scenario or filters returns to the first page. Pagination is not a recommendation score.
 
 **Try this chain** transfers the exact generator, payoff, conversion/remapping selection and assigned supports to the workbench, then focuses the proposed event. Event confirmations are reset. Loading a proposal never upgrades it to a confirmed or verified build. The workbench can also switch back to all modeled events.
 
@@ -39,3 +39,9 @@ Shared links preserve the starting point, payoff, assigned supports, focused eve
 Regression tests check anchor participation, generator/payoff/support roles, remapping order, persistent-minion candidates, blocked socket predicates, stable pagination, scenario cache invalidation, unmodeled sources and replaying proposals in the manual engine. Browser checks cover automatic catalog discovery, exact loading with cleared confirmations, payoff changes, shared filters and event focus, support role conflicts, pagination, narrow screens and invalid historical versions.
 
 The existing provenance CI still reconstructs the pinned catalog/mechanics and checks chain source descriptions and predicates. This update does not add or broaden game rules; further mechanics should receive their own source research and validation before entering the search.
+
+## Item and performance review
+
+The v0.12 interface displays source item effects and role-specific support descriptions, and hides incompatible supports from new selections. Incompatible supports restored from an old link remain labeled as excluded. The selected catalog record and active event source are separate, explicit labels; selecting a modeled generator updates the manual event source and resets observations.
+
+The workbench has an optional critical-hit cadence and Mana check based on user observations. Gas Arrow cloud poison is not counted as hit income. See [the focused review](GAS_ARROW_REVIEW.md).

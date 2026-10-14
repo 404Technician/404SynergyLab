@@ -2,13 +2,19 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.11.0 adds automatic chain discovery from the selected catalog record.** Start with a skill, a modeled unique, a support or one of the three modeled meta triggers. The lab proposes bounded routes using the existing source-backed chain engine, shows blocked paths separately, and lets you load the exact generator, items, support roles and event into the workbench with **Try this chain**.
+**v0.12.0 puts researched build ideas first and makes the item effect visible.** The main layout is a single column; theoretical trigger candidates, source checks and the trigger workbench are optional collapsed panels. The selected record and the active event source are clearly identified. Compatible support choices are filtered by their actual role; a restored incompatible choice remains visible as an exclusion rather than being silently replaced.
 
-Suggestions use the selected socketed payoff and the current damage/critical scenario and support choices. Search by skill, item, support or damage, filter by event, and browse eight paths at a time. Results are alphabetical experiments, not a damage ranking. Event confirmations are always cleared when loading a suggestion. See [Automatic chain discovery](docs/CHAIN_DISCOVERY.md).
+Gas Arrow now has two additional ignition ideas: Radiant Grief's Presence ignition and direct Flame Wall ignition. Current and legacy helmet modifiers are displayed separately. The poison cloud is explicitly not treated as a continuous critical-hit generator; actual arrow or explosion hits need their own review.
+
+Source-bound details cover all 443 unique records and 567 supports, plus the three reviewed skill descriptions. Generated unique families remain unexpanded and missing support descriptions remain explicitly missing. Selected unique effects and the first practical test are shown on each researched idea.
+
+The optional critical-hit cadence check uses the user's observed qualifying hits, final crit chance, Energy gained on the tested target, actual Energy threshold and optional Mana costs. It estimates average Energy fill time and the Energy-only trigger-rate ceiling, flags Mana shortfalls and never upgrades a blocked route or declares a complete build effective. See [Gas Arrow and critical-hit review](docs/GAS_ARROW_REVIEW.md).
+
+Automatic candidates still use the existing bounded engine. Open **Explore trigger candidates** to browse them, then **Try this chain** to load exact roles and clear previous event confirmations and crit observations. See [Automatic chain discovery](docs/CHAIN_DISCOVERY.md).
 
 The new selector covers 84 possible generators (75 player damage candidates plus nine positively identified reviving-minion skills), 68 possible socketed spells, six conversion uniques and The Three Dragons. Tags establish candidates, not actual hits or events. Confirm an event for the selected generator to move a route from **needs input** to **conditional**; it never becomes a verified build. Changing the generator or its damage setup clears that confirmation.
 
-The complete source catalog remains available: 399 skills, 567 supports and 443 uniques. Selected general mechanics are recognized on 104 uniques; 339 still need modifier models. These bounded chains model one conversion unique and an optional remapping helmet, three meta trigger types and one payoff. Recursive trigger feedback, arbitrary item stacking, damage/rate calculations, ascendancy overrides and full builds remain outside the model.
+The complete source catalog remains available: 399 skills, 567 supports and 443 uniques. Selected general mechanics are recognized on 104 uniques; 339 still need modifier models. These bounded chains model one conversion unique and an optional remapping helmet, three meta trigger types and one payoff. Recursive trigger feedback, arbitrary item stacking, automatic damage/rate simulation, ascendancy overrides and full builds remain outside the model.
 
 Source records, socket predicates, remapping modifiers and support restrictions are verified against the pinned PoB revision in CI. Shared experiments include the chain rule version and all role selections. The target remains Forbidden Rites / 0.5.5e with live-game confirmation pending. See [Chain research and limits](docs/CHAINS.md), [General mechanic rules](docs/MECHANICS.md) and [Full catalog coverage](docs/FULL_CATALOG.md).
 

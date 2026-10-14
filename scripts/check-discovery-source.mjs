@@ -26,6 +26,11 @@ for(const check of catalog.mechanicChecks){
   if(JSON.stringify(tokens)!==JSON.stringify(check[key]))throw new Error('Mechanic socket predicate changed');
  }
 }
+for(const item of catalog.items.filter(i=>i.evidence.path==='src/Data/Uniques/helmet.lua')){
+ const source=files[item.evidence.path],block=[...source.matchAll(/\[\[\r?\n([\s\S]*?)\]\]/g)].find(m=>m[1].split(/\r?\n/)[0]===item.name);
+ if(!block||checksum(source)!==item.evidence.fileSha256||checksum(block[1])!==item.evidence.recordSha256)throw new Error('Unique discovery item changed');
+ if(item.mechanic==='presence-ignite'&&!block[1].includes('{variant:2}Enemies in your Presence are Ignited as though dealt 200 Base Fire Damage'))throw new Error('Presence ignition item variant changed');
+}
 const item=catalog.items.find(i=>i.id==='the-three-dragons'),source=files[item.evidence.path],block=[...source.matchAll(/\[\[\r?\n([\s\S]*?)\]\]/g)].find(m=>m[1].split(/\r?\n/)[0]===item.name);
 if(!block||checksum(source)!==item.evidence.fileSha256||checksum(block[1])!==item.evidence.recordSha256)throw new Error('Ailment-remapping item evidence changed');
 const clean=s=>s.replace(/ Chance| Magnitudes| Magnitude| Buildup/g,'').replace(/ or /g,' and ');

@@ -33,6 +33,7 @@ jobs:
       - run: npm run catalog:import -- .upstream-pob --check
       - run: npm run mechanics:import -- .upstream-pob --check
       - run: npm run chains:check -- .upstream-pob
+      - run: npm run details:import -- .upstream-pob --check
   browser:
     runs-on: ubuntu-latest
     steps:

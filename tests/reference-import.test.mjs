@@ -56,3 +56,11 @@ test('same-file duplicate declarations follow Lua last-assignment behavior and r
  assert.equal(a.coverage.gemRecords,1);assert.equal(a.coverage.gemDeclarations,2);assert.equal(a.coverage.gemOverrides.length,1);
  assert.equal(a.entries.find(e=>e.kind==='skill').name,'Replacement');
 });
+
+test('new research using an existing canonical unique ID does not rewrite the source snapshot',()=>{
+ const before=buildReferenceCatalog(manifest,files,snapshot,discovery),item=before.entries.find(e=>e.name==='Sample Unique');
+ const researched={...discovery,items:[{id:item.id,name:item.name}]};
+ assert.deepEqual(buildReferenceCatalog(manifest,files,snapshot,researched),before);
+ const alias=buildReferenceCatalog(manifest,files,snapshot,{...discovery,items:[{id:'sample-unique',name:item.name}]}).entries.find(e=>e.name===item.name);
+ assert.equal(alias.id,'sample-unique');assert.equal(alias.reviewedId,'sample-unique');
+});
