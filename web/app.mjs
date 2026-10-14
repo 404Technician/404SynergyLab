@@ -1,3 +1,4 @@
+import {createChainDiscovery, chainDiscoveryVersion} from './src/chain-discovery.mjs';
 import { validateChains, createChainExplorer } from './src/chains.mjs';
 import { validateMechanics, createMechanicExplorer } from './src/mechanics.mjs';
 import { validateReferenceCatalog, referenceEntries, resolveReference } from './src/reference-catalog.mjs';
@@ -11,7 +12,8 @@ const labels={compatible:'TYPE MATCH',incompatible:'DOES NOT MATCH',unknown:'UNK
 const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
-let chainsData,chainExplorer,chainAnchor,chainInput={generatorId:'frostbolt',payoffId:'comet',itemId:null,remap:false,generatorSupportId:null,payoffSupportId:null,confirmedEvents:[]};
+let suggestChains,chainIdeaKey,chainIdeaOffset=0;
+let chainsData,chainExplorer,chainInput={generatorId:'frostbolt',payoffId:'comet',itemId:null,remap:false,generatorSupportId:null,payoffSupportId:null,confirmedEvents:[],focusEvent:'all'};
 let referenceCatalog,mechanicsData,exploreMechanics,ruleRecord,ruleAnchor,ruleLimit=12,supportLimit=16;
 let catalog,discoveryMode='skill',discoveryAnchor='frostbolt';
 let snapshot,meta,skills,selected='spark',filter='all',result;
@@ -19,7 +21,7 @@ let combination={version:1,skillIds:[],supports:{},itemId:null};
 const contextInputs={sidewaysCascade:'sideways-cascade',criticalHitsDisabled:'critical-disabled',elementalAilmentsDisabled:'ailments-disabled',igniteDisabled:'ignite-disabled'};
 const contextParams={criticalHitsDisabled:'noCrit',elementalAilmentsDisabled:'noAilments',igniteDisabled:'noIgnite'};
 const readContext=()=>Object.fromEntries(Object.entries(contextInputs).map(([flag,id])=>[flag,$(id).checked]));
-function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
+function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('chainIdeas',chainDiscoveryVersion);for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=$(id).value;if(value!==fallback)url.searchParams.set(key,value);else url.searchParams.delete(key);}url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
 function choose(id) { selected=id;discoveryMode='skill';discoveryAnchor=id;render();updateUrl(); }
 function renderSkillList() {
   const query=$('skill-search').value.trim().toLowerCase();let count=0;
@@ -183,7 +185,7 @@ function renderDiscovery() {
   $('catalog-count').textContent=referenceCatalog.counts.skill+' skills · '+referenceCatalog.counts.support+' supports · '+referenceCatalog.counts.unique+' uniques in the pinned source catalog';
   $('discovery-anchor').replaceChildren(...records.map(record=>{const option=element('option',record.name+(record.base?' · '+record.base:''));option.value=record.id;return option;}));$('discovery-anchor').disabled=!records.length;
   $('discovery-ideas').replaceChildren();
-  if(!records.length){$('rule-explorer').hidden=true;$('chain-panel').hidden=true;$('catalog-record').replaceChildren(element('p','No source records match this search. Try another name, tag or category.','empty-note'));$('discovery-count').textContent='No catalog matches';return;}
+  if(!records.length){$('rule-explorer').hidden=true;$('chain-panel').hidden=true;$('chain-ideas-panel').hidden=true;$('catalog-record').replaceChildren(element('p','No source records match this search. Try another name, tag or category.','empty-note'));$('discovery-count').textContent='No catalog matches';return;}
   let record=resolveReference(referenceCatalog,discoveryMode,discoveryAnchor);
   if(!record||!records.some(e=>e.id===record.id))record=records[0];
   discoveryAnchor=record.id;$('discovery-anchor').value=record.id;renderReferenceRecord(record);renderRules(record);renderChains(record);
@@ -220,13 +222,46 @@ function renderDiscovery() {
   }
 }
 
+function renderChainIdeas(record){
+ if(!record)return;
+ $('chain-ideas-panel').hidden=false;
+ const options={
+  payoffId:chainInput.payoffId,generatorSupportId:chainInput.generatorSupportId,payoffSupportId:chainInput.payoffSupportId,
+  noElementalDamage:$('rule-no-elemental').checked,noChaosDamage:$('rule-no-chaos').checked,noCriticalHits:$('rule-no-critical').checked,
+  status:$('chain-idea-status').value,event:$('chain-idea-event').value,query:$('chain-idea-search').value
+ };
+ const key=JSON.stringify([record.id,options]);if(chainIdeaKey!==key){chainIdeaKey=key;chainIdeaOffset=0;}
+ const view=suggestChains(record.id,{...options,offset:chainIdeaOffset,limit:8});
+ const payoff=referenceCatalog.entries.find(e=>e.id===view.payoffId);
+ const roleLabels={generator:'generator',trigger:'meta trigger',payoff:'socketed payoff',item:'equipped unique',support:'generator or payoff support',unmodeled:'unmodeled source'};
+ $('chain-ideas-scope').textContent='Starting with '+record.name+' as '+roleLabels[view.anchorRole]+'. Socketed payoff: '+payoff.name+'. Uses the damage/critical scenario and support choices from the workbench; event confirmations are always cleared.';
+ $('chain-ideas-count').textContent='Showing '+(view.matched?chainIdeaOffset+1:0)+'–'+Math.min(chainIdeaOffset+8,view.matched)+' of '+view.matched+' matching paths / '+view.total+' modeled paths · '+view.blocked+' blocked before filters. Alphabetical order; no damage ranking.';
+ $('chain-ideas-results').replaceChildren();
+ if(!view.proposals.length)$('chain-ideas-results').append(element('p',view.anchorRole==='unmodeled'?'No chain role is modeled for this source yet. Its presence in the catalog does not establish a synergy.':view.total?'No paths match these filters. Inspect blocked paths or change the payoff, supports or scenario.':'No path is modeled for this source and payoff under the bounded chain rules.','empty-note'));
+ for(const proposal of view.proposals){
+  const card=element('article',undefined,'rule-card chain-idea');card.dataset.ideaChainStatus=proposal.status;card.dataset.ideaChainEvent=proposal.event;card.dataset.ideaAnchorRole=proposal.anchorRole;
+  card.append(element('span',proposal.status.toUpperCase().replaceAll('-',' '),'connection-label'),element('h4',proposal.title));
+  if(record.kind==='support')card.append(element('p',record.name+' assigned to the '+(proposal.anchorRole==='generator-support'?'generator':'payoff')+'.'));
+  const steps=element('ol');for(const step of proposal.steps)steps.append(element('li',step));card.append(steps);
+  const details=element('details');details.append(element('summary','Conditions, blockers & sources'));
+  const conditions=element('ul');for(const reason of proposal.reasons)conditions.append(element('li',reason));details.append(conditions);
+  for(const url of [...new Set(proposal.evidenceUrls)])details.append(link('Pinned source ↗',url));card.append(details);
+  const tryIdea=element('button','Try this chain','rule-open');tryIdea.type='button';tryIdea.addEventListener('click',()=>{
+   chainInput={...proposal.input,confirmedEvents:[]};renderChains(ruleRecord);updateUrl();$('chain-panel').scrollIntoView({block:'start',behavior:'auto'});
+  });card.append(tryIdea);$('chain-ideas-results').append(card);
+ }
+ $('chain-ideas-more').hidden=!view.hasMore;$('chain-ideas-previous').hidden=chainIdeaOffset===0;
+}
 function initChains(){
+ for(const id of ['chain-idea-status','chain-idea-event','chain-idea-search'])$(id).addEventListener(id==='chain-idea-search'?'input':'change',()=>{chainIdeaOffset=0;renderChainIdeas(ruleRecord);updateUrl();});
+ $('chain-ideas-previous').addEventListener('click',()=>{chainIdeaOffset=Math.max(0,chainIdeaOffset-8);renderChainIdeas(ruleRecord);});
+ $('chain-ideas-more').addEventListener('click',()=>{chainIdeaOffset+=8;renderChainIdeas(ruleRecord);});
  const fill=(id,records,blank)=>{const options=records.map(r=>{const o=element('option',r.name);o.value=r.id;return o;});if(blank){const o=element('option',blank);o.value='';options.unshift(o);}$(id).replaceChildren(...options);};
  fill('chain-generator',chainExplorer.generators);fill('chain-payoff',chainExplorer.payoffs);
  fill('chain-item',chainExplorer.items,'No conversion or remapping unique');
  const supports=referenceCatalog.entries.filter(e=>e.kind==='support');
  fill('chain-generator-support',supports,'No generator support');fill('chain-payoff-support',supports,'No payoff support');
- for(const [id,key] of [['chain-generator','generatorId'],['chain-payoff','payoffId'],['chain-item','itemId'],['chain-generator-support','generatorSupportId'],['chain-payoff-support','payoffSupportId']]){
+ for(const [id,key] of [['chain-focus-event','focusEvent'],['chain-generator','generatorId'],['chain-payoff','payoffId'],['chain-item','itemId'],['chain-generator-support','generatorSupportId'],['chain-payoff-support','payoffSupportId']]){
   $(id).addEventListener('change',()=>{chainInput[key]=$(id).value||null;if(['generatorId','itemId','generatorSupportId'].includes(key))chainInput.confirmedEvents=[];renderChains(ruleRecord);updateUrl();});
  }
  $('chain-remap').addEventListener('change',()=>{chainInput.remap=$('chain-remap').checked;chainInput.confirmedEvents=[];renderChains(ruleRecord);updateUrl();});
@@ -243,8 +278,9 @@ function initChains(){
  });
 }
 function renderChains(record){
+ renderChainIdeas(record);
  $('chain-panel').hidden=false;
- for(const [id,key] of [['chain-generator','generatorId'],['chain-payoff','payoffId'],['chain-item','itemId'],['chain-generator-support','generatorSupportId'],['chain-payoff-support','payoffSupportId']])$(id).value=chainInput[key]||'';
+ for(const [id,key] of [['chain-focus-event','focusEvent'],['chain-generator','generatorId'],['chain-payoff','payoffId'],['chain-item','itemId'],['chain-generator-support','generatorSupportId'],['chain-payoff-support','payoffSupportId']])$(id).value=chainInput[key]||(key==='focusEvent'?'all':'');
  $('chain-remap').checked=chainInput.remap;
  for(const event of ['ailment','critical','minion-death'])$('chain-confirm-'+event).checked=chainInput.confirmedEvents.includes(event);
  const usable=record&&(chainExplorer.generators.some(e=>e.id===record.id)||chainExplorer.payoffs.some(e=>e.id===record.id)||chainExplorer.items.some(e=>e.id===record.id)||record.kind==='support');
@@ -289,12 +325,15 @@ async function start(){
   chainsData=validateChains(referenceCatalog,mechanicsData,JSON.parse(new TextDecoder().decode(chainsBytes)));
   if(chainsData.id!==meta.chainsId)throw new Error('Chain version mismatch.');
   chainExplorer=createChainExplorer(referenceCatalog,mechanicsData,chainsData);
+  suggestChains=createChainDiscovery(referenceCatalog,chainExplorer,chainsData);
   skills=snapshot.entities.filter(s=>s.kind==='skill');
   const params=new URL(location.href).searchParams;
   if(params.has('snapshot')&&params.get('snapshot')!==snapshot.id)throw new Error('This link refers to a different data snapshot. Open the lab without the link parameters to use this preview.');
   if(params.has('reference')&&params.get('reference')!==referenceCatalog.id)throw new Error('This link refers to a different source catalog. Open the lab without link parameters to use this build.');
   if(params.has('mechanics')&&params.get('mechanics')!==mechanicsData.id)throw new Error('This link refers to different mechanics. Open the lab without link parameters to use this build.');
   if(params.has('chains')&&params.get('chains')!==chainsData.id)throw new Error('This link refers to different chain rules. Open the lab without link parameters to use this build.');
+  if(params.has('chainIdeas')&&params.get('chainIdeas')!==chainDiscoveryVersion)throw new Error('This link refers to different chain discovery rules. Open the lab without link parameters to use this build.');
+  for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=params.get(key)??fallback;$(id).value=value;if($(id).value!==value||value.length>300)throw new Error('Invalid chain discovery filters in this link.');}
   if(params.has('chain')){const raw=params.get('chain');if(raw.length>6000)throw new Error('Chain link is too large.');chainInput=JSON.parse(raw);chainExplorer.explore(chainInput);if(!chainExplorer.generators.some(e=>e.id===chainInput.generatorId)||!chainExplorer.payoffs.some(e=>e.id===chainInput.payoffId))throw new Error('This chain selection is unavailable.');}
   const requested=params.get('skill');if(requested&&!skills.some(s=>s.id===requested))throw new Error('This skill is not in the bundled preview. Open the lab without the link parameters.');
   if(params.has('build')){const raw=params.get('build');if(raw.length>12000)throw new Error('Combination link is too large.');combination=JSON.parse(raw);validateCombination(snapshot,combination);}

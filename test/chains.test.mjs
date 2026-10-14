@@ -66,3 +66,9 @@ test('switching conversion source does not silently retain a nonparticipating it
  assert.equal(routes.length,1);assert.equal(routes[0].event,'ailment');assert.deepEqual(routes[0].itemIds,['call-of-the-brotherhood']);
  assert.match(routes[0].steps.join(' '),/Lightning → Cold.*Actual Freeze/);
 });
+
+test('focused experiments retain their exact event and reject unknown focus values',()=>{
+ const chain=run({focusEvent:'critical'});assert.equal(chain.length,1);assert.equal(chain[0].event,'critical');
+ assert.deepEqual(run({generatorId:'skeletal-warrior',focusEvent:'critical'}),[]);
+ assert.throws(()=>run({focusEvent:'other'}),/Invalid chain event focus/);
+});

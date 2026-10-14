@@ -77,3 +77,5 @@
 @media(max-width:600px){.rule-panel{padding:14px}.rule-context{flex-direction:column}.rule-support-tools{flex-direction:column}}
 
 .chain-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:18px 0}.chain-controls label{display:flex;flex-direction:column;gap:6px;min-width:0}.chain-controls select{width:100%;min-width:0;max-width:100%}#chain-results ol{padding-left:24px}#chain-results li{overflow-wrap:anywhere;margin:6px 0}
+
+#chain-ideas-panel .rule-support-tools label{display:flex;flex-direction:column;gap:6px;min-width:0}#chain-ideas-panel input,#chain-ideas-panel select{max-width:100%;min-width:0;width:100%}#chain-ideas-results li{overflow-wrap:anywhere;margin:6px 0}#chain-ideas-results ol{padding-left:24px}

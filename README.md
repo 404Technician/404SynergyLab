@@ -2,7 +2,9 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.10.0 adds source-backed multi-step mechanic experiments.** Follow a generator through optional conversion and The Three Dragons, an actual ailment or critical hit, Energy accumulation, and a socketed spell. Persistent-minion death is a separate modeled event. Generator and payoff supports are checked separately, including blocked critical and elemental routes.
+**v0.11.0 adds automatic chain discovery from the selected catalog record.** Start with a skill, a modeled unique, a support or one of the three modeled meta triggers. The lab proposes bounded routes using the existing source-backed chain engine, shows blocked paths separately, and lets you load the exact generator, items, support roles and event into the workbench with **Try this chain**.
+
+Suggestions use the selected socketed payoff and the current damage/critical scenario and support choices. Search by skill, item, support or damage, filter by event, and browse eight paths at a time. Results are alphabetical experiments, not a damage ranking. Event confirmations are always cleared when loading a suggestion. See [Automatic chain discovery](docs/CHAIN_DISCOVERY.md).
 
 The new selector covers 84 possible generators (75 player damage candidates plus nine positively identified reviving-minion skills), 68 possible socketed spells, six conversion uniques and The Three Dragons. Tags establish candidates, not actual hits or events. Confirm an event for the selected generator to move a route from **needs input** to **conditional**; it never becomes a verified build. Changing the generator or its damage setup clears that confirmation.
 
