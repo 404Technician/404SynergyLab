@@ -40,7 +40,7 @@ if(JSON.stringify(observed)!==JSON.stringify(item.ailmentMap))throw new Error('A
 console.log('Discovery source fingerprints and support predicates match the pinned revision.');
 
 const reference=JSON.parse(await readFile(new URL('../data/catalog/pob-bb52d6b-full-catalog1.json',import.meta.url)));
-const combos=validateSkillCombos(reference,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-skill-combos1.json',import.meta.url))));
+const combos=validateSkillCombos(reference,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-skill-combos2.json',import.meta.url))));
 for(const source of combos.sources){
  const entry=reference.entries.find(e=>e.id===source.id),path=source.evidence.path;
  if(!files[path])files[path]=execFileSync('git',['show',revision+':'+path],{cwd,encoding:'utf8',maxBuffer:16*1024*1024});

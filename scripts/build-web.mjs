@@ -29,7 +29,7 @@ export async function buildWeb() {
   const chains=validateChains(reference,mechanics,JSON.parse(chainsBytes));
   const detailBytes=await readFile(new URL('data/research/pob-bb52d6b-details1.json',root));
   const details=validateExperimentDetails(reference,JSON.parse(detailBytes));
-  const comboBytes=await readFile(new URL('data/discovery/pob-bb52d6b-skill-combos1.json',root));
+  const comboBytes=await readFile(new URL('data/discovery/pob-bb52d6b-skill-combos2.json',root));
   const combos=validateSkillCombos(reference,JSON.parse(comboBytes));
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});

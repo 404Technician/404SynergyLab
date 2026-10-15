@@ -1,6 +1,6 @@
 // Explicit interactions use exact source records, rather than shared damage tags.
 export function validateSkillCombos(reference, data) {
-  if (data?.schemaVersion !== 1 || data.id !== 'pob-bb52d6b-skill-combos1' || data.referenceId !== reference.id || data.sourceRevision !== reference.sourceRevision || data.status !== 'candidate') throw new Error('Skill combinations version mismatch');
+  if (data?.schemaVersion !== 1 || !['pob-bb52d6b-skill-combos1','pob-bb52d6b-skill-combos2'].includes(data.id) || data.referenceId !== reference.id || data.sourceRevision !== reference.sourceRevision || data.status !== 'candidate') throw new Error('Skill combinations version mismatch');
   const entries = new Map(reference.entries.map(e => [e.id, e])), sources = new Map();
   const text = value => typeof value === 'string' && value.trim().length > 0;
   const list = value => Array.isArray(value) && value.length > 0 && value.every(text);

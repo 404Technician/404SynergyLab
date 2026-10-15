@@ -213,13 +213,13 @@ async function main(){
 
   await page.goto(base+'/?mechanics=unavailable-rules');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different mechanics/);checks++;console.log('PASS: unavailable rule version hides results instead of substituting newer mechanics');
   await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
-  assert.match(await page.locator('#discovery-coverage').textContent(),/38 researched combinations across 52 \/ 399/);
-  await page.locator('#browse-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),52);
+  assert.match(await page.locator('#discovery-coverage').textContent(),/77 researched combinations across 116 \/ 399/);
+  await page.locator('#browse-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),116);
   assert.equal(await page.locator('#combo-only').isChecked(),true);assert.match(page.url(),/covered=1/);checks++;console.log('PASS: coverage and the researched-only browser use real distinct skill counts');
-  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),52);checks++;console.log('PASS: shared links preserve the researched-skills filter');
-  await page.locator('#catalog-search').fill('Leap Slam');assert.equal(await page.locator('#discovery-anchor').isDisabled(),true);
+  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),116);checks++;console.log('PASS: shared links preserve the researched-skills filter');
+  await page.locator('#catalog-search').fill('Artillery Ballista');assert.equal(await page.locator('#discovery-anchor').isDisabled(),true);
   assert.equal(await page.locator('#source-experiments .source-experiment').count(),0);await page.locator('#combo-only').uncheck();assert.equal(await page.locator('#discovery-anchor option').count(),1);checks++;console.log('PASS: an uncovered skill is not fabricated to fill a filtered catalog');
-  await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.locator('#discovery-ideas .discovery-card').count(),2);
+  await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.locator('#discovery-ideas .discovery-card').count(),3);
   assert.ok(await page.locator('[data-idea="chaos-spread"] .first-test').isVisible());
   await page.locator('[data-idea="chaos-spread"]').getByRole('button',{name:'Explore Contagion ↗',exact:true}).click();
   assert.match(await page.locator('#catalog-record h3').textContent(),/Contagion/);assert.ok(await page.locator('[data-idea="chaos-spread"]').isVisible());checks++;console.log('PASS: new interactions have visible first tests and work from either member');
@@ -231,6 +231,17 @@ async function main(){
   assert.ok(await page.locator('#source-experiments .source-experiment').first().isVisible());
   assert.ok(await page.locator('#source-experiments .item-info .item-effect').first().isVisible());assert.match(await page.locator('#source-experiments').textContent(),/SOURCE CANDIDATE.*UNTESTED/);checks++;console.log('PASS: an uncovered spell gets distinct item experiments with visible unique modifiers');
   await page.setViewportSize({width:390,height:844});await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: expanded interaction navigation fits mobile');
+  await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
+  const expandedCombos=JSON.parse(readFileSync('data/discovery/pob-bb52d6b-skill-combos2.json'));
+  const earlierComboIds=new Set(JSON.parse(readFileSync('data/discovery/pob-bb52d6b-skill-combos1.json')).recipes.map(r=>r.id));
+  for(const idea of expandedCombos.recipes.filter(r=>!earlierComboIds.has(r.id))){
+   await page.locator('#catalog-search').fill('');await page.locator('#discovery-anchor').selectOption(idea.skillIds[0]);
+   assert.ok(await page.locator('[data-idea="'+idea.id+'"] .first-test').isVisible());
+  }checks++;console.log('PASS: every added spear, shapeshift, minion and resource interaction has a visible first test');
+  await page.locator('#catalog-search').fill('Leap Slam');assert.ok(await page.locator('[data-idea="volcano-leap"]').isVisible());checks++;console.log('PASS: previously uncovered Leap Slam now has a concrete Volcano interaction');
+  await page.locator('#catalog-search').fill('Soul Offering');assert.match(await page.locator('[data-idea="soul-spell"]').textContent(),/does not increase your minions/);
+  assert.ok(await page.locator('[data-idea="soul-spell"]').getByRole('button',{name:'Explore Spark ↗',exact:true}).isVisible());checks++;console.log('PASS: minion sacrifice is distinguished from the player spell buff it grants');
+  await page.goto(base+'/?combos=pob-bb52d6b-skill-combos1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different skill combinations/);checks++;console.log('PASS: a shared older recipe version is not silently replaced');
   await page.goto(base+'/?combos=missing');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different skill combinations/);checks++;console.log('PASS: unavailable skill-combination versions fail closed');
   await page.route('**/data/skill-combos.json',async route=>{const response=await route.fetch();await route.fulfill({response,body:await response.text()+' '});});
   await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/skill combinations do not match/);assert.equal(await page.locator('#workspace').isVisible(),false);
