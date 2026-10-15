@@ -1,3 +1,4 @@
+import {recordVisual,visualTheme,combinationVisual} from './src/visuals.mjs';
 import {validateSkillReviews,describeSkillReview} from './src/skill-reviews.mjs';
 import {describeUniqueReview,uniqueModifiers} from './src/unique-reviews.mjs';
 import {validateUniqueCombos,discoverUniqueCombos} from './src/unique-combos.mjs';
@@ -138,7 +139,7 @@ function itemInfo(id,showName=true){
  const record=referenceCatalog.entries.find(e=>e.id===id||e.reviewedId===id),detail=detailRecords.get(record?.id);
  const box=element('section',undefined,'item-info');box.dataset.itemInfo=id;
  if(!record){box.append(element('strong','Unique details unavailable'),element('p','No source record is available for this item.','muted'));return box;}
- box.append(element('strong',showName?'Unique '+record.category+' · '+record.name:'What this item changes'));if(showName)box.append(element('p',record.base,'muted'));
+ const heading=element('div',undefined,'item-info-heading');heading.append(recordVisual(record),element('strong',showName?'Unique '+record.category+' · '+record.name:'What this item changes'));box.append(heading);if(showName)box.append(element('p',record.base,'muted'));
  if(!detail||detail.generated){box.append(element('p',detail?.generated?'Variable unique: generated modifiers are not expanded.':'Item modifiers are unavailable in this source.','muted'),link('Item source ↗',record.evidence.url));return box;}
  const current=uniqueModifiers(detail);
  for(const mod of current)box.append(element('p',mod.text,'item-effect'));
@@ -150,7 +151,10 @@ function itemInfo(id,showName=true){
  const lines=element('ul');for(const mod of detail.modifiers)lines.append(element('li',(mod.variants.length?'Variant '+mod.variants.join(' / ')+': ':'')+(mod.versions?.length?'Version '+mod.versions.join(' / ')+': ':'')+mod.text));all.append(lines,link('Item source ↗',record.evidence.url));box.append(all);return box;
 }
 function renderReferenceRecord(record) {
- const box=$('catalog-record');box.replaceChildren(element('p',record.kind.toUpperCase()+' · '+record.category+(record.weaponRequirements?' · Requires '+record.weaponRequirements:record.base?' · '+record.base:''),'eyebrow'),element('h3',record.name));
+ const box=$('catalog-record'),heading=element('div',undefined,'record-heading'),copy=element('div',undefined,'record-heading-copy');
+ box.dataset.visualTone=visualTheme(record).tone;
+ copy.append(element('p',record.kind.toUpperCase()+' · '+record.category+(record.weaponRequirements?' · Requires '+record.weaponRequirements:record.base?' · '+record.base:''),'eyebrow'),element('h3',record.name));
+ heading.append(recordVisual(record,'large'),copy);box.replaceChildren(heading);
  if(record.kind==='unique'){box.append(itemInfo(record.id,false));renderUniqueGuide(record,box);}
  else if(record.kind==='support')box.append(element('p',detailRecords.get(record.id)?.description||'No description is recorded in this source. Type checks are available.','muted'));
  if(record.kind==='skill')renderSkillGuide(record,box);
@@ -259,8 +263,9 @@ function renderDiscovery() {
   if(!ideas.length){$('discovery-ideas').append(element('div',allIdeas.length?'No ideas match this search.':'No researched combination is recorded for this starting point yet. Use the source setup guide above and any separate item experiments below; a setup guide is not a proven synergy.','empty-support'));return;}
   for(const idea of ideas){
     const card=element('article',undefined,'discovery-card');card.dataset.idea=idea.id;
+    card.prepend(combinationVisual(idea));
     card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
-    const chips=element('div',undefined,'tag-row');for(const skill of idea.skills)chips.append(element('span',skill.name,'tag'));card.append(chips,element('p',idea.buildPlan.playstyle,'muted'));if(idea.item)card.append(itemInfo(idea.item.id));if(skillCombos.recipes.some(r=>r.id===idea.id)||uniqueCombos.recipes.some(r=>r.id===idea.id)){const members=element('div',undefined,'tag-row');if(idea.item&&record.id!==idea.item.id){const open=element('button','Explore '+idea.item.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('unique',idea.item.id));members.append(open);}for(const skill of idea.skills.filter(s=>s.id!==record.id)){const open=element('button','Explore '+skill.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('skill',skill.id));members.append(open);}card.append(members);}
+    const chips=element('div',undefined,'tag-row');for(const skill of idea.skills){const chip=element('span',undefined,'tag skill-tag');chip.append(recordVisual(skill,'tiny'),element('span',skill.name));chips.append(chip);}card.append(chips,element('p',idea.buildPlan.playstyle,'muted'));if(idea.item)card.append(itemInfo(idea.item.id));if(skillCombos.recipes.some(r=>r.id===idea.id)||uniqueCombos.recipes.some(r=>r.id===idea.id)){const members=element('div',undefined,'tag-row');if(idea.item&&record.id!==idea.item.id){const open=element('button','Explore '+idea.item.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('unique',idea.item.id));members.append(open);}for(const skill of idea.skills.filter(s=>s.id!==record.id)){const open=element('button','Explore '+skill.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('skill',skill.id));members.append(open);}card.append(members);}
     const itemSkills=idea.skills.filter(s=>skillReviewRecords.get(s.id)?.fromItem);const access=new Set(itemSkills.flatMap(s=>sourceItemAccess(s.id)));if(idea.item)access.delete(idea.item.id);if(access.size)card.append(element('p','Item access · confirm the actual source variant','skill-role'));for(const id of access)card.append(itemInfo(id));if(itemSkills.some(s=>!sourceItemAccess(s.id).length))card.append(element('p','This idea includes an item-granted skill. Its granting item is not modeled here; verify that source and its equipment requirements first.','warning'));
     const firstTest=element('div',undefined,'first-test');firstTest.append(element('strong','First test'),element('p',idea.buildPlan.firstTest));card.append(firstTest);
     const more=element('details',undefined,'idea-details');more.append(element('summary',idea.supportIdeas.length?'Mechanics, supports & tradeoffs':'Mechanics & tradeoffs'));
@@ -512,6 +517,7 @@ async function start(){
   referenceView(discoveryMode,discoveryAnchor);$('advanced-checks').open=params.get('inspect')==='1';$('sideways-cascade').checked=params.get('cascade')==='sideways';
   for(const [flag,key] of Object.entries(contextParams))$(contextInputs[flag]).checked=params.get(key)==='1';
   for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']])$(id).checked=params.get(key)==='1';
+  for(const kind of ['skill','support','unique'])$('start-'+kind).prepend(recordVisual({kind,category:'jewel'},'tiny'));
   $('version').textContent=`v${meta.appVersion}`;$('patch-label').textContent=`Target patch ${snapshot.patch}`;$('league-label').textContent=snapshot.league;
   const notice=$('data-notice');notice.replaceChildren(element('strong','CANDIDATE DATA'),element('span','Base snapshot cross-checked; discovery records pinned to sources. Live patch confirmation is pending.'));
   $('review-summary').textContent=`${meta.corroborated} source records cross-checked`;
