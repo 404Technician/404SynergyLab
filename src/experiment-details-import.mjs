@@ -20,10 +20,11 @@ export function buildExperimentDetails(reference, files) {
       if (entry.generated) return {id: entry.id, kind: entry.kind, generated: true, modifiers: [], evidence};
       const block = blocks.get(entry.evidence.path + ':' + entry.evidence.recordSha256);
       if (!block) throw new Error('Missing unique detail record');
-      const lines = block.trim().split(/\r?\n/), variants = lines.filter(line => line.startsWith('Variant: ')).map(line => line.slice(9));
-      const modifiers = lines.slice(2).filter(line => line.trim() && !/^(Variant:|League:|Source:|Implicits:)/.test(line)).map(raw => ({
+      const lines = block.trim().split(/\r?\n/), variants = lines.filter(line => line.startsWith('Variant: ')).map(line => line.slice(9)), versions=lines.filter(line=>line.startsWith('Version: ')).map(line=>line.slice(9));
+      const modifiers = lines.slice(2).filter(line => line.trim() && !/^(Variant:|Version:|League:|Source:|Implicits:)/.test(line)).map(raw => ({
         text: raw.replace(/^(?:\{[^}]+\})+/, ''),
         variants: [...raw.matchAll(/\{variant:([0-9,]+)\}/g)].flatMap(match => match[1].split(',').map(n => variants[Number(n) - 1] || 'Source variant ' + n)),
+        versions: [...raw.matchAll(/\{version:([0-9,]+)\}/g)].flatMap(match=>match[1].split(',').map(n=>versions[Number(n)-1]||'Source version '+n)),
       }));
       return {id: entry.id, kind: entry.kind, generated: false, modifiers, evidence};
     }
@@ -48,5 +49,5 @@ export function buildExperimentDetails(reference, files) {
   if (!records.get('SupportAmbushPlayer')?.includes('enemies on full life.') || !critical.includes('generic_ongoing_trigger_maximum_energy_is_total_of_socketed_skills') || !critical.includes('cast_on_crit_gain_X_centienergy_per_monster_power_on_crit') || !records.get('SupportMetaCastOnCritPlayer')?.includes('\"trigger_meta_gem_damage_+%_final\", -20')) throw new Error('Critical-hit cadence research changed');
   const critNotes = ['Cast on Critical gains Energy from actual critical hits; its source Energy gain depends on enemy power.', 'The source maximum Energy is the total of the socketed skills. Use the Energy threshold shown for your actual socketed setup.', 'A first-hit critical bonus such as Ambush against full-life enemies does not establish sustained critical-hit frequency against a boss.'];
   critNotes.push('The pinned Cast on Critical socket support records 20% less triggered damage. Confirm your actual patch tooltip; triggering alone is not a damage upgrade.');
-  return validateExperimentDetails(reference, {schemaVersion: 1, id: 'pob-bb52d6b-details1', referenceId: reference.id, sourceRevision: reference.sourceRevision, entries, gasArrow, critNotes});
+  return validateExperimentDetails(reference, {schemaVersion: 1, id: 'pob-bb52d6b-details2', referenceId: reference.id, sourceRevision: reference.sourceRevision, entries, gasArrow, critNotes});
 }

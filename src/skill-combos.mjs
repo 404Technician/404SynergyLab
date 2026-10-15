@@ -42,8 +42,8 @@ export function discoverSkillCombos(reference, data, anchorId) {
   return data.recipes.filter(r => r.skillIds.includes(anchorId)).map(r => ({...r, skills: r.skillIds.map(id => reference.entries.find(e => e.id === id))}));
 }
 
-export function skillComboCoverage(reference, data, curated) {
-  const ids = new Set([...data.recipes.flatMap(r => r.skillIds), ...curated.recipes.flatMap(r => r.skillIds)]);
+export function skillComboCoverage(reference, data, curated, uniques={recipes:[]}) {
+  const ids = new Set([...data.recipes.flatMap(r => r.skillIds), ...curated.recipes.flatMap(r => r.skillIds), ...uniques.recipes.flatMap(r=>r.skillIds)]);
   const covered = reference.entries.filter(e => e.kind === 'skill' && ids.has(e.id));
-  return {recipes: data.recipes.length + curated.recipes.length, skills: covered.length, totalSkills: reference.counts.skill};
+  return {recipes: data.recipes.length + curated.recipes.length + uniques.recipes.length, skills: covered.length, totalSkills: reference.counts.skill};
 }

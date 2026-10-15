@@ -1,4 +1,7 @@
 import {buildSkillReviews} from '../src/skill-reviews-import.mjs';
+import {buildExperimentDetails} from '../src/experiment-details-import.mjs';
+import {validateUniqueCombos} from '../src/unique-combos.mjs';
+import {describeUniqueReview} from '../src/unique-reviews.mjs';
 import {validateSkillCombos} from '../src/skill-combos.mjs';
 import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
@@ -68,3 +71,8 @@ for(const entry of reference.entries.filter(e=>e.kind==='skill')){const path=(en
 const allReviews=buildSkillReviews(reference,files),reviewBytes=JSON.stringify(allReviews,null,2)+'\n';
 if(await readFile(new URL('../data/research/'+allReviews.id+'.json',import.meta.url),'utf8')!==reviewBytes)throw new Error('Complete skill review data changed');
 console.log(allReviews.entries.length+' skill source guides match the pinned records.');
+for(const source of reference.sources)if(!files[source.path])files[source.path]=execFileSync('git',['show',revision+':'+source.path],{cwd,encoding:'utf8',maxBuffer:16*1024*1024});
+const sourceDetails=buildExperimentDetails(reference,files);
+const uniqueCombos=validateUniqueCombos(reference,sourceDetails,allReviews,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-unique-combos1.json',import.meta.url))));
+for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,sourceDetails.entries.find(e=>e.id===entry.id));
+console.log(reference.counts.unique+' unique guides and '+uniqueCombos.recipes.length+' item interactions match reconstructed source modifiers and skill records.');
