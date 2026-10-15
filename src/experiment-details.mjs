@@ -1,5 +1,5 @@
 export function validateExperimentDetails(reference, data) {
-  if (data?.schemaVersion !== 1 || data.id !== 'pob-bb52d6b-details1' || data.referenceId !== reference.id || data.sourceRevision !== reference.sourceRevision)
+  if (data?.schemaVersion !== 1 || !['pob-bb52d6b-details1','pob-bb52d6b-details2'].includes(data.id) || data.referenceId !== reference.id || data.sourceRevision !== reference.sourceRevision)
     throw new Error('Experiment details version mismatch');
   const expected = reference.entries.filter(e => ['unique', 'support'].includes(e.kind) || ['gas-arrow', 'flame-wall', 'cast-on-critical'].includes(e.id));
   if (!Array.isArray(data.entries) || data.entries.length !== expected.length) throw new Error('Incomplete experiment details');
@@ -12,6 +12,7 @@ export function validateExperimentDetails(reference, data) {
     if (item.kind === 'unique') {
       if (item.generated !== source.generated || !Array.isArray(item.modifiers) || !item.modifiers.every(m => typeof m.text === 'string' && Array.isArray(m.variants) && m.variants.every(v => typeof v === 'string')))
         throw new Error('Invalid unique modifier details');
+      if(data.id==='pob-bb52d6b-details2'&&item.modifiers.some(m=>!Array.isArray(m.versions)||m.versions.some(v=>typeof v!=='string')))throw new Error('Invalid unique version details');
     } else if (!((item.descriptionStatus === 'recorded' && typeof item.description === 'string' && item.description.length) || (item.descriptionStatus === 'missing' && item.description === null))) throw new Error('Missing source description');
   }
   if (data.gasArrow?.cloudHits !== false || !data.gasArrow.evidenceUrls?.every(url => /^https:\/\//.test(url))) throw new Error('Invalid Gas Arrow review');

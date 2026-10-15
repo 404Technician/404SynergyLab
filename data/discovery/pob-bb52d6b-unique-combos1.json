@@ -1,0 +1,2370 @@
+{
+  "schemaVersion": 1,
+  "id": "pob-bb52d6b-unique-combos1",
+  "referenceId": "pob-bb52d6b-full-catalog1",
+  "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "detailsId": "pob-bb52d6b-details2",
+  "reviewsId": "pob-bb52d6b-skill-reviews1",
+  "status": "candidate",
+  "recipes": [
+    {
+      "id": "unique-study-1",
+      "itemId": "unique:wand:Adonia's%20Ego:Siphoning%20Wand",
+      "itemRecordSha256": "18efa1afa4efc468bc1a007bc4e924e3ae9882d8d6b156a7c1c4a5a8b5847fd0",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPowerSiphon",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPinnacleOfPower"
+      ],
+      "requiredFragments": [
+        "Pinnacle of Power"
+      ],
+      "title": "Cull into Pinnacle of Power",
+      "hook": "Power Siphon supplies Power Charges on a successful Cull; Pinnacle consumes a full set for its elemental buff.",
+      "mechanics": "Power Siphon supplies Power Charges on a successful Cull; Pinnacle consumes a full set for its elemental buff. The item source records: Grants Skill: Pinnacle of Power",
+      "play": [
+        "Obtain maximum Power Charges from actual Cull targets and account for the resistance penalty per Charge.",
+        "Cull eligible enemies, watch the counter reach the actual maximum, then activate Pinnacle and inspect the buff and resistances."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Obtain maximum Power Charges from actual Cull targets and account for the resistance penalty per Charge."
+      ],
+      "avoid": [
+        "Do not treat a boss without Cull targets as a permanent Charge supply."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/wand.lua#L5",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L15857",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/other.lua#L12705"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Cull into Pinnacle of Power; establish the condition before scaling damage.",
+        "components": [
+          "Adonia's Ego",
+          "Power Siphon",
+          "Pinnacle of Power"
+        ],
+        "firstTest": "Cull eligible enemies, watch the counter reach the actual maximum, then activate Pinnacle and inspect the buff and resistances.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-2",
+      "itemId": "unique:helmet:Alpha's%20Howl:Armoured%20Cap",
+      "itemRecordSha256": "3b03aeb7c6a5177e101902cf03a9d7fb451aad5f7eca03bd6fbb26e20906739d",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemOverwhelmingPresence"
+      ],
+      "requiredFragments": [
+        "Presence Radius is doubled"
+      ],
+      "title": "A wider Overwhelming Presence",
+      "hook": "The helmet doubles Presence radius, extending the zone where Overwhelming Presence lowers enemy stun and elemental-ailment thresholds.",
+      "mechanics": "The helmet doubles Presence radius, extending the zone where Overwhelming Presence lowers enemy stun and elemental-ailment thresholds. The item source records: Presence Radius is doubled",
+      "play": [
+        "Reserve the actual Spirit cost and keep enemies inside the enlarged Presence.",
+        "Compare the aura boundary and buildup on the same target with and without the helmet."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Reserve the actual Spirit cost and keep enemies inside the enlarged Presence."
+      ],
+      "avoid": [
+        "A larger range does not itself inflict an ailment or guarantee a boss stun."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L79",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L14897"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "A wider Overwhelming Presence; establish the condition before scaling damage.",
+        "components": [
+          "Alpha's Howl",
+          "Overwhelming Presence"
+        ],
+        "firstTest": "Compare the aura boundary and buildup on the same target with and without the helmet.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-3",
+      "itemId": "unique:body:Apron%20of%20Emiran:Hermit%20Garb",
+      "itemRecordSha256": "6c6617f76438aa0a1df8026b24bf2a5dde9ab14f9c3f7565009f5f9720bda833",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRake"
+      ],
+      "requiredFragments": [
+        "Aggravated"
+      ],
+      "title": "Rake with aggravated Bleeding",
+      "hook": "Rake explicitly applies Bleeding; the body armour makes inflicted Bleeding Aggravated.",
+      "mechanics": "Rake explicitly applies Bleeding; the body armour makes inflicted Bleeding Aggravated. The item source records: Bleeding you inflict is Aggravated",
+      "play": [
+        "Use a compatible spear and inspect actual Bleeding and its Aggravated state.",
+        "Apply one Rake to a durable target and compare the stationary Bleed with the armour equipped and removed."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use a compatible spear and inspect actual Bleeding and its Aggravated state.",
+        "Rake requires Spear."
+      ],
+      "avoid": [
+        "Do not count Blood Loss as a second independently applied Bleed."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/body.lua#L726",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6362"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Rake with aggravated Bleeding; establish the condition before scaling damage.",
+        "components": [
+          "Apron of Emiran",
+          "Rake"
+        ],
+        "firstTest": "Apply one Rake to a durable target and compare the stationary Bleed with the armour equipped and removed.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-4",
+      "itemId": "unique:focus:Apep's%20Supremacy:Voodoo%20Focus",
+      "itemRecordSha256": "c85427526cfd75921fedd547d0c93e9cd18b8ff88f720cf59be74f2f4e02182c",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemChaosbolt"
+      ],
+      "requiredFragments": [
+        "Poison on Hit with Spell Damage"
+      ],
+      "title": "Chaos Bolt gains a Poison route",
+      "hook": "The focus supplies Poison chance to Spell hits; Chaos Bolt provides an eligible Chaos hit to test that application.",
+      "mechanics": "The focus supplies Poison chance to Spell hits; Chaos Bolt provides an eligible Chaos hit to test that application. The item source records: 100% chance to Poison on Hit with Spell Damage",
+      "play": [
+        "Equip the focus with a compatible one-handed weapon and use a real Chaos Bolt hit.",
+        "Hit an unpoisoned durable target once and verify Poison, then inspect Poison duration and the item defensive tradeoffs."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Equip the focus with a compatible one-handed weapon and use a real Chaos Bolt hit."
+      ],
+      "avoid": [
+        "Poison chance alone does not let a pure elemental hit contribute to Poison magnitude."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/focus.lua#L5",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2984"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Chaos Bolt gains a Poison route; establish the condition before scaling damage.",
+        "components": [
+          "Apep's Supremacy",
+          "Chaos Bolt"
+        ],
+        "firstTest": "Hit an unpoisoned durable target once and verify Poison, then inspect Poison duration and the item defensive tradeoffs.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-5",
+      "itemId": "unique:quiver:Asphyxia's%20Wrath:Broadhead%20Quiver",
+      "itemRecordSha256": "4ca518b65a59a51fe4c301ecb62b104d9bde3c867b6cd62a0c517736c7762193",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemIceShot"
+      ],
+      "requiredFragments": [
+        "Chilled by your Hits"
+      ],
+      "title": "Chill becomes an Ice Shot payoff",
+      "hook": "The quiver makes enemies Chilled by your hits take increased damage based on Chill magnitude.",
+      "mechanics": "The quiver makes enemies Chilled by your hits take increased damage based on Chill magnitude. The item source records: Enemies Chilled by your Hits increase damage taken by Chill Magnitude",
+      "play": [
+        "Use a bow and establish a measurable Chill on the intended target.",
+        "Shoot the same durable target and inspect actual Chill magnitude and its uptime with the quiver."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use a bow and establish a measurable Chill on the intended target.",
+        "Ice Shot requires Bow."
+      ],
+      "avoid": [
+        "Do not assume maximum Chill magnitude or that every Cold hit Freezes."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/quiver.lua#L5",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L3699"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Chill becomes an Ice Shot payoff; establish the condition before scaling damage.",
+        "components": [
+          "Asphyxia's Wrath",
+          "Ice Shot"
+        ],
+        "firstTest": "Shoot the same durable target and inspect actual Chill magnitude and its uptime with the quiver.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-6",
+      "itemId": "unique:helmet:Assailum:Closed%20Helm",
+      "itemRecordSha256": "cd9668cde1b968e637bdb5fbf6fc4dc4fb6b30973ab4c1dc7877420e276b76c3",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSnipe"
+      ],
+      "requiredFragments": [
+        "Perfect Timing"
+      ],
+      "title": "A wider Snipe release window",
+      "hook": "Assailum lengthens the Perfect Timing window used by Snipe.",
+      "mechanics": "Assailum lengthens the Perfect Timing window used by Snipe. The item source records: Skills have a (100-150)% longer Perfect Timing window",
+      "play": [
+        "Release inside the actual timing window; a Freeze-consumption payoff additionally needs a Frozen target.",
+        "Compare ordinary and perfectly timed releases and count reliable successes before investing in damage."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Release inside the actual timing window; a Freeze-consumption payoff additionally needs a Frozen target.",
+        "Snipe requires Bow."
+      ],
+      "avoid": [
+        "A longer release window is not automatic Perfect Timing or guaranteed Freeze."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L278",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L7216"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "A wider Snipe release window; establish the condition before scaling damage.",
+        "components": [
+          "Assailum",
+          "Snipe"
+        ],
+        "firstTest": "Compare ordinary and perfectly timed releases and count reliable successes before investing in damage.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-7",
+      "itemId": "unique:helmet:Atsak's%20Sight:Veiled%20Mask",
+      "itemRecordSha256": "abd58f26a91324ef1188e9e89e9499d11619c69f6303f46d3a1efd905e184768",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemBonestorm"
+      ],
+      "requiredFragments": [
+        "Critical Hits Poison"
+      ],
+      "title": "Bonestorm critical hits into Poison",
+      "hook": "The helmet makes critical hits Poison; Bonestorm provides a hit-based spell route to inspect.",
+      "mechanics": "The helmet makes critical hits Poison; Bonestorm provides a hit-based spell route to inspect. The item source records: Critical Hits Poison the enemy",
+      "play": [
+        "Confirm that the actual Bonestorm hit has eligible Physical or Chaos damage and can critically hit.",
+        "Release Bonestorm against a durable target; separately observe the critical hit and resulting Poison."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Confirm that the actual Bonestorm hit has eligible Physical or Chaos damage and can critically hit."
+      ],
+      "avoid": [
+        "Do not count channel time or Poison ticks as repeated critical hits."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L474",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L1807"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Bonestorm critical hits into Poison; establish the condition before scaling damage.",
+        "components": [
+          "Atsak's Sight",
+          "Bonestorm"
+        ],
+        "firstTest": "Release Bonestorm against a durable target; separately observe the critical hit and resulting Poison.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-8",
+      "itemId": "unique:spear:Atziri's%20Contempt:Pronged%20Spear",
+      "itemRecordSha256": "c59932161a6e7db8df0fc331c6cf0c4b977999115cac1dec88592dfa7c82ab46",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRake",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemShatteringSpite"
+      ],
+      "requiredFragments": [
+        "Bloodstone Lance"
+      ],
+      "title": "Build Bloodstone Lances before Spite",
+      "hook": "Hits with this spear build Bloodstone Lances; Shattering Spite destroys them for its threshold-based explosion.",
+      "mechanics": "Hits with this spear build Bloodstone Lances; Shattering Spite destroys them for its threshold-based explosion. The item source records: Spear Skills inflict a Bloodstone Lance on Hit, up to a maximum of 30 on each target",
+      "play": [
+        "Use this exact spear, build Lances on the target and keep it in Presence for the spender.",
+        "Count Lances from repeated Rake hits, use Shattering Spite, and verify the count resets and the explosion changes at thresholds."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use this exact spear, build Lances on the target and keep it in Presence for the spender.",
+        "Rake requires Spear.",
+        "Shattering Spite requires Spear."
+      ],
+      "avoid": [
+        "Do not assume the maximum Lance threshold on the first hit or after the Lances have been consumed."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/spear.lua#L5",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6362",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6878"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Build Bloodstone Lances before Spite; establish the condition before scaling damage.",
+        "components": [
+          "Atziri's Contempt",
+          "Rake",
+          "Shattering Spite"
+        ],
+        "firstTest": "Count Lances from repeated Rake hits, use Shattering Spite, and verify the count resets and the explosion changes at thresholds.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-9",
+      "itemId": "unique:staff:Atziri's%20Rule:Reflecting%20Staff",
+      "itemRecordSha256": "a94b70028e7a0e5c053db7ea218e04f69b4b4bc447c6cec3d1118a34ea17dc4a",
+      "skillIds": [
+        "frostbolt",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemMirrorOfRefraction"
+      ],
+      "requiredFragments": [
+        "Mirror of Refraction"
+      ],
+      "title": "Frostbolt through item-granted mirrors",
+      "hook": "The staff grants mirrors that copy Spell Projectiles colliding with them; Frostbolt is a Spell Projectile.",
+      "mechanics": "The staff grants mirrors that copy Spell Projectiles colliding with them; Frostbolt is a Spell Projectile. The item source records: Grants Skill: Level (1-20) Mirror of Refraction",
+      "play": [
+        "Equip the staff and aim an actual projectile into a spawned mirror.",
+        "Wait for a mirror, fire one Frostbolt into it and verify copied projectiles before comparing enemy coverage."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Equip the staff and aim an actual projectile into a spawned mirror."
+      ],
+      "avoid": [
+        "The staff extra-damage line for Life-cost spells is not active merely because a mirror copies a projectile."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/staff.lua#L5",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L15461"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Frostbolt through item-granted mirrors; establish the condition before scaling damage.",
+        "components": [
+          "Atziri's Rule",
+          "Frostbolt",
+          "Mirror of Refraction"
+        ],
+        "firstTest": "Wait for a mirror, fire one Frostbolt into it and verify copied projectiles before comparing enemy coverage.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-10",
+      "itemId": "unique:amulet:Beacon%20of%20Azis:Solar%20Amulet",
+      "itemRecordSha256": "c0049f8a9265d39e9a759a06b402d4a403eb950497bfc47022c64a8653f26973",
+      "skillIds": [
+        "fireball"
+      ],
+      "requiredFragments": [
+        "Critical Hits ignore"
+      ],
+      "title": "Fireball crits ignore elemental resistance",
+      "hook": "The amulet lets critical hits ignore enemy monster elemental resistances, giving an explicit resistance rule for Fireball hits.",
+      "mechanics": "The amulet lets critical hits ignore enemy monster elemental resistances, giving an explicit resistance rule for Fireball hits. The item source records: Critical Hits ignore Enemy Monster Elemental Resistances",
+      "play": [
+        "Measure actual critical hits and target resistance; non-critical hits use their own resistance calculation.",
+        "Compare critical and non-critical Fireball hits against the same resistant target with reliable crit observations."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Measure actual critical hits and target resistance; non-critical hits use their own resistance calculation."
+      ],
+      "avoid": [
+        "Do not apply this hit rule to Ignite or assume ignoring resistance always beats a negative-resistance setup."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/amulet.lua#L30",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Fireball crits ignore elemental resistance; establish the condition before scaling damage.",
+        "components": [
+          "Beacon of Azis",
+          "Fireball"
+        ],
+        "firstTest": "Compare critical and non-critical Fireball hits against the same resistant target with reliable crit observations.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-11",
+      "itemId": "unique:boots:Beetlebite:Velour%20Shoes",
+      "itemRecordSha256": "55aa886e50917ee8d6de72d0c716fc6122e17aa27dbf0b8518e7c3fb3c07a57c",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRake"
+      ],
+      "requiredFragments": [
+        "Enter your Presence"
+      ],
+      "title": "Rake, then re-enter Presence",
+      "hook": "The boots Aggravate Bleeding when an enemy enters Presence, providing a positioning payoff after Rake applies Bleeding.",
+      "mechanics": "The boots Aggravate Bleeding when an enemy enters Presence, providing a positioning payoff after Rake applies Bleeding. The item source records: Aggravate Bleeding on Enemies when they Enter your Presence",
+      "play": [
+        "The target must already be Bleeding and then cross the Presence boundary.",
+        "Apply Rake, step far enough away, return while the Bleed remains and observe Aggravation."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "The target must already be Bleeding and then cross the Presence boundary.",
+        "Rake requires Spear."
+      ],
+      "avoid": [
+        "Standing permanently beside the target does not establish a new entry event."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/boots.lua#L234",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6362"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Rake, then re-enter Presence; establish the condition before scaling damage.",
+        "components": [
+          "Beetlebite",
+          "Rake"
+        ],
+        "firstTest": "Apply Rake, step far enough away, return while the Bleed remains and observe Aggravation.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-12",
+      "itemId": "unique:ring:Blackflame:Amethyst%20Ring",
+      "itemRecordSha256": "c08510891c7e0f242263e9600e48838630fc2dd6d334e93dac1f07e1085dd0fe",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemIncinerate",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemWither"
+      ],
+      "requiredFragments": [
+        "Withered does not expire"
+      ],
+      "title": "Wither sustained by Blackflame Ignite",
+      "hook": "Incinerate explicitly Ignites; Blackflame changes inflicted Ignite to Chaos damage and keeps your Wither from expiring on enemies you Ignite.",
+      "mechanics": "Incinerate explicitly Ignites; Blackflame changes inflicted Ignite to Chaos damage and keeps your Wither from expiring on enemies you Ignite. The item source records: Withered does not expire on Enemies Ignited by you",
+      "play": [
+        "Generate Incinerate fuel with Mana spending first, apply Wither and keep a real Ignite active despite the shorter duration.",
+        "Apply Wither then Incinerate, watch Wither while Ignite is active, and repeat after Ignite expires."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Generate Incinerate fuel with Mana spending first, apply Wither and keep a real Ignite active despite the shorter duration."
+      ],
+      "avoid": [
+        "This does not convert the Fire hit to Chaos or prove permanent Ignite after you stop applying it."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L49",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L13567",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L23147"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Wither sustained by Blackflame Ignite; establish the condition before scaling damage.",
+        "components": [
+          "Blackflame",
+          "Incinerate",
+          "Wither"
+        ],
+        "firstTest": "Apply Wither then Incinerate, watch Wither while Ignite is active, and repeat after Ignite expires.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-13",
+      "itemId": "unique:boots:Bones%20of%20Ullr:Lattice%20Sandals",
+      "itemRecordSha256": "a2b062cb6c760a78bf0d709184aebe91bda1d60f2a718d4c824ea7320a5f53ac",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
+      ],
+      "requiredFragments": [
+        "Undead Minions"
+      ],
+      "title": "Fit an undead army into Spirit",
+      "hook": "Reservation efficiency for Undead Minions can reduce the Spirit required by Skeletal Reavers.",
+      "mechanics": "Reservation efficiency for Undead Minions can reduce the Spirit required by Skeletal Reavers. The item source records: (20-30)% increased Reservation Efficiency of Skills which create Undead Minions",
+      "play": [
+        "Compare the actual Reaver reservation and available Spirit; include all other persistent skills.",
+        "Record available Spirit and Reaver count with and without the boots at the same gem level."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Compare the actual Reaver reservation and available Spirit; include all other persistent skills."
+      ],
+      "avoid": [
+        "Efficiency does not automatically grant a whole additional minion at every Spirit budget."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/boots.lua#L113",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Fit an undead army into Spirit; establish the condition before scaling damage.",
+        "components": [
+          "Bones of Ullr",
+          "Skeletal Reaver"
+        ],
+        "firstTest": "Record available Spirit and Reaver count with and without the boots at the same gem level.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-14",
+      "itemId": "unique:mace:Brain%20Rattler:Studded%20Greatclub",
+      "itemRecordSha256": "d8b0abd49a0b0e8f1ae142edbd660945de2588fd6693f2489d47eb3f6e2c5916",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam"
+      ],
+      "requiredFragments": [
+        "Electrocution buildup"
+      ],
+      "title": "Mace Slams build Electrocution",
+      "hook": "All damage with this mace contributes to Electrocution buildup, giving Rolling Slam a second immobilisation route to inspect.",
+      "mechanics": "All damage with this mace contributes to Electrocution buildup, giving Rolling Slam a second immobilisation route to inspect. The item source records: All damage with this Weapon causes Electrocution buildup",
+      "play": [
+        "Use this weapon and observe actual Electrocution buildup on a durable enemy.",
+        "Use repeated Rolling Slams and record whether the Electrocution threshold is reached on the intended boss tier."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use this weapon and observe actual Electrocution buildup on a durable enemy.",
+        "Rolling Slam requires One Hand Mace, Two Hand Mace."
+      ],
+      "avoid": [
+        "Contribution is not an immediate Electrocute; a stun and an Electrocute are separate events."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/mace.lua#L156",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16108"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Mace Slams build Electrocution; establish the condition before scaling damage.",
+        "components": [
+          "Brain Rattler",
+          "Rolling Slam"
+        ],
+        "firstTest": "Use repeated Rolling Slams and record whether the Electrocution threshold is reached on the intended boss tier.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-15",
+      "itemId": "unique:mace:Brutus'%20Lead%20Sprinkler:Morning%20Star",
+      "itemRecordSha256": "983ef7155d2d7c819ca1ecf5c9c8422459da9c81435542b6fa436e42c35131b7",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam"
+      ],
+      "requiredFragments": [
+        "Molten Shower"
+      ],
+      "title": "Strength-based Slam into Molten Shower",
+      "hook": "This mace can trigger Molten Shower from qualifying weapon hits, with its chance tied to Strength.",
+      "mechanics": "This mace can trigger Molten Shower from qualifying weapon hits, with its chance tied to Strength. The item source records: Grants Skill: Level (1-20) Molten Shower",
+      "play": [
+        "Meet the actual Strength and weapon-hit condition and track the triggered skill cost and cadence.",
+        "Use repeated Rolling Slam hits at a recorded Strength value and count Molten Shower activations."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Meet the actual Strength and weapon-hit condition and track the triggered skill cost and cadence.",
+        "Rolling Slam requires One Hand Mace, Two Hand Mace."
+      ],
+      "avoid": [
+        "Do not apply the local weapon-hit rule to spells or assume a Shower on every hit."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/mace.lua#L5",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16108"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Strength-based Slam into Molten Shower; establish the condition before scaling damage.",
+        "components": [
+          "Brutus' Lead Sprinkler",
+          "Rolling Slam"
+        ],
+        "firstTest": "Use repeated Rolling Slam hits at a recorded Strength value and count Molten Shower activations.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-16",
+      "itemId": "unique:boots:Bushwhack:Lizardscale%20Boots",
+      "itemRecordSha256": "41cb63525d72203751c4c0771b5383fc55b8d817fef9e7c1b04fa5bba7fa90e7",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultBow",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemCombatFrenzy"
+      ],
+      "requiredFragments": [
+        "Physical Damage is Pinning"
+      ],
+      "title": "Physical bow hits feed Combat Frenzy",
+      "hook": "The boots make Physical damage Pinning; a completed Pin can generate a Frenzy Charge through Combat Frenzy.",
+      "mechanics": "The boots make Physical damage Pinning; a completed Pin can generate a Frenzy Charge through Combat Frenzy. The item source records: Physical Damage is Pinning",
+      "play": [
+        "Use actual Physical bow-hit damage and reserve Combat Frenzy; respect its generation interval.",
+        "Shoot a durable target until it is Pinned and verify the Frenzy Charge counter, then time the next eligible gain."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use actual Physical bow-hit damage and reserve Combat Frenzy; respect its generation interval.",
+        "Bow Shot requires Bow."
+      ],
+      "avoid": [
+        "Pin buildup is not yet a Pin, and repeated hits do not bypass Combat Frenzy cadence."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/boots.lua#L81",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/other.lua#L2752",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L750"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Physical bow hits feed Combat Frenzy; establish the condition before scaling damage.",
+        "components": [
+          "Bushwhack",
+          "Bow Shot",
+          "Combat Frenzy"
+        ],
+        "firstTest": "Shoot a durable target until it is Pinned and verify the Frenzy Charge counter, then time the next eligible gain.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-17",
+      "itemId": "unique:staff:Collapsing%20Horizon:Wyrm%20Quarterstaff",
+      "itemRecordSha256": "082d5e20dc6c835d97883987097ae0714ec4ac24ca76198c3ad064d07d2fbb96",
+      "skillIds": [
+        "cast-on-critical"
+      ],
+      "requiredFragments": [
+        "refund half"
+      ],
+      "title": "Refund part of Cast on Critical Energy",
+      "hook": "The staff refunds part of Energy spent by Trigger Skills, creating a measurable resource-economy interaction for Cast on Critical.",
+      "mechanics": "The staff refunds part of Energy spent by Trigger Skills, creating a measurable resource-economy interaction for Cast on Critical. The item source records: Trigger skills refund half of Energy spent",
+      "play": [
+        "Create a legal socketed setup and actual critical-hit generator; inspect its real Energy threshold and cost.",
+        "Observe Energy immediately before and after a real Cast on Critical activation and measure subsequent trigger spacing."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Create a legal socketed setup and actual critical-hit generator; inspect its real Energy threshold and cost."
+      ],
+      "avoid": [
+        "An Energy refund is not a guaranteed self-sustaining loop or proof of higher damage."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/staff.lua#L134",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2056"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Refund part of Cast on Critical Energy; establish the condition before scaling damage.",
+        "components": [
+          "Collapsing Horizon",
+          "Cast on Critical"
+        ],
+        "firstTest": "Observe Energy immediately before and after a real Cast on Critical activation and measure subsequent trigger spacing.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-18",
+      "itemId": "unique:boots:Corpsewade:Iron%20Greaves",
+      "itemRecordSha256": "9c69540df3d857513059f7755bd053ea61bb71c611b3d8bf0b4fbf62168cba63",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemCorpseCloud",
+        "flame-wall"
+      ],
+      "requiredFragments": [
+        "Decompose"
+      ],
+      "title": "Movement-created Decompose clouds",
+      "hook": "Movement with Corpsewade triggers Decompose; its corpse cloud can be exploded by a Burning effect from Flame Wall.",
+      "mechanics": "Movement with Corpsewade triggers Decompose; its corpse cloud can be exploded by a Burning effect from Flame Wall. The item source records: Grants Skill: Level (1-20) Decompose",
+      "play": [
+        "Supply an actual corpse and enough travel to trigger Decompose, then overlap the cloud with the Burning effect.",
+        "Walk over a corpse, confirm its consumption and the cloud, then place Flame Wall and observe detonation."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Supply an actual corpse and enough travel to trigger Decompose, then overlap the cloud with the Burning effect."
+      ],
+      "avoid": [
+        "Without a corpse, movement does not guarantee a cloud or a repeatable boss setup."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/boots.lua#L27",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L4985",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8228"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Movement-created Decompose clouds; establish the condition before scaling damage.",
+        "components": [
+          "Corpsewade",
+          "Decompose",
+          "Flame Wall"
+        ],
+        "firstTest": "Walk over a corpse, confirm its consumption and the cloud, then place Flame Wall and observe detonation.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-19",
+      "itemId": "unique:body:Cospri's%20Will:Assassin%20Garb",
+      "itemRecordSha256": "f4ee6ce6d1d5325c79658a57c7db5d3bfb5080b94359a428e1a71b16cbd496d2",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemDespair",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemWither"
+      ],
+      "requiredFragments": [
+        "infinite Duration"
+      ],
+      "title": "Persistent Despair and Wither",
+      "hook": "The body armour makes Curses and Wither persist, reducing reapplication pressure for an established Chaos-damage setup.",
+      "mechanics": "The body armour makes Curses and Wither persist, reducing reapplication pressure for an established Chaos-damage setup. The item source records: Curses you inflict have infinite Duration",
+      "play": [
+        "Apply actual Despair and Wither; a second Curse still needs a separate Curse-limit solution.",
+        "Apply one Curse and Wither to a durable target, stop casting them and inspect persistence and range behavior."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Apply actual Despair and Wither; a second Curse still needs a separate Curse-limit solution."
+      ],
+      "avoid": [
+        "Do not pair infinite Curse duration with a payoff that requires half the Curse duration to expire."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/body.lua#L733",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L5200",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L23147"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Persistent Despair and Wither; establish the condition before scaling damage.",
+        "components": [
+          "Cospri's Will",
+          "Despair",
+          "Wither"
+        ],
+        "firstTest": "Apply one Curse and Wither to a durable target, stop casting them and inspect persistence and range behavior.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-20",
+      "itemId": "unique:ring:Cracklecreep:Ruby%20Ring",
+      "itemRecordSha256": "c8d2047d3e9181d7d68035ff8a24c71fb58c26fb7ea3ce9686062440a3c49e2e",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemIncinerate"
+      ],
+      "requiredFragments": [
+        "Ignites you inflict spread"
+      ],
+      "title": "Incinerate Ignite spreads through packs",
+      "hook": "The ring spreads your existing Ignites to nearby enemies after the stated proximity time.",
+      "mechanics": "The ring spreads your existing Ignites to nearby enemies after the stated proximity time. The item source records: Ignites you inflict spread to other Enemies that stay within 1.5 metres for 1 second",
+      "play": [
+        "Fuel Incinerate first and maintain an actual Ignite near other enemies for the required delay.",
+        "Ignite one enemy near an untouched enemy and observe spread after the source distance and delay."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Fuel Incinerate first and maintain an actual Ignite near other enemies for the required delay."
+      ],
+      "avoid": [
+        "This pack-spread mechanic does not add isolated-boss targets or remove the need to Ignite."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L123",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L13567"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Incinerate Ignite spreads through packs; establish the condition before scaling damage.",
+        "components": [
+          "Cracklecreep",
+          "Incinerate"
+        ],
+        "firstTest": "Ignite one enemy near an untouched enemy and observe spread after the source distance and delay.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-21",
+      "itemId": "unique:ring:Doedre's%20Damning:Lazuli%20Ring",
+      "itemRecordSha256": "75048975870819e9875204e55fa04de631ba0e06481a7105980f88c6ad607ef1",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemDespair",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemTemporalChains"
+      ],
+      "requiredFragments": [
+        "additional Curse"
+      ],
+      "title": "Two distinct Curses on a Chaos target",
+      "hook": "An additional Curse slot lets Despair and Temporal Chains coexist instead of replacing each other.",
+      "mechanics": "An additional Curse slot lets Despair and Temporal Chains coexist instead of replacing each other. The item source records: You can apply an additional Curse",
+      "play": [
+        "Cast both Curses, allow activation and verify the actual Curse limit with all other gear.",
+        "Apply Despair then Temporal Chains to one target and verify both remain active."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Cast both Curses, allow activation and verify the actual Curse limit with all other gear."
+      ],
+      "avoid": [
+        "Additional capacity does not automatically cast either Curse or make both instant."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L141",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L5200",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21648"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Two distinct Curses on a Chaos target; establish the condition before scaling damage.",
+        "components": [
+          "Doedre's Damning",
+          "Despair",
+          "Temporal Chains"
+        ],
+        "firstTest": "Apply Despair then Temporal Chains to one target and verify both remain active.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-22",
+      "itemId": "unique:bow:Doomfletch:Composite%20Bow",
+      "itemRecordSha256": "b97db09f405e701af92508d861a10ad2361bd6179848ddc3529c9eaa330e7921",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultBow"
+      ],
+      "requiredFragments": [
+        "Physical damage as Extra"
+      ],
+      "title": "Physical bow base becomes extra elemental damage",
+      "hook": "The bow gains extra damage of each element from weapon Physical damage, making its real Physical base central to the test.",
+      "mechanics": "The bow gains extra damage of each element from weapon Physical damage, making its real Physical base central to the test. The item source records: Attacks with this Weapon gain 100% of Physical damage as Extra damage of each Element",
+      "play": [
+        "Use the bow attack and inspect its weapon Physical component and resulting elemental components.",
+        "Compare the Bow Shot damage breakdown and check the elemental additions at the same equipment and gem settings."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use the bow attack and inspect its weapon Physical component and resulting elemental components.",
+        "Bow Shot requires Bow."
+      ],
+      "avoid": [
+        "Extra damage does not convert away the Physical base or apply local bow damage to an unrelated spell."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/bow.lua#L21",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/other.lua#L2752"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Physical bow base becomes extra elemental damage; establish the condition before scaling damage.",
+        "components": [
+          "Doomfletch",
+          "Bow Shot"
+        ],
+        "firstTest": "Compare the Bow Shot damage breakdown and check the elemental additions at the same equipment and gem settings.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-23",
+      "itemId": "unique:body:Doryani's%20Prototype:Scale%20Mail",
+      "itemRecordSha256": "9d3c42b0e3d198df459862989d39e2c5867ca9f0cddb30c15fe3de89fc479c9e",
+      "skillIds": [
+        "spark"
+      ],
+      "requiredFragments": [
+        "Lightning Resistance equal to yours"
+      ],
+      "title": "Spark against Presence-linked resistance",
+      "hook": "The body armour makes nearby enemies use your Lightning Resistance, creating a resistance setup for Spark.",
+      "mechanics": "The body armour makes nearby enemies use your Lightning Resistance, creating a resistance setup for Spark. The item source records: Enemies in your Presence have Lightning Resistance equal to yours",
+      "play": [
+        "Keep the enemy in Presence and measure your actual Lightning Resistance alongside your own Lightning-hit defences.",
+        "Inspect your resistance and target behavior inside and outside Presence in a controlled low-risk test."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Keep the enemy in Presence and measure your actual Lightning Resistance alongside your own Lightning-hit defences."
+      ],
+      "avoid": [
+        "A large enemy-resistance reduction is not a safe build without a solution to the item defensive downside."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/body.lua#L492",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Spark against Presence-linked resistance; establish the condition before scaling damage.",
+        "components": [
+          "Doryani's Prototype",
+          "Spark"
+        ],
+        "firstTest": "Inspect your resistance and target behavior inside and outside Presence in a controlled low-risk test.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-24",
+      "itemId": "unique:staff:Duality:Warding%20Quarterstaff",
+      "itemRecordSha256": "a0c8dea5af06dd12048e4cc2a99392e317ae6441fd15ed91daded2b9cbe8bc36",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemIceStrike",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemTempestBell"
+      ],
+      "requiredFragments": [
+        "Combo"
+      ],
+      "title": "Spend Combo for Duality buffs",
+      "hook": "Ice Strike builds the strikes needed for Tempest Bell; Duality rewards the actual Combo expenditure with its named buffs.",
+      "mechanics": "Ice Strike builds the strikes needed for Tempest Bell; Duality rewards the actual Combo expenditure with its named buffs. The item source records: Gain Finality for 0.5 seconds per Combo expended when using Skills",
+      "play": [
+        "Use the quarterstaff and build then spend the real Combo counter.",
+        "Build Combo with Ice Strike, place Tempest Bell and observe the item buff and its duration."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use the quarterstaff and build then spend the real Combo counter.",
+        "Ice Strike requires Quarterstaff.",
+        "Tempest Bell requires Quarterstaff."
+      ],
+      "avoid": [
+        "Building Combo is not spending it, and a short buff is not permanent uptime."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/staff.lua#L142",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L13021",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21113"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Spend Combo for Duality buffs; establish the condition before scaling damage.",
+        "components": [
+          "Duality",
+          "Ice Strike",
+          "Tempest Bell"
+        ],
+        "firstTest": "Build Combo with Ice Strike, place Tempest Bell and observe the item buff and its duration.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-25",
+      "itemId": "unique:helmet:Heatshiver:Velvet%20Cap",
+      "itemRecordSha256": "fed57c65e014e36933243dfc23c9842425eaa243abb945c38c95fc4763ec564c",
+      "skillIds": [
+        "frostbolt"
+      ],
+      "requiredFragments": [
+        "Chill Magnitude"
+      ],
+      "title": "Frostbolt Chill supplies extra Fire damage",
+      "hook": "Heatshiver scales extra Fire damage from actual Chill magnitude on the enemy.",
+      "mechanics": "Heatshiver scales extra Fire damage from actual Chill magnitude on the enemy. The item source records: Gain 1% of Cold damage as Extra Fire damage per 1% Chill Magnitude on enemy",
+      "play": [
+        "Chill the intended target and inspect the actual magnitude rather than assuming the cap.",
+        "Compare Frostbolt damage against the same target before and during a measured Chill."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Chill the intended target and inspect the actual magnitude rather than assuming the cap."
+      ],
+      "avoid": [
+        "A Cold hit is not guaranteed maximum Chill or Freeze, and extra Fire damage does not guarantee Ignite."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L125",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Frostbolt Chill supplies extra Fire damage; establish the condition before scaling damage.",
+        "components": [
+          "Heatshiver",
+          "Frostbolt"
+        ],
+        "firstTest": "Compare Frostbolt damage against the same target before and during a measured Chill.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-26",
+      "itemId": "unique:mace:Hrimnor's%20Hymn:Oak%20Greathammer",
+      "itemRecordSha256": "1ad8804129a5038ca0745765ea5f5b9666cc92ef956e7b4fdeaf1a88f36934d3",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemEarthquake"
+      ],
+      "requiredFragments": [
+        "Aftershock"
+      ],
+      "title": "An extra Aftershock for self-used Earthquake",
+      "hook": "The mace grants an additional Aftershock to Slams used yourself, matching Earthquake as a self-used Slam.",
+      "mechanics": "The mace grants an additional Aftershock to Slams used yourself, matching Earthquake as a self-used Slam. The item source records: Slam Skills you use yourself cause an additional Aftershock",
+      "play": [
+        "Use Earthquake yourself with this mace and observe distinct Aftershock timing.",
+        "Create one isolated Earthquake patch and count the resulting Aftershocks and delays."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use Earthquake yourself with this mace and observe distinct Aftershock timing.",
+        "Earthquake requires One Hand Mace, Two Hand Mace."
+      ],
+      "avoid": [
+        "Do not apply a self-use modifier to a Totem or assume the extra Aftershock creates another Jagged Ground patch."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/mace.lua#L216",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L4061"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "An extra Aftershock for self-used Earthquake; establish the condition before scaling damage.",
+        "components": [
+          "Hrimnor's Hymn",
+          "Earthquake"
+        ],
+        "firstTest": "Create one isolated Earthquake patch and count the resulting Aftershocks and delays.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-27",
+      "itemId": "unique:ring:Icefang%20Orbit:Iron%20Ring",
+      "itemRecordSha256": "b7b94a83f30ea396f2cacaa3b05053bbcddc42784e05cef7d69bd6ea33e14b72",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow"
+      ],
+      "requiredFragments": [
+        "Poisoned"
+      ],
+      "title": "Poisoned targets open a Chill route",
+      "hook": "The ring lets all damage from hits against Poisoned enemies contribute to Chill magnitude; Poisonburst Arrow establishes Poison first.",
+      "mechanics": "The ring lets all damage from hits against Poisoned enemies contribute to Chill magnitude; Poisonburst Arrow establishes Poison first. The item source records: All Damage taken from Hits while Poisoned Contributes to Magnitude of Chill on you",
+      "play": [
+        "The target must already be Poisoned when the qualifying hit occurs.",
+        "Apply Poison, hit again while it remains, and inspect actual Chill magnitude on the second hit."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "The target must already be Poisoned when the qualifying hit occurs.",
+        "Poisonburst Arrow requires Bow."
+      ],
+      "avoid": [
+        "The first unpoisoned hit and ongoing Poison damage are not automatically qualifying hits against a Poisoned enemy."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L215",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L5716"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Poisoned targets open a Chill route; establish the condition before scaling damage.",
+        "components": [
+          "Icefang Orbit",
+          "Poisonburst Arrow"
+        ],
+        "firstTest": "Apply Poison, hit again while it remains, and inspect actual Chill magnitude on the second hit.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-28",
+      "itemId": "unique:body:Kingsguard:Full%20Plate",
+      "itemRecordSha256": "65f405c32551cb36a451e31e4efe1c6af5fe13e7129433bdcea59ea1aa676ca5",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemInfernallCry"
+      ],
+      "requiredFragments": [
+        "Endurance Charge"
+      ],
+      "title": "Recover Life when Infernal Cry spends a Charge",
+      "hook": "Infernal Cry can bypass cooldown by expending an Endurance Charge; Kingsguard recovers Life for each Endurance Charge consumed.",
+      "mechanics": "Infernal Cry can bypass cooldown by expending an Endurance Charge; Kingsguard recovers Life for each Endurance Charge consumed. The item source records: 25% reduced Endurance Charge Duration",
+      "play": [
+        "Obtain an Endurance Charge from a separately verified source and actually consume it through the bypass.",
+        "Start below full Life with an Endurance Charge, use the cooldown bypass and watch the Charge loss and Life recovery."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Obtain an Endurance Charge from a separately verified source and actually consume it through the bypass."
+      ],
+      "avoid": [
+        "Using Infernal Cry off cooldown without spending a Charge does not establish this recovery."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/body.lua#L135",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L7667"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Recover Life when Infernal Cry spends a Charge; establish the condition before scaling damage.",
+        "components": [
+          "Kingsguard",
+          "Infernal Cry"
+        ],
+        "firstTest": "Start below full Life with an Endurance Charge, use the cooldown bypass and watch the Charge loss and Life recovery.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-29",
+      "itemId": "unique:wand:Liminal%20Coil:Twisted%20Wand",
+      "itemRecordSha256": "fbbac1cc5a664ec2b10cc161c74584f50dad78bad3a34effd9651488da4f2231",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemCoilingBolts",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemDespair",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemTemporalChains"
+      ],
+      "requiredFragments": [
+        "Magnitudes of Curses you inflict are zero"
+      ],
+      "title": "Curses become Coiling Bolts routing markers",
+      "hook": "The wand removes Curse magnitudes while ignoring the Curse limit; Coiling Bolts can chain through Cursed targets.",
+      "mechanics": "The wand removes Curse magnitudes while ignoring the Curse limit; Coiling Bolts can chain through Cursed targets. The item source records: Magnitudes of Curses you inflict are zero",
+      "play": [
+        "Use actual Curses on targets and inspect the wand spell-hit damage per Curse and projectile routing.",
+        "Curse two nearby enemies, fire Coiling Bolts and observe chaining while checking the zero-magnitude downside."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use actual Curses on targets and inspect the wand spell-hit damage per Curse and projectile routing."
+      ],
+      "avoid": [
+        "Despair does not lower resistance and Temporal Chains does not slow at zero magnitude merely because their Curse icons remain."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/wand.lua#L56",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L3507",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L5200",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21648"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Curses become Coiling Bolts routing markers; establish the condition before scaling damage.",
+        "components": [
+          "Liminal Coil",
+          "Coiling Bolts",
+          "Despair",
+          "Temporal Chains"
+        ],
+        "firstTest": "Curse two nearby enemies, fire Coiling Bolts and observe chaining while checking the zero-magnitude downside.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-30",
+      "itemId": "unique:shield:Nocturne:Wooden%20Buckler",
+      "itemRecordSha256": "a188e8bbcb67cd47063cd96bff9943d530b189c136086b9d720674d1ebd577cf",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemParry",
+        "fireball"
+      ],
+      "requiredFragments": [
+        "Spell Damage instead"
+      ],
+      "title": "Parry becomes a Fireball damage window",
+      "hook": "Nocturne changes the Parried damage-taken bonus from attacks to spells, opening a short Fireball window.",
+      "mechanics": "Nocturne changes the Parried damage-taken bonus from attacks to spells, opening a short Fireball window. The item source records: Parried enemies take more Spell Damage instead of more Attack Damage",
+      "play": [
+        "Equip the buckler with a compatible one-handed setup and successfully Parry a blockable hit.",
+        "Parry one predictable hit, cast Fireball during the debuff and compare with the same spell outside the window."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Equip the buckler with a compatible one-handed setup and successfully Parry a blockable hit."
+      ],
+      "avoid": [
+        "Ordinary block does not guarantee Parried and the original attack bonus must not also be counted."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/shield.lua#L201",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/other.lua#L12631",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Parry becomes a Fireball damage window; establish the condition before scaling damage.",
+        "components": [
+          "Nocturne",
+          "Parry",
+          "Fireball"
+        ],
+        "firstTest": "Parry one predictable hit, cast Fireball during the debuff and compare with the same spell outside the window.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-31",
+      "itemId": "unique:ring:Original%20Sin:Amethyst%20Ring",
+      "itemRecordSha256": "4b56f9f20279b2c7968ab5b9775ff1f861552650353231bdbbf0eab0b4aa3302",
+      "skillIds": [
+        "spark"
+      ],
+      "requiredFragments": [
+        "Elemental Damage Converted to Chaos"
+      ],
+      "title": "Spark damage becomes Chaos",
+      "hook": "The ring converts player Elemental damage to Chaos, changing the damage type of Spark hits.",
+      "mechanics": "The ring converts player Elemental damage to Chaos, changing the damage type of Spark hits. The item source records: 100% of Elemental Damage Converted to Chaos Damage",
+      "play": [
+        "Inspect the final player-skill damage breakdown and every other conversion in the setup.",
+        "Equip the ring and compare Spark damage types, target resistance scaling and actual ailment behavior."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Inspect the final player-skill damage breakdown and every other conversion in the setup."
+      ],
+      "avoid": [
+        "Do not transfer the player conversion to minions or assume the converted hit still naturally Shocks."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L253",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Spark damage becomes Chaos; establish the condition before scaling damage.",
+        "components": [
+          "Original Sin",
+          "Spark"
+        ],
+        "firstTest": "Equip the ring and compare Spark damage types, target resistance scaling and actual ailment behavior.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-32",
+      "itemId": "unique:gloves:Plaguefinger:Gauze%20Wraps",
+      "itemRecordSha256": "4468bbca598fd7a7aec13a20d1aeb0a08181bfe3408731f8c2310319b7221e4d",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow"
+      ],
+      "requiredFragments": [
+        "Contributes to Poison Magnitude"
+      ],
+      "title": "Elemental bow damage contributes to Poison",
+      "hook": "The gloves broaden which hit damage contributes to Poison magnitude; Poisonburst Arrow already supplies an explicit Poison route.",
+      "mechanics": "The gloves broaden which hit damage contributes to Poison magnitude; Poisonburst Arrow already supplies an explicit Poison route. The item source records: All Damage from Hits Contributes to Poison Magnitude",
+      "play": [
+        "Inspect a hit with real elemental damage and a confirmed Poison application; the gloves forbid Elemental Ailments.",
+        "Compare Poison on the same target with the same weapon, then verify the elemental-ailment restriction separately."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Inspect a hit with real elemental damage and a confirmed Poison application; the gloves forbid Elemental Ailments.",
+        "Poisonburst Arrow requires Bow."
+      ],
+      "avoid": [
+        "Do not add Freeze, Shock or Ignite payoffs to this glove setup."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L367",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L5716"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Elemental bow damage contributes to Poison; establish the condition before scaling damage.",
+        "components": [
+          "Plaguefinger",
+          "Poisonburst Arrow"
+        ],
+        "firstTest": "Compare Poison on the same target with the same weapon, then verify the elemental-ailment restriction separately.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-33",
+      "itemId": "unique:ring:Polcirkeln:Sapphire%20Ring",
+      "itemRecordSha256": "3a6ff0aa1c78bb6179e58768ee4ea5901f4f67dfaef5e899e7b2fd312750475f",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemIceShot",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfIce"
+      ],
+      "requiredFragments": [
+        "Shatter"
+      ],
+      "title": "Chill into Herald of Ice shatters",
+      "hook": "The ring lets enemies Chilled by your hits Shatter as though Frozen; Herald of Ice requires a non-Herald Attack Hit to Shatter an enemy.",
+      "mechanics": "The ring lets enemies Chilled by your hits Shatter as though Frozen; Herald of Ice requires a non-Herald Attack Hit to Shatter an enemy. The item source records: Enemies Chilled by your Hits can be Shattered as though Frozen",
+      "play": [
+        "Reserve Herald of Ice, inflict Chill with your hits and obtain a killing non-Herald Attack Hit.",
+        "Chill then kill an enemy with Ice Shot and observe the Herald explosion; repeat with an unchilled target as a countercheck."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Reserve Herald of Ice, inflict Chill with your hits and obtain a killing non-Herald Attack Hit.",
+        "Ice Shot requires Bow.",
+        "Herald of Ice requires Any Martial Weapon."
+      ],
+      "avoid": [
+        "A spell kill, ongoing damage or a Herald kill does not automatically satisfy the named attack-hit condition."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L271",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L3699",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L11727"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Chill into Herald of Ice shatters; establish the condition before scaling damage.",
+        "components": [
+          "Polcirkeln",
+          "Ice Shot",
+          "Herald of Ice"
+        ],
+        "firstTest": "Chill then kill an enemy with Ice Shot and observe the Herald explosion; repeat with an unchilled target as a countercheck.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-34",
+      "itemId": "unique:crossbow:Redemption:Trarthan%20Cannon",
+      "itemRecordSha256": "f5836c157b9523687a408c2903645ac09ff4de3ba843251c0f35c0c15e9d1854",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveGrenade"
+      ],
+      "requiredFragments": [
+        "Cannot load or fire Ammunition"
+      ],
+      "title": "A grenade route for Redemption",
+      "hook": "Explosive Grenade uses a Crossbow grenade attack, avoiding the weapon prohibition on loading or firing Ammunition.",
+      "mechanics": "Explosive Grenade uses a Crossbow grenade attack, avoiding the weapon prohibition on loading or firing Ammunition. The item source records: Cannot load or fire Ammunition",
+      "play": [
+        "Equip the crossbow and inspect the grenade Rhythm/Fervour cycle with actual grenade uses.",
+        "Use Explosive Grenade repeatedly and watch its real grenade cycle while confirming ammunition skills remain unavailable."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Equip the crossbow and inspect the grenade Rhythm/Fervour cycle with actual grenade uses.",
+        "Explosive Grenade requires Crossbow."
+      ],
+      "avoid": [
+        "Do not add Explosive Shot or another ammunition attack as a usable partner for this weapon."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/crossbow.lua#L51",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L4932"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "A grenade route for Redemption; establish the condition before scaling damage.",
+        "components": [
+          "Redemption",
+          "Explosive Grenade"
+        ],
+        "firstTest": "Use Explosive Grenade repeatedly and watch its real grenade cycle while confirming ammunition skills remain unavailable.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-35",
+      "itemId": "unique:gloves:Snakebite:Spined%20Bracers",
+      "itemRecordSha256": "bca1964aa91837d49caccf2317b51b5fc953c5a11ee5900a895b4fb9350d0a3f",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow"
+      ],
+      "requiredFragments": [
+        "+1 of your Poisons"
+      ],
+      "title": "An additional simultaneous Poison",
+      "hook": "Snakebite raises the simultaneous Poison cap, giving repeated Poisonburst Arrow applications an additional stack to maintain.",
+      "mechanics": "Snakebite raises the simultaneous Poison cap, giving repeated Poisonburst Arrow applications an additional stack to maintain. The item source records: Targets can be affected by +1 of your Poisons at the same time",
+      "play": [
+        "Apply distinct Poisons before earlier ones expire and inspect the actual cap and Poison duration.",
+        "Use consecutive arrows on a durable target and compare sustained Poison count with and without the gloves."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Apply distinct Poisons before earlier ones expire and inspect the actual cap and Poison duration.",
+        "Poisonburst Arrow requires Bow."
+      ],
+      "avoid": [
+        "A higher cap is not automatically filled and a damage-over-time tick does not apply another Poison."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L142",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L5716"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "An additional simultaneous Poison; establish the condition before scaling damage.",
+        "components": [
+          "Snakebite",
+          "Poisonburst Arrow"
+        ],
+        "firstTest": "Use consecutive arrows on a durable target and compare sustained Poison count with and without the gloves.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-36",
+      "itemId": "unique:ring:Snakepit:Pearl%20Ring",
+      "itemRecordSha256": "c68f01bab41b7ac8f1ad64044ef52a4f1777ec72c7357e51af3ec0efa62336a1",
+      "skillIds": [
+        "fireball"
+      ],
+      "requiredFragments": [
+        "Right ring slot: Projectiles from Spells Chain"
+      ],
+      "title": "Choose Fireball Fork or Chain by ring slot",
+      "hook": "Snakepit changes spell projectiles to Fork in the left slot or Chain in the right slot, while forbidding Pierce.",
+      "mechanics": "Snakepit changes spell projectiles to Fork in the left slot or Chain in the right slot, while forbidding Pierce. The item source records: Right ring slot: Projectiles from Spells Chain +1 times",
+      "play": [
+        "Equip exactly the intended slot and test the actual projectile path on separated targets.",
+        "Compare left-slot and right-slot Fireball paths against a small pack, then compare an isolated target."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Equip exactly the intended slot and test the actual projectile path on separated targets."
+      ],
+      "avoid": [
+        "Do not combine both slot bonuses, assume Pierce survives, or equate more paths with guaranteed boss hits."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L320",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Choose Fireball Fork or Chain by ring slot; establish the condition before scaling damage.",
+        "components": [
+          "Snakepit",
+          "Fireball"
+        ],
+        "firstTest": "Compare left-slot and right-slot Fireball paths against a small pack, then compare an isolated target.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-37",
+      "itemId": "unique:body:Soul%20Mantle:Sacrificial%20Mantle",
+      "itemRecordSha256": "e5a62659cdb372a39cca6ac1b0cd83e7eb183d278ccf276aba544816361b9ebf",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemShockwaveTotem"
+      ],
+      "requiredFragments": [
+        "maximum number of Summoned Totems"
+      ],
+      "title": "One more Totem, with a Curse cost",
+      "hook": "The body armour raises the summoned Totem limit, allowing an extra Shockwave Totem if the full setup can support it.",
+      "mechanics": "The body armour raises the summoned Totem limit, allowing an extra Shockwave Totem if the full setup can support it. The item source records: +1 to maximum number of Summoned Totems",
+      "play": [
+        "Meet the actual skill requirements and budget Spirit; inspect the random self-Curse when Totems die.",
+        "Summon up to the actual limit, let one Totem expire or die and observe both count and Curse behavior."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Meet the actual skill requirements and budget Spirit; inspect the random self-Curse when Totems die.",
+        "Shockwave Totem requires Any Martial Weapon."
+      ],
+      "avoid": [
+        "The higher limit does not summon the extra Totem automatically or remove the self-Curse drawback."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/body.lua#L677",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L17403"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "One more Totem, with a Curse cost; establish the condition before scaling damage.",
+        "components": [
+          "Soul Mantle",
+          "Shockwave Totem"
+        ],
+        "firstTest": "Summon up to the actual limit, let one Totem expire or die and observe both count and Curse behavior.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-38",
+      "itemId": "unique:spear:Splinter%20of%20Lorrata:Hardwood%20Spear",
+      "itemRecordSha256": "7de7fd8f9e281dc2caf36aa474fd67ce6482fe9eca2c3574d22aacb4073bc529",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRake"
+      ],
+      "requiredFragments": [
+        "Any number of Poisons"
+      ],
+      "title": "Repeated spear hits stack Poison",
+      "hook": "This spear always Poisons on weapon hits and removes the usual number limit for Poisons from this weapon.",
+      "mechanics": "This spear always Poisons on weapon hits and removes the usual number limit for Poisons from this weapon. The item source records: Any number of Poisons from this Weapon can affect a target at the same time",
+      "play": [
+        "Use actual spear hits and sustain attack rate, Poison duration and survival.",
+        "Use repeated Rake hits on a durable target and measure Poison accumulation and expiry without assuming a fixed cap."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use actual spear hits and sustain attack rate, Poison duration and survival.",
+        "Rake requires Spear."
+      ],
+      "avoid": [
+        "Unlimited capacity is not infinite damage; this weapon also deals no Elemental damage."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/spear.lua#L68",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6362"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Repeated spear hits stack Poison; establish the condition before scaling damage.",
+        "components": [
+          "Splinter of Lorrata",
+          "Rake"
+        ],
+        "firstTest": "Use repeated Rake hits on a durable target and measure Poison accumulation and expiry without assuming a fixed cap.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-39",
+      "itemId": "unique:staff:Sire%20of%20Shards:Chiming%20Staff",
+      "itemRecordSha256": "a065e8f1cba2f046ea5ae5b0179b11a037feb715c050db359d97cb1c233f2b5a",
+      "skillIds": [
+        "fireball"
+      ],
+      "requiredFragments": [
+        "Spells fire 4 additional Projectiles"
+      ],
+      "title": "Fireball spreads in a circle",
+      "hook": "The staff adds spell projectiles but fires them in a circle, trading forward concentration for surrounding coverage.",
+      "mechanics": "The staff adds spell projectiles but fires them in a circle, trading forward concentration for surrounding coverage. The item source records: Spells fire 4 additional Projectiles",
+      "play": [
+        "Use the staff and inspect the actual projectile pattern with no extra projectile modifiers first.",
+        "Cast once in open space, record directions, then compare pack coverage and an isolated target."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use the staff and inspect the actual projectile pattern with no extra projectile modifiers first."
+      ],
+      "avoid": [
+        "Additional projectiles do not establish that every projectile hits one target."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/staff.lua#L78",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Fireball spreads in a circle; establish the condition before scaling damage.",
+        "components": [
+          "Sire of Shards",
+          "Fireball"
+        ],
+        "firstTest": "Cast once in open space, record directions, then compare pack coverage and an isolated target.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-40",
+      "itemId": "unique:staff:Taryn's%20Shiver:Gelid%20Staff",
+      "itemRecordSha256": "fcf563bf75cb785c9b739d833b0bafda705e3519f442433c8ad3462f3d8515c2",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemFreezingShards"
+      ],
+      "requiredFragments": [
+        "Enemies Frozen by you take"
+      ],
+      "title": "Freeze before the damage window",
+      "hook": "The staff grants Freezing Shards and makes enemies Frozen by you take increased damage.",
+      "mechanics": "The staff grants Freezing Shards and makes enemies Frozen by you take increased damage. The item source records: Enemies Frozen by you take 100% increased Damage",
+      "play": [
+        "Reach an actual Freeze threshold and deal damage during that Freeze window.",
+        "Use Freezing Shards on a durable target, observe the completed Freeze and compare damage inside and outside that window."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Reach an actual Freeze threshold and deal damage during that Freeze window."
+      ],
+      "avoid": [
+        "Freeze buildup or Chill alone does not activate the Frozen-enemy modifier."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/staff.lua#L90",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8892"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Freeze before the damage window; establish the condition before scaling damage.",
+        "components": [
+          "Taryn's Shiver",
+          "Freezing Shards"
+        ],
+        "firstTest": "Use Freezing Shards on a durable target, observe the completed Freeze and compare damage inside and outside that window.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-41",
+      "itemId": "unique:ring:The%20Taming:Prismatic%20Ring",
+      "itemRecordSha256": "b1bdd41e76b5346d1e9ab0808a209e446b9c8ab6b9921cbce41fc3854b68b7a2",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemTornado"
+      ],
+      "requiredFragments": [
+        "boosted by multiple Elemental Ground Surfaces"
+      ],
+      "title": "Tornado gains the Taming ground interaction",
+      "hook": "Tornado absorbs Elemental Ground Surface debuffs; the ring changes eligible Wind skills to count as boosted by the named elemental grounds.",
+      "mechanics": "Tornado absorbs Elemental Ground Surface debuffs; the ring changes eligible Wind skills to count as boosted by the named elemental grounds. The item source records: Wind Skills which can be boosted by Elemental Ground Surfaces can be boosted by multiple Elemental Ground Surfaces",
+      "play": [
+        "Use an actual Wind skill with a ground-surface boost rule and inspect the ring Current modifier.",
+        "Cast Tornado with the ring, inspect its elemental boosts, then remove the ring and compare ground-dependent behavior."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use an actual Wind skill with a ground-surface boost rule and inspect the ring Current modifier."
+      ],
+      "avoid": [
+        "Do not grant this behavior to arbitrary skills or assume the Tornado damage over time itself repeatedly critically hits."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L332",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L19712"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Tornado gains the Taming ground interaction; establish the condition before scaling damage.",
+        "components": [
+          "The Taming",
+          "Tornado"
+        ],
+        "firstTest": "Cast Tornado with the ring, inspect its elemental boosts, then remove the ring and compare ground-dependent behavior.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-42",
+      "itemId": "unique:helmet:The%20Smiling%20Knight:Cowled%20Helm",
+      "itemRecordSha256": "404d53783ecdd452acf6a91223e32c68c747705390fb3040f4400050ea9a383b",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRake"
+      ],
+      "requiredFragments": [
+        "Aggravate Bleeding"
+      ],
+      "title": "Rake Bleeding aggravated by attack crits",
+      "hook": "Rake supplies Bleeding; a critical Attack hit with this helmet can Aggravate Bleeding on the target.",
+      "mechanics": "Rake supplies Bleeding; a critical Attack hit with this helmet can Aggravate Bleeding on the target. The item source records: Aggravate Bleeding on targets you Critically Hit with Attacks",
+      "play": [
+        "Maintain an actual Bleed and land a confirmed critical Attack hit while it remains.",
+        "Apply Rake, observe the existing Bleed, then confirm an attack crit and its Aggravation payoff."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Maintain an actual Bleed and land a confirmed critical Attack hit while it remains.",
+        "Rake requires Spear."
+      ],
+      "avoid": [
+        "Critical spells do not satisfy a modifier explicitly requiring Attacks."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/helmet.lua#L368",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6362"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Rake Bleeding aggravated by attack crits; establish the condition before scaling damage.",
+        "components": [
+          "The Smiling Knight",
+          "Rake"
+        ],
+        "firstTest": "Apply Rake, observe the existing Bleed, then confirm an attack crit and its Aggravation payoff.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-43",
+      "itemId": "unique:wand:The%20Wicked%20Quill:Withered%20Wand",
+      "itemRecordSha256": "9311a6c01cb1c5b8c8bac5b55293eea8519b72cf0c8424a60ceff9b557be0a2b",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemChaosbolt"
+      ],
+      "requiredFragments": [
+        "inflict Withered"
+      ],
+      "title": "Chaos Bolt hits apply Wither over time",
+      "hook": "The wand grants Chaos Bolt and gives spell damage a chance to inflict Withered on hit.",
+      "mechanics": "The wand grants Chaos Bolt and gives spell damage a chance to inflict Withered on hit. The item source records: Spells have a 25% chance to inflict Withered for 4 seconds on Hit",
+      "play": [
+        "Use real spell hits and measure the chance, duration and resulting Wither uptime.",
+        "Fire repeated Chaos Bolts at a durable target and record Wither application and expiry."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use real spell hits and measure the chance, duration and resulting Wither uptime."
+      ],
+      "avoid": [
+        "Damage-over-time ticks are not repeated spell hits and one hit does not guarantee Wither."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/wand.lua#L86",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2984"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Chaos Bolt hits apply Wither over time; establish the condition before scaling damage.",
+        "components": [
+          "The Wicked Quill",
+          "Chaos Bolt"
+        ],
+        "firstTest": "Fire repeated Chaos Bolts at a durable target and record Wither application and expiry.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-44",
+      "itemId": "unique:ring:Thief's%20Torment:Emerald%20Ring",
+      "itemRecordSha256": "fd6ddb485d75e4085a5928475c485e62472e525e63f44aab6ecabf8561770878",
+      "skillIds": [
+        "lightning-arrow"
+      ],
+      "requiredFragments": [
+        "Mana per Enemy Hit with Attacks"
+      ],
+      "title": "Attack-hit recovery for Lightning Arrow",
+      "hook": "The ring recovers Life and Mana per enemy hit with attacks, creating a measurable recovery route for Lightning Arrow.",
+      "mechanics": "The ring recovers Life and Mana per enemy hit with attacks, creating a measurable recovery route for Lightning Arrow. The item source records: Gain 15 Mana per Enemy Hit with Attacks",
+      "play": [
+        "Count actual attack hits and compare recovery with costs; this ring prevents using other Rings.",
+        "Start below full resources and compare Lightning Arrow recovery against one enemy and a pack at the same attack rate."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Count actual attack hits and compare recovery with costs; this ring prevents using other Rings.",
+        "Lightning Arrow requires Bow."
+      ],
+      "avoid": [
+        "A multi-target clear result does not guarantee sustain against one boss or turn damage-over-time ticks into hits."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L344",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4151"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Attack-hit recovery for Lightning Arrow; establish the condition before scaling damage.",
+        "components": [
+          "Thief's Torment",
+          "Lightning Arrow"
+        ],
+        "firstTest": "Start below full resources and compare Lightning Arrow recovery against one enemy and a pack at the same attack rate.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-45",
+      "itemId": "unique:mace:Tidebreaker:Pointed%20Maul",
+      "itemRecordSha256": "90941475e7af6843a79aecfc9ca8eacfa7b91b928f9894b8be7ae6d543c19f29",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam"
+      ],
+      "requiredFragments": [
+        "Contributes to Chill Magnitude"
+      ],
+      "title": "Mace hits also build Chill",
+      "hook": "The mace lets all damage from its hits contribute to Chill magnitude while providing increased Stun buildup.",
+      "mechanics": "The mace lets all damage from its hits contribute to Chill magnitude while providing increased Stun buildup. The item source records: All Damage from Hits with this Weapon Contributes to Chill Magnitude",
+      "play": [
+        "Use the actual mace and observe both Chill magnitude and Stun buildup.",
+        "Use Rolling Slam against a durable enemy and separately record Chill and the Stun state."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use the actual mace and observe both Chill magnitude and Stun buildup.",
+        "Rolling Slam requires One Hand Mace, Two Hand Mace."
+      ],
+      "avoid": [
+        "This Chill rule does not itself grant Freeze buildup or mean a completed Heavy Stun occurred."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/mace.lua#L251",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16108"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Mace hits also build Chill; establish the condition before scaling damage.",
+        "components": [
+          "Tidebreaker",
+          "Rolling Slam"
+        ],
+        "firstTest": "Use Rolling Slam against a durable enemy and separately record Chill and the Stun state.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-46",
+      "itemId": "unique:amulet:Ungil's%20Harmony:Azure%20Amulet",
+      "itemRecordSha256": "7826afe03668cb866286ca5e6d0f2d07c7984c3282ae4482bd9599bef38cacd9",
+      "skillIds": [
+        "spark",
+        "cast-on-critical"
+      ],
+      "requiredFragments": [
+        "no Critical Damage Bonus"
+      ],
+      "title": "Critical frequency without a crit damage bonus",
+      "hook": "The amulet offers critical chance while removing Critical Damage Bonus, making trigger frequency and direct damage separate comparisons.",
+      "mechanics": "The amulet offers critical chance while removing Critical Damage Bonus, making trigger frequency and direct damage separate comparisons. The item source records: You have no Critical Damage Bonus",
+      "play": [
+        "Use actual Spark critical hits with a legal Cast on Critical setup and compare Energy cadence and total damage.",
+        "Compare critical-hit frequency, trigger interval and direct hit damage at equal target conditions with and without the amulet."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use actual Spark critical hits with a legal Cast on Critical setup and compare Energy cadence and total damage."
+      ],
+      "avoid": [
+        "Higher critical chance does not prove this item improves damage after losing the critical damage bonus."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/amulet.lua#L266",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19901",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L2056"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Critical frequency without a crit damage bonus; establish the condition before scaling damage.",
+        "components": [
+          "Ungil's Harmony",
+          "Spark",
+          "Cast on Critical"
+        ],
+        "firstTest": "Compare critical-hit frequency, trigger interval and direct hit damage at equal target conditions with and without the amulet.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-47",
+      "itemId": "unique:gloves:Valako's%20Vice:Plate%20Gauntlets",
+      "itemRecordSha256": "e5ee08eae21ab39381aa17cc06340b86fba6dfff6d659957c480dc2f48a9b14e",
+      "skillIds": [
+        "fireball"
+      ],
+      "requiredFragments": [
+        "Fire damage Converted to Lightning"
+      ],
+      "title": "Fireball hits become Lightning",
+      "hook": "The gloves convert Fire damage to Lightning, changing the resistance and ailment route of Fireball hits.",
+      "mechanics": "The gloves convert Fire damage to Lightning, changing the resistance and ailment route of Fireball hits. The item source records: 100% of Fire damage Converted to Lightning damage",
+      "play": [
+        "Inspect the final converted player-skill damage and check any other conversion rules.",
+        "Compare Fireball hit types and actual Shock/Ignite behavior with and without the gloves."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Inspect the final converted player-skill damage and check any other conversion rules."
+      ],
+      "avoid": [
+        "The converted Lightning hit does not retain natural Ignite magnitude from damage that is no longer Fire."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L278",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Fireball hits become Lightning; establish the condition before scaling damage.",
+        "components": [
+          "Valako's Vice",
+          "Fireball"
+        ],
+        "firstTest": "Compare Fireball hit types and actual Shock/Ignite behavior with and without the gloves.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-48",
+      "itemId": "unique:ring:Venopuncture:Iron%20Ring",
+      "itemRecordSha256": "4ec3e35d26bcb63c457729574b22dcab720f659922138fcd44ef69e7c8d1bd36",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRake"
+      ],
+      "requiredFragments": [
+        "against Bleeding targets"
+      ],
+      "title": "Bleeding opens a Chill route for Rake",
+      "hook": "The ring lets all hit damage against Bleeding targets contribute to Chill magnitude; Rake establishes Bleeding.",
+      "mechanics": "The ring lets all hit damage against Bleeding targets contribute to Chill magnitude; Rake establishes Bleeding. The item source records: All Damage from Hits against Bleeding targets Contributes to Chill Magnitude",
+      "play": [
+        "The target must already be Bleeding when the qualifying follow-up hit occurs.",
+        "Apply Rake, hit again while Bleeding remains and inspect the follow-up Chill and its actual magnitude."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "The target must already be Bleeding when the qualifying follow-up hit occurs.",
+        "Rake requires Spear."
+      ],
+      "avoid": [
+        "Bleeding damage over time does not itself become a hit or Freeze buildup."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L367",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6362"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Bleeding opens a Chill route for Rake; establish the condition before scaling damage.",
+        "components": [
+          "Venopuncture",
+          "Rake"
+        ],
+        "firstTest": "Apply Rake, hit again while Bleeding remains and inspect the follow-up Chill and its actual magnitude.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-49",
+      "itemId": "unique:bow:Voltaxic%20Rift:Fanatic%20Bow",
+      "itemRecordSha256": "e8bdb1bb3564519242bda1a696c0475df0c9c59ba946031ceba38f2147250762",
+      "skillIds": [
+        "lightning-arrow"
+      ],
+      "requiredFragments": [
+        "Chaos Damage from Hits also Contributes to Shock Chance"
+      ],
+      "title": "Converted bow hits retain a Shock route",
+      "hook": "The bow converts Lightning to Chaos while explicitly letting Chaos hits contribute to Shock chance.",
+      "mechanics": "The bow converts Lightning to Chaos while explicitly letting Chaos hits contribute to Shock chance. The item source records: Chaos Damage from Hits also Contributes to Shock Chance",
+      "play": [
+        "Use the bow attack and inspect the final Chaos component and actual Shock chance and magnitude.",
+        "Compare Lightning Arrow damage types and actual Shock applications on the same durable target."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Use the bow attack and inspect the final Chaos component and actual Shock chance and magnitude.",
+        "Lightning Arrow requires Bow."
+      ],
+      "avoid": [
+        "Conversion alone does not normally preserve every original elemental ailment; this item supplies a specific Shock exception."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/bow.lua#L109",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4151"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Converted bow hits retain a Shock route; establish the condition before scaling damage.",
+        "components": [
+          "Voltaxic Rift",
+          "Lightning Arrow"
+        ],
+        "firstTest": "Compare Lightning Arrow damage types and actual Shock applications on the same durable target.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-50",
+      "itemId": "unique:ring:Whisper%20of%20the%20Brotherhood:Sapphire%20Ring",
+      "itemRecordSha256": "752b780bdadf969648efe1d84f8cef07e96d21cdc883c80869e110d05d03b515",
+      "skillIds": [
+        "frostbolt"
+      ],
+      "requiredFragments": [
+        "Cold Damage Converted to Lightning"
+      ],
+      "title": "Frostbolt hits route to Lightning",
+      "hook": "The ring converts Cold damage to Lightning, changing which hit-based elemental interactions remain natural.",
+      "mechanics": "The ring converts Cold damage to Lightning, changing which hit-based elemental interactions remain natural. The item source records: 100% of Cold Damage Converted to Lightning Damage",
+      "play": [
+        "Inspect Frostbolt final damage types and the actual competing conversion setup.",
+        "Compare the same Frostbolt hit with and without the ring, observing damage types and real Chill/Shock behavior."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Inspect Frostbolt final damage types and the actual competing conversion setup."
+      ],
+      "avoid": [
+        "A skill description mentioning Chill does not prove a fully converted hit still has Cold damage for Chill magnitude."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L407",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Frostbolt hits route to Lightning; establish the condition before scaling damage.",
+        "components": [
+          "Whisper of the Brotherhood",
+          "Frostbolt"
+        ],
+        "firstTest": "Compare the same Frostbolt hit with and without the ring, observing damage types and real Chill/Shock behavior.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-51",
+      "itemId": "unique:boots:Windscream:Feathered%20Sandals",
+      "itemRecordSha256": "f3ed3287b0182de3cdcae6343b25ffa3d91aa1bf5d9e58f2b82926eee4390898",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemDespair"
+      ],
+      "requiredFragments": [
+        "no Activation Delay"
+      ],
+      "title": "Despair without its activation delay",
+      "hook": "The boots remove Curse activation delay, addressing the wait stated in Despair rather than adding another Curse slot.",
+      "mechanics": "The boots remove Curse activation delay, addressing the wait stated in Despair rather than adding another Curse slot. The item source records: Curses have no Activation Delay",
+      "play": [
+        "Cast the Curse and distinguish its action time from the removed activation delay.",
+        "Cast Despair on a fresh target and compare when the debuff starts with and without the boots."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "Cast the Curse and distinguish its action time from the removed activation delay."
+      ],
+      "avoid": [
+        "No activation delay is not instant casting, a free Curse or an additional Curse limit."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/boots.lua#L144",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L5200"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Despair without its activation delay; establish the condition before scaling damage.",
+        "components": [
+          "Windscream",
+          "Despair"
+        ],
+        "firstTest": "Cast Despair on a fresh target and compare when the debuff starts with and without the boots.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    },
+    {
+      "id": "unique-study-52",
+      "itemId": "unique:body:Yriel's%20Fostering:Strider%20Vest",
+      "itemRecordSha256": "0d7d2713eefd4174e10b7eaa9beafe04c602c16f79937faef35d8e6a1701d093",
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemWolfPack",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRhoaMount"
+      ],
+      "requiredFragments": [
+        "two Companions of different types"
+      ],
+      "title": "Two different Companion types",
+      "hook": "The body armour permits two Companions of different types, giving a concrete mixed-Companion setup.",
+      "mechanics": "The body armour permits two Companions of different types, giving a concrete mixed-Companion setup. The item source records: You can have two Companions of different types",
+      "play": [
+        "The Wolf Pack counts as one Companion. Keep the Rhoa unmounted unless wielding a Bow or Spear, and satisfy both skills\u2019 real reservation and survival requirements.",
+        "Summon the two different types, inspect their real count and Spirit cost, then test each command separately."
+      ],
+      "conditions": [
+        "Source Current/common modifiers only; verify the actual item version and rolled values.",
+        "The Wolf Pack counts as one Companion. Keep the Rhoa unmounted unless wielding a Bow or Spear, and satisfy both skills\u2019 real reservation and survival requirements."
+      ],
+      "avoid": [
+        "This does not allow two copies of the same Companion or determine a bound monster template ability."
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/body.lua#L298",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L21319",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L6756"
+      ],
+      "evidenceStatus": "Pinned-source interaction; in-game performance untested.",
+      "buildPlan": {
+        "playstyle": "Two different Companion types; establish the condition before scaling damage.",
+        "components": [
+          "Yriel's Fostering",
+          "Wolf Pack",
+          "Rhoa Mount"
+        ],
+        "firstTest": "Summon the two different types, inspect their real count and Spirit cost, then test each command separately.",
+        "stopIf": "Reconsider if the named condition cannot be repeated, the actual item differs, or the resource and defensive cost exceeds the benefit.",
+        "nextChecks": [
+          "Compare single-target and pack behavior, including a boss without adds.",
+          "Measure actual resource use, survival and uptime with the complete equipment setup.",
+          "Validate supports, passive tree and ascendancy separately; this source interaction is not a finished build."
+        ]
+      }
+    }
+  ]
+}
