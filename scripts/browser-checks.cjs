@@ -48,7 +48,7 @@ async function main(){
   assert.match(await page.locator('[data-build-connection="crit-comet"] .build-connection-status').textContent(),/CONDITIONAL/);checks++;console.log('PASS: example assigns Controlled Destruction to Comet without disabling Spark');
   await page.locator('.skill-button[data-id="spark"]').click();await page.locator('[data-assign="controlled-destruction"]').check();
   assert.match(await page.locator('[data-build-connection="crit-comet"] .build-connection-status').textContent(),/BLOCKED/);checks++;console.log('PASS: per-skill assignment detects generator conflict');
-  await page.locator('#combination-item').selectOption('call-of-the-brotherhood');await page.locator('[data-assign="brutality-1"]').check();
+  await page.locator('#combination-item').selectOption('call-of-the-brotherhood');assert.ok(await page.locator('#combination-item-info .item-effect').first().isVisible());assert.match(await page.locator('#combination-item-info').textContent(),/Lightning Damage Converted to Cold/);await page.locator('[data-assign="brutality-1"]').check();
   assert.match(await page.locator('#combination-findings').textContent(),/unique produces Cold damage/);checks++;console.log('PASS: unique conversion and Brutality conflict is visible');
   await page.locator('#share').click();const combinationLink=await page.evaluate(()=>navigator.clipboard.readText());
   const state=JSON.parse(new URL(combinationLink).searchParams.get('build'));assert.equal(state.itemId,'call-of-the-brotherhood');assert.ok(state.supports.spark.includes('controlled-destruction'));
@@ -182,6 +182,7 @@ async function main(){
   assert.equal(await page.locator('#chain-panel').evaluate(e=>e.open),false);assert.equal(await page.locator('#chain-ideas-panel').evaluate(e=>e.open),false);assert.equal(await page.locator('#rule-explorer').evaluate(e=>e.open),false);
   assert.match(await page.locator('#catalog-record').textContent(),/poison cloud poisons without hitting/);
   const radiant=page.locator('[data-idea="gas-arrow-radiant-grief"]');assert.ok(await radiant.isVisible());assert.match(await radiant.textContent(),/Radiant Grief[\s\S]*200 Base Fire Damage/);
+  assert.ok(await radiant.locator('.item-effect').filter({hasText:'200 Base Fire Damage'}).isVisible());
   assert.ok(await radiant.locator('.first-test').isVisible());assert.match(await radiant.locator('.first-test').textContent(),/Presence/);
   assert.equal(await page.locator('#advanced-checks .skill-panel').isVisible(),false);checks++;console.log('PASS: Gas Arrow starts with visible ignition ideas and item effects instead of an unrelated crit workbench');
   await expand('chain-ideas-panel');assert.match(await page.locator('#chain-ideas-scope').textContent(),/No continuous critical-hit path/);
