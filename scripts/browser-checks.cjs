@@ -72,7 +72,7 @@ async function main(){
   assert.equal(await page.locator('.discovery-card').count(),2);assert.match(await page.locator('#discovery-ideas').textContent(),/walking bombs/);
   const bombs=page.locator('[data-idea="unearth-bone-bombs"]');await bombs.getByText('Mechanics, supports & tradeoffs',{exact:true}).click();
   assert.match(await bombs.locator('[data-idea-support="infernal-legion-1"]').textContent(),/CONTEXT REQUIRED/);
-  assert.equal(await bombs.locator('.share-button').count(),0);assert.match(await bombs.textContent(),/Full minion checks are not available/);
+  assert.equal(await bombs.locator('.share-button').count(),0);assert.match(await bombs.textContent(),/not included in the smaller support-and-trigger workbench/);
   assert.equal(await page.locator('#skill-title').textContent(),'Frostbolt');checks++;console.log('PASS: discovery-only minion ideas retain context warnings without replacing base checks');
   await page.goto(base+'/?start=skill&anchor=unearth');await page.locator('#workspace').waitFor({state:'visible'});
   assert.equal(await page.locator('#discovery-anchor').inputValue(),'unearth');assert.equal(await page.locator('.discovery-card').count(),2);checks++;console.log('PASS: discovery-only anchor restores from its URL');
@@ -88,7 +88,7 @@ async function main(){
   await page.locator('#catalog-search').fill('Essence Drain');
   assert.equal(await page.locator('#discovery-anchor option').count(),1);
   assert.match(await page.locator('#catalog-record h3').textContent(),/Essence Drain/);
-  assert.match(await page.locator('#discovery-ideas').textContent(),/No researched combination/);
+  assert.match(await page.locator('#discovery-ideas').textContent(),/Spread Essence Drain[\s\S]*Dark Effigy/);
   assert.equal(await page.locator('#load-error').isVisible(),false);checks++;console.log('PASS: previously uncovered skill is selectable without inventing a synergy');
   const uncovered=page.url(),uncoveredPage=await context.newPage();await uncoveredPage.goto(uncovered);await uncoveredPage.locator('#workspace').waitFor({state:'visible'});
   assert.match(await uncoveredPage.locator('#catalog-record h3').textContent(),/Essence Drain/);await uncoveredPage.close();checks++;console.log('PASS: uncovered source starting point restores from its URL');
@@ -212,6 +212,29 @@ async function main(){
   await page.unroute('**/data/chains.json');checks++;console.log('PASS: changed chain source data hides results');
 
   await page.goto(base+'/?mechanics=unavailable-rules');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different mechanics/);checks++;console.log('PASS: unavailable rule version hides results instead of substituting newer mechanics');
+  await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
+  assert.match(await page.locator('#discovery-coverage').textContent(),/38 researched combinations across 52 \/ 399/);
+  await page.locator('#browse-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),52);
+  assert.equal(await page.locator('#combo-only').isChecked(),true);assert.match(page.url(),/covered=1/);checks++;console.log('PASS: coverage and the researched-only browser use real distinct skill counts');
+  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),52);checks++;console.log('PASS: shared links preserve the researched-skills filter');
+  await page.locator('#catalog-search').fill('Leap Slam');assert.equal(await page.locator('#discovery-anchor').isDisabled(),true);
+  assert.equal(await page.locator('#source-experiments .source-experiment').count(),0);await page.locator('#combo-only').uncheck();assert.equal(await page.locator('#discovery-anchor option').count(),1);checks++;console.log('PASS: an uncovered skill is not fabricated to fill a filtered catalog');
+  await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.locator('#discovery-ideas .discovery-card').count(),2);
+  assert.ok(await page.locator('[data-idea="chaos-spread"] .first-test').isVisible());
+  await page.locator('[data-idea="chaos-spread"]').getByRole('button',{name:'Explore Contagion ↗',exact:true}).click();
+  assert.match(await page.locator('#catalog-record h3').textContent(),/Contagion/);assert.ok(await page.locator('[data-idea="chaos-spread"]').isVisible());checks++;console.log('PASS: new interactions have visible first tests and work from either member');
+  for(const [name,idea] of [['Solar Orb','orb-flameblast'],['Lightning Warp','ball-warp'],['Shockwave Totem','jagged-totem'],['Boneshatter','slam-boneshatter'],['Tempest Bell','ice-bell'],['Toxic Growth','poison-pustules'],['Explosive Shot','grenade-detonator']]){
+   await page.locator('#catalog-search').fill(name);assert.ok(await page.locator('[data-idea="'+idea+'"] .first-test').isVisible());
+  }checks++;console.log('PASS: caster, bow, crossbow, quarterstaff and melee skills expose real interaction plans');
+  await page.locator('#catalog-search').fill('');const arc=await page.locator('#discovery-anchor option').evaluateAll(options=>options.find(o=>o.textContent==='Arc')?.value);assert.ok(arc);
+  await page.locator('#discovery-anchor').selectOption(arc);assert.match(await page.locator('#discovery-ideas').textContent(),/No researched combination/);
+  assert.ok(await page.locator('#source-experiments .source-experiment').first().isVisible());
+  assert.ok(await page.locator('#source-experiments .item-info .item-effect').first().isVisible());assert.match(await page.locator('#source-experiments').textContent(),/SOURCE CANDIDATE.*UNTESTED/);checks++;console.log('PASS: an uncovered spell gets distinct item experiments with visible unique modifiers');
+  await page.setViewportSize({width:390,height:844});await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: expanded interaction navigation fits mobile');
+  await page.goto(base+'/?combos=missing');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different skill combinations/);checks++;console.log('PASS: unavailable skill-combination versions fail closed');
+  await page.route('**/data/skill-combos.json',async route=>{const response=await route.fetch();await route.fulfill({response,body:await response.text()+' '});});
+  await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/skill combinations do not match/);assert.equal(await page.locator('#workspace').isVisible(),false);
+  await page.unroute('**/data/skill-combos.json');checks++;console.log('PASS: changed interaction evidence cannot silently attach to the app');
   await page.goto(`${base}/?snapshot=missing&skill=spark`);await page.locator('#load-error').waitFor({state:'visible'});assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: unavailable historical snapshot hides results');
   await page.route('**/data/snapshot.json',async route=>{const response=await route.fetch();const text=await response.text();await route.fulfill({response,body:text+' '});});
   await page.goto(base+'/?inspect=1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/saved source review/);assert.equal(await page.locator('#workspace').isVisible(),false);checks++;console.log('PASS: tampered dataset hides results');
