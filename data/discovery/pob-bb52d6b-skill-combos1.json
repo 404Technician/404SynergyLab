@@ -1,0 +1,1503 @@
+{
+  "schemaVersion": 1,
+  "id": "pob-bb52d6b-skill-combos1",
+  "referenceId": "pob-bb52d6b-full-catalog1",
+  "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "reviewedDate": "2026-10-15",
+  "status": "candidate",
+  "sources": [
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+      "description": "Fire a Projectile that applies a powerful Chaos damage over time debuff to enemies it hits.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 6511,
+        "recordSha256": "05422f7613c2daa387f08faba9ecdc63bf41e0f1f8dd18b8fe8ce5636ed58af1",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L6511"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+      "description": "Afflict a single enemy with a Debuff that deals Chaos damage over time. If the enemy dies while affected by Contagion, it spreads itself, Curses, and other Chaos damage over time Debuffs on the target to nearby enemies. This refreshes their durations. Reanimating or detonating a corpse affected by Contagion will cause the Minion or explosion to spread Contagion on hit.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 3938,
+        "recordSha256": "25dce175b7b10a703f888704014b47755b22253f08b6467d3b924399dd8d4b06",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L3938"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDarkEffigy",
+      "description": "Raise a Totem that bombards enemies afflicted by Chaos damage over time Debuffs.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 4718,
+        "recordSha256": "0fb85551539243dd9f74ce6a385b3d45533b40a7b7ba98cc6193a35abe653f91",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L4718"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDetonateDead",
+      "description": "Cause a Corpse to violently explode, damaging surrounding enemies.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 5334,
+        "recordSha256": "fe0b0838772d0fa88a090cc8ec9941467986b4af270c48e6fb010b292eee5312",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L5334"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSolarOrb",
+      "description": "Create a fiery Orb that periodically releases fiery pulses. Enemies that are very close to the Orb are Ignited. Flameblast can target a Solar Orb to be centred on the Orb instead of your location.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 19356,
+        "recordSha256": "c18fcf2424baa07e32aadd6e50b8fa09ea969b5d66b6b1019fd4cc8540052782",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19356"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFlameblast",
+      "description": "Channel to build destructive energy around you. Releasing the energy causes a devastating explosion that is larger and more intense the longer you Channel for.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 8461,
+        "recordSha256": "9177ce25d3e7f8218ebb43a5dc48299fc283e4ceccacdf29602f26b9c4b341bb",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8461"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBallLightning",
+      "description": "Fire a slow-moving Projectile that moves through enemies. The Projectile itself does not Hit enemies, but repeatedly discharges bolts of Lightning at nearby enemies. Consumes a Fire Infusion if possible to slow down over time, create Ignited Ground as it travels, and explode dealing Fire damage in an Area after it dissipates.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 408,
+        "recordSha256": "ed2ac1441e105b4ad43d4bc53fb7446f280394741f702c3e2c8ff0528663c74f",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L408"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLightningWarp",
+      "description": "Target an enemy to either teleport inside the target's body if they are under the Cull threshold, causing it to violently explode, or to apply a Debuff to them, which will cause the same effect if that enemy falls under the Cull threshold during its duration. Can also be used on Ball Lightning Projectiles. On teleport, the target is destroyed, and the explosion deals Lightning damage to surrounding enemies. If targeting an enemy, the explosion also creates Shocked Ground. Creates a Lightning Infusion on successful use. Highlights enemies that can be Culled.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 14342,
+        "recordSha256": "6251da187b3006aa95dd2e1a592b2994f8acbed935693a696afeeb4543176e42",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L14342"
+      }
+    },
+    {
+      "id": "flame-wall",
+      "description": "Create a wall of Fire in front of you, which Ignites everything within its area. Any Projectiles fired through the wall by you and Allies deal added Fire damage. Consumes a Lightning Infusion if possible to also add Lightning damage to the Projectiles.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 8228,
+        "recordSha256": "d6e4461811312e414bdefa01294101fcee4a116122d52709910c0d731ba2d96b",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8228"
+      }
+    },
+    {
+      "id": "fireball",
+      "description": "Launch a large ball of Fire which explodes on impact. The explosion Consumes a Fire Infusion if possible to launch a ring of smaller firebolts.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 7374,
+        "recordSha256": "6990d1a3d74c03b66c327440319e68058a86653427e320c70eee702b6797f994",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      }
+    },
+    {
+      "id": "lightning-rod",
+      "description": "Fire an arrow that drops from above, creating a Lightning burst. The arrow remains in the ground, and any Chaining Lightning beams can Chain to it. When Chained to, the arrows charge up for a brief period before releasing another Lightning burst. The Lightning Arrow Skill reduces this delay, causing bursts to happen more quickly.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 4362,
+        "recordSha256": "9c961a4c19fb2a71ffc83746aa2aef7e8ba89001601c7eb280123b53184c4599",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4362"
+      }
+    },
+    {
+      "id": "lightning-arrow",
+      "description": "Fire a charged arrow at the target. On hitting an enemy or wall, the arrow will fire Chaining Lightning beams at nearby enemies.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 4151,
+        "recordSha256": "29f0b12e6c7087f45fdcab038c72243fed219f1017a64eda0a77619b710f7b1c",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4151"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMagneticSalvo",
+      "description": "Aim skyward and fire energy missiles at lingering bolts or arrows created by other Lightning Attacks in front of you. The missiles explode if they land close to a lingering bolt or arrow, dealing more damage in a larger area but destroying that bolt or arrow in the process.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 4719,
+        "recordSha256": "ce07f030018fdc6edfc1682d4cecf7efca7cd40d6e63ae2d36e2915afc4cb7eb",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4719"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveGrenade",
+      "description": "Fire a bouncing Grenade that unleashes a devastating fiery blast when its fuse expires.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 4932,
+        "recordSha256": "534e05be42c22124771bbb8a77fc68a6289040340091fc4c75a1b160006ab4bc",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L4932"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveShot",
+      "description": "Load your Crossbow with flaming bolts that explode on impact. The explosion will cause any Grenades in its area of effect to also explode.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 8560,
+        "recordSha256": "93b43e5a96804b74dcefec94d66b274ba45dc7f93ff3049fbdfd0f4ec1456fd5",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L8560"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStormblastBolts",
+      "description": "Load your Crossbow with charged bolts that land around the target location and explode if hit by a Detonator Skill. Using this Skill again reloads the clip.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 12751,
+        "recordSha256": "cdca10b2c79519f8febbfb93119c1d8762e2bdbd84e52644e2816bd0a0bd5006",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L12751"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemToxicGrenade",
+      "description": "Fire a bouncing Grenade that causes a burst of Poison gas when its fuse expires, damaging enemies and leaving behind a growing Poison cloud. Burning effects or Detonator skills will cause the cloud to explode in a fiery blast.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 6637,
+        "recordSha256": "9d260b5e6eab4ec1c8755dbc74a85c0ae8cb504558e750c400253d1a02eb8ee9",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L6637"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemOilGrenade",
+      "description": "Fire a bouncing Grenade that bursts in a spray of Oil when the fuse expires or when it impacts an Enemy, dealing minimal damage but covering the ground and nearby enemies in Oil. Oil created this way can be Ignited by Detonator Skills or Ignited Ground.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 14670,
+        "recordSha256": "ff039b931269595d9fc55e32109ff5824828799b86602e71d8b3dc61a384c6bc",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L14670"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemToxicGrowth",
+      "description": "Fire a rain of Toxic Pustules into the air. The Pustules deal damage on impact, then Detonate after a delay. They can also be Poisoned, causing them to Detonate faster and more violently.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 9554,
+        "recordSha256": "6271b130ca40d7f1455ddca173edfcf8ffb7a167a1aea01dc335c24c3fd1435f",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L9554"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow",
+      "description": "Fire a virulent arrow that creates a burst of Poison on hit, affecting all enemies in an area.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 5716,
+        "recordSha256": "2fc036a0f7c5a94ed3b22cc4a732c6688f18a75b15b2c9d3bb65c2b9a225fc5b",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L5716"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVineArrow",
+      "description": "Fire an arrow into the air that lands after a short delay, damaging enemies and causing a plant to spring up at the impact location. The plant sprouts vines that latch onto nearby enemies, Slowing their movement speed and dealing Chaos damage over time. The plant can be Poisoned, causing it to deal more damage.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 10182,
+        "recordSha256": "4874e461fe645b0e53b6f06dd71684ea0e511237eb156a660046398f38aa9959",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L10182"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIceShot",
+      "description": "Fire an icy arrow that sprays a cone of ice shards when it hits a target.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 3699,
+        "recordSha256": "e249f845eca5114b45de26b9c95a035cf7fa0291ea0c941ba5d57fd943030a53",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L3699"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSnipe",
+      "description": "Channel to charge up your bow before releasing a powerful shot. Releasing with Perfect Timing causes the arrow to explode on impact and Consume Freeze on directly Hitting. Consuming Freeze enhances the explosion.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 7216,
+        "recordSha256": "ce87150ff6320673fd41ca09003554f25ef1cbccc95fd9a081ebea792ee7763c",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L7216"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIceStrike",
+      "description": "Perform a fast icy Strike. Using this Attack three times in quick succession causes a final strike that is slower and more powerful.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 13021,
+        "recordSha256": "0e2e57711aea9968e75db8e02f24a1f5fbb787e4f4aa702d61d30d5ce2367292",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L13021"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTempestBell",
+      "description": "Build Combo by successfully Striking Enemies with other skills. After reaching maximum Combo, use this skill to cause the Bell on your staff to grow to massive size as you drop it on the ground. The Bell damages enemies on impact and can be Hit by your skills, creating a damaging shockwave. Elemental Ailments applied to the Bell cause its shockwaves to deal extra damage of the corresponding type, and Hits which would have caused Knockback increase the area of effect of the shockwaves.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 21113,
+        "recordSha256": "e316de7f2e10fe0bdc22de0aa20d10aacf2b2305158ae08e33546d66c19b35f8",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21113"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTempestFlurry",
+      "description": "Perform a series of aggressive Strikes. When used in quick succession, the third use Strikes three times, and the fourth use performs a Final Strike that calls down a powerful Shocking bolt.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 21389,
+        "recordSha256": "22a5a382b7e59493ae209e61c3a78b02d15c6d86c745b3f291523ae15806d925",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21389"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFrozenLocus",
+      "description": "Leap backward and crack the ground with your staff to call forth an Ice Crystal which can be damaged by you and enemies. If the Crystal is destroyed it causes an icy explosion. This skill can be used while using other skills.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 9903,
+        "recordSha256": "52509308e4135a090f0ba5ff2e9b2548d8c41e155e62c77bb35a25f01f080b75",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9903"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGlacialCascade",
+      "description": "Sweep your Quarterstaff upwards, releasing an icy fissure which deals damage in a series of bursts culminating in a large spike. Frozen enemies hit by the final spike are dealt heavy damage but the Freeze is Consumed. Ice Crystals hit by the final spike explode.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 10920,
+        "recordSha256": "64c9dc85b978ae74056bd18fd6ed9f9bae01a9ea34ee533a0ede9650a9ce0a0a",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L10920"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam",
+      "description": "Slam the ground to Stun enemies and knock them away, then continue forward and perform a devastating second Slam.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 16108,
+        "recordSha256": "d4286b98d8e2bb4ab26377a16fb113e8e87e0ee58c7e9b07dbe6da6441598d6f",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16108"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBoneshatter",
+      "description": "Attack enemies with a melee Strike. The Strike will cause a Heavy Stun on enemies that are Primed for Stun. Upon causing a Heavy Stun it will also create a Shockwave, dealing a large amount of damage in an area.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 1815,
+        "recordSha256": "311c9e2df41639a213bc237198b76186075a139b6c448572737e8e2e32521118",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L1815"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEarthquake",
+      "description": "Smash the ground, dealing damage in an area and leaving behind Jagged Ground that slows enemies. The Jagged Ground erupts in a powerful Aftershock after a duration. Cannot create Jagged Ground on top of an existing patch, or if you already have the maximum number of active patches.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 4061,
+        "recordSha256": "f75edc5a8d21e23a07b29bb82faeb78aa9132d1994cd6de6c7a408991f530713",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L4061"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShockwaveTotem",
+      "description": "Raise a Totem that Slams the ground around it, repeatedly damaging nearby enemies. Jagged Ground erupts when hit by this Slam, damaging enemies standing on it. The Totem cannot create Jagged Ground. This Skill can be used while Shapeshifted.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 17403,
+        "recordSha256": "a8ee883cc18958cc2458cf8f7cc32ac43b26a53b5320e04760a09512201fd04d",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L17403"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSeismicCry",
+      "description": "Perform a damaging Warcry, Knocking Back nearby enemies and Heavy Stunning enemies that are Primed for Stun. If an enemy is Heavy Stunned or a currently Heavy Stunned enemy is Hit, this Skill Empowers subsequent Slams to perform an additional Aftershock. This Skill's cooldown can be bypassed by expending an Endurance Charge.",
+      "evidence": {
+        "path": "src/Data/Skills/act_str.lua",
+        "line": 16755,
+        "recordSha256": "c63d3909cac9a496fc612fa666e3a961e171aa519335a4186e5308d4fc00072c",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16755"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemKillingPalm",
+      "description": "Dash to an enemy and Strike them, Culling enemies if their life is low enough and performing additional dashing Strikes to other Cullable targets in range if your target was Culled. Each enemy killed by this strike grants a Power Charge, with higher Rarity monsters granting additional Charges. Enemies around you that can be Culled will be highlighted.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 13819,
+        "recordSha256": "8d2f91a170fef836d28d316469f4584d5713983c8705d6e0e479322d84a175a3",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L13819"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFallingThunder",
+      "description": "Suffuse your Quarterstaff with electrical energy, then Slam the ground to deal damage in a large cone in front of you. Consumes your Power Charges to fire Lightning Projectiles forwards from the impact.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 7078,
+        "recordSha256": "5ce97b4647ff92ab94e53a9e1af8fa6bf5021b01c22d3f3e80ecf24704ab7510",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7078"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemProfaneRitual",
+      "description": "Mark a Corpse with a profane rune, dealing Chaos damage over time to nearby enemies. When the ritual is complete the Corpse is consumed and you gain a Power Charge.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 15985,
+        "recordSha256": "3ed42747649a989e3358a22eddf8bb9b74e3badfcb460cebc6a4314c8a3de503",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L15985"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBonestorm",
+      "description": "Channel to conjure a swarm of bone spikes in the air, then release to fire them at enemies and explode. Shrapnel Impales enemies Hit, causing subsequent Attack Hits against those targets to deal extra damage. Consumes your Power Charges to cause much larger explosions.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 1807,
+        "recordSha256": "c6e8e1a567c2d3995eb0dcb36e84d0cd51fca2b7f9d2ab33e494d00f92fd7b16",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L1807"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSnipersMark",
+      "description": "Mark a target. The next Critical Hit the target receives Activates the Mark, Consuming it to deal extra damage and grant you a Frenzy Charge.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 7519,
+        "recordSha256": "06acf32302c2e7ff01df10111d65249d346ac687634351520f4bb5cca83fe43e",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L7519"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBarrage",
+      "description": "Ready a volley of arrows or spears, Empowering your next Repeatable Bow or Projectile Spear Attack to Repeat multiple times. Consumes your Frenzy Charges on use to add additional repeats.",
+      "evidence": {
+        "path": "src/Data/Skills/act_dex.lua",
+        "line": 144,
+        "recordSha256": "52ffb5ba77a50a380d0349ce3a6fc64731ea1f4f74b9547e982edb119314756a",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L144"
+      }
+    },
+    {
+      "id": "frost-bomb",
+      "description": "Create a pulsing Orb of frost. Each pulse inflicts Elemental Exposure on nearby enemies. When the Orb's duration ends, it Detonates, dealing Cold damage to surrounding enemies and leaving behind a Cold Infusion.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 9025,
+        "recordSha256": "ccf2e75e3d04044640da981de3b6abfc4c455cf6df1de52eb6b86ca43ad31092",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9025"
+      }
+    },
+    {
+      "id": "frostbolt",
+      "description": "Fire a slow-moving Piercing Projectile that is effective at Chilling enemies and explodes on colliding with terrain.",
+      "evidence": {
+        "path": "src/Data/Skills/act_int.lua",
+        "line": 9691,
+        "recordSha256": "67935cb9cd5a39f28207551e9d49a1ab893c8fbfb0e21c91a0d814f524968076",
+        "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691"
+      }
+    }
+  ],
+  "recipes": [
+    {
+      "id": "chaos-spread",
+      "title": "Spread Essence Drain through a pack",
+      "hook": "Contagion spreads other Chaos damage-over-time debuffs when its affected enemy dies. Essence Drain supplies such a debuff.",
+      "mechanics": "Contagion spreads other Chaos damage-over-time debuffs when its affected enemy dies. Essence Drain supplies such a debuff.",
+      "play": [
+        "Apply Contagion to an enemy in a pack.",
+        "Hit the same enemy with Essence Drain, then kill it.",
+        "Check the nearby enemies for both debuffs."
+      ],
+      "conditions": [
+        "A Contagion-affected enemy must die near other enemies.",
+        "This spreading mechanism needs deaths; an isolated boss does not supply a pack-clear chain."
+      ],
+      "avoid": [
+        "Damage over time is not a recurring critical hit."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Essence Drain \u2192 Contagion.",
+        "components": [
+          "Essence Drain",
+          "Contagion"
+        ],
+        "firstTest": "Use one low-life enemy next to a durable enemy; compare spread with and without Contagion.",
+        "stopIf": "The second enemy does not receive the debuff, or preparing every pack costs too much time.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemContagion"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L6511",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L3938"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "chaos-effigy",
+      "title": "Give Dark Effigy a target",
+      "hook": "Dark Effigy targets enemies affected by Chaos damage-over-time debuffs; Essence Drain can provide the prerequisite.",
+      "mechanics": "Dark Effigy targets enemies affected by Chaos damage-over-time debuffs; Essence Drain can provide the prerequisite.",
+      "play": [
+        "Place Dark Effigy near the test target.",
+        "Apply Essence Drain and observe the totem attacking.",
+        "Reapply the debuff before it expires."
+      ],
+      "conditions": [
+        "The enemy must have an active Chaos damage-over-time debuff and be within totem range.",
+        "Totem and player damage require separate scaling checks."
+      ],
+      "avoid": [
+        "Do not infer that player cast speed or spell damage automatically scales every totem component."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Essence Drain \u2192 Dark Effigy.",
+        "components": [
+          "Essence Drain",
+          "Dark Effigy"
+        ],
+        "firstTest": "Compare totem behavior on the same target before applying Essence Drain, during the debuff and after expiration.",
+        "stopIf": "The totem cannot keep attacking between applications, or its contribution is too small.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemDarkEffigy"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L6511",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L4718"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "contagion-corpse",
+      "title": "Use a contaminated corpse to carry Contagion",
+      "hook": "The Contagion source explicitly allows an affected corpse explosion to spread Contagion on hit.",
+      "mechanics": "The Contagion source explicitly allows an affected corpse explosion to spread Contagion on hit.",
+      "play": [
+        "Apply Contagion and kill the affected enemy.",
+        "Detonate its corpse beside a fresh enemy.",
+        "Check whether the explosion transfers Contagion."
+      ],
+      "conditions": [
+        "The selected corpse must actually carry Contagion.",
+        "The corpse is consumed, so repeatability depends on corpse supply."
+      ],
+      "avoid": [
+        "Do not assume any corpse in the area carries the debuff, or that isolated bosses supply corpses."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Contagion \u2192 Detonate Dead.",
+        "components": [
+          "Contagion",
+          "Detonate Dead"
+        ],
+        "firstTest": "Keep one uninfected enemy near a Contagion-affected corpse and detonate only that corpse.",
+        "stopIf": "The debuff does not transfer or corpse selection is unreliable.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemDetonateDead"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L3938",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L5334"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "orb-flameblast",
+      "title": "Place Flameblast away from your character",
+      "hook": "Solar Orb is explicitly targetable by Flameblast, moving the explosion centre to the Orb.",
+      "mechanics": "Solar Orb is explicitly targetable by Flameblast, moving the explosion centre to the Orb.",
+      "play": [
+        "Place Solar Orb near the target.",
+        "Aim Flameblast at the Orb and channel briefly.",
+        "Compare the explosion centre with a normal Flameblast."
+      ],
+      "conditions": [
+        "Solar Orb must be available from your equipped item or skill setup; verify the current acquisition method.",
+        "Flameblast remains a channelled skill; the Orb does not automate casting or remove exposure while channeling."
+      ],
+      "avoid": [
+        "Do not treat remote targeting as a zero-button build."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Solar Orb \u2192 Flameblast.",
+        "components": [
+          "Solar Orb",
+          "Flameblast"
+        ],
+        "firstTest": "Place the Orb well away from yourself and check the actual centre of a short Flameblast.",
+        "stopIf": "The Orb cannot be targeted with your version, or the channeling window is unsafe.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSolarOrb",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemFlameblast"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L19356",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8461"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "ball-warp",
+      "title": "Use Ball Lightning as a teleport destination",
+      "hook": "Lightning Warp explicitly accepts Ball Lightning projectiles as targets, providing a destination without waiting for an enemy to become cullable.",
+      "mechanics": "Lightning Warp explicitly accepts Ball Lightning projectiles as targets, providing a destination without waiting for an enemy to become cullable.",
+      "play": [
+        "Cast Ball Lightning toward the desired destination.",
+        "Target that projectile with Lightning Warp.",
+        "Check the teleport, projectile consumption and available resources."
+      ],
+      "conditions": [
+        "The projectile must still exist and be targetable.",
+        "A projectile-target teleport does not promise all effects that require targeting an enemy."
+      ],
+      "avoid": [
+        "Do not assume the enemy-only Shocked Ground effect also occurs when targeting a projectile."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Ball Lightning \u2192 Lightning Warp.",
+        "components": [
+          "Ball Lightning",
+          "Lightning Warp"
+        ],
+        "firstTest": "Warp to one isolated Ball Lightning projectile in open ground; repeat while moving.",
+        "stopIf": "Target selection is unreliable or repeated casting cannot be sustained.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemBallLightning",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemLightningWarp"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L408",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L14342"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "wall-fireball",
+      "title": "Add Fire damage along Fireball\u2019s flight path",
+      "hook": "Flame Wall adds Fire damage to projectiles that pass through it. Fireball offers a projectile to test the crossing requirement.",
+      "mechanics": "Flame Wall adds Fire damage to projectiles that pass through it. Fireball offers a projectile to test the crossing requirement.",
+      "play": [
+        "Place Flame Wall between yourself and a target.",
+        "Fire Fireball through it.",
+        "Compare with Fireball fired beside the wall."
+      ],
+      "conditions": [
+        "The projectile must cross the actual wall.",
+        "Keep skill levels and other buffs fixed during the comparison."
+      ],
+      "avoid": [
+        "Passing through Flame Wall does not automatically Ignite every target."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Flame Wall \u2192 Fireball.",
+        "components": [
+          "Flame Wall",
+          "Fireball"
+        ],
+        "firstTest": "Use the same target and compare shots through and beside a single wall; check the added-damage effect.",
+        "stopIf": "Projectiles miss the wall or placing it costs more than the damage gain.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "flame-wall",
+        "fireball"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8228",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7374"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "rod-arrow",
+      "title": "Make Lightning Arrow work through placed rods",
+      "hook": "Lightning Rod accepts chaining Lightning beams. Its source specifically names Lightning Arrow as reducing the delay before another rod burst.",
+      "mechanics": "Lightning Rod accepts chaining Lightning beams. Its source specifically names Lightning Arrow as reducing the delay before another rod burst.",
+      "play": [
+        "Place a Lightning Rod near enemies.",
+        "Fire Lightning Arrow so its beams can chain to the rod.",
+        "Reposition the rod when enemies move."
+      ],
+      "conditions": [
+        "Rod placement and chain range determine whether the interaction happens.",
+        "A bow is required; actual burst frequency needs observation."
+      ],
+      "avoid": [
+        "Do not assume all beams hit every rod or multiply a single-target hit count by projectile count."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Lightning Rod \u2192 Lightning Arrow.",
+        "components": [
+          "Lightning Rod",
+          "Lightning Arrow"
+        ],
+        "firstTest": "Place one rod beside a durable enemy and observe whether Lightning Arrow produces additional rod bursts.",
+        "stopIf": "The beams do not reach the rod or repositioning dominates the rotation.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "lightning-rod",
+        "lightning-arrow"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4362",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4151"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "magnetic-rods",
+      "title": "Spend lingering rods on Magnetic Salvo",
+      "hook": "Magnetic Salvo aims at lingering bolts or arrows from Lightning attacks and destroys them when its empowered explosions land nearby.",
+      "mechanics": "Magnetic Salvo aims at lingering bolts or arrows from Lightning attacks and destroys them when its empowered explosions land nearby.",
+      "play": [
+        "Place Lightning Rod arrows in front of you.",
+        "Aim Magnetic Salvo at the rod area.",
+        "Rebuild the rods before repeating."
+      ],
+      "conditions": [
+        "The rods must still exist when the missiles land.",
+        "This spends the objects that a rod-burst setup may want to keep."
+      ],
+      "avoid": [
+        "Do not count the same rod as permanently available after a successful Salvo explosion."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Lightning Rod \u2192 Magnetic Salvo.",
+        "components": [
+          "Lightning Rod",
+          "Magnetic Salvo"
+        ],
+        "firstTest": "Place a small number of rods, fire one Salvo and verify rod consumption and explosion location.",
+        "stopIf": "Rod replacement costs too much time or missiles miss the intended area.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "lightning-rod",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemMagneticSalvo"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4362",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4719"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "grenade-detonator",
+      "title": "Choose when grenades explode",
+      "hook": "Explosive Shot\u2019s explosion explicitly causes nearby grenades to explode, allowing a deliberate payoff before the natural fuse ends.",
+      "mechanics": "Explosive Shot\u2019s explosion explicitly causes nearby grenades to explode, allowing a deliberate payoff before the natural fuse ends.",
+      "play": [
+        "Throw an Explosive Grenade beside the target.",
+        "Fire Explosive Shot so its explosion covers the grenade.",
+        "Reload and compare with waiting for the fuse."
+      ],
+      "conditions": [
+        "Both skills require a compatible crossbow setup.",
+        "The explosion must overlap the grenade; include reload and setup time in any comparison."
+      ],
+      "avoid": [
+        "Do not call earlier detonation a damage multiplier without measuring the full rotation."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Explosive Grenade \u2192 Explosive Shot.",
+        "components": [
+          "Explosive Grenade",
+          "Explosive Shot"
+        ],
+        "firstTest": "Throw one grenade and detonate it with one shot; compare timing against a grenade allowed to expire naturally.",
+        "stopIf": "The grenade is outside the shot area or the reload cycle erases the benefit.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveGrenade",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveShot"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L4932",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L8560"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "bolts-detonator",
+      "title": "Detonate planted Stormblast bolts",
+      "hook": "Stormblast Bolts leaves charged bolts that explode when hit by Detonator skills; Explosive Shot supplies a detonating crossbow explosion.",
+      "mechanics": "Stormblast Bolts leaves charged bolts that explode when hit by Detonator skills; Explosive Shot supplies a detonating crossbow explosion.",
+      "play": [
+        "Plant Stormblast Bolts near the target.",
+        "Switch ammunition if needed.",
+        "Use Explosive Shot on the planted bolts."
+      ],
+      "conditions": [
+        "Use the same compatible crossbow and check your current Explosive Shot Detonator tag.",
+        "Ammunition changes, reloads and bolt lifetime constrain the rotation."
+      ],
+      "avoid": [
+        "Bolts on the ground are not already detonations; do not count both as repeated free hits."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Stormblast Bolts \u2192 Explosive Shot.",
+        "components": [
+          "Stormblast Bolts",
+          "Explosive Shot"
+        ],
+        "firstTest": "Plant a few bolts, fire one detonating shot over them and observe which bolts disappear in explosions.",
+        "stopIf": "The planted bolts expire before detonation or ammunition switching feels too slow.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemStormblastBolts",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveShot"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L12751",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L8560"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "gas-grenade-wall",
+      "title": "Detonate a gas-grenade cloud with a burning setup",
+      "hook": "Gas Grenade\u2019s source allows burning effects to explode its cloud; Flame Wall directly Ignites enemies within its area.",
+      "mechanics": "Gas Grenade\u2019s source allows burning effects to explode its cloud; Flame Wall directly Ignites enemies within its area.",
+      "play": [
+        "Let a Gas Grenade form its cloud near an enemy.",
+        "Place Flame Wall across the enemy and cloud.",
+        "Check for a cloud explosion rather than only the original grenade burst."
+      ],
+      "conditions": [
+        "Gas Grenade requires a crossbow; Flame Wall must also be usable with that loadout.",
+        "Test the actual burning overlap and delay; do not infer it from a Fire tag alone."
+      ],
+      "avoid": [
+        "Added Fire on a projectile is not the same as a burning effect or actual Ignite."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Gas Grenade \u2192 Flame Wall.",
+        "components": [
+          "Gas Grenade",
+          "Flame Wall"
+        ],
+        "firstTest": "Compare one gas cloud on an unburning target against one overlapping the target and Flame Wall.",
+        "stopIf": "The cloud never detonates or the spell-and-crossbow resource requirements are impractical.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemToxicGrenade",
+        "flame-wall"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L6637",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L8228"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "oil-detonator",
+      "title": "Ignite an oil field on demand",
+      "hook": "Oil Grenade creates oil that can be Ignited by Detonator skills. Explosive Shot can both detonate grenades in its area and supply the detonating hit.",
+      "mechanics": "Oil Grenade creates oil that can be Ignited by Detonator skills. Explosive Shot can both detonate grenades in its area and supply the detonating hit.",
+      "play": [
+        "Create an oil field with Oil Grenade.",
+        "Hit the oil area with Explosive Shot.",
+        "Check whether the ground is burning."
+      ],
+      "conditions": [
+        "Check Explosive Shot\u2019s current Detonator tag.",
+        "Oil placement, blast coverage and reloads are part of the cost."
+      ],
+      "avoid": [
+        "Do not assume unignited oil already deals the intended burning damage."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Oil Grenade \u2192 Explosive Shot.",
+        "components": [
+          "Oil Grenade",
+          "Explosive Shot"
+        ],
+        "firstTest": "Create one oil patch in open ground, then fire a single Explosive Shot into it.",
+        "stopIf": "The patch does not ignite or placing oil contributes too little for the extra action.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemOilGrenade",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveShot"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L14670",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L8560"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "poison-pustules",
+      "title": "Poison the pustules before they expire",
+      "hook": "Toxic Growth pustules can be Poisoned to detonate faster and more violently. Poisonburst Arrow is a bow-based poison application to test against them.",
+      "mechanics": "Toxic Growth pustules can be Poisoned to detonate faster and more violently. Poisonburst Arrow is a bow-based poison application to test against them.",
+      "play": [
+        "Place Toxic Growth pustules.",
+        "Aim Poisonburst Arrow so the poison burst reaches the pustules.",
+        "Compare their detonation timing with unpoisoned pustules."
+      ],
+      "conditions": [
+        "Actual poison must reach the pustules, not only enemies beside them.",
+        "Check the current pustule limit and avoid replacing the objects before they pay off."
+      ],
+      "avoid": [
+        "A Poison tag or a poisoned enemy does not by itself prove the plant received Poison."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Toxic Growth \u2192 Poisonburst Arrow.",
+        "components": [
+          "Toxic Growth",
+          "Poisonburst Arrow"
+        ],
+        "firstTest": "Observe two separate casts of Toxic Growth, poisoning the second group only; verify a changed detonation.",
+        "stopIf": "The poison application does not affect the pustules or setup costs outweigh the payoff.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemToxicGrowth",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L9554",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L5716"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "poison-vines",
+      "title": "Feed Poison to a Vine Arrow plant",
+      "hook": "Vine Arrow\u2019s plant deals more damage when Poisoned. Poisonburst Arrow provides a poison application using the same bow weapon family.",
+      "mechanics": "Vine Arrow\u2019s plant deals more damage when Poisoned. Poisonburst Arrow provides a poison application using the same bow weapon family.",
+      "play": [
+        "Plant Vine Arrow beside a durable enemy.",
+        "Aim Poisonburst Arrow to affect the plant.",
+        "Maintain enemy contact with the vines."
+      ],
+      "conditions": [
+        "The plant itself must become Poisoned.",
+        "Target movement, plant lifetime and poison uptime need observation."
+      ],
+      "avoid": [
+        "Do not assume poisoning the enemy automatically poisons the plant."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Vine Arrow \u2192 Poisonburst Arrow.",
+        "components": [
+          "Vine Arrow",
+          "Poisonburst Arrow"
+        ],
+        "firstTest": "Compare a plant\u2019s behavior before and after a poison burst aimed at its position.",
+        "stopIf": "The plant is not affected or enemies leave its effective range too quickly.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemVineArrow",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L10182",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L5716"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "ice-shot-snipe",
+      "title": "Set up a Freeze for Snipe\u2019s timed payoff",
+      "hook": "Snipe consumes Freeze on a directly hit enemy when released with Perfect Timing, enhancing its explosion. Ice Shot is the cold bow hit used to build that Freeze.",
+      "mechanics": "Snipe consumes Freeze on a directly hit enemy when released with Perfect Timing, enhancing its explosion. Ice Shot is the cold bow hit used to build that Freeze.",
+      "play": [
+        "Build Freeze with Ice Shot.",
+        "Start channeling Snipe while the target is Frozen.",
+        "Release with Perfect Timing and directly hit the target."
+      ],
+      "conditions": [
+        "Freeze must actually occur and remain until the direct hit.",
+        "Boss ailment thresholds, accuracy and timing need separate testing."
+      ],
+      "avoid": [
+        "Cold damage does not guarantee Freeze, and an ordinary Snipe release does not establish the enhanced payoff."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Ice Shot \u2192 Snipe.",
+        "components": [
+          "Ice Shot",
+          "Snipe"
+        ],
+        "firstTest": "Freeze a durable enemy, release a perfectly timed Snipe and check the Freeze-consuming explosion.",
+        "stopIf": "The target thaws before the hit or reliable Freeze requires too much investment.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemIceShot",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSnipe"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L3699",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L7216"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "ice-bell",
+      "title": "Build and strike a cold bell",
+      "hook": "Tempest Bell gains Combo from other strikes and emits shockwaves when hit by your skills. Ice Strike supplies repeated quarterstaff strikes to build Combo and test the Bell.",
+      "mechanics": "Tempest Bell gains Combo from other strikes and emits shockwaves when hit by your skills. Ice Strike supplies repeated quarterstaff strikes to build Combo and test the Bell.",
+      "play": [
+        "Strike enemies with Ice Strike until Combo is ready.",
+        "Drop Tempest Bell near the target.",
+        "Aim subsequent strikes through the Bell and enemy."
+      ],
+      "conditions": [
+        "Use a compatible quarterstaff.",
+        "Extra Cold damage on shockwaves requires the corresponding ailment on the Bell; cold hits alone do not confirm it."
+      ],
+      "avoid": [
+        "Do not assume every strike and every shockwave hits the boss or bypasses the Bell\u2019s activation interval."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Ice Strike \u2192 Tempest Bell.",
+        "components": [
+          "Ice Strike",
+          "Tempest Bell"
+        ],
+        "firstTest": "Build one Bell and observe its shockwaves while you strike it with Ice Strike.",
+        "stopIf": "Positioning prevents Bell hits or the shockwave contribution is too small.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemIceStrike",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemTempestBell"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L13021",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21113"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "flurry-bell",
+      "title": "Use a strike sequence to ring Tempest Bell",
+      "hook": "Tempest Flurry supplies a sequence of quarterstaff strikes; Tempest Bell turns hits against the placed Bell into separate shockwaves.",
+      "mechanics": "Tempest Flurry supplies a sequence of quarterstaff strikes; Tempest Bell turns hits against the placed Bell into separate shockwaves.",
+      "play": [
+        "Build Combo by hitting enemies with Tempest Flurry.",
+        "Place Tempest Bell beside the target.",
+        "Continue the sequence through the Bell."
+      ],
+      "conditions": [
+        "The Bell must be hit by your skills.",
+        "Measure actual shockwave rate; its interval prevents unlimited activation from rapid hits."
+      ],
+      "avoid": [
+        "Do not infer the Bell is Shocked solely because the strike sequence deals Lightning damage."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Tempest Flurry \u2192 Tempest Bell.",
+        "components": [
+          "Tempest Flurry",
+          "Tempest Bell"
+        ],
+        "firstTest": "Count visible Bell shockwaves over a short fixed interval of Tempest Flurry.",
+        "stopIf": "The Bell cannot be hit consistently or faster strikes do not improve the observed payoff.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemTempestFlurry",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemTempestBell"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21389",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L21113"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "crystal-cascade",
+      "title": "Explode a crystal with the final cascade spike",
+      "hook": "Frozen Locus creates a destructible Ice Crystal. Glacial Cascade explicitly explodes Ice Crystals hit by its final spike.",
+      "mechanics": "Frozen Locus creates a destructible Ice Crystal. Glacial Cascade explicitly explodes Ice Crystals hit by its final spike.",
+      "play": [
+        "Place a Frozen Locus crystal.",
+        "Move so Glacial Cascade\u2019s final spike reaches it.",
+        "Aim the crystal explosion near the enemy."
+      ],
+      "conditions": [
+        "The final spike must hit the crystal; early bursts do not establish the same interaction.",
+        "Frozen-enemy consumption is a separate Glacial Cascade condition."
+      ],
+      "avoid": [
+        "Do not promise an infinite crystal loop or count a spent crystal again."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Frozen Locus \u2192 Glacial Cascade.",
+        "components": [
+          "Frozen Locus",
+          "Glacial Cascade"
+        ],
+        "firstTest": "Place one crystal, strike it with the final spike and confirm the crystal disappears in an explosion.",
+        "stopIf": "Final-spike placement is too unreliable in combat.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemFrozenLocus",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemGlacialCascade"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9903",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L10920"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "slam-boneshatter",
+      "title": "Prime Stun, then finish with Boneshatter",
+      "hook": "Rolling Slam builds Stun. Boneshatter causes a Heavy Stun on Primed-for-Stun enemies and creates a shockwave when it causes that Heavy Stun.",
+      "mechanics": "Rolling Slam builds Stun. Boneshatter causes a Heavy Stun on Primed-for-Stun enemies and creates a shockwave when it causes that Heavy Stun.",
+      "play": [
+        "Use Rolling Slam to approach the Stun threshold.",
+        "Watch for the Primed-for-Stun indicator.",
+        "Use Boneshatter while that condition is active."
+      ],
+      "conditions": [
+        "The enemy must be Primed when Boneshatter hits.",
+        "Over-stunning with the setup skill can remove the intended window."
+      ],
+      "avoid": [
+        "Do not treat every Boneshatter hit as a shockwave."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Rolling Slam \u2192 Boneshatter.",
+        "components": [
+          "Rolling Slam",
+          "Boneshatter"
+        ],
+        "firstTest": "Use a durable target and switch from Rolling Slam to Boneshatter at the Primed indicator.",
+        "stopIf": "The setup immediately Heavy Stuns or the indicator cannot be reached consistently.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemBoneshatter"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16108",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L1815"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "jagged-totem",
+      "title": "Let a totem erupt Earthquake\u2019s Jagged Ground",
+      "hook": "Earthquake creates Jagged Ground. Shockwave Totem explicitly erupts Jagged Ground when its Slam hits it, but cannot create that ground itself.",
+      "mechanics": "Earthquake creates Jagged Ground. Shockwave Totem explicitly erupts Jagged Ground when its Slam hits it, but cannot create that ground itself.",
+      "play": [
+        "Create Jagged Ground with Earthquake.",
+        "Place Shockwave Totem so its Slam overlaps the patch.",
+        "Refresh ground only when needed."
+      ],
+      "conditions": [
+        "The totem and Jagged Ground must overlap.",
+        "Ground limits, duration and totem survival constrain repeatability."
+      ],
+      "avoid": [
+        "The totem does not supply its own Jagged Ground; do not model a self-sustaining ground loop."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Earthquake \u2192 Shockwave Totem.",
+        "components": [
+          "Earthquake",
+          "Shockwave Totem"
+        ],
+        "firstTest": "Compare the totem alone with the same totem slamming an Earthquake patch.",
+        "stopIf": "The patch expires or misses the totem\u2019s Slam area.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemEarthquake",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemShockwaveTotem"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L4061",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L17403"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "stun-seismic",
+      "title": "Turn a Stun window into an empowered Slam",
+      "hook": "Seismic Cry can empower subsequent Slams with an additional Aftershock when it Heavy Stuns a Primed enemy or hits an already Heavy Stunned enemy.",
+      "mechanics": "Seismic Cry can empower subsequent Slams with an additional Aftershock when it Heavy Stuns a Primed enemy or hits an already Heavy Stunned enemy.",
+      "play": [
+        "Use Rolling Slam to establish a valid Stun window.",
+        "Use Seismic Cry while the enemy is Primed or Heavy Stunned.",
+        "Use Earthquake as the subsequent Slam."
+      ],
+      "conditions": [
+        "The Cry must satisfy its Stun condition and actually grant empowerment.",
+        "Check empowered uses, cooldowns and the timing of Earthquake\u2019s own Aftershock."
+      ],
+      "avoid": [
+        "Do not assume every Cry or every subsequent Slam receives unlimited extra Aftershocks."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Rolling Slam \u2192 Seismic Cry \u2192 Earthquake.",
+        "components": [
+          "Rolling Slam",
+          "Seismic Cry",
+          "Earthquake"
+        ],
+        "firstTest": "Check empowerment after the Cry, then use one Earthquake and observe the additional Aftershock.",
+        "stopIf": "The Stun window expires before the Cry or the full rotation is too slow.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSeismicCry",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemEarthquake"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16108",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16755",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L4061"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "palm-thunder",
+      "title": "Spend a cull-generated Power Charge on Falling Thunder",
+      "hook": "Killing Palm grants Power Charges when it kills enemies with its strike. Falling Thunder consumes Power Charges to fire Lightning projectiles.",
+      "mechanics": "Killing Palm grants Power Charges when it kills enemies with its strike. Falling Thunder consumes Power Charges to fire Lightning projectiles.",
+      "play": [
+        "Cull a low-life enemy with Killing Palm.",
+        "Confirm a Power Charge was gained.",
+        "Spend it on Falling Thunder."
+      ],
+      "conditions": [
+        "A killing strike is needed; a boss without adds does not provide a repeatable kill source.",
+        "Keep the charge available until Falling Thunder uses it."
+      ],
+      "avoid": [
+        "Do not assume hitting a boss with Killing Palm grants a charge without a kill."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Killing Palm \u2192 Falling Thunder.",
+        "components": [
+          "Killing Palm",
+          "Falling Thunder"
+        ],
+        "firstTest": "Gain one charge from an actual cull, then observe the added Falling Thunder projectiles.",
+        "stopIf": "Charge supply disappears during the content you want to run.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemKillingPalm",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemFallingThunder"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L13819",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L7078"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "ritual-bonestorm",
+      "title": "Turn a corpse into Bonestorm\u2019s charge payoff",
+      "hook": "Profane Ritual grants a Power Charge after consuming its marked corpse. Bonestorm consumes Power Charges for much larger explosions.",
+      "mechanics": "Profane Ritual grants a Power Charge after consuming its marked corpse. Bonestorm consumes Power Charges for much larger explosions.",
+      "play": [
+        "Mark a corpse with Profane Ritual.",
+        "Let the ritual complete and check the charge.",
+        "Channel and release Bonestorm with the charge available."
+      ],
+      "conditions": [
+        "The corpse must remain available until the ritual finishes.",
+        "Bonestorm\u2019s Impale benefits subsequent Attack hits; its own spell hits do not establish that extra payoff."
+      ],
+      "avoid": [
+        "A corpse-consuming setup is not self-sustaining against an isolated boss."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Profane Ritual \u2192 Bonestorm.",
+        "components": [
+          "Profane Ritual",
+          "Bonestorm"
+        ],
+        "firstTest": "Complete one ritual, confirm the charge and compare one charged Bonestorm against an uncharged release.",
+        "stopIf": "Corpse supply or ritual delay cannot be maintained.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemProfaneRitual",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemBonestorm"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L15985",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L1807"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "mark-barrage",
+      "title": "Use a marked critical hit to fund Barrage",
+      "hook": "Sniper\u2019s Mark grants a Frenzy Charge when its target receives the activating critical hit. Barrage can spend Frenzy Charges to add repeats to an eligible attack.",
+      "mechanics": "Sniper\u2019s Mark grants a Frenzy Charge when its target receives the activating critical hit. Barrage can spend Frenzy Charges to add repeats to an eligible attack.",
+      "play": [
+        "Mark a target, then make an actual critical hit.",
+        "Check that the Frenzy Charge was granted.",
+        "Use Barrage, then its empowered Lightning Arrow."
+      ],
+      "conditions": [
+        "Check that your current Lightning Arrow is eligible for Barrage.",
+        "The Mark is consumed; sustained charges require reapplication and actual crits."
+      ],
+      "avoid": [
+        "One marked crit is not proof of a sustainable critical-hit trigger engine."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Sniper's Mark \u2192 Barrage \u2192 Lightning Arrow.",
+        "components": [
+          "Sniper's Mark",
+          "Barrage",
+          "Lightning Arrow"
+        ],
+        "firstTest": "Watch the charge counter through Mark activation, Barrage use and the next attack.",
+        "stopIf": "Mark reapplication or crit reliability costs more time than the repeats add.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSnipersMark",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemBarrage",
+        "lightning-arrow"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L7519",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L144",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_dex.lua#L4151"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    },
+    {
+      "id": "cold-exposure",
+      "title": "Put Frostbolt damage into an Exposure window",
+      "hook": "Frost Bomb pulses Elemental Exposure on nearby enemies. Frostbolt can then hit those affected enemies with its Cold damage.",
+      "mechanics": "Frost Bomb pulses Elemental Exposure on nearby enemies. Frostbolt can then hit those affected enemies with its Cold damage.",
+      "play": [
+        "Place Frost Bomb beside the target.",
+        "Wait for an Exposure pulse.",
+        "Cast Frostbolt while the debuff is active."
+      ],
+      "conditions": [
+        "The enemy must be inside the pulse area.",
+        "Exposure stacking, resistance floors and actual damage changes must be checked on your setup."
+      ],
+      "avoid": [
+        "Do not add every Exposure source together as if all stack independently."
+      ],
+      "buildPlan": {
+        "playstyle": "Manual setup and payoff: Frost Bomb \u2192 Frostbolt.",
+        "components": [
+          "Frost Bomb",
+          "Frostbolt"
+        ],
+        "firstTest": "Compare Frostbolt against the same durable target before and during Frost Bomb\u2019s Exposure.",
+        "stopIf": "The exposure window is too short or another effect already provides the useful Exposure.",
+        "nextChecks": [
+          "Confirm the exact interaction with your current skill versions before investing in gear.",
+          "Measure repeatable damage, resource use and setup time against a durable target.",
+          "Check weapon requirements, sockets, defenses and target uptime before expanding the build."
+        ]
+      },
+      "skillIds": [
+        "frost-bomb",
+        "frostbolt"
+      ],
+      "evidenceUrls": [
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9025",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L9691"
+      ],
+      "item": null,
+      "supportIdeas": [],
+      "evidenceStatus": "Source-backed interaction; performance not playtested"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import {validateSkillCombos} from '../src/skill-combos.mjs';
 import { readFile } from 'node:fs/promises';
 import { execFileSync } from 'node:child_process';
 import { resolve } from 'node:path';
@@ -37,3 +38,14 @@ const clean=s=>s.replace(/ Chance| Magnitudes| Magnitude| Buildup/g,'').replace(
 const observed=[...block[1].matchAll(/^(Fire|Cold|Lightning) Damage from Hits Contributes to (.+) instead of (.+)$/gm)].map(m=>({damage:m[1],contributesTo:clean(m[2]),replaces:clean(m[3])}));
 if(JSON.stringify(observed)!==JSON.stringify(item.ailmentMap))throw new Error('Ailment-remapping facts do not match the source');
 console.log('Discovery source fingerprints and support predicates match the pinned revision.');
+
+const reference=JSON.parse(await readFile(new URL('../data/catalog/pob-bb52d6b-full-catalog1.json',import.meta.url)));
+const combos=validateSkillCombos(reference,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-skill-combos1.json',import.meta.url))));
+for(const source of combos.sources){
+ const entry=reference.entries.find(e=>e.id===source.id),path=source.evidence.path;
+ if(!files[path])files[path]=execFileSync('git',['show',revision+':'+path],{cwd,encoding:'utf8',maxBuffer:16*1024*1024});
+ const record=extractRecord(files[path],entry.effectId);
+ const literal=record.text.match(/^\tdescription = (.+),$/m)?.[1];
+ if(record.line!==source.evidence.line||checksum(record.text)!==source.evidence.recordSha256||!literal||JSON.parse(literal)!==source.description)throw new Error('Skill combination source changed: '+entry.name);
+}
+console.log(combos.recipes.length+' skill combinations: exact descriptions and source fingerprints match.');

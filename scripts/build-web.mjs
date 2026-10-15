@@ -1,3 +1,4 @@
+import {validateSkillCombos} from '../src/skill-combos.mjs';
 import {validateExperimentDetails} from '../src/experiment-details.mjs';
 import {validateChains} from '../src/chains.mjs';
 import { readFile, mkdir, copyFile, writeFile } from 'node:fs/promises';
@@ -28,17 +29,20 @@ export async function buildWeb() {
   const chains=validateChains(reference,mechanics,JSON.parse(chainsBytes));
   const detailBytes=await readFile(new URL('data/research/pob-bb52d6b-details1.json',root));
   const details=validateExperimentDetails(reference,JSON.parse(detailBytes));
+  const comboBytes=await readFile(new URL('data/discovery/pob-bb52d6b-skill-combos1.json',root));
+  const combos=validateSkillCombos(reference,JSON.parse(comboBytes));
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
   for(const name of ['index.html','styles.css','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
-  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
+  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
   await writeFile(new URL('data/snapshot.json',dist),snapshotBytes);
   await writeFile(new URL('data/catalog.json',dist),catalogBytes);
   await writeFile(new URL('data/reference.json',dist),referenceBytes);
   await writeFile(new URL('data/mechanics.json',dist),mechanicsBytes);
   await writeFile(new URL('data/chains.json',dist),chainsBytes);
   await writeFile(new URL('data/experiment-details.json',dist),detailBytes);
-  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id,mechanicsId:mechanics.id,mechanicsSha256:checksum(mechanicsBytes),chainsId:chains.id,chainsSha256:checksum(chainsBytes),detailsId:details.id,detailsSha256:checksum(detailBytes)},null,2)+'\n');
+  await writeFile(new URL('data/skill-combos.json',dist),comboBytes);
+  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,skillCombosId:combos.id,skillCombosSha256:checksum(comboBytes),snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id,mechanicsId:mechanics.id,mechanicsSha256:checksum(mechanicsBytes),chainsId:chains.id,chainsSha256:checksum(chainsBytes),detailsId:details.id,detailsSha256:checksum(detailBytes)},null,2)+'\n');
   return dist;
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {await buildWeb();console.log('Built the audited browser lab in dist/.');}
