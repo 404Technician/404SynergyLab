@@ -81,7 +81,7 @@ function render(){
     const card=element('article',undefined,'unique-card');card.dataset.unique=idea.item.id;
     card.append(element('h4',idea.item.name),element('div',`${idea.item.conversion.percent}% ${idea.item.conversion.from} → ${idea.item.conversion.to}`,'conversion-chip'),element('p',idea.explanation));
     const condition=element('div',undefined,'condition-box');condition.append(element('strong','CONDITIONS & TRADEOFFS'),element('span',idea.condition));
-    card.append(condition,link('Pinned item modifier ↗',idea.item.evidence.url));$('unique-list').append(card);
+    card.append(itemInfo(idea.item.id),condition,link('Pinned item modifier ↗',idea.item.evidence.url));$('unique-list').append(card);
   }
   renderDiscovery();renderCombination();
   if(!result.interactions.length)$('interactions').append(element('p','No reviewed skill interaction is recorded for this skill yet. This does not mean there are no possible synergies.','empty-note'));
@@ -102,6 +102,7 @@ function renderCombination() {
     row.append(open,element('small',(combination.supports[id] ?? []).map(id=>snapshot.entities.find(e=>e.id===id).name).join(', ') || 'No assigned supports'),remove);$('combination-skills').append(row);
   }
   $('combination-item').value=combination.itemId||'';
+  $('combination-item-info').replaceChildren(...(combination.itemId?[itemInfo(combination.itemId)]:[]));
   $('combination-findings').replaceChildren();
   if(!combination.skillIds.length && !combination.itemId) $('combination-findings').append(element('p','Add a skill or load the trigger example to begin. Supports are assigned to the skill currently on the workbench.','empty-note'));
   else {
@@ -128,13 +129,13 @@ function referenceView(kind,id) {
   return {anchor:{id:record.id,name:record.name,kind},status:'candidate',ideas:[],limits:catalog.limits};
 }
 function itemInfo(id,showName=true){
- const record=referenceCatalog.entries.find(e=>e.id===id),detail=detailRecords.get(id);
+ const record=referenceCatalog.entries.find(e=>e.id===id||e.reviewedId===id),detail=detailRecords.get(record?.id);
  const box=element('section',undefined,'item-info');box.dataset.itemInfo=id;
+ if(!record){box.append(element('strong','Unique details unavailable'),element('p','No source record is available for this item.','muted'));return box;}
  box.append(element('strong',showName?'Unique '+record.category+' · '+record.name:'What this item changes'));if(showName)box.append(element('p',record.base,'muted'));
- if(!detail||detail.generated){box.append(element('p','Variable unique: generated modifiers are not expanded.','muted'));return box;}
+ if(!detail||detail.generated){box.append(element('p',detail?.generated?'Variable unique: generated modifiers are not expanded.':'Item modifiers are unavailable in this source.','muted'),link('Item source ↗',record.evidence.url));return box;}
  const current=detail.modifiers.filter(m=>!m.variants.length||m.variants.includes('Current'));
- const relevant=current.filter(m=>/Damage Converted|Damage from Hits Contributes|Presence.*Ignited/.test(m.text));
- for(const mod of (relevant.length?relevant:current).slice(0,3))box.append(element('p',mod.text,'item-effect'));
+ for(const mod of current)box.append(element('p',mod.text,'item-effect'));
  if(detail.modifiers.some(m=>m.variants.length))box.append(element('small','Source variants differ. Check the modifier on your actual item.'));
  const all=element('details');all.append(element('summary','All source stats & variants'));
  const lines=element('ul');for(const mod of detail.modifiers)lines.append(element('li',(mod.variants.length?mod.variants.join(' / ')+': ':'')+mod.text));all.append(lines,link('Item source ↗',record.evidence.url));box.append(all);return box;
@@ -177,7 +178,7 @@ function renderRules(record) {
   for(const connection of view.links.slice(0,ruleLimit)){
     const card=element('article',undefined,'rule-card');card.dataset.ruleKind=connection.kind;card.dataset.ruleStatus=connection.status;
     card.append(element('span',connection.kind.toUpperCase()+' · '+connection.status.toUpperCase(),'connection-label'),element('h4',connection.title),element('p',connection.explanation));
-    const conditions=element('ul');for(const condition of connection.conditions)conditions.append(element('li',condition));card.append(conditions);
+    const conditions=element('ul');for(const condition of connection.conditions)conditions.append(element('li',condition));card.append(conditions);if(connection.itemId)card.append(itemInfo(connection.itemId));
     for(const id of [connection.skillId,connection.itemId]){const target=referenceCatalog.entries.find(e=>e.id===id);if(target.id!==record.id){const open=element('button','Open '+target.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference(target.kind,target.id));card.append(open);}}
     for(const source of connection.evidenceUrls)card.append(link('Source ↗',source));$('rule-links').append(card);
   }

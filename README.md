@@ -2,7 +2,7 @@
 
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
-**v0.12.0 puts researched build ideas first and makes the item effect visible.** The main layout is a single column; theoretical trigger candidates, source checks and the trigger workbench are optional collapsed panels. The selected record and the active event source are clearly identified. Compatible support choices are filtered by their actual role; a restored incompatible choice remains visible as an exclusion rather than being silently replaced.
+**v0.12.1 shows current unique modifiers directly wherever an item is suggested or selected.** This includes researched ideas, source mechanic links, trigger candidates, the trigger workbench and My Combination. Historical variants remain expandable; generated modifiers are explicitly marked as unavailable. The main layout is a single column; theoretical trigger candidates, source checks and the trigger workbench are optional collapsed panels. The selected record and the active event source are clearly identified. Compatible support choices are filtered by their actual role; a restored incompatible choice remains visible as an exclusion rather than being silently replaced.
 
 Gas Arrow now has two additional ignition ideas: Radiant Grief's Presence ignition and direct Flame Wall ignition. Current and legacy helmet modifiers are displayed separately. The poison cloud is explicitly not treated as a continuous critical-hit generator; actual arrow or explosion hits need their own review.
 
