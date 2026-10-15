@@ -1,0 +1,3599 @@
+{
+  "schemaVersion": 1,
+  "id": "pob-bb52d6b-skill-reviews1",
+  "referenceId": "pob-bb52d6b-full-catalog1",
+  "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "entries": [
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTriggeredAbyssalApparition",
+      "description": "Consume a Power Charge when you cast a damaging Spell to trigger an Abyssal Apparition who will also cast that same Spell for you. Does not work with Channelling Spells, Spells with a Cooldown, Triggered Spells, Spells granted by items, or Spells which already consume a Power Charge. This Skill is not directly Supportable.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2a8bded37467f0f8a76003cb1b96a3ca906337ce7bf353dc14be50782c03595d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyPoisonousConcoction",
+      "description": "Consume charges from your Mana Flask to throw a flask that explodes, dealing Physical Attack damage in an area. The thrown flask Consumes Poison on Hit to cause an acidic burst. This damage is not based on your unarmed damage, so this is not considered an Unarmed Attack.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "86bd09b79e9fd058414a046c8a1aaf5635dde4bed525b8391309f2c0df82e3a9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAlchemistsBoon",
+      "description": "While active, grants you Flask charges passively and causes Life and Mana recovery from your Flasks to also apply to Allies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4cb5840e430e5cf818faeb7921ac5e40006ae0e1021893cc5fdd01d4545d52f8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyAlignFate",
+      "description": "While active, visages of yourself from alternate timelines will occasionally appear and cast one of your Spells from your first valid Weapon Set. Until the next visage appears, your next cast of the same Spell aligns your fate, Empowering that Spell. Visages can only cast damaging, non-Channelling, non-Buff Spells you could cast that have no cooldown.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9772f1b7bd1ace2d494bffb31e9023d2e39361f995988d531e51ece1195e6433"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAncestralCry",
+      "description": "Perform a Warcry using Glory gained by Igniting enemies to turn you into an embodiment of Kaom. While embodying Kaom, you Trigger Volcanic Steps while travelling, Melee Strikes and Slams are Ancestrally Boosted, and your Melee Strikes Trigger Volcanic Eruption.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c907045859f2a1cc5d5492b586dacf4e2df9f21d1cd7eb15a03931e91c4cdb3f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAncestralSpriits",
+      "description": "This skill is Triggered each time you summon a Totem, summoning an Ancestral Spirit Minion to fight for you. If the Totem dies then the Ancestral Spirit triggered by it's summoning will die too.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "773fa6ce5273fc1296032904a4f97f62b7ce0df21b3c446b830d88f6fe030eac"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAncestralWarriorTotem",
+      "description": "Consume 3 Endurance Charges to Raise a Totem that conjures spirit warriors. Each warrior uses a socketed Mace Skill once, then disappears. Cannot use Channelling Skills or Skills with Cooldowns.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c150b276070bfc149e3e4d52754f474ca0ad0816997e34a564682ff804ad9d4f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAnimusExchange",
+      "description": "Sacrifice a portion of your Life to recover Runic Ward. Runic Ward recovered by this Skill can Overflow.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "295fdde319dce01086fd44aa298d7ddb419bf22d9bbb533a758cc8e1db45e012"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAnimusSplinters",
+      "description": "Expend a large amount of Runic Ward to instantly create a short-lived copy of yourself that uses a Socketed Skill once, then vanishes. This Skill's cost is equal to the total cost of Socketed Skills. The copy cannot perform Channelled, Remote, Cooldown or Conditional Skills, or summon Minions.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e3bc5265a2665e1c37b4877e377b1929381992f0687480d2059c72757b096eb1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemApocalypse",
+      "description": "Build Glory by Hitting enemies with Elemental damage. When you have maximum Glory, you may become the walking Apocalypse for a duration, Triggering one of multiple powerful Elemental Skills at an interval while this Buff lasts.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c2816eab87d9b798cb2264cd96b6fc8c9497448adb01616c76d1d603cc1c2e98"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemArc",
+      "description": "An arc of Lightning stretches from the caster to a targeted enemy and Chains on to other nearby enemies. Consumes a Lightning Infusion if possible to deal more damage and Chain further.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "046822fe3aac720585a005a62be72ba4d04afa44dc9b0c047e219273c6c76ac6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemArchmage",
+      "description": "While active, causes your Non-Channelling Spells to cost additional mana and deal extra Lightning damage, both based on your maximum Mana.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "214b4e44ace69125e1b0120d632dd219cbce12a534effc99153b287f9804cce1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemArchonOfChayula",
+      "description": "Build Glory by dealing Chaos damage to enemies. When you have maximum Glory, you can entreat the Dreamer to inhabit you, briefly becoming his Archon.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b927867bb89afb9ca7acee8b9b66698257d534fea96e0745b9876590b59cbd21"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemArcticArmour",
+      "description": "While active, conjures an icy barrier that gains stages over time. While the barrier has stages, Melee Attacks that hit you will remove a stage to cause a burst of ice that deals Cold Spell damage to the attacker.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "7215bc4dc0850a0ac25147c3491712c6f94ab7037aab0ffa6cfd4e960a8d03ba"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWolfArcticHowl",
+      "description": "Shapeshift into a Werewolf and let out an icy howl that damages enemies and Freezes Primed enemies. If an enemy is Frozen or a Frozen enemy is Hit, this Skill Empowers your attacks with added Cold damage, causes Empowered Slams to create Chilled Ground, and grants your Allies added Cold damage. This Skill's cooldown can be bypassed by expending an Endurance Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2648c7b3b99e8f42d5e39941383a9ebd76c761de39bc18d3da11662357c2ecfc"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemArmourBreaker",
+      "description": "Strike with a forceful blow, knocking enemies back and weakening their Armour.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4644b235dc2326d247b26c50c30c0e66b00a59d35d341f54e0f1855b8b92ca8a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemArmourPiercingRounds",
+      "description": "Load your Crossbow with a clip of bolts that can be fired rapidly and Break enemy Armour. Using this Skill again reloads the clip.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "40d7ccb639757c3d6b6bfc6f5f5455bda75fefb8c2a3574c990a0a83814203b0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemArtilleryBallista",
+      "description": "Deploy a Ballista Totem that rains down a salvo of Pinning, Maiming bolts.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b508c12475eaac8a90adb64aac38bd86d82649c1ae6b5bcd74f488abe260f502"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAttrition",
+      "description": "While active, causes you to deal more Hit damage to Rare and Unique enemies the longer you've been fighting them, and gain Culling Strike against them once you've been fighting them for long enough.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4f001e983a70b5e974c791579871af5e44eb28ba2caf75ae807ac533d3143581"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAzmerianSwarm",
+      "description": "While active, summons short-lived Azmerian Swarms when you kill enemies affected by Elemental Ailments or hit Rare or Unique enemies affected by Elemental Ailments. The swarms are untargetable Minions that pursue nearby enemies to Attack them and inflict Faerie Fire on Hit.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "50753d1b837e70941a9d7cf65c82a1b35eea0fccfa0512c514d47d909f278bd5"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAzmerianWolf",
+      "description": "Summons an ancient Reviving Azmerian Wolf that can howl, calling to spirits convening an Eternal Hunt on Command. It Maims when attacking foes, and can lunge to bite and inflict Bleeding, or howl to inspire nearby allies.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "4ae6ba4e300e5fd4c37997a6d6b0573e271e4610d3440eac8cb3ba025d325c52"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBallLightning",
+      "description": "Fire a slow-moving Projectile that moves through enemies. The Projectile itself does not Hit enemies, but repeatedly discharges bolts of Lightning at nearby enemies. Consumes a Fire Infusion if possible to slow down over time, create Ignited Ground as it travels, and explode dealing Fire damage in an Area after it dissipates.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ed2ac1441e105b4ad43d4bc53fb7446f280394741f702c3e2c8ff0528663c74f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBarkskin",
+      "description": "While active, taking Hit damage from enemies to your Energy Shield causes you to gain Armour for a short duration. Armour gained from multiple Hits can stack. The total Armour gained from this Skill cannot exceed the Item Armour on your Equipped Armour Items.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5f83c5e27b8d5d4c5290f2000b4454442afe896d9e0267b796c659f772fd3d61"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBarrage",
+      "description": "Ready a volley of arrows or spears, Empowering your next Repeatable Bow or Projectile Spear Attack to Repeat multiple times. Consumes your Frenzy Charges on use to add additional repeats.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "52ffb5ba77a50a380d0349ce3a6fc64731ea1f4f74b9547e982edb119314756a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBarrierInvocation",
+      "description": "While active, gains Energy when your Energy Shield is damaged by Enemy Hits. Using the Invocation once sufficient Energy is gathered will consume the Energy to trigger socketed Spells, and can trigger them multiple times if it has enough Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "8cce12ffa4d72466dd15f0fe7fa23b27f90826a2fc85c32c537ebb65ccc57262"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBerserk",
+      "description": "While active, strengthens your Rage, but causes you to lose Life while not losing Rage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "393b3317fdb750016b83dbf3f92678f808d26fc75d2a806e394744fee0c552ec"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBitterDead",
+      "description": "Spend Ward and target an area, transforming Corpses into bitter cores that seek out enemies and Chill enemies near them. The cores explode at the end of their duration, creating runes which deal additional Cold damage over time.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5c735b96948e881925c07f7c285307ac49a55b6759ea5f7accf39d8b51075832"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBlackPowderBlitzReservation",
+      "description": "Replaces your dodge roll with an explosive-assisted leap, firing off a round from your prosthetic cannon leg that Blinds and Ignites enemies in the area you escape from. The explosion will cause any Grenades in its area of effect to also explode.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "b6e55971edad35849b88e88e05afe17ad1ad17c9da6febc72994d228b74d762e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBlasphemy",
+      "description": "Turn socketed Curse skills into vile Auras, applying their effects to all nearby enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a33f85a244b6c2160960afc54b4e1a7b000d887d937602124761b47044a8db6c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyBleedingConcoction",
+      "description": "Consume charges from your Mana Flask to throw a flask that explodes, dealing Physical Attack damage in an area and Aggravating Bleeding on Enemies hit. This damage is not based on your unarmed damage, so this is not considered an Unarmed Attack.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1d4336bb0f88b2dfb8a6e003adac9abc6aea982e00d760ed5b35b93aa5711079"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBlinkReservation",
+      "description": "While active, replaces your dodge roll with a short-cooldown Spell that allows you to tunnel through space, instantly reappearing a medium distance away.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c78c4476912f03c97010f12f58cd283b453a7d9d5c677eb5e8c46c52a0538701"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBloodBoil",
+      "description": "Enemies in your Presence accumulate blood boils periodically. When they die, the boils pop applying Corrupted Blood to enemies near them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c915b8ca5e8c17d39f028338f08924d7d36463f0b826a24d086b24967d7196a7"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBloodHunt",
+      "description": "Lunge at a target and skewers them. Hitting an enemy that has suffered Blood Loss will cause a blood explosion and also Consume Bleeding. This skill cannot be Ancestrally Boosted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "821e75ff07b4f04cd29fc84330d0919e30eca19afe0b212c137859b7365eabff"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBloodhoundsMark",
+      "description": "Mark a target, making them suffer Heavy Stun build up from Blood Loss. The Mark will Activate, Consuming itself to Trigger Blood Explosion, when they are Heavy Stunned, or when they are killed if they suffered enough Blood Loss. The Mark's duration does not expire while the Marked target is suffering Blood Loss.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "07485c95225e4d394274dfa746ee82ac324cd1b8d078867501a1ea8deee5383d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBoneBlast",
+      "description": "Conjure a circle of ritual inscriptions that last for a short duration. When the duration ends, spikes of bone erupt from enemies in the area, damaging them and potentially causing Bleeding.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "e9bd403fa10e9539be7450b077a0088fbecd32705137d2d28da9a85f7c6e4160"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBoneCage",
+      "description": "Raise a ring of bone spikes around you. The spikes are destroyed when enemies touch them, damaging and Pinning those enemies. Raising a new ring of spikes destroys the previous one.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "460417072aa7131dcfa8109b5c434a4b15049e64d657fd938012b3eb3ae5661a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBoneOffering",
+      "description": "Impale a Skeleton on a bone spike to shield your Minions while the spike remains, reducing the amount of damage taken from Hits. Taking a Hit that deals damage above a certain threshold will cause that Minion's shield to absorb all damage from that Hit, then explode.  The bone spike is itself a Minion, and shields itself. If it dies, shields on your other Minions disappear.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "270560f85bc447b335ca850b6e8e215217cc36431bbf29ec8fc8f7feb6aac1b3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBoneshatter",
+      "description": "Attack enemies with a melee Strike. The Strike will cause a Heavy Stun on enemies that are Primed for Stun. Upon causing a Heavy Stun it will also create a Shockwave, dealing a large amount of damage in an area.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "311c9e2df41639a213bc237198b76186075a139b6c448572737e8e2e32521118"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBonestorm",
+      "description": "Channel to conjure a swarm of bone spikes in the air, then release to fire them at enemies and explode. Shrapnel Impales enemies Hit, causing subsequent Attack Hits against those targets to deal extra damage. Consumes your Power Charges to cause much larger explosions.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c6e8e1a567c2d3995eb0dcb36e84d0cd51fca2b7f9d2ab33e494d00f92fd7b16"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultBow",
+      "description": "Fire an arrow with your Bow.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "72003769575aea2d43034512183764bf122d2ff467a1085022c6858a9022b3d2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBriarpatch",
+      "description": "While active, a portion of the Physical Attack damage you deal is stored. Casting a Spell uses the stored damage to create a patch of Thorny Ground that deals Spell damage to moving enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0d2598e6979a0c509bc7f0f67059238d725d05cf6471fc17ca612b96307109e3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExplodingPoisonToad",
+      "description": "This skill creates a toad that jumps around briefly, the toad then explodes, dealing Attack damage in an area and inflicting Poison.  Damage you deal with this skill is not based on your Weapon.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "e969539ae8fb6c3298f389d1700e566a00c10c9e2ba581690904fa2e44197414"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHyenaCackle",
+      "description": "Activate to summon a cackle of Hyena Companions. The cackle is treated as a single Companion for effects that count or limit Companions, regardless of the number of Hyenas in the cackle. Hyenas whoop when they first appear, Hindering nearby enemies, and have a chance to Maim enemies they Hit.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "03d8461e682f34e03281ec982a830c807335bfc891dd590fa2eecb5909ca5506"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMetaDeadeyeMarks",
+      "description": "Applies a socketed Mark Skill to a nearby unmarked Enemy every few seconds. Consuming socketed Marks will cause them to be reapplied to an unmarked Enemy. This reapplication can happen at most once every few seconds.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "830d9aefc10e17ce9e8440817efe231b486899276e8ad1e8df9b2144c01ebb63"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastOnBlock",
+      "description": "While active, gains Energy when you Block and triggers socketed Spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "48ca3093afb7b864265e4284c968539d27d991bd30de1f4ebd1aae8105f2057e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastOnCharmUse",
+      "description": "While active, gains Energy when one of your Charms is used and triggers socketed Spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "dd286f98c5ba6bb946fcb412fbe33755abe9dca77f1cec854221d673ed10a45d"
+      }
+    },
+    {
+      "id": "cast-on-critical",
+      "description": "While active, gains Energy when you Critically Hit enemies and triggers socketed Spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9be07f532887236328890187604b202980090d51c7bae1faa1c7b5e64148a8d6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastOnDodge",
+      "description": "While active, gains Energy when you dodge roll and triggers socketed spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "cce5787224d332a7fd69e343ab3fbf5ec65b8c5d78d77a3a99df20e2d3e825cb"
+      }
+    },
+    {
+      "id": "cast-on-elemental-ailment",
+      "description": "While active, gains Energy when you Freeze, Shock, or Ignite enemies, and triggers socketed spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "d3b3bd98132b8b30eb253b9f898cacfd2792eb4c8351f63ee9ebefc0d2805b8b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastOnMeleeKill",
+      "description": "While active, gains Energy when you kill enemies with Melee Attacks and triggers socketed spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "baf4e135ad7781863bcbafb2615fc7bc8b1fa9a5787c77484ce7ba5c05389845"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastOnMeleeStun",
+      "description": "While active, gains Energy when you Stun enemies with Melee Attacks and triggers socketed spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "00a703a5b8c5de85eb2ecf8e60e84d94ad1b225a1624e051bac3caae583cf401"
+      }
+    },
+    {
+      "id": "cast-on-minion-death",
+      "description": "While active, gains Energy when one of your Persistent Minions is Killed, and triggers socketed Spells upon reaching maximum Energy. Very underlevelled Minions will incur an Energy generation penalty. Cannot socket Spells which create Minions.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9fac9f949228606c81af69094bd9cf99f669c665676c537ea8718a335adaebb3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemChaosbolt",
+      "description": "Fire a burst of Chaos energy at the target.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "28c74a31ea41d0ff7936c5bb79459c2096a4b9bb1020af396d212d8d5b280052"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemChaosSpearTriggerChaosSurge",
+      "description": "Grants your weapon Surges. Non-Melee Projectile Attacks with that weapon Consume Surges to cause the Projectiles fired to explode at the end of their flight.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "dab9a07e4be6a618b7031e96b1b1e7f0144632b13a8f880dfd250586347e74c3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemChargeRegulation",
+      "description": "While active, you gain powerful Buffs based on your active Charges. However, maintaining the Buff Consumes Charges every few seconds.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "81e6136250c182b091a2a7756fadd1dc3af8387ee2b89f17ede754edfb1ad611"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemChargedStaff",
+      "description": "Consume all Power Charges to charge your Quarterstaff with electricity, adding Lightning damage and a Lightning shockwave to your Quarterstaff Attacks. Reusing this skill while the Buff is active adds to the Buff's duration and damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "899ae64c36173c277d915fc99a02fef6e3510cc9937b5f1aee0402907205c436"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemClusterGrenade",
+      "description": "Fire a bouncing Grenade that explodes when its fuse expires, throwing out a ring of mini Grenades that explode when they come to a stop.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "76630af00a372e935f75eddd8a86d6f588d54558e46b795a4013e1faf27356cb"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCoilingBolts",
+      "description": "Simultaneously fires a Physical Projectile and a Chaos Projectile at the target. These projectiles Chain through any number of Cursed targets.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1635219a551dbbbce587c1346af5035bb06e0d8678a10a516a1fdb9eb3fbd55a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCombatFrenzy",
+      "description": "While active, grants you a Frenzy Charge when you Freeze, Electrocute or Pin an enemy. This can only occur once every few seconds.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "59f70427f36dffa8af368313de369687abddb21e1f3d25178e15ff7e1b10bb78"
+      }
+    },
+    {
+      "id": "comet",
+      "description": "Call down a mass of ice from the sky, dealing high damage at the targeted location. Targeting close to you will cause you to jump back as you cast. Consumes a Fire Infusion if possible to cause a devastating blast of ice and fire.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "7a039e7677dbde96fedf2e383fcc0417614ca71a837dc6599808b8d1f2493d57"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSummonBeast",
+      "description": "Summon a Reviving Beast Companion to aid you in combat.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "dee350bf89c3539d7f7fa5694d88221125effab8326a8d0e3453adf96b2ad5fd"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemConductiveRunes",
+      "description": "Spend Runic Ward to create a number of Hazardous Runes in a cone in front of you, which arm after a time. After arming, these Runes will activate when enemies step on them, exploding to deal Attack damage that is not based on your Weapon's damage and apply Electrocution buildup.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a9580b69848da6703f77df448d64ed56e18de3175ba42522a13fac2a6f828f25"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStaffConsecrate",
+      "description": "Create an area of Consecrated Ground around you.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "ceae35dbab2a234da3c8860609c8b47996b544dede9e0db69755c24b3ef99530"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+      "description": "Afflict a single enemy with a Debuff that deals Chaos damage over time. If the enemy dies while affected by Contagion, it spreads itself, Curses, and other Chaos damage over time Debuffs on the target to nearby enemies. This refreshes their durations. Reanimating or detonating a corpse affected by Contagion will cause the Minion or explosion to spread Contagion on hit.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "25dce175b7b10a703f888704014b47755b22253f08b6467d3b924399dd8d4b06"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemConvalescence",
+      "description": "While active, grants a skill that you can use to instantly begin Recharging Energy Shield and gain a Buff for a duration that prevents that Recharge being interrupted. The Buff is removed at maximum Energy Shield and the skill cannot be used while Energy Shield is full.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4259e2ac7fb308a1a2487820610325311f3ee5061c8216adb9d21c81c476e211"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCracklingPalm",
+      "description": "When you Hit with Unarmed Melee Attacks, calls down lightning bolts which deal Unarmed Attack damage to all surrounding enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "e12d0a9863d3225dc78cb28e96e27b72514db4ac36e250ba2dede5c517ac83ff"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWolfCrossSlash",
+      "description": "Shapeshift into a Werewolf and leap backwards as you gouge the ground with both claws. Enemies can be Hit separately by both gouges. Hitting a Marked enemy with both gouges will Activate the Mark and cause an additional shockwave. Ice Fragments will be pulled into the location where the gouges cross and explode. immediately. This skill can be used while using other skills to interrupt them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "14859380ee8874f7b628381cda21dae80d499274f96a7aef5685c447562090e6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultCrossbow",
+      "description": "Fire a bolt from your crossbow.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "cfe0a46749d3ca4aef76b5a0426238d5d49680e69c3a768ba878f242e0dfc9bb"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCrushingFear",
+      "description": "Dash to an enemy and Strike them, Culling enemies if their life is low enough. When this skill kills an enemy you draw out their final fears, crushing them to create a shockwave. Enemies around you that can be Culled will be highlighted.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "347acb17291cf4187bab7276479c14753a6920f63dc1b8d6bfbcfd33244ebf3f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCullTheWeak",
+      "description": "Dash to an enemy and run them through, Culling enemies if their life is low enough. If this Attack kills at least one enemy, it grants you a Frenzy Charge, with higher Rarity monsters granting additional Charges. Enemies around you that can be Culled will be highlighted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0fbc92ed13bb94dc2e6620f5b593a787a738c5b41ec7c0f71d51eeb5343bc545"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastCurseOnBlock",
+      "description": "While active, gains Energy when you Block and triggers socketed Curses on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "9fe6947f270458a68defdcea71aa90a6d329228e556fa740dcf5ea1c8d698f20"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDarkEffigy",
+      "description": "Raise a Totem that bombards enemies afflicted by Chaos damage over time Debuffs.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0fb85551539243dd9f74ce6a385b3d45533b40a7b7ba98cc6193a35abe653f91"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCorpseCloud",
+      "description": "Consume a Corpse to create a cloud of flammable Poisonous gas. Any Burning effects or Detonator skills will explode the gas cloud, creating a fiery explosion.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "633f2e297d5e945e8a8c45f9a46a77098cdecba00094c50ab1877bbed2b818d3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDefianceBanner",
+      "description": "While active, Attacking enemies builds Glory. When you have maximum Glory, you can place an inspiring Banner for a duration with an Aura that grants you and nearby Allies Armour, Evasion and movement speed.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "d9e73510bcc21376832d29a547b9c1ffbcd8d2ddafdbf40d8f5b89569c491e25"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDemonForm",
+      "description": "Shapeshift into a demon, vastly boosting the power of your Spells. You gain Demonflame every second you remain in demon form, causing your Life to be lost at an ever-increasing rate. Maximum 10 Demonflame. Revert to human form if you reach 1 Life, use a Skill that isn't a Spell, or reactivate this Skill.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ad8f6fa393b182ea833485124cd60ff5eca1291511388e4e7a9831474bba67ee"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDespair",
+      "description": "Curse all targets in an area after a short delay, lowering their Chaos Resistance.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "36fbbfd2085520ced1d6c580d385ad7f861e481dadef14acf282e9caaa9df1e3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDetonateDead",
+      "description": "Cause a Corpse to violently explode, damaging surrounding enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fe0b0838772d0fa88a090cc8ec9941467986b4af270c48e6fb010b292eee5312"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDetonateLiving",
+      "description": "Spend Runic Ward to cause a destabilising Hit against an enemy under the Culling Strike Threshold, making them violently explode. Highlights enemies under the Culling Strike Threshold.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ea48303fdd79566ade787ae451b05a070e573b822b042d0b754e4bfa8c7daeb8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDetonateMinion",
+      "description": "Detonate an allied Minion whose current Life is below a threshold, dealing heavy Attack damage to nearby enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "507b7972727bbef7260deccacc284ce1f5b533b2c04f255e65c5dfcff8d87065"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDetonatingArrow",
+      "description": "Channel to charge up before firing off a burning arrow. At maximum stages, the arrow will create a Detonating explosion at the end of its flight.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b7235023f7f08cb89cb30ddbdd22ec9c7ae971f003a535a734f12bdb89b3b676"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWyvernDevour",
+      "description": "Shapeshift into a Wyvern and devour a Corpse or Cullable enemy, and additional nearby Corpses. For each enemy or corpse devoured, you regenerate life and gain a Power Charge. If the target is far enough away, you will leap to them and damage nearby enemies where you land. Targeting nearby enemies or corpses will not perform a leap or a Slam.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b129fea7a7b7e43b65bf3a9f4b222c171a0a440147cff90a012537ecaa4ec24f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDiscipline",
+      "description": "Emit an Aura that grants you and Allies in your Presence additional Total Energy Shield.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "7e6e7a6b2baeb1e567f53c90bde1a76e9ca4f031dde0ee34b3d6e053a276c474"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDisengage",
+      "description": "Jump back as you rupture the earth in front of you with spearpoints, damaging enemies. Consumes the Parried Debuff on Hitting enemies to release a shockwave and grant you a Frenzy Charge. This skill can be used while using other skills, and causes Strikes and Projectiles to miss you while jumping. This skill cannot be Ancestrally Boosted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "24933ae89000df584a382f84b5abac4246b694afef1f2c890d0b871816623b69"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDreadBanner",
+      "description": "While active, Attacking enemies builds Glory. When you have maximum Glory, you can place an inspiring Banner for a duration with an Aura that grants you and nearby Allies Elemental Ailment Threshold, Maximum Elemental Resistances and Flask charges.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b59fc01950625bd261dc271130d2e9331a23cb8459181000a44d5cef6d1191d4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEarthquake",
+      "description": "Smash the ground, dealing damage in an area and leaving behind Jagged Ground that slows enemies. The Jagged Ground erupts in a powerful Aftershock after a duration. Cannot create Jagged Ground on top of an existing patch, or if you already have the maximum number of active patches.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "f75edc5a8d21e23a07b29bb82faeb78aa9132d1994cd6de6c7a408991f530713"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEarthshatter",
+      "description": "Slam the ground, sending out a fissure that deals area damage to enemies it passes under and thrusts a spike from the ground when it ends. Warcries performed near the spike will cause it to shatter, damaging surrounding enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c25b4dd97694713cc1d4062c40b52852a77cdaf4380cc88aff24d8e3d06c3da1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemElectrocutingArrow",
+      "description": "Fire an electrifying arrow that explodes in an Area on Hit. Hitting an enemy will attach an Electrocuting Rod to them, causing all incoming Lightning damage to build up Electrocution. This rod is removed when the enemy is next Electrocuted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "54080bae7958d0d892aacc232a05f2af28214c36d612e14770869f991bc6f228"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemElementalConflux",
+      "description": "Tap into a current of raw and unpredictable Elemental power, causing you to deal greatly more damage of a randomly chosen Element. The Element affected changes frequently, though the same Element can be affected multiple times in succession.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1798772a250b579d1779dbb53e26052724b51ac0626e337ca21e937ac0ee0295"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyElementalExpression",
+      "description": "Create a fiery explosion, an arcing bolt of lightning, or an icy wave of projectiles. The chance for an explosion is proportional to your Strength, for a bolt proportional to your Dexterity, and for a wave proportional to your Intelligence.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "70a2899d6578572be3c940a53779c473516c5f0ab9516be5ba3781f2e83528e8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemElementalInvocation",
+      "description": "While active, gains Energy when you Freeze, Shock or Ignite an enemy. Using the Invocation once sufficient Energy is gathered will consume the Energy to trigger socketed Spells, and can trigger them multiple times if it has enough Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "72e5164e8d43f8bc1041e14e604f15fce4017d351153c50c66dadc6fcff64299"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyElementalStorm",
+      "description": "Create a stationary Fire, Cold or Lightning storm at a target location for a duration, based on the highest Elemental Damage type for the Hit that Triggered the storm. Hits which do not deal Elemental Damage will not Trigger the storm.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2e91fbfb2668be9e959e451c848a7d9f8fc005ab73dca8d6b059dc5ddf399c63"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemElementalSundering",
+      "description": "Plunge your Spear into the ground to emit a pulse that Consumes Freeze, Shock and Ignite on a number of nearby enemies, Allies and Corpses. The pulse itself deals no damage, but each Ailment Consumed causes an explosion of the corresponding elemental damage type.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c0404339fc5bd9dee104ebd56957c9deab8b418cfa040a8d5eb8962c1924d298"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyTriggerElementalSurge",
+      "description": "Grants your weapon Surges. Non-Melee Projectile Attacks with that weapon Consume Surges to cause the Projectiles fired to explode at the end of their flight.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c876f9c72b676a28e543b12f8a106de81200116e6233fd2131b4f74ee3479967"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemElementalWeakness",
+      "description": "Curse all targets in an area after a short delay, lowering their Elemental Resistances.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "90215d6a0d8bad0aa16af301d8b560f2e9710647c553284ef93a5b43f245115b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEmberFusillade",
+      "description": "Conjure a blazing Ember that hovers above you. After a short duration, the Ember launches at an enemy, dealing Fire damage in an area on impact and prioritising the last enemy targeted. Recasting this spell resets the duration for all active Embers. Multiple Embers fired in the same Fusillade will attempt to target different enemies. Consumes a Lightning Infusion if possible to cause the entire Fusillade to create beams that Chain to enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2c4c980d33bdfd7fe616204c1b97328e3e43650a40a07e888fbc7db3f48856e1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEmergencyReload",
+      "description": "Instantly reload all your Crossbow Ammunition clips and Empower each clip's Ammunition to deal more damage for a duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "707f9f91b8efaa9a239a25788bb5d5f0c0a73ba3f69d79c90448991e1d555c7c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyEncasedInJade",
+      "description": "Consume all stacks of Jade to grant Guard based off your maximum Life for each Jade consumed. You cannot gain Jade stacks while you have Guard.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c39b7ac9866115dbc7dbcc5e8d262eb95c53b6328acdea2dc5a29fbd300225ff"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEnervatingNova",
+      "description": "Unleash a Nova of Lightning damage to Electrocute enemies. Enemies close to you take no damage while enemies at the edge of the ring take significantly more damage. Enemies Hit can be Electrocuted by all Lightning damage for a short duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "10d2250070ae585e7e45a68d7e0f5449bdbafdcb5bc62115036a442ae343348f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEnfeeble",
+      "description": "Curse all targets in an area after a short delay, making them deal less damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9aefc08226ea3e95d810b2726f279fecbb6855e47958719a71937d56542bdf84"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEntangle",
+      "description": "Conjures a rootbound fissure that crawls forward, damaging enemies in its path. While the fissure persists, vines lash out from it and attach to nearby enemies, damaging and Slowing them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fe6e023f0daf29d46f6cf136ff100a72eb7aa2814dbd6ce115cca92cd6d3b10d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEscapeShot",
+      "description": "Leap backwards, firing an icy arrow which can Chill or Freeze enemies around the location from which you escaped. This arrow will create Ice Fragments on impact.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6b3d867095d03095e87d21f0845101ada0b04f35b9b926840bdc5ad9a4bfc234"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+      "description": "Fire a Projectile that applies a powerful Chaos damage over time debuff to enemies it hits.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "05422f7613c2daa387f08faba9ecdc63bf41e0f1f8dd18b8fe8ce5636ed58af1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEternalMarch",
+      "description": "Spend Runic Ward to instantly Revive your Minions. Prioritises the most powerful minions first.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "eae25ec6d3606c5663f20a014c9821d97df19a2cd5f9e5fb0075bbd1084166a5"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEternalRage",
+      "description": "While active, you constantly regenerate Rage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5181fb40a46d4dcf88a792fd3c089c3ed7f1372b52969d0e1146d19825098e5f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyExplosiveConcoction",
+      "description": "Consume charges from your Mana Flask to throw a flask that explodes, dealing Fire Attack damage in an area. Additional smaller flasks are thrown at nearby Ignited Enemies. This damage is not based on your unarmed damage, so this is not considered an Unarmed Attack.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "42a0d9a1c824626e32d03d4d2bb153dfb2e7ff34ce20e6918eae795364500f77"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveGrenade",
+      "description": "Fire a bouncing Grenade that unleashes a devastating fiery blast when its fuse expires.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "534e05be42c22124771bbb8a77fc68a6289040340091fc4c75a1b160006ab4bc"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveShot",
+      "description": "Load your Crossbow with flaming bolts that explode on impact. The explosion will cause any Grenades in its area of effect to also explode.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "93b43e5a96804b74dcefec94d66b274ba45dc7f93ff3049fbdfd0f4ec1456fd5"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveSpear",
+      "description": "Hurl a single payload Spear that pierces through enemies and lodges in terrain where it lands. The Spear will explode at the end of its Detonation Time or if Detonated. Consumes a Frenzy Charge if you have one to explode immediately, dealing more damage in a cross-shaped area and creating Ignited Ground.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b6e34a1b35fcee7d8eca2e393082b19619cec263c36eded08dc6d74b7c681c43"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExplosiveTransmutation",
+      "description": "While active, picking up Remnants Triggers a deadly explosion, dealing damage at the location of the Remnant based on the type of Remnant picked up.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5cb1129efe1943a5f3c5929c6db3ca665e47886ff20cf4ee008e7f27184ec4d7"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemExsanguinate",
+      "description": "Expel your own blood as Chaining blood tendrils in a cone in front of you. Enemies Hit by the tendrils take Physical damage and are inflicted with Bleeding.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "b081fd082ad261a1a83e4707dcae780aa657edb9efd2c734f47acd33a7e88fc0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEyeOfWinter",
+      "description": "Fire a single Eye Projectile which does not Hit enemies. The Eye constantly releases damaging shard Projectiles in a spiral as it flies. If the Eye passes over an Elemental Ground Surface or Orb, it will take on that surface's effect causing shards to deal more damage of the corresponding Type.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1723c8c67632d08451484aa852cdd4339302349c3c937f9440797962857ee8d9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFallingThunder",
+      "description": "Suffuse your Quarterstaff with electrical energy, then Slam the ground to deal damage in a large cone in front of you. Consumes your Power Charges to fire Lightning Projectiles forwards from the impact.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5ce97b4647ff92ab94e53a9e1af8fa6bf5021b01c22d3f3e80ecf24704ab7510"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFangsOfFrost",
+      "description": "Perform an icy stab that exploits enemies who are already off balance. Hitting a Parried target Consumes the Debuff to cause an explosion of frost and leave Chilled Ground.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "d9e435ff061e2289d5a9bc4e96278a092f1fbd1eb5f8e7d7dd716e5ffd838ba9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFeastOfFlesh",
+      "description": "Consume Corpses near you to recover Life and Mana over a short time per Corpse Consumed.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "a4a8d56dbd92a9415cc02aefbcc03b15e1d4c82fdbcfb2cc814769ddfd00ff2b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFeralInvocation",
+      "description": "While active, gains Energy when you spend Mana. Using the Invocation once sufficient Energy is gathered will consume the Energy to create visages which attack once with a socketed Shapeshifting Attack, creating multiple visages if it has enough Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "bf3a78a9239b9019fc82162c131542f52bac00f7e1955c780ffdf644a91d4068"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFerociousRoar",
+      "description": "Shapeshift into a Bear and roar in defiance, immediately gaining Rage if there are enemies nearby and Empowering subsequent Attacks to Break Armour. Alternatively, socketing a human-form Warcry into this Skill triggers that Warcry instead, and augments its damage and area. This Skill's cooldown can be bypassed by expending an Endurance Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "7a163386f038c6062590f37fd6e376ce5557de266c49eb78320b64b3796d1b83"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastFireSpellOnHit",
+      "description": "While active, gains Energy when you Hit enemies with Melee Attacks and triggers socketed Fire spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "de5a4fc418cb91a06947b9119d722a7aac881656789da475737f0a2f1e5af09d"
+      }
+    },
+    {
+      "id": "fireball",
+      "description": "Launch a large ball of Fire which explodes on impact. The explosion Consumes a Fire Infusion if possible to launch a ring of smaller firebolts.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6990d1a3d74c03b66c327440319e68058a86653427e320c70eee702b6797f994"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFirebolt",
+      "description": "Launch a fiery Projectile towards a target. The Projectile explodes on impact, damaging foes in a small area.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "4e9bdd710a28c9c20ba4eceb30f7752d38b0ea1d9070a086d43b1144d8bd2930"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFirestorm",
+      "description": "Rain a storm of flaming bolts over the targeted area. Can Consume all three types of Elemental Infusion, creating a much larger storm when Fire-Infused, causing lightning bolts when Lightning-Infused, and raining ice bolts when Cold-Infused.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3f0d77a4b075f52312fa86937d8800127af67855fcd8e408d1362a3a47e64d90"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWyvernFlameBreath",
+      "description": "Shapeshift into a Wyvern and take to the skies, immolating enemies with a jet of fire. Channelling ends after a short amount of time but can be prolonged by spending Rage. Consumes a Power Charge if possible to Empower the Skill, Gaining extra Lightning damage and spending Rage more slowly.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3617472c8c73f36c369aa048cf327239e937b279c66d3148bedd9b365440fc81"
+      }
+    },
+    {
+      "id": "flame-wall",
+      "description": "Create a wall of Fire in front of you, which Ignites everything within its area. Any Projectiles fired through the wall by you and Allies deal added Fire damage. Consumes a Lightning Infusion if possible to also add Lightning damage to the Projectiles.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "d6e4461811312e414bdefa01294101fcee4a116122d52709910c0d731ba2d96b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFlameblast",
+      "description": "Channel to build destructive energy around you. Releasing the energy causes a devastating explosion that is larger and more intense the longer you Channel for.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9177ce25d3e7f8218ebb43a5dc48299fc283e4ceccacdf29602f26b9c4b341bb"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFlashGrenade",
+      "description": "Fire a bouncing Grenade that unleashes a Blinding, Stunning explosion when its fuse expires.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4f707bfc5e47665c4e0b8d75f5e4188312e3e31043ca4cdec479f159940380ee"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFlickerStrike",
+      "description": "Teleport to an enemy and Strike them. Consumes Power Charges to perform additional teleporting Strikes on nearby enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "8e702e1c3686bd42a3406a36e6eadd8d2b0ab5bd7993bfd58a55264711ccd9a1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemForgeHammer",
+      "description": "Hurl a fiery hammer that Slams into the ground and lodges there. While the hammer is lodged in the ground, reusing this Skill recalls the hammer and resets the Skill's cooldown. Alternatively, using a Warcry near the lodged hammer causes it to shatter, releasing a number of Molten Fissures in a spiral.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "646438a9643b06a11fd9c9f4123e881e76ff1cee6919d684419e89ca5012830e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFortifyingCry",
+      "description": "Perform a Warcry that grants Guard and Triggers Shield Wave when subsequent Shield Attacks deal damage. This Skill's cooldown can be bypassed by expending an Endurance Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "7f3e4237b40a2019ebfabe26adaba73c1df5f86c9c7f9a6958ab83b96d9718c3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFragmentationRounds",
+      "description": "Load your Crossbow with Piercing bolts that fragment in flight. Bolts that hit a Frozen enemy Consume the Freeze and cause an explosion of shrapnel. Bolts that hit an Ice Crystal cause it to explode. These fragments can Merge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3231c89dba0f0761089fb12bb42f42485d12fca9a66b943642aacdae6b2732d9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFragmentsOfThePast",
+      "description": "Spend Runic Ward to create a Verisium volcano that deals damage on initial eruption and Triggers Ice Fragments.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5bcd8c5fc1b3e4486a70d00a76d507fc743524aa811e083a18a36ae8d3a7107d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFreezingMark",
+      "description": "Mark a target, making them more susceptible to being Frozen. When the Marked target is Frozen, the Mark Activates, granting you a Buff which gives extra Cold damage and Consuming the Mark. Marking another target while you have the Buff will remove the Buff.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fd0bc8e0eed6b5063a19b078b55d8c0063bbbdc8ef91bc138564c3259521db1a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFreezingSalvo",
+      "description": "Passively gains Seals over time. Using the skill fires a projectile, and breaks the Seals, Repeating for each of them, and for each additional projectile the skill is given. For each time it Repeats normally, it will also Repeat an additional time targeting a different Ice Fragment in its area of effect if able, Detonating those Ice Fragments immediately. ",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4eb8050aa8d2786f59e8dd66f34ccba3d2e55a3ca1dbd7d705452e342f45b5ea"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFreezingShards",
+      "description": "Launch icy Projectiles in a sweeping arc. Multiple Projectiles can hit the same enemy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "8168e7da5c3ea4956251b2e1bd931754a38dbd9609b3891421250825ceedcccd"
+      }
+    },
+    {
+      "id": "frost-bomb",
+      "description": "Create a pulsing Orb of frost. Each pulse inflicts Elemental Exposure on nearby enemies. When the Orb's duration ends, it Detonates, dealing Cold damage to surrounding enemies and leaving behind a Cold Infusion.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ccf2e75e3d04044640da981de3b6abfc4c455cf6df1de52eb6b86ca43ad31092"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFrostDarts",
+      "description": "Conjures a number of icy Projectiles that launch towards the target. Projectiles that Hit a Chilled or Frozen target create chunks of ice that deal additional damage on impacting the ground. Consumes a Cold Infusion if possible to cause each Projectile to lodge into the enemy then explode.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e6311000010531ddd6fb284808409a2197561f2772174ea2edabd1702740dd39"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFrostWall",
+      "description": "Create a wall of Ice Crystals which holds back enemies. The Crystals explode if sufficiently damaged, or if pushed hard enough, damaging nearby enemies. Consumes a Lightning Infusion if possible to add another Lightning explosion if destroyed.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a7169cf0cf06aa3b0f93bbce6e7780aa2f57fb2fa3bfadfd3edb230de1991112"
+      }
+    },
+    {
+      "id": "frostbolt",
+      "description": "Fire a slow-moving Piercing Projectile that is effective at Chilling enemies and explodes on colliding with terrain.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "67935cb9cd5a39f28207551e9d49a1ab893c8fbfb0e21c91a0d814f524968076"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFrostflameNova",
+      "description": "Unleash a wave of volatile ice that feeds on flames. While the wave doesn't deal damage, the ice latches onto Ignited enemies, refreshing the duration of their active Ignite and rapidly Freezing them but preventing them from being Ignited further until the Ignite expires.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "090bc9f403524d3aded51db91c2da07b0526304d06ac335996cc77fcaa903a1e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFrozenLocus",
+      "description": "Leap backward and crack the ground with your staff to call forth an Ice Crystal which can be damaged by you and enemies. If the Crystal is destroyed it causes an icy explosion. This skill can be used while using other skills.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "52509308e4135a090f0ba5ff2e9b2548d8c41e155e62c77bb35a25f01f080b75"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyFulminatingConcoction",
+      "description": "Consume charges from your Mana Flask to throw a flask that explodes, dealing Lightning Attack damage in an area with high chance to Shock. This damage is not based on your unarmed damage, so this is not considered an Unarmed Attack.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ef332f75db9a27589a0825284aa0ba67a8ae989dcad5a1bf5cc727b0c25adb84"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFulmination",
+      "description": "While active, the first time any Skill Hits a Shocked enemy in your Presence, that Skill also Hits other Shocked enemies in your Presence, up to a maximum.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "a32198237c8d0f5615216541df72f518e48a7fba3b75c02845e140614514f2a6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFuriousSlam",
+      "description": "Shapeshift into a Bear and Slam the ground with great force, causing a pair of shockwaves. Can spend Rage to create larger shockwaves that leave behind Jagged Ground.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a1937e237dd86543a97e95da534725c509ff74399b50d39a8a637b3a05749393"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBearFuryOfTheMountain",
+      "description": "Shapeshift into a Bear and repeatedly pound the ground, creating Molten Fissures that travel randomly in a wide arc in front of you.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "f4be9c73d0a5c53d448571aa94f5101e6d49db510ca6aee2fc45ca3c4b3e8bc6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemFuturePast",
+      "description": "Hinekora observes your Future-Past granting you the opportunity to subvert a lesser fate. After a period of Hindsight, she will grant you her Foresight, which prevents you from avoiding Hits while Dodge Rolling. When you are Hit while Dodge Rolling, Hinekora restores you to full Life immediately before taking damage from the Hit, and grants you Sight Beyond Sight, which prevents you from dying.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "73def9dca1458ebb8f45e92a290be7e70061d0f618c3704ba90a657e3aa97ce0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGalvanicField",
+      "description": "Gain a Buff that boosts your Shock chance. Shocking an enemy consumes the Buff to attach an Orb of electricity to that enemy. The Orb fires bolts of electricity at nearby enemies until it expires.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "ab44c2226cfe0140ae68725854aa1e5a482b76763b71d3168e34a4bd0d91f47a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGalvanicShards",
+      "description": "Load your Crossbow with charged bolts that fragment in flight, releasing Chaining Lightning beams when they Hit enemies. These fragments can Merge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "56545a371eacc5c00819dd13bbb39d5d15f883cc32447c98abe88f2c102003e8"
+      }
+    },
+    {
+      "id": "gas-arrow",
+      "description": "Fire a noxious arrow at the ground, creating a cloud of flammable poisonous gas at the end of its flight. The cloud will detonate if hit by a Detonator skill or if an Ignited enemy touches it, creating a fiery explosion.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0b48a0b96cd115f4b59875f983d584b25dba1c668d72264e83ec2a3f5c525a68"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemToxicGrenade",
+      "description": "Fire a bouncing Grenade that causes a burst of Poison gas when its fuse expires, damaging enemies and leaving behind a growing Poison cloud. Burning effects or Detonator skills will cause the cloud to explode in a fiery blast.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9d260b5e6eab4ec1c8755dbc74a85c0ae8cb504558e750c400253d1a02eb8ee9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGatheringStorm",
+      "description": "Flip backward and Channel to charge your Quarterstaff with Lightning. Releasing causes you to dash towards the target location, damaging enemies along the way. Releasing with Perfect Timing performs a Lightning-assisted dash that releases shockwaves from enemies you dash through. Perfectly Timed dash also explodes Tempest Bells on hit creating a shockwave that deals more damage and has a larger area, leaving Shocked Ground in its wake. This skill cannot be Ancestrally Boosted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "285d273d5e97c527aa158838f41dec32d9527cf5350fe42502b1d6ded7342015"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGelidPalm",
+      "description": "When you Hit with Unarmed Melee Attacks, projects icy wind which deal Unarmed Attack damage to all surrounding enemies and destroy Ice Crystals.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "21e236c75799b6f27c9095aadd80571ccdc17beb24ed28a6b65f2775e90c7244"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGeminiSurge",
+      "description": "Grants your weapon Surges. Non-Melee Projectile Attacks with that weapon Consume Surges to cause the Projectiles fired to explode at the end of their flight.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "3646aa13bc09de8730e6b7083c2f379b10be8daa56c0f6ce4da870b1158b1f23"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGhostDance",
+      "description": "While active, causes you to periodically gain Ghost Shrouds. If you are Hit while you have a Ghost Shroud, it is immediately consumed to recover Energy Shield based on your Evasion.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "612b8d8b0e28a60acdb46caefd1308c4c0e68ce97cc9565bd1786a3054380672"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGlacialBolt",
+      "description": "Load your Crossbow with icy bolts that create two walls of Ice Crystals at the end of their flight.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1936f3e709becb47b5d4ae27ab625718b0491a56e4d4ae3f8eabf456d3db5083"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGlacialCascade",
+      "description": "Sweep your Quarterstaff upwards, releasing an icy fissure which deals damage in a series of bursts culminating in a large spike. Frozen enemies hit by the final spike are dealt heavy damage but the Freeze is Consumed. Ice Crystals hit by the final spike explode.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "64c9dc85b978ae74056bd18fd6ed9f9bae01a9ea34ee533a0ede9650a9ce0a0a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGlacialLance",
+      "description": "Throw a single Piercing lance that leaves icy fragments in its wake. The fragments Chill nearby enemies. Consumes a Frenzy Charge if possible to cause the glacial fragments created by the first Projectile to explode outwards after a short duration, peppering enemies with shrapnel.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "035c47a6dacaff8b149fab82aca514e1f0dd45f0fb2e49321aaa0bd25e8e5280"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultGrenadeLauncher",
+      "description": "Fire a bouncing Grenade that unleashes a shrapnel blast when its fuse expires.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "d9fde2ee0e7efc980a56bd812d2f5264d069820fd9b05c64d5b1cf3190cebb64"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGrimFeast",
+      "description": "While active, your Reviving Minions store a percentage of their maximum Life in a collectible Grim Remnant on death. Using Grim Resurrection Consumes the Life you've collected to Revive up to that much total Life of dead Minions.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9fd0a1bbd49a89ade3c178ae1c0ecf10fa78dfc4651bc82ef0b4f0d296080881"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemGrimPillars",
+      "description": "Spend Runic Ward to cause damaging Ice-Crystal spears to erupt from the ground around you. These spears can be destroyed for an explosion of Cold damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "99657a58f2a65bc78c213c52897db0ef0ff780ab4b746dd672426d4377a188b5"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHailstormRounds",
+      "description": "Passively generate bolts of ice at a frequency equal to reload time, up to a cap. Activate to Load the accumulated bolts into your Crossbow. All loaded bolts are fired at once, causing them to rain down over the target area.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b8c00447f5326fd63d64bd734980cbd37b16aa053315e9ac4d2f0f8fb850e785"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHammerOfTheGods",
+      "description": "Build Glory by Heavy Stunning enemies. When you have maximum Glory you may entreat the Ancestors to crush your enemies, manifesting a massive hammer that falls from the sky onto your target, Slamming into the ground after a short duration and dealing immense damage based on your weapon.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "8f74e6242305cf2e69ca254b6a36406edc9e7bc5d074250adb154f909cf3cf6e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHandOfChayula",
+      "description": "Dash to an enemy and Strike them, triggering socketed Marks with increased effect and applying socketed Curses with increased duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9887be13540cc7005b65186003d4876a613a77f5580c288c38acf95ee7418504"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHarbingerOfMadness",
+      "description": "Draws out the latent fears of enemies you kill and Rare or Unique enemies you Hit, turning them into unstable apparitions which charge towards enemies and then explode.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "523c02a4282450be3aef819de15a71125506e8f3f5ed3442d758a1e5bbec1bc3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeartOfIce",
+      "description": "Chills all enemies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "6376325ca3cefa62419913956f138d993c0c4ee5fb59d9b38e77821ff150ce9e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfAsh",
+      "description": "While active, enemies you sufficiently Overkill with non-Herald Attacks will cause an explosion that Ignites nearby enemies based on the Overkill damage dealt.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "490fced0c27ab2cbe080be31bbb4594255cd5ebd618876213cf5fa959ed71c78"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfBlood",
+      "description": "While active, killing an enemy with Blood Loss will cause a bloody explosion that deals Physical Attack damage to surrounding enemies. This damage is not based on your Weapon, but is partially based on their accumulated Blood Loss. The explosion destroys their Corpse if the enemy was Normal or Magic, and has a chance to Aggravate Bleeding.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "071a2a3c5991fe246366e4fb553add155520fb6fbd24ad2c02c4b907426a8c9f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfIce",
+      "description": "While active, Shattering an enemy with a non-Herald Attack Hit will cause an icy explosion that deals Attack damage to surrounding enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a037421591154fd33f803573a232aa0c757173387198432ba2116d0120098bf1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfPlague",
+      "description": "While active, killing a Poisoned enemy spreads its Poison to other nearby enemies, and has a chance to also Hinder them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2057811f1a0452ad11cdd86385e6ca87967c5ccddf3d28ea0d706097c7b3958f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemUniqueAtziriHerald",
+      "description": "Killing an enemy with Blood Loss will cause a bloody explosion that deals Physical Attack damage to surrounding enemies. This damage is not based on your Weapon Damage, but is based on their accumulated Blood Loss. The explosion destroys their Corpse if the enemy was Normal or Magic.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "9855ad262804f17f698d4d890e5fd321bb34f2fc3b1f3cfa46712f5de7203124"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfThunder",
+      "description": "While active, killing Shocked enemies with a non-Herald Attack Hit will cause subsequent Attack Hits to release lightning bolts which dealAttack damage to all surrounding enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e59130235860e83015cda22753869c97c790e55eaca1c359efbfcadb866f9fa4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHexblast",
+      "description": "Detonate a Curse on every enemy in an area, causing explosions of Chaos damage but removing the Curse. Can only detonate Curses for which at least half of the duration has expired.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "32d25d28226aed7fcaf5cb5f0a40c7ab1d9712735d94b2e8852f934625d19b92"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHighVelocityRounds",
+      "description": "Load your Crossbow with Piercing bolts that apply Riven Armour to enemies with Fully Broken Armour, causing any Hits against those enemies to deal extra damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "acbfa4f14e3bd5608abca0735103e8ceb073ed321e6fdbcee0062cc17654747f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHisFoulEmergence",
+      "description": "Conjure a horrific skull rising from the lightless depths to bite your enemies dealing high damage at target location and leaving Withering Ground in its wake. Targeting close to you will cause you to jump back as you cast.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "3e1ec136b355d4e9c543a5ad204a087ff84a5d6dfd389409d0947ffd9088df32"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemScatteringCalamity",
+      "description": "Conjure a crackling Wellsprite that hovers above you. After a short duration, the Wellsprite launches at an enemy, dealing Lightning damage in an area on impact and prioritising the last enemy targeted. Recasting this spell resets the duration for all active Wellsprites.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "9c9681878139b38000bb0924c992f807820434c7d301bf75c15ad8865e44265b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVileDisruption",
+      "description": "Target an enemy to either teleport inside the target's body if they are under the Cull threshold, causing it to violently explode, or to apply a Debuff to them, which will cause the same effect if that enemy falls under the Cull threshold during its duration. On teleport, the target is destroyed, and the explosion deals Physical damage to surrounding enemies and inflicts Impale.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "b2b42b2b0bf587a569cc0064ba3625af92df452c1ff25654271174f2195571d2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHisWinnowingFlame",
+      "description": "Conjure an abyssal scythe that sweeps across the targeted area, dealing Fire damage to enemies and Consuming Ignite to create pillars of flame. Cannot be Triggered.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "d6bee282757d95971e1f15328c0ac231bf81ffada3de865308d7993149ce9d76"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHollowFocus",
+      "description": "While active, ethereal bells periodically appear near you. Your Hits immediately destroy the bells, creating a shockwave that damages nearby enemies and causes a Heavy Stun on enemies that are Primed for Stun. The bells are themselves always Primed for Stun, they can be Culled, and Hits against them are always Critical Hits.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a67cd63a6eded777505955e248f59d4f9ffbfe6dfd6537b3cc9f9884d6253a3b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHollowForm",
+      "description": "Channel to create fleeting images of your astral self near the target location. The images perform a Socketed Melee Attack once then vanish, targeting the closest enemy if possible. The images cannot perform Channelled Skills or Conditional Skills. Consuming a Power Charge creates additional images.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e61b57ae213813adf3c229352a0367b80999ff79df1fbb11a63e60265fa93b9b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHollowResonance",
+      "description": "Attaches an ethereal bell to your back. Critical Hits with other Skills will cause the bell to ring out, damaging nearby enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4f555c83178b7030dea7b27c8a0d793e79919879a289af96ff1db12373abc0c8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHollowShell",
+      "description": "Sacrifice your Runic Ward to send out an energy pulse that grants nearby Allies Guard.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6378a8ce7eee4b04162a905a33348074de25082703fcbce563ce338177901197"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIceFragments",
+      "description": null,
+      "descriptionStatus": "missing",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "647539b5de65b59f8e611796e007822e619cb8c9a17a6a4a44c6bdf73e8ef2be"
+      }
+    },
+    {
+      "id": "ice-nova",
+      "description": "Conjure a wave of ice in all directions, Knocking Back enemies based on how close they are to you. Casting Ice Nova targeting near a Frostbolt Projectile will cause it to originate from the Frostbolt instead of you. Consumes a Cold Infusion if possible to leave a patch of Chilled Ground.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "024888550af2f5827d379730a715b6e0277677c88262d3fe6399267ffeaf8e68"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIceShards",
+      "description": "Load your Crossbow with a clip of icy bolts that rapidly fire at the ground, leaving a shard of ice at the impact location that arms after a duration. After arming, the ice shards explode when enemies step on them, dealing more damage the longer they have been armed, up to a maximum. Using this Skill again reloads the clip.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "aa02b3d1a0c347965b6fab25aeb695df10432afde2a72eb6d398cf786c226423"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIceShot",
+      "description": "Fire an icy arrow that sprays a cone of ice shards when it hits a target.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e249f845eca5114b45de26b9c95a035cf7fa0291ea0c941ba5d57fd943030a53"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIceStrike",
+      "description": "Perform a fast icy Strike. Using this Attack three times in quick succession causes a final strike that is slower and more powerful.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0e2e57711aea9968e75db8e02f24a1f5fbb787e4f4aa702d61d30d5ce2367292"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIceTippedArrows",
+      "description": "Ready your active Bow or Spear, Empowering your next Repeatable Bow or Projectile Spear Attacks to Convert Physical Damage to Cold Damage and Trigger Ice Fragments on Hit. This Skill's cooldown can be bypassed by expending a Frenzy Charge. Cannot Empower Sustained Skills.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3cf889d8cf7d1236f49e79c34bdaefb5c0de9360b50da8872e61caf8aa5632e6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIcestorm",
+      "description": "Conjure a hail of icy bolts over the targeted area. Chill and Freeze on enemies in front of you are Consumed to fuel the Icestorm by creating improved bolts.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "678814f44a93b381eb2e713c39f5fa302a1cd992c47c8e40a40dd8f563b08f25"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemImpurity",
+      "description": "Emit an Aura that boosts the Chaos Resistance of you and Allies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "34aca7eecb99f187515ee9ff2dafada5cfc3f4220e7950a716a6b70068963f19"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIncendiaryShot",
+      "description": "Load your Crossbow with flaming bolts that fragment in flight, damaging and Igniting enemies on hit and in a small cone behind their final target. These fragments can Merge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "670342fa8c434e9b230e78cf726abe3eea678b884508997e2c2293e78f2dc26f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIncinerate",
+      "description": "Gain fuel by spending Mana on any Skill, then use the accumulated fuel to conjure a torrent of Fire from your hand, Igniting enemies in front of you. The flames grow stronger the longer you Channel. Consumes a Fire Infusion if possible to also create Ignited Ground. Cannot gain fuel while using this skill.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e8de75d37d88648c5aae14774152de209038064b48470b735f33b694bacb395b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemInevitableAgony",
+      "description": "Debuff all targets in an area, causing a portion of Damage they take from Hits to be tracked by the Debuff. When the debuff's duration expires or can kill the target, the target loses life equal to that tracked damage all at once.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b36be0e5b4f998150e070d38411ccf2e386a579ae01038d886e1decbcb68d5d7"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemInfernallCry",
+      "description": "Perform a Warcry, Empowering subsequent Melee Attacks if there are enemies nearby. Enemies in the warcry's area are destabilised and will Combust on death. This Skill's cooldown can be bypassed by expending an Endurance Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "da530d3062c20ed0b6d245ce7bdaa0e6fd9f971820a02af81b067433e86d5784"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIntoTheBreach",
+      "description": "Create a Breach around you, allowing you to see nearby Flames of Chayula. You are considered to be in a Breach while this skill is active.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3147ad5fdb3b590b420ba294ebb9fcc5a6166f239bde101085739d19dc729697"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIronWard",
+      "description": "While active, stores a percentage of the Physical damage that is prevented by your Armour or other sources of damage reduction. Using this Skill releases the stored damage as a nova of spikes.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ab689020fb9441f2a223f534ecb3f5d9fce4b23806c91bef64071a8164402c93"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyCorpseBeetles",
+      "description": "Harness Kelari's power to passively Consume Corpses in your Presence, causing Corpse Beetle Minions to burst forth. The Beetles passively follow you until Commanded. On your Command, they rush the target and explode.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "56b021cd2d046e7dee14d5bcc970fd7912b6a194eb276c63c1b1b7ab4f093a4f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancySummonSandDjinn",
+      "description": "Summon Kelari, an invulnerable Sand Djinn Minion, to do your bidding. Kelari will only act when you Command him to do so. Kelari delivers swift Hits with massive Critical Hit potential.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "136b02d7650712d310cd545bf47344039d3c97f59a0194e624ff050c99af04c7"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemKillingPalm",
+      "description": "Dash to an enemy and Strike them, Culling enemies if their life is low enough and performing additional dashing Strikes to other Cullable targets in range if your target was Culled. Each enemy killed by this strike grants a Power Charge, with higher Rarity monsters granting additional Charges. Enemies around you that can be Culled will be highlighted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "8d2f91a170fef836d28d316469f4584d5713983c8705d6e0e479322d84a175a3"
+      }
+    },
+    {
+      "id": "leap-slam",
+      "description": "Jump into the air, damaging and Knocking Back enemies with your mace where you land. Enemies you would land on are\npushed out of the way.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "59c4f4dfabc630483ab90d7da3d476cffa81efc92110de91b9b42ee74050dc14"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLeylines",
+      "description": "While active, areas of intense runic energy are revealed to you. Standing over them grants you a powerful Spell damage boost but constantly drains your Runic Ward. Running out of Runic Ward causes the energy to temporarily dissipate.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b0eac8c82fa5f719d5720189b3214da4f01eb9a05e705bb2465e96270389dc9a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyLifeRemnants",
+      "description": "Drink the blood of your enemies to restore your Life. While active, enemies you kill have a chance to spawn a Life Remnant, and Hitting a target spawns a Life Remnant every few seconds. Picking up a Life Remnant grants you Life which can Overflow maximum Life.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "f347d6182509ddcdd3070aec718e0f7b1b026b3fc4e15aa79c8d7e283454e907"
+      }
+    },
+    {
+      "id": "lightning-arrow",
+      "description": "Fire a charged arrow at the target. On hitting an enemy or wall, the arrow will fire Chaining Lightning beams at nearby enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "29f0b12e6c7087f45fdcab038c72243fed219f1017a64eda0a77619b710f7b1c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLightningBolt",
+      "description": "Call down a Shocking bolt of Lightning to strike enemies in a small area.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "6f08b81b7a9ff0f77371544cf6c67403e33595a9491c4cf0c1e8940e9bbd16d6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemUniqueBreachLightningBolt",
+      "description": "Call down a Shocking bolt of Lightning to strike enemies in a small area.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "9c4efa0f39b56d5b14828c1dd0893d676f715727f6f3acb5975a77d70595dbdf"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLightningConduit",
+      "description": "Call down Lightning to hit all enemies in a cone in front of you, dealing significantly more damage to Shocked enemies. If there is a Shocked enemy in the target area, additional lightning bolts are distributed among the targets hit. Targeting close to you will cause you to jump back as you cast.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2aaddce6d1e9f93f4a66f234be2fe7a53fe8d30846d01d643d86882a5707a8d4"
+      }
+    },
+    {
+      "id": "lightning-rod",
+      "description": "Fire an arrow that drops from above, creating a Lightning burst. The arrow remains in the ground, and any Chaining Lightning beams can Chain to it. When Chained to, the arrows charge up for a brief period before releasing another Lightning burst. The Lightning Arrow Skill reduces this delay, causing bursts to happen more quickly.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9c961a4c19fb2a71ffc83746aa2aef7e8ba89001601c7eb280123b53184c4599"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLightningSpear",
+      "description": "Throw a single copy of your spear. When it hits an enemy it bursts, firing secondary lightning bolt Projectiles at multiple other enemies within a large area around it. Consumes a Frenzy Charge if possible to cause the main spear to split into multiple copies on impact, each of which then bursts.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "003fc14c710c10a7179c13ab3bf16286708a8c702ccd62ead5683db21b943ef3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLightningWarp",
+      "description": "Target an enemy to either teleport inside the target's body if they are under the Cull threshold, causing it to violently explode, or to apply a Debuff to them, which will cause the same effect if that enemy falls under the Cull threshold during its duration. Can also be used on Ball Lightning Projectiles. On teleport, the target is destroyed, and the explosion deals Lightning damage to surrounding enemies. If targeting an enemy, the explosion also creates Shocked Ground. Creates a Lightning Infusion on successful use. Highlights enemies that can be Culled.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6251da187b3006aa95dd2e1a592b2994f8acbed935693a696afeeb4543176e42"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLingeringIllusion",
+      "description": "While active, creates a short-lived illusory copy of yourself whenever you dodge roll. The copy can be damaged by enemies, and copies that are destroyed by an enemy will drop a Remnant that grants you a Power Charge on pickup.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2e241cb389221a8c31e992542bf41f8362af4397d86e00c98ee242841491ec47"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLivingBombPlayer",
+      "description": "Plant a seed of Fire inside an enemy. Dealing enough damage to the enemy, or killing it outright, causes the seed to explode, dealing damage in an area and leaving behind a Fire Infusion Remnant.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "fbc8a967cc9c89c685999bc88c2398920575d9a606281bc398dcfabaff7108f8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemLunarAssault",
+      "description": "Shapeshift into a Werewolf and swipe with your claws, projecting an arc of moonlight and ice forward in a crescent.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fb51c59d31828448e93e4c57a1e6af3f92bb91a5c9e1537545afa82365e1f1b1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWolfLunarBlessing",
+      "description": "Shapeshift into a Werewolf and offer your Rage to the moon to receive a blessing, gaining bonus Cold damage for yourself and any Wolf Minions you have from Wolf Pack or Predator's Mark. Spends all Rage to extend the Buff's duration. While the Buff is active, your Werewolf Melee Attacks call down Moonbeams on Hit.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "aa136ba317d0fef2a6729ecf7cdd1d3bca1cd0ed5b184403a233a82782067ac1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefault1HMace",
+      "description": "Strike with your Mace.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "a92cd7fd7a134f69ec922ce29d118ff69161ac99dde61e3d70edba49bd3183cf"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefault2HMace",
+      "description": "Strike with your Mace.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "3d5763042ca5ee3c84c90a71f436ce9f8a36c65ffb6f6cd0c4a4ec3e571bea22"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultMaceMace",
+      "description": "Strike with your Maces.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "f0d099a88291a7c40568b1adaf04fc78dc841d6746feec591daada5044eee1b9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMagmaBarrier",
+      "description": "While active, increases your Block Chance passively and imbues your Shield with lava over time. When fully imbued, your next Block with your Shield raised will expend the lava to Trigger the Magma Spray skill and grant you an Endurance Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "09b6ddca311b67e3be4552d4f11fe2c4b748378536fe1dbb8e6a95f733d7d011"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMagneticSalvo",
+      "description": "Aim skyward and fire energy missiles at lingering bolts or arrows created by other Lightning Attacks in front of you. The missiles explode if they land close to a lingering bolt or arrow, dealing more damage in a larger area but destroying that bolt or arrow in the process.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ce07f030018fdc6edfc1682d4cecf7efca7cd40d6e63ae2d36e2915afc4cb7eb"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMalice",
+      "description": "While active, emits an Aura that continuously inflicts Critical Weakness on enemies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "c7580a6d59159a0630b0731307b8dad2be92e0a0c62784acf6947c9680b6e6f4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemManaDrain",
+      "description": "Leech Mana from an enemy over a prolonged period, as well as briefly Hindering them.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "62f01ae930ebb1c8d9d47b6cdc4e3413d95524a5be38cf8ab803000045d48928"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemManaRemnants",
+      "description": "Conjure surging arcane energy to restore your Mana. While active, enemies you kill affected by Elemental Ailments have a chance to spawn a Mana Remnant, and Critically Hitting a target with Elemental Ailments spawns a Mana Remnant every few seconds. Picking up a Mana Remnant grants you Mana which can Overflow maximum Mana.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0f1d8a48d0362b336f6536ac1fea5b1aa0ef6d04af9a36c86252227718775e7d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemManaTempest",
+      "description": "Create a storm of arcane energies that Empowers your Mana-costing Spells while you remain inside it. Maintaining the storm constantly drains your Mana, and spending more causes it to drain faster. The storm will dissipate when you exit it or run out of Mana.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "def4735d081141c64fe2d0ae16612843ae29d450dd7c3572513eba16e03aa58a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemManifestWeapon",
+      "description": "Manifest a copy of your main hand Melee Martial Weapon as an immortal Companion to fight by your side. In addition to its standard Strikes, the Manifested Weapon gains an additional Attack depending on its weapon type.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "925dcb32ebf19b8538d4e3aa117eaf3a61ec026e687c727bce23f05b71e4d1b1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMantraOfDestruction",
+      "description": "Build Combo by successfully Striking Enemies with other skills. After reaching maximum Combo, use this skill to Empower your next Quarterstaff Attack, causing it to deal additional Chaos damage. Each kill with the Empowered Attack grants Purple Flames of Chayula for a duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e5c5cc4ab7237b39d6a66615504ac4269718a3f5d16a0928ae3cfb6d4a6c0c96"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBearMaul",
+      "description": "Shapeshift into a Bear and rake enemies with your claws, generating Rage on Hit.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "7fb955d4eda985c650d3e9f0aae4c2a0b239cc4b34e77f4d55950e99a2048d31"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyMeditate",
+      "description": "Channel to Recharge Energy Shield and allow that Recharge to Overflow. Channelling ends when you take damage or your Energy Shield is fully Overflowed.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9b47d6090346db7ace46e53bb272b9f4c86d83a523d1a6fc79894df52954e4ac"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMidnightStar",
+      "description": "While active, Critical Hits with other skills that kill targets, or hit powerful targets cause you to gain Arctic Petals. Once you have enough Arctic Petals they will be Consumed to create Ice Crystals near the most recent target.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "4cabb27e8331c08fbecd811245ccef81eb6cfe48924f5657efedd3ea8c2a2588"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMirageArcher",
+      "description": "While active, dodge rolling will create a Mirage that uses socketed ranged Attacks for a short duration, then vanish.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b5c109ae8bfd96bf3cdf194ffeeedcc61c478e10d6fa12e97835b5a704ff8b59"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMirageDeadeye",
+      "description": "While active, firing a ranged Projectile Attack will create a Mirage that uses socketed ranged Attacks for a short duration, then vanish.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "18ef978c8c134ad81ec5d48e272b804e4334eb29773a4e786a341afe47737ec2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMirrorOfRefraction",
+      "description": "Mirrors of Refraction appear in your Presence periodically. Hitting a mirror with a Spell Projectile causes it to shatter, copying the projectiles in a nova around the destroyed mirror. Copied Projectiles may be copied again when colliding with other mirrors.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "a132a50a2890f44939b3c198d9acd65f6e6848914655d0feac7783fa96d64360"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMistRaven",
+      "description": "Summons a mysterious undamageable Mist Raven that can be Commanded to dive at target location, crashing through an otherworldly mirror and damaging enemies in an area. The raven grants you a Frenzy Charge for each enemy it Culls.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "993d054a96ac28a370abd82f87d9c8ccd05182448292bdbcd818f09370b4c951"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMoltenBlast",
+      "description": "Gouge molten rock from the ground and fling it at the target. The Projectile explodes on collision, damaging enemies and scattering shrapnel in a cone behind it.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b14d80183b56f80a27513052893c4d153176234767d78dad9caaffd24ee2f636"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMoltenCrash",
+      "description": "Shapeshift into a burning monstrosity and leap through the air to crash down upon the earth, Slamming twice and creating Molten Fissures. Consumes Rage to create additional Molten Fissures.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "28626e199bb2ec23c1399c7df1e6aa27357a1c808a90c67b5315bfdeffd232be"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMoltenShower",
+      "description": "Fires molten Projectiles from the enemy hit, which will explode when they land nearby, dealing Attack damage in an area.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "073070f4653923c2e20be80e1338740700cc40d682ed057041086950962095ee"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyMomentOfVulnerability",
+      "description": "Send out a temporal Nova to take advantage of enemies' moment of vulnerability. Hitting enemies that are Primed for Stun, Electrocution, or Freeze causes a visage of them to appear, lasting as long as the original target would have been affected by the form of Immobilisation used to create the visage. A portion of the damage dealt to visages is also dealt to the original.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fd1286912e6ce840f5c1c70b1120a4175cd8e7e151cb4cd0bfd9a39f3337ee82"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMortarCannon",
+      "description": "Raise a cannon Ballista Totem which uses socketed Grenade Skills, with significantly improved Cooldown Recovery Rate.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "8534072fb01bfda1bf47d51f036b88af37eddb6f0ee475331427ec936e95511f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancySummonWaterDjinn",
+      "description": "Summon Navira, an invulnerable Water Djinn Minion to do your bidding. Navira will only act when you Command her to do so, bestowing restorative blessings upon you and your Allies with her Spells.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6c5954084cd45abf8c270aa6e94f689b9869eb4e5f529f9fad2056813a5cba84"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemOilBarrage",
+      "description": "Shapeshift into a Wyvern and spit Oil at enemies, creating Oil Ground where the Projectiles land. Consumes Power Charges if possible to instead Channel a sustained barrage of electrified Oil that does not create Oil Ground. Projectiles are fired in sequence, allowing multiple Projectiles to Hit the same target.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "f5ab6d432db7b1e66dedb226cc3414e4463bbfe6653b768d19b7b9f59f59fdfd"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemOilGrenade",
+      "description": "Fire a bouncing Grenade that bursts in a spray of Oil when the fuse expires or when it impacts an Enemy, dealing minimal damage but covering the ground and nearby enemies in Oil. Oil created this way can be Ignited by Detonator Skills or Ignited Ground.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ff039b931269595d9fc55e32109ff5824828799b86602e71d8b3dc61a384c6bc"
+      }
+    },
+    {
+      "id": "orb-of-storms",
+      "description": "Create an Orb of electricity that fires Chaining Lightning bolts at nearby enemies. The Orb leaves behind a Lightning Infusion Remnant when it expires.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2ca8f63cc6521f8b51d13af0300561bff0360b821a5a1854ac7883b531376de5"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemOverwhelmingPresence",
+      "description": "While active, emits an Aura that makes enemies in your Presence easier to Stun and inflict Elemental Ailments upon.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6d4b7de1fadcb01d047fc0cf1f4f5b3d1b827e58787ba09f7c3cb1b53970adaf"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPainOffering",
+      "description": "Skewer a Skeleton on a bone spike to send nearby Minions into a frenzy as long as the spike remains, making their skills faster and harder hitting. \nThe bone spike is itself a Minion. If it dies, the effect ends immediately.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a10a8b27eec12fdb2477173a5dc99136c89346d40d5f18d59b0becef5fba409d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemParry",
+      "description": "Ready your Buckler to parry the next Hit you would take, Blocking the Hit and retaliating with a quick sweep that leaves enemies off balance, causing them to take massively increased Attack damage for a short duration. Parrying causes you to accumulate Heavy Stun buildup. You cannot Evade a Hit you could parry, but Evasion instead grants an equal chance to avoid this Heavy Stun buildup.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "41a2fecb2dab807bd2f4ec15e6d0362c4c9b0e54c789097732aab58ae3d56a7b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPerfectStrike",
+      "description": "Channel to charge up your weapon with Fire. Releasing with Perfect Timing will create a damaging wave of intense Fire.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5183f0494d8554637ca36391f7fc9360e54ce59c5e687a8310fd71e4ff9dafcd"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPermafrostBolts",
+      "description": "Load your Crossbow with icy bolts that fragment in flight, damaging enemies on hit and in a small cone behind their final target. The icy coating on the bolts makes them extremely potent at Freezing enemies. These fragments can Merge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "91b2f83999487952d7b051ed4b5022ee23cfa9d7a35eea7753d85d08219758cb"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPhantasmalArrowPlayer",
+      "description": "Fires an arrow that embeds where it lands for a short duration. At the end of the duration, the arrow explodes in spectral flame, turning it to ashes and damaging enemies, with a high chance to Ignite. Igniting any enemy with the Explosion also applies Ignite to enemies within range.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "45351893ee1cb9a58fd2bf40a2aa8fa200a89bcfd6f2fe78a575601a8996fc10"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPinnacleOfPower",
+      "description": "Consume all Power Charges to master the elements, gaining Elemental Damage and the ability to apply Elemental Ailments with other damage types. Can only be used while you have maximum Power Charges.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "d9f6012d2106ebbd00a6cf6d9cf94bce9fb9cae888a213651d87140bee6eb4c4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlagueBearer",
+      "description": "While active, stores a portion of the Poison Damage you deal. Using this Skill unleashes the stored Poison to damage and Poison enemies around you.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "285282096ce6e58bfc39213c478f201de18b3e5d283fbc224f743cad976b9cb3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlasmaBlast",
+      "description": "Load your Crossbow with unstable bolts that require a lengthy charging period to fire but deal devastating damage, Pierce through enemies, and explode upon hitting terrain. Additional Projectiles are fired in a spread, unlike other Crossbow Skills.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "32c5398dd1d7de8b20a5dbf1fc8e48b7b40f6963e8ec3eb3a7465dac9b31ffa7"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow",
+      "description": "Fire a virulent arrow that creates a burst of Poison on hit, affecting all enemies in an area.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2fc036a0f7c5a94ed3b22cc4a732c6688f18a75b15b2c9d3bb65c2b9a225fc5b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWolfPounce",
+      "description": "Shapeshift into a Werewolf and leap to a target location, damaging enemies in an area around where you land. Predator's Mark will be Triggered targeting the highest Rarity enemy Hit, or if a Mark gem is socketed into this Skill, that Mark will be Triggered instead. Using this Skill allows any Wolf Minions you have to leap immediately.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4b64cd739e184fecb6c8df334e85fe0019c33c0e676e0c4805437a36747808ed"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPowerSiphon",
+      "description": "Attempt to rip the lifeforce from an enemy. Enemies within Culling range will be highlighted and instantly killed on Hit, granting a Power Charge. Can only target Enemies in Culling range.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "df13791765e8055f9f34629dc4333f021e6c784890a45d975d8a5308dd076c22"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPoweredByVerisium",
+      "description": "Spends Ward to generate Verisium Infusions, which can be used in place of any Elemental Infusions.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1bf1b913e64b2855be7f9bfee04d1d114e3ae608c43736c4a47c40f8a44e2413"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPrimalBounty",
+      "description": "Empowers the next Projectile Skill you use, causing it to create additional Projectiles and fly faster.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "21ebc9333c5b4b8c7cbb5f1cd056903a56f5b9770aa4c722f279934ac94c5308"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPrimalStrikes",
+      "description": "Perform a Lightning-charged stab that can be chained into a combination of up to three attacks. The first two attacks conjure a charging Wildwood spirit if they Hit a Shocked enemy and refresh Shock duration. The third attack is a large swipe that inflicts Elemental Exposure, and can Consume Shock to conjure a stampede of spirits.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "95f3c8cb50a9ee47a839a54d42bcf236f78230395bb42e49d1db241b03af8e32"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemProfaneRitual",
+      "description": "Mark a Corpse with a profane rune, dealing Chaos damage over time to nearby enemies. When the ritual is complete the Corpse is consumed and you gain a Power Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3ed42747649a989e3358a22eddf8bb9b74e3badfcb460cebc6a4314c8a3de503"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPurityOfFire",
+      "description": "Emit an Aura that boosts the Fire Resistance of you and Allies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "9f6a49508e1fd73b3dde07e48330d36e619f37ed2c2f427919a7ccd3dfe92f3a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPurityOfIce",
+      "description": "Emit an Aura that boosts the Cold Resistance of you and Allies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "cad304fa1a6b806e004b8950156568ef7d9603ff79b30341f631573d36da4ca2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPurityOfLightning",
+      "description": "Emit an Aura that boosts the Lightning Resistance of you and Allies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "e09145bd23e5f1914d76dc521babdf95e270061a1b673d3ee6b1097021de1519"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultQuarterstaff",
+      "description": "Strike with your Quarterstaff.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "b6c020f2da09c4241dcfb4af57a2b04449b43358ec5acca163ad338e63f01152"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRagingSpirits",
+      "description": "While active, Fire Spells you use yourself will also summon Raging Spirits, which are short-lived flaming skulls that rush at nearby enemies and rapidly Attack them, ignoring commands. Enemies will not directly engage these Minions, and can pass through them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6dd52501e9f24074a2253a4b39a8b7eafb68353a9f912ea66fcb83cc8cdda65f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRainOfArrows",
+      "description": "Fire a hail of arrows into the air, causing them to rain from above. Consumes a Frenzy Charge to fire more arrows.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e459b112f4fb6c9a3ef8e8f5689463d2aa53bb8a25562dd7c89fda73489c3c3f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRainOfBlades",
+      "description": "Pour your Runic Ward into conjuring blades. For the duration of the Buff, these blades fall on enemies Hit by your Projectile Attacks.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "73b082b74f7252eccece32ff8123add71e92ff2101ec2dc1e2e6daaafd13a00e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShieldBlock",
+      "description": "Raise your Shield to Block all incoming Blockable hits. Release immediately after Blocking when an enemy is close to perform a Shield Bash, damaging and Stunning enemies. While your Shield is raised you cannot be Light Stunned by hits you Block, but Blocking too much damage may Heavy Stun you. You cannot Evade while your Shield is raised, but Evasion instead grants an equal chance to avoid this Heavy Stun buildup.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "c75d917cd251b5bc478074e5f326a237d38236716da3067c4ec2e8a633a34638"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRaiseZombie",
+      "description": "Consume a Corpse or Power Charge to create a short-lived Zombie. Zombies created from Power Charges are Empowered and also create two additional non-empowered Zombies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "f6d6bda7f6a27aa4343f84bf49ef47e0fc8f26e3f984f94bab2219f45ff91f4c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRake",
+      "description": "Dash towards an enemy and perform a lacerating slash, inflicting Bleeding on all enemies struck.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e7b79d42fd5a857319bdff48d1d7e499bed6f87a49c909680a667d2455461d72"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemBearRampage",
+      "description": "Shapeshift into a Bear and charge forward, Slamming the ground as you run. Channelling ends after a short amount of time but can be prolonged by spending Rage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e1b971f8d8d0746889d5f3292115195e25a994c8bd1fc5c114c4afa8e10f8ae3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRapidAssault",
+      "description": "Perform a series of six rapid stabs. The final stab inflicts Bleeding and leaves a spearhead stuck in the target, Maiming them for a duration. Detonator Skills will cause the stuck spearheads to explode, dealing further damage to the target and other nearby enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e4800e2e2547cdf5499fe3b10acdab18792e63a9795d37fef257b6a9c447a303"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRapidShot",
+      "description": "Load your Crossbow with a large clip of heated bolts. Heat builds up on your Crossbow as you fire them, and reaching maximum Heat will prevent you from firing or reloading these bolts for a short time. However, other Skills can Consume Heat for extra benefits. Using this Skill again reloads the clip.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c8708775704e069a9870ef9536b9dd9762bd72658fd9a144ad6ca7868f2c6f38"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRavenousSwarm",
+      "description": "While active and enemies are present, swarms of insects emerge from your body to pursue nearby enemies. The swarms are untargetable Minions that Attack and Poison enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2869d41cd05cd0868fef2b7a111ee4b41e0f4e508e3e69529e178ef73a2e7cc8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemReap",
+      "description": "Conjure a bloody scythe that sweeps across the targeted area, dealing Physical damage to enemies and applying Critical Weakness. Cannot be Triggered.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "9c68c048730f6303ef58a55c69178c622168dddaee8d127ab6c020db80535bf0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemReapersInvocation",
+      "description": "While active, gains Energy when you kill an enemy with a Melee Attack. Using the Invocation once sufficient Energy is gathered will consume the Energy to trigger socketed Spells, and can trigger them multiple times if it has enough Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3dbcc42b6cb847fa1fd34f5756dd3bafe77e334dd78c25c312a8efb7d2607f2f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRefutation",
+      "description": "Spends all your Runic Ward to gain a short-duration Buff that causes you to Block all Blockable Hits and apply Parried to enemies from which you've Blocked a Hit. This Buff is removed if you are Heavy Stunned. While this Buff is active, you cannot be Light Stunned, but Blocking too much damage may Heavy Stun you.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e65708abd4821f4441526ea939d53812b7eacb674af6235b6c283338639e6d59"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRemnantsOfKalguur",
+      "description": "While active, enemies you Stun or kill have a chance to generate a Runic Ward Remnant. These Remnants can Overflow your Runic Ward.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "86b131d17ea5d1bf4edb4c84f7b224f2be6755368c743ab5d02fa549582ec935"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWyvernRend",
+      "description": "Shapeshift into a Wyvern and perform a wide slash with your wingtip claws. Consumes a Power Charge if possible to grant you a Buff that gives you extra Lightning damage. While you have the Buff, Rend covers a much larger area but is slower.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "399eb50ba22e83d3ea9224ab5514e4b442ec602cae7b64115f61c84bd7fca488"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRepulsion",
+      "description": "Spend Runic Ward to Curse enemies with a Verisium Rune, inflicting them with Fragility. Hitting these enemies removes the Curse to Trigger an explosion, Knocking Back nearby enemies and causing more Stun buildup based on the Fragility on the target Hit.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2d528f4a209e4105f2cd65d109c11a141ea1446bd0366f03d9fd32344168f2af"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCrossbowRequiem",
+      "description": "Your weapon passively accumulates anguish from the tormented souls within. When fully charged, use this skill to compose the Requiem, transforming your Crossbow shot into a torrent of anguish for a short, fixed amount of time. Does not use Ammunition.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "ff553c4dcbe93ab19763d6bbe3854179d9c56b8652d2fcf95f4138af591f057e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemResonatingShield",
+      "description": "Repeatedly hammer your Shield with your weapon causing damaging shockwaves in an area around you. Enemies hit by the shockwave lose Armour for a duration. While Channelling Resonating Shield, your Shield is raised and you will Block all incoming Blockable hits.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ed7331fb74ca7f2ade32c32783436b61f3d558f1830cde1eb4cc74df2ed3265f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRhoaMount",
+      "description": "Harnesses a Companion Rhoa you can mount while you're wielding a Bow or Spear. While mounted you can use Bow, thrown Spear, and Mark Skills, and are much less slowed while using Skills, but being Hit will cause Heavy Stun buildup. While you aren't mounted, the Rhoa will attack your enemies alongside you with its beak, but can be damaged.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e6b302989a0a5940f4083667c2730067397eacf7ff5e7edef4f0ec76f8d6d233"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRighteousDescent",
+      "description": "Leap into the air carried by divine wings, damaging enemies with your spear where you land. If there is a Fragment of Divinity near you or the targeted location, this attack will Consume it when you leap to become Empowered, dealing more damage and granting life and mana recovery. This skill does not use up its Cooldown when empowered.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "70897c43a71d9d29c7e7de139c6d145b6422cec874080c91eb0b565764117cb0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSigilOfLife",
+      "description": "Place a Sigil on the ground, providing a powerful Buff to you and Allies standing in it which grants Life Regeneration and amplifies Armour, Evasion and Energy Shield. The Buff becomes more powerful the more mana you spend while standing in the Sigil. ",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "21d64dc6ae3e7ad98793f7aafbb60581aee07fba7e2048ccb558e61d8991d6b5"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRitualSacrifice",
+      "description": "Sacrifice the Corpse of a Rare Monster to grant you its Modifiers for a duration, or gain a single random Modifier at the cost of your own life force.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "050a177df3f29bbf418c8f2a87066ba0ea1aa0e3371bd7c0f274b206acefaa31"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRollingMagma",
+      "description": "Shapeshift into a Wyvern and lob a ball of magma that deals area damage as it hits the ground. The skillChains, bouncing forward to deal damage multiple times. Impacts on Molten Fissures or Volcanos will activate them as though they were Slammed.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2998f07921b60d9152111b3df0120b6eaa0b1f8fb64fde9606980b98d0b09ee0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam",
+      "description": "Slam the ground to Stun enemies and knock them away, then continue forward and perform a devastating second Slam.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "d4286b98d8e2bb4ab26377a16fb113e8e87e0ee58c7e9b07dbe6da6441598d6f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRunicReprieve",
+      "description": "Channel to create a protective bubble all around you, Blocking Hits against you. While Channelling this Skill, you cannot be Light Stunned by Hits you Block, and damage you take from Hits is also removed from Runic Ward. Blocking Hits this way causes you to accumulate Heavy Stun buildup. You cannot recover Runic Ward while this Skill is active. ",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "df457ce3d1ff6e122cd7a0373cd63a16c9737cfbbccdf7fa3a6bf8f84d57dac3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemRunicTempering",
+      "description": "Channel to imbue your armour with Runic Plates. When you are Hit while you have these plates, some of the damage you would take will be prevented, and this skill will cause backlash, dealing your Thorns damage in an area around your attacker.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "36762a17aa73cfce559d4d43a25f83567bb517d3ea4109cbb9be72c7cba009bd"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancySummonFireDjinn",
+      "description": "Summon Ruzhan, an invulnerable Flame Djinn Minion, to do your bidding. Ruzhan emerges to Strike enemies with his greatsword whenever you use a damaging Skill, and casts devastating Fire Spells when Commanded to do so.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "d7b39e8274559b74d5c5688c0fe7ab3a3592226b162ae1ea90f656a77c37f9b9"
+      }
+    },
+    {
+      "id": "sacrifice",
+      "description": "While active, your undead Reviving Minions can be used in place of Corpses by your skills, but your Minions Revive more slowly.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fd6846bb12cd028be729f27c921da47b5c745ca3a3b37c25eaa28d4626072cb0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSanguineRevelry",
+      "description": "Conjure hateful energy to fuel your Rage and Life. While active, Bleeding enemies you kill have a chance to spawn a Hateful Remnant, and Hitting a Bleeding target spawns a Hateful Remnant every few seconds. Picking up a Hateful Remnant grants you Rage and recovers Life based on your current Rage.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "7849773d2e20312fbd055ec52fc0ae6e1fb31843c98e9963ae0786dcd5e83811"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSavageFury",
+      "description": "While active, your Fury builds from Attacking enemies. Using this Skill releases your Fury to send you into a bestial frenzy, gaining damage and Onslaught but constantly losing life and forcing you into animal form. The frenzy ends immediately if you return to human form. You cannot gain Fury while in a frenzy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3de5b49eca429e76c303a81075f4e78d3d2284ea884330f98b60c84e48005051"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemScavengedPlating",
+      "description": "While active, uses fragments of armour scavenged from enemies to bolster your own. Fully Breaking an enemy's Armour grants you stacks of Scavenged Plating for a duration based on the enemy's Rarity, and you gain Armour and Thorns per stack. Normal enemies grant 1 stack, Magic enemies grant 2 stacks, Rare enemies grant 5 stacks and Unique enemies grant 10 stacks.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a54ef29af680d678c1b8b4aa341f76721fe0672448f1b6e0b9f1bbdc92871ff2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSeismicCry",
+      "description": "Perform a damaging Warcry, Knocking Back nearby enemies and Heavy Stunning enemies that are Primed for Stun. If an enemy is Heavy Stunned or a currently Heavy Stunned enemy is Hit, this Skill Empowers subsequent Slams to perform an additional Aftershock. This Skill's cooldown can be bypassed by expending an Endurance Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c63d3909cac9a496fc612fa666e3a961e171aa519335a4186e5308d4fc00072c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShardScavenger",
+      "description": "While active, Consuming Freeze, Shock, Ignite, or Fully Broken Armour on an enemy reloads your Crossbow, restores one cooldown use for your Grenades and grants a Buff causing Crossbow Attacks to not consume bolts for a duration. This can only occur once every few seconds.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "185734d7e591ea4dcd7e1e36416304998fba7ed17d0577df45a4bd50f5b024d8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyShatteringConcoction",
+      "description": "Consume charges from your Mana Flask to throw a flask that explodes, dealing Cold Attack damage in an area and inflicting Exposure. This damage is not based on your unarmed damage, so this is not considered an Unarmed Attack.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5c6ce3f10ba1e283521c02dd2b6fd91f9925e9527b8585bf5aa8cceafb416886"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShatteringPalm",
+      "description": "Dash to an enemy and Strike them with an Attack that manifests a wave of cold, coating nearby enemies in shards of ice. Dealing enough damage to these enemies will shatter the shards, causing an icy explosion that deals Attack damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "848a6a9867c6d8ad62223cb9debbf411b7a521eb4d0cf89df0c84711e025c13f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShatteringSpite",
+      "description": "Stamp your spear, destroying all Bloodstone Lances on each enemy in your Presence to cause a damaging explosion around that enemy. Each explosion gains new benefits when reaching higher thresholds of Bloodstone Lances removed from an enemy, causing them to deal more damage, have increased area of effect, and Leech Life from enemies caught in the blast.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "5b7f301b3ea5571829246bbd51dfc16ced3255e3f12fbb1d23be73ec5f56e4a7"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShieldCharge",
+      "description": "Channel to charge in the target direction. You will crash into enemies on your path, stopping your charge and dealing damage to enemies in an area, and extra damage to the enemies you collided with. While charging, your Shield is raised and you will Block all incoming Blockable hits.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "58c5717af26a4728a83a36aec50b7e19cf6d5a7050c0135adae7964e07384d3b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShieldWall",
+      "description": "Ram your Shield into the ground, throwing up a wall of earth. Enemies can attack your wall segments, and your Slams, Warcries, and Shield Charge will instantly shatter them all. The segments explode when shattered, damaging enemies in front of and around them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "bce09d6c18460bf042a5eee3968f6115cc63158595620d853d427eddc255070b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShockburstRounds",
+      "description": "Load your Crossbow with a clip of charged bolts which release damaging pulses upon Hitting an enemy affected by a Lightning Ailment. Using this Skill again reloads the clip.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "dc3c465fb04eb80f399bf19f3453bcfbade73a9a1db6f742e59775a12d961318"
+      }
+    },
+    {
+      "id": "shockchain-arrow",
+      "description": "Fire a Lightning-charged arrow that homes in on enemies afflicted by Lightning Ailments. Hitting such an enemy will cause your arrow to release a damaging shockwave and Chain towards nearby targets, with those Chaining Hits also releasing a shockwave. After the final Chain, the arrow lodges into the ground as a Lightning Rod. Consumes Shock from enemies it Hits, but not Electrocution.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "95c79c3ce59e422de49eb7afc19176aecc79264f8639026961962d8ba2f05f48"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShockwaveTotem",
+      "description": "Raise a Totem that Slams the ground around it, repeatedly damaging nearby enemies. Jagged Ground erupts when hit by this Slam, damaging enemies standing on it. The Totem cannot create Jagged Ground. This Skill can be used while Shapeshifted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a8ee883cc18958cc2458cf8f7cc32ac43b26a53b5320e04760a09512201fd04d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWolfShred",
+      "description": "Shapeshift into a Werewolf and lash out with a flurry of claw swipes. The first Attack can dash to faraway enemies and the final Attack Strikes twice. Attacking a Frozen enemy will create Ice Fragments, which are Projectiles that land and explode after a short delay.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "920864849fff5f031ed5d4c37f1492033a4617e7a0f610e8817f0031bdc9da7e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSiegeBallista",
+      "description": "Deploy a Ballista Totem that fires bolts skyward, to explode a short time after landing.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0d84668961e0686e0e1e2552b42a4d8337fdfa542c9e5419272d26acbe89ea48"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSiegeCascade",
+      "description": "Load your Crossbow with enemy-seeking payloads which are fired into the air, dropping a bolt near every enemy in the target area. These bolts lodge in the ground and explode after a short delay.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4aad35f54e759409ca370f58a93a4af8a8e9542cbc745ae81e39620604ff9c70"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSigilOfPower",
+      "description": "Place a Sigil on the ground, providing a powerful Spell Damage Buff to you and Allies while standing in it. The Buff becomes more powerful the more mana you spend while standing in the Sigil.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "542f721a8700ff65a84a9d66a9629a8c63296b925142b76bb4c01940e2e7cfa4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSiphonElements",
+      "description": "While active, has a chance to create an Infusion Remnant when you Freeze, Shock or Ignite a target.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2ffef3e6ec396dacaf4b2741802cd0c7f672c9750b211269ef827c5b1043904a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSiphoningStrike",
+      "description": "Dash to a target and Strike them with your Quarterstaff. If the target is Shocked, Consume their Shock to release a Lightning shockwave around the target and grant you a Power Charge. This skill cannot be Ancestrally Boosted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "63a3bb2443d232244d69f4586cad43cd2d2f2389adf002cfa49ef9006ca3a01b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalArsonist",
+      "description": "Activate to summon bomb-throwing, Reviving Skeletal Arsonists that can detonate other Minions on Command.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fb2bece57ff904a5d4a5766f3b3df28b112a90279ebd7cc25bc5153d6f5c3515"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalBrute",
+      "description": "Activate to summon hard-hitting, Reviving Skeletal Brutes that can Stun Primed enemies and Warcry on Command. This Warcry Intimidates nearby enemies and Consumes Freeze on enemies and allies to deal damage in an Area around them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b657ec79443e5d197b7e9a431163cf2bba9de69f31454c55156d5419d3414130"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalCleric",
+      "description": "Activate to summon Reviving Skeletal Clerics that heal other minions and revive fallen Skeletons.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "94653fc5de15c130422101d6e7ea539a900ea47c8e5d41e618c0d5b61a91ce8c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalFrostMage",
+      "description": "Activate to summon Reviving Skeletal Frost Mages that can envelop your Minions in an icy shield on Command.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c9812f0956393628f52ef649f3d00eaa196a618a9905d9d34aa282f2518949d2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver",
+      "description": "Activate to summon aggressive, Reviving Skeletal Reavers that can enrage on Command. Skeletal Reavers do more Attack Damage and gain increased Attack speed based on their Rage",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "54e56cb56c42207527985611680171aeb3eeeefeef94cab28a16dd62116a01a1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalSniper",
+      "description": "Activate to summon long-ranged, Reviving Skeletal Snipers that can fire a gas arrow on Command.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "fb834997a7c392e6a8e1a190ecd1f864b7537562611f2237dd650e12d54de192"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalStormMage",
+      "description": "Activate to summon Reviving Skeletal Storm Mages that can call down a lightning strike on dead Skeletons on Command.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e2e61fbb8ca4fc7ced89af2a205df9afbbdeeca76ded8886b74e53da29088613"
+      }
+    },
+    {
+      "id": "skeletal-warrior",
+      "description": "Activate to summon Reviving Skeletal Warriors.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "9aca11f6b1c19c4749ff03ca6dd74b03f63b2539f39a36920fa593d38313123a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkyfall",
+      "description": "Build Glory by spending Runic Ward. When you have maximum Glory, you may call down a mass of Verisium from the sky, dealing high damage at the targeted location and summoning a Temporary Minion. Targeting close to you will cause you to jump back as you cast. Consumes a Verisium Infusion, if possible, to increase the number of Minions summoned.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "617b9f90e6d173cb89a7937a01a17211464b57d701bbaecabee9656f9d4c7d8a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSmashToSmithereens",
+      "description": "Blows strong enough to Heavy Stun an enemy reverberate in an area around the enemy and heavily Break Armour.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "517f9cb03d090f18d2f5670dce7b503ff71f5db4e3213782f31c9edbb9fba881"
+      }
+    },
+    {
+      "id": "snap",
+      "description": "Consume the elemental energy from a Frozen, Shocked or Ignited enemy, creating an elemental blast that leaves behind an Infusion Remnant. The blast will spread to other enemies affected by the same Ailment, but those blasts cannot spread further. Can also be cast on a Frostbolt to create a larger cold blast.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "72a2133ce77098f183850c4880b8fd3727e0e114f14d7f57fca5f49c1e24244b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSnipe",
+      "description": "Channel to charge up your bow before releasing a powerful shot. Releasing with Perfect Timing causes the arrow to explode on impact and Consume Freeze on directly Hitting. Consuming Freeze enhances the explosion.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ce87150ff6320673fd41ca09003554f25ef1cbccc95fd9a081ebea792ee7763c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSnipersMark",
+      "description": "Mark a target. The next Critical Hit the target receives Activates the Mark, Consuming it to deal extra damage and grant you a Frenzy Charge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "06acf32302c2e7ff01df10111d65249d346ac687634351520f4bb5cca83fe43e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemNightfallShieldThrow",
+      "description": "Hurl your Shield as a Projectile which Returns to you at the end of its flight. While the Shield is in flight, this skill is replaced with Embrace the Fall. This skill's cooldown is skipped if you catch the Shield as it Returns, or destroy an Ice Crystal with the Embrace the Fall.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "3979e3602edf8df983205e63004dfd30646be5f02beeaf1d014935e351269316"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSolarOrb",
+      "description": "Create a fiery Orb that periodically releases fiery pulses. Enemies that are very close to the Orb are Ignited. Flameblast can target a Solar Orb to be centred on the Orb instead of your location.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c18fcf2424baa07e32aadd6e50b8fa09ea969b5d66b6b1019fd4cc8540052782"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSorceryWard",
+      "description": "Passively manifests a protective barrier which takes Elemental Damage from Hits for you until depleted. The barrier instantly recharges to its full value a short time after it stops taking damage or is fully depleted.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "de842db792a3d64acf485085b093dce6556025ba5b7b9d7e36594e9753fdc325"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSoulOffering",
+      "description": "Skewer a Skeleton on a bone spike, granting you a powerful Spell damage Buff as long as the spike remains. Does not affect your Minions. \nThe bone spike is itself a Minion. If it dies, the effect ends immediately.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "82e1cfbf84af698939046e9bc36bd9e277ce3814ab20ee52e4d11aa5dcab6c5a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSoulrend",
+      "description": "Fire a Piercing Projectile that seeks out enemies. Enemies hit are inflicted with a Debuff that Hinders them and deals Chaos damage over time for a short duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "22d353ac49a624a1f5539499124d8aa383ab0252e6958e504e87e3b31303620d"
+      }
+    },
+    {
+      "id": "spark",
+      "description": "Launch a spray of sparking Projectiles that travel erratically along the ground until they hit an enemy or expire. Consumes a Cold Infusion if possible to fire many sparks in a circle.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "74069a025c0aea1d59777105f31533fbced915d9be7487a18081a88913397008"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSpearOfSolaris",
+      "description": "Build Glory by inflicting Freeze, Shock or Ignite on enemies. When you have maximum Glory you may call forth the Azmeri goddess Solaris, jumping backwards and throwing your Spear in the air. On landing the spear deals heavy damage in an area, then calls a divine skybeam that pulses periodically and creates expanding Ignited Ground. Modifiers to number of Projectiles fired do not apply to this skill.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "bb9f876227fb9372c6741fe87df265ee805db8da3f3a4202e04387170ef3c560"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultSpear",
+      "description": "Strike with your Spear.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "5e7322772e429df26394c101f2ddeb0eb4a67381543e02c7c29e8f2744be8633"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultSpearOffHand",
+      "description": "Strike with your Spear.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "033a7d0ae9e611280a5468b70b8d4cace6db7fd92f9137f11460a44607bf818b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultSpearThrow",
+      "description": "Hurl your Spear with force. Consumes a Frenzy Charge if you have one to cause the Spear to explode at the end of its flight.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "3053041bec4b661a54e34b1e383b0edae26c3632faa097c79199b1fd8cd98cdd"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSpearfield",
+      "description": "Stab the ground causing multiple spears to burst out of the ground in front of you in a large area. The spears remain for a duration, or explode when enemies touch them, damaging and Maiming them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3f5952528b1194df63cbe25b60137f791901642abb282b050ea81ba967467f35"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSummonSpectre",
+      "description": "Summon the spirit of the bound monster as a Reviving Minion.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "97f89e342b2a8fed91c3e48c807092e6f46eee910e024f027c3ff1bd680738ea"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMetaSpellTotem",
+      "description": "Consume any combination of 3 Power and/or Endurance Charges to raise a Totem that uses socketed Spells. Cannot use Skills with Cooldowns.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "7147c7258e036ad92ae8e17f181423c561686f159200eb9e094667b6ae47bcc7"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSpellslinger",
+      "description": "While active, gains Energy when you cast Spells. Using the Invocation once sufficient Energy is gathered will consume the Energy to trigger socketed Spells, and can trigger them multiple times if it has enough Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "52ad4ed7096da31d1d36eb3c46f48afe17a6e9394b3bfe472aaa872f61ce103e"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSpiralVolley",
+      "description": "Load your Bow with a volley of enchanted arrows and fire them in a circle as you spin forward, firing directly at targets if possible. Consumes Frenzy Charges to cause the arrows to deal more damage and Chain to other targets. Each target can only be Hit once.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "a9e5de3102ed64b4fd5675a2737965b93dc0e1a3c2da1861f5a36702a59b5422"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSpiralingConspiracy",
+      "description": "A flock of mist ravens circle you, dealing damage over time in an area. Their numbers are bolstered by slain foes, or in the Presence of dangerous enemies, but the flock as a whole is considered a single minion. You can Command some of them to take flight, leaving the flock to assail your enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "eb47b6d32a9f16f9357f6630c4f3922897e12ec1ca46e26cdd2b77568acbc39d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSpiritVessel",
+      "description": "Summons a Shapeshifting Spirit Vessel Companion that uses copies of socketed Bear, Werewolf, and Wyvern Skills.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "015d4004360f56953fb0e035c15159ffb1ca8147ee814c483082b5010608c1e0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStaggeringPalm",
+      "description": "Dash to an enemy and Strike them, instantly Heavily Stunning enemies which are Primed for Stun and performing additional dashing Strikes to other Primed targets in range if your first target was Stunned. Heavy Stunning an enemy with this Skill grants you a Buff that causes your Quarterstaff Attacks to also fire Projectiles for a short duration. Heavy Stunning additional enemies adds to the Buff's duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "26079fc6626fb54ae63c7175af9149fb173d861c136406c35443e62c01efb556"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStampede",
+      "description": "Charges forward, cracking the earth and leaving a patch of Jagged Ground with every footstep. At the end of your charge, a massive leaping Slam damages enemies and causes all nearby patches of Jagged Ground to explode, damaging enemies standing on them. Once you begin your charge, the use speed of this Skill is affected by movement speed instead of Attack speed.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "7056191651aeb946d7235876ec57465a001c70c9beebfbaa1614d1f2223eb6e4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStarbornOnslaught",
+      "description": "Build up Glory by Freezing or Chilling enemies. When you have maximum Glory you may jump backwards loosing your Mace with the force of a falling comet onto your target. The impact releases Fissures and causes stars to fall in the area for a brief period.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "18bbf232be8132cd358fde069e94e5e9d44b8305918615eebd530c5056dd0463"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStormLance",
+      "description": "Throw an electrified Spear that lodges in the ground and periodically zaps nearby enemies with Lightning bolts. If the Spear is Detonated by another Skill, it immediately unleashes a volley of bolts and expires. Consumes a Frenzy Charge if possible to fire bolts more frequently for a shorter duration, automatically Detonate at the end of its duration, and create Shocked Ground on Detonation.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e30c19661a79a9fd4816da3f3cf7d9d8cca27face6654720e5e1f6e98f966578"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStormWave",
+      "description": "Sweep your Quarterstaff, projecting a bolt of Lightning through the ground in a long fissure ahead of you.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "34b112eefe483eaee68a71e09db14d2642b03da8e3417b1c62ee9989771d74b2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStormblastBolts",
+      "description": "Load your Crossbow with charged bolts that land around the target location and explode if hit by a Detonator Skill. Using this Skill again reloads the clip.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "cdca10b2c79519f8febbfb93119c1d8762e2bdbd84e52644e2816bd0a0bd5006"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemStormcallerArrow",
+      "description": "Fire an arrow that embeds where it lands for a short duration. At the end of the duration, a Lightning Bolt strikes the arrow, disintegrating it and damaging enemies, with a high chance to Shock. Shocking any enemy with the Bolt also applies Shock to all enemies near the impact.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ff023ff43bf2e6959ff0ceb394eec7f784dabc78344940b5ddfd4708a10151db"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancySummonInfernalHound",
+      "description": "Activate to summon a Reviving Infernal Hound which Ignites enemies near it.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b6aff8d5c48d54c47a1a9c545d2d20b055892bc15793ffcb28f1750deff227be"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSunder",
+      "description": "Slam the ground, creating a roiling fissure that damages enemies in a sequence of areas in front of you. A number of enemies hit by the wave will release a shockwave, damaging other enemies. Hitting an enemy with Fully Broken Armour applies Sundered Armour, making it take additional increased Physical damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "32bdc3a243b4a821543272bb098a09edc036f25b6415b562dbb6b5c71a475567"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSuperchargedSlam",
+      "description": "Channel to charge up a heavy swing, drawing earth from the ground to enlarge your mace. Release to Slam the ground, dealing damage in an area around the impact, followed by Aftershocks dealing damage in a larger area. This Skill has its own Attack time, which is not affected by your weapon's attack speed and cannot be modified.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ee12a19164f5c084c0aabdcb8213194b0e13938861a240041925be552f4d2fa9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSupportingFire",
+      "description": "Recruit artillery Minions that take up positions behind you. They will lie in wait for your Command, then fire volleys of arrows at the target location.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "19e49d8b2606be92e025f3556aa0488a138dbe7ec4413de5d98fa9541676b6d0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTameBeast",
+      "description": "Conjure Azmeri wisps to engulf a Rare Beast for a duration, Hindering them. If you defeat the Beast while it is engulfed in wisps, it will be captured by this gem, transforming the gem to instead allow you to summon the Beast as a Reviving Companion.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "26d65be66f75acff03039c8a6a679778ef923f379d948db7079d875fb23afcfc"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTemperWeapon",
+      "description": "Channel to temper your main hand Melee Martial Weapon. Each hit of the hammer against the anvil Empowers subsequent Attacks to Combust when Hitting enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "7241354aa452b22565745485d3c5f3c327364ecf86b9779ae03dbe0f7dbc268c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTempestBell",
+      "description": "Build Combo by successfully Striking Enemies with other skills. After reaching maximum Combo, use this skill to cause the Bell on your staff to grow to massive size as you drop it on the ground. The Bell damages enemies on impact and can be Hit by your skills, creating a damaging shockwave. Elemental Ailments applied to the Bell cause its shockwaves to deal extra damage of the corresponding type, and Hits which would have caused Knockback increase the area of effect of the shockwaves.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "e316de7f2e10fe0bdc22de0aa20d10aacf2b2305158ae08e33546d66c19b35f8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTempestFlurry",
+      "description": "Perform a series of aggressive Strikes. When used in quick succession, the third use Strikes three times, and the fourth use performs a Final Strike that calls down a powerful Shocking bolt.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "22a5a382b7e59493ae209e61c3a78b02d15c6d86c745b3f291523ae15806d925"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTemporalChains",
+      "description": "Curse all enemies in an area, Slowing them and making other effects on them expire more slowly.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "eceb376c0f7c15be1a0986a1605afa09bbc5745ea1663fa4474d8f27c2cb52cd"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTemporalRift",
+      "description": "While active, passively leaves afterimages of your recent past. Cast the Spell to return to the oldest afterimage, teleporting to that location and resetting your Life, Mana and Energy Shield to the values they had at the time. Removes any upcoming damage delayed by Phased Form on use.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "32683a8e13a8faf1bd64b12623b84e92536bfc09cf0214e5b98fd24246f201e0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTheStarsAnswer",
+      "description": "Leash the stars themselves by leveraging your vast magical power, repeatedly Triggering Starfall targeting an enemy in an area around you, or a random location in that area if no enemies can be targeted.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "e139a27130456eccbcefd88d44e15647b1113c53d80c700e31248404ae6027b3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemThrashingVines",
+      "description": "Spur the growth of huge vines, which emerge randomly within the target area. The vines crash to the ground then retreat, targeting nearby enemies if possible.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "148a87b69a5f86c71a1fbe48ce8e05cd10517e719f02b062552e62b7e3043965"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCastLightningSpellOnHit",
+      "description": "While active, gains Energy when you Hit enemies with Melee Attacks and triggers socketed Lightning spells on reaching maximum Energy.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "75377f0f812a1c6bcd10ea0f84eef45f53cbd8d46dbe3bb74699c642bfa32473"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemThunderousLeap",
+      "description": "Leap into the air and plunge your Spear into the ground at the target location, emitting a Lightning-charged shockwave.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "adc2a08e99f3380c495b4236a854203da9cdbd1366de55598115d64d30c1bc81"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemThunderstorm",
+      "description": "Conjure a thunderstorm which causes lightning strikes and torrential rain in an area. Enemies in the area are Drenched, causing them to become Shocked or Frozen more easily. Plants in the area become Overgrown.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c1be5eb759a9a94d1d2fbf2ed46460ff93ba23a1ec3394033ff33d11318b4434"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTimeFreeze",
+      "description": "Release a large wave that stops time for all affected enemies for a duration. Duration is lower the more times the enemy has had time stopped for them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2d0607a7b67f52ec3dca1c0d2229535e5f07342d287b267c76715767176645c2"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTimeOfNeed",
+      "description": "While active, periodically invokes divine blessings to heal you and remove Curses and Elemental Ailments from you.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1247ee8bbc73eb89af1098ccba29e09f0424f15ac9fdd61f9b480d88ae3cbf33"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTimeSnap",
+      "description": "Manipulate time, resetting the cooldowns of your other Skills.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "844ce9436b105d36b55d7d0ad02d9eb3bf4517b738abd9086a94af478f1bf2d1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTornado",
+      "description": "Create a storm that sucks in enemies and deals Physical damage over time. A Tornado that overlaps an Elemental Ground Surface absorbs that surface's Debuff, applying it to enemies inside the Tornado and causing the Tornado to deal extra damage of that element.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "693fa3e7d4e3d3d101147e934c9406494403388414eda3d6494a616da9a583b0"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTornadoShot",
+      "description": "Fire a skyward shot that whips up a Tornado where it lands, dealing Physical damage over time and Hindering enemies standing in it. Arrows, thrown Spears and Crossbow bolts fired at the Tornado are sucked into it, causing the Tornado to spit out a ring of copied Projectiles. Copied Projectiles cannot be copied again, even by further Tornados.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "b8c4803c752f3b15701083640b757c5aaa88356a0eef8d3f4eeb898665ca0961"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemToxicDomain",
+      "description": "Create an area of Toxic Bloom on the ground around you. While in the Bloom, you have increased Skill costs, Regenerate Life, and your Projectile Attacks attach a Toxic Pustule, which can be Poisoned. Pustules will Detonate after a duration or when enough Poison has been applied, dealing more damage based on the stored Poison damage and applying Poison in an area around it.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "0ba9560e9f92a202a9d1e475c5ad87920c2fb657631328f757ccc2483177fc5c"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemToxicGrowth",
+      "description": "Fire a rain of Toxic Pustules into the air. The Pustules deal damage on impact, then Detonate after a delay. They can also be Poisoned, causing them to Detonate faster and more violently.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "6271b130ca40d7f1455ddca173edfcf8ffb7a167a1aea01dc335c24c3fd1435f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTrailOfCaltrops",
+      "description": "While active, scatters caltrops in your wake when you dodge.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9ad395dc037945a1cb5f8cb46502fd0f456490b509a66966d26e0b988f73c426"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTrinity",
+      "description": "Become attuned to all Elements building up Fire, Cold and Lightning Affinity based off the highest Elemental Damage type dealt by your Hits. Your Elemental Damage is enhanced the more Affinity of any type you have.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "35228baa60291057d0e93620690a380af44fdc784d60d8228fa9321f4df0e2bf"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTriskelionCascade",
+      "description": "Tap into the power of the Triskelion Flame to Empower the next Cascadable Spell you cast. The Empowered Spell becomes centred on your location, and Cascades to six areas around you in a Triskelion pattern.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "16214955a09fa44d143bcddb5246ce9c0c2da6824bd2b72ba2be35214d3dafa3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTwister",
+      "description": "Whip up a twister with a flick of your Spear. The twister moves forward erratically, Blinding and repeatedly Hitting enemies within. If a twister touches a Whirlwind from your other skills, it Consumes the Whirlwind to create additional twisters that deal more damage. Passing over Elemental Ground Surfaces or Consuming an elemental Whirlwind will grant twisters extra damage of that element.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "048765596f5fc4255ab94b7edf86286cce0708a678c12a1636055b3af8e2a4d9"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyUnboundAvatar",
+      "description": "Gain Unbound Fury by inflicting Elemental Ailments with Hits on enemies. Once you reach maximum Unbound Fury, consume it to become Unbound for a duration, vastly augmenting your Elemental prowess.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "c755b044188373add42ce6df7f2356968b8d18dbf96e10a4501d93a89014a33d"
+      }
+    },
+    {
+      "id": "unearth",
+      "description": "Raise spikes of bone from the earth in front of you, damaging enemies. The bones of Corpses and dead Reviving Minions in the area are ripped out and reassembled into short-lived Bone Construct Minions that fight for you. Larger Corpses create more than one Bone Construct.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "34f9aebb2317e2fb3932395d9a67aea837e6c9dfa5fd94a53d8b20c04cd5c6af"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemUnleash",
+      "description": "Augment yourself with temporal magic for a short duration, Empowering the next Repeatable Spell you cast to Repeat multiple times. Cannot Empower Skills with a Cooldown.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "6fb5a7f25afbaa0e292594d33c498c82eefe07c6a67d67e001ce9dbde09599c3"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemValakosCharge",
+      "description": "While active, taking Lightning damage builds up charge on you. Reaching full charge expends all charge to Trigger this skill, creating a Chaining lightning bolt that arcs to nearby enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "71e9994e1bdb45398c5e671db8f25321801573742b5905bea60d4a3411516290"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVaultingImpact",
+      "description": "Leap forward and Slam the ground, sending out a shockwave. The shockwave applies Broken Stance to Dazed enemies, causing any Hits against those enemies to deal extra damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "218ab5fe567599a1917646b893d8498bce3eb4c8bae59d150fe1476c2158de3b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVerisiumManifestation",
+      "description": "While active, Hitting with an Attack will spend Runic Ward to summon a Verisium Manifestation, a short-lived Temporary Minion that rapidly Attacks nearby enemies, ignoring commands. Enemies will not directly engage these Minions, and can pass through them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "487802792b8ee0d8dc3a175b0e289078879ddb492bfdb717b6fa2266b839d819"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVineArrow",
+      "description": "Fire an arrow into the air that lands after a short delay, damaging enemies and causing a plant to spring up at the impact location. The plant sprouts vines that latch onto nearby enemies, Slowing their movement speed and dealing Chaos damage over time. The plant can be Poisoned, causing it to deal more damage.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4874e461fe645b0e53b6f06dd71684ea0e511237eb156a660046398f38aa9959"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAscendancyGemlingVirtuousBarrier",
+      "description": "While active, conjures a glittering barrier that accumulates protective gemstone Motes of each Attribute type over time, but loses a random Mote when you are Hit.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1edaeb32e3bda1971b7ae9720db0a11ea20f5b80ee8c87aafc391e000f870b8f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVividStampede",
+      "description": "Call upon Spirits of the Stag, sending them leaping forward. Each Stag releases a damaging shockwave each time it lands, and any Stags that travel the maximum possible distance also leave behind Shocked Ground.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "f3fd8973e951623debbe50579653d5d615855346e4e4b00a297dd32a201290fd"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVoidIllusion",
+      "description": "While active, creates a short-lived illusory copy of yourself whenever you dodge roll. The copy can be damaged by enemies, and copies that are destroyed by an enemy will cause damaging explosions. Copies created this way have 1 Life.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2d7d08cb4c829983a92a9876d45f22c09c311426879be66a503f659ab2dd93a1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVolatileDead",
+      "description": "Consume a Corpse to create a volatile core that seeks out enemies and Ignites enemies near it. The core explodes at the end of its duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "7327ef635d3bc4fbe0e30690421778a584bc28a408e789049079c31d0c92e439"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVolcanicFissure",
+      "description": "Slam the ground, creating a branching Molten Fissure that deals damage as it travels and remains for a duration. Using a different Slam on a Molten Fissure creates a spreading Aftershock.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "641035166687d242f864723e325b0989450c473e6a87239c1215e6e6d102ab73"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVolcano",
+      "description": "Uplift a volcano from the earth, damaging enemies standing on it and releasing a spray of molten Projectiles. While the volcano persists, Slamming it will cause another Projectile spray. Channelling this Skill for longer makes the initial eruption more violent, but does not affect subsequent Projectile sprays.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "470c3c073cde1c60a081a78be138f0f9b6afc76bae3492e8406e8b1993802e8d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVoltaicBarrier",
+      "description": "Spend Runic Ward to raise a pair of electrified pylons in front of you which project a wall of electricity between them, damaging and Electrocuting enemies caught between them. Projectiles you fire through the wall become energised, and discharge that energy on Hit as Chaining Lightning beams.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "77b13945eeb01030efe94311a26cd7396180fba9c73dd92fca4daf85e5df85b1"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemShockGrenade",
+      "description": "Fire a bouncing Grenade that discharges an Electrocuting Lightning blast when its fuse expires, causing all Lightning Hits against enemies to contribute to Electrocution buildup for a duration.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3967401a7f6751771d53e83e03b2a929669ace9874f2ca7d93618e98a333aa7a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVoltaicMark",
+      "description": "Mark a target, making them more susceptible to being Electrocuted. When the Marked target is Electrocuted, the Mark Activates, granting a Buff which gives extra Lightning damage and Consuming the Mark. Marking another target while you have the Buff will remove the Buff.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2f7664393ebbade36ddbec630254404eaacbd4a23bbd883434021b8cbc725fa4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemVulnerability",
+      "description": "Curse all targets in an area after a short delay, making Hits against them ignore a portion of their Armour.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "ab2b8262f1214e865e3e425cb12f84a237b4741fa80a1735fb9dc7b7531045d8"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWalkingCalamity",
+      "description": "Build Glory by gaining Rage while already at maximum Rage. When you have maximum Glory, roar to the heavens to bring them down upon your enemies. For the duration of the Skill, meteors rain down around you and you Gain Fire damage and Rage regeneration. This Skill's effects are suppressed if you leave Bear form, but will resume if you return to Bear form before the duration expires.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "09a0f80d6514dd3531e2049ffbcc2b6bf571874090838b82c62e44ea43c8e35b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWarBanner",
+      "description": "While active, Attacking enemies builds Glory. When you have maximum Glory, you can place an inspiring Banner for a duration with an Aura that grants you and nearby Allies Attack damage, Attack speed and Accuracy.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "2d79843ff01678315c0ee7a8dcd625e3909f8db2ccfd53c17f0db4bd571681f6"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWardboundMinions",
+      "description": "Spend all your Runic Ward to summon Temporary Wardbound Casters. These Minions target nearby enemies with damaging Cold Spells.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "4a5474b3e666bb2055ff4ba4718295588ee46a9a6bf65247235e2e88dc61fbfb"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWaveOfFrost",
+      "description": "Flip backwards and send forth a Freezing wave in front of you, immediately Freezing enemies which are Primed for Freeze.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1815778b47a0844f2fd0a8aedfa56f79ed6a13f4d37a170223ab87a922fabe0f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWhirlingAssault",
+      "description": "Advance while hitting enemies around you with a series of spinning Strikes.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "32033368ae08c36d08153c7057f51e0b99ac3070e3e66cf27823a59f0faa466a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWhirlingSlash",
+      "description": "Perform a circular slash that kicks up a Whirlwind around you, Slowing enemies and Blinding them in its area of effect. Leaving the area collapses the storm, dealing damage and causing Knockback.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "80483c850b24ca979dc5d36b7d98a3537235ffa1fa02f190610ca8e46bf2057a"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWhirlwindLance",
+      "description": "Throw a Spear with enough force to kick up a Whirlwind where it lands, Slowing enemies and Blinding them in its area of effect. Entering the Whirlwind collapses it, dealing damage and causing Knockback. Consumes a Frenzy Charge if possible to create the Whirlwind with one more than its normal maximum number of stages.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "1ca6dc43878ea21ff3e0cda241e10675cc6214513ae56ccfaf0258ef9eee887b"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWildProtector",
+      "description": "Call upon a Bear Spirit Companion to maul your foes. The Bear Spirit leaps at enemies to Maim them, Leeches Life with its slam, and periodically roars to Intimidate enemies. The Bear Spirit does not count toward your Companion limit.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "9406b90b515534556258234c4795e73cd450df8eda267f6634d1b4e1223601cb"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemAncientGifts",
+      "description": "You are chosen by Azmerian spirits who provide guidance, allowing you to see nearby Ancient Blooms.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "970209b4cb47152e60aced6413a16a5cf3e0ffe215d566d50bf3dffa61ec93fa"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWindBlast",
+      "description": "Batter enemies at range by generating a gust of wind as you swing. Enemies will be Dazed and Knocked Back based on how close they are to you.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "dfaf18c77b618ecea12f9801f9f27eff3e1e6d7c3ea457d17cb2a229988f8915"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWindDancer",
+      "description": "While active, periodically grants stages of a buff that gives you more Evasion per stage. Being Hit by an Enemy while you have this buff consumes all stages to damage and Knock Back enemies around you.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "5991c58fe94077f2a836545315a4a4636a0867e8d90cb22905f928d994e6dd0f"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWindSerpentsFury",
+      "description": "Consume all Frenzy Charges to perform a gigantic spear thrust that Knocks Back enemies. For each Frenzy Charge consumed, a Wind Serpent follows in the spear's wake. Each Serpent also damages and Knocks Back enemies.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "3b4e4b2c787a61c7b6b22f857327f46d907266c7617e3785a7eaa7689c0596e5"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWingBlast",
+      "description": "Shapeshift into a Wyvern and launch yourself backwards with a powerful wingbeat that Knocks Back enemies. Enemies Primed for Heavy Stun will be stunned, release a shockwave, and have a chance to grant you a Power Charge. This skill can be used while using other skills to interrupt them.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "764699fa2812b5b946ca5bf62d46556d3a20b7517a5cddae32633765946cfd3d"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWither",
+      "description": "Channel a debilitating hex that Withers enemies in the area.",
+      "descriptionStatus": "recorded",
+      "fromItem": true,
+      "evidence": {
+        "recordSha256": "cff88986f7be743e53734b39c8ce71ed410139a955c069fe80559ff049fa41a4"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWitheringPresence",
+      "description": "While active, emits an Aura that periodically Withers enemies in your Presence.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "d2fed44a65e29894e339b33d1b8e065ac99b6a22dcdf47ec907043b0a26eb651"
+      }
+    },
+    {
+      "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWolfPack",
+      "description": "Activate to summon a pack of Wolf Companions. The pack treated as a single Companion for effects that count or limit Companions, regardless of the number of Wolves in the pack.",
+      "descriptionStatus": "recorded",
+      "fromItem": false,
+      "evidence": {
+        "recordSha256": "19130c313cf6f65d99b60ebd24d2043fdff1b6cfeb1c9e901bd4f867e4f42956"
+      }
+    }
+  ]
+}
