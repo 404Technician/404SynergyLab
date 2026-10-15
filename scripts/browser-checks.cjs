@@ -213,27 +213,27 @@ async function main(){
 
   await page.goto(base+'/?mechanics=unavailable-rules');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different mechanics/);checks++;console.log('PASS: unavailable rule version hides results instead of substituting newer mechanics');
   await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
-  assert.match(await page.locator('#discovery-coverage').textContent(),/77 researched combinations across 116 \/ 399/);
-  await page.locator('#browse-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),116);
+  assert.match(await page.locator('#discovery-coverage').textContent(),/399 \/ 399 skill source guides; 180 researched combinations across 240 \/ 399/);
+  await page.locator('#browse-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),240);
   assert.equal(await page.locator('#combo-only').isChecked(),true);assert.match(page.url(),/covered=1/);checks++;console.log('PASS: coverage and the researched-only browser use real distinct skill counts');
-  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),116);checks++;console.log('PASS: shared links preserve the researched-skills filter');
-  await page.locator('#catalog-search').fill('Artillery Ballista');assert.equal(await page.locator('#discovery-anchor').isDisabled(),true);
+  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),240);checks++;console.log('PASS: shared links preserve the researched-skills filter');
+  await page.locator('#catalog-search').fill("Wildwood's Gifts");assert.equal(await page.locator('#discovery-anchor').isDisabled(),true);
   assert.equal(await page.locator('#source-experiments .source-experiment').count(),0);await page.locator('#combo-only').uncheck();assert.equal(await page.locator('#discovery-anchor option').count(),1);checks++;console.log('PASS: an uncovered skill is not fabricated to fill a filtered catalog');
-  await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.locator('#discovery-ideas .discovery-card').count(),3);
+  await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.locator('#discovery-ideas .discovery-card').count(),4);
   assert.ok(await page.locator('[data-idea="chaos-spread"] .first-test').isVisible());
   await page.locator('[data-idea="chaos-spread"]').getByRole('button',{name:'Explore Contagion ↗',exact:true}).click();
   assert.match(await page.locator('#catalog-record h3').textContent(),/Contagion/);assert.ok(await page.locator('[data-idea="chaos-spread"]').isVisible());checks++;console.log('PASS: new interactions have visible first tests and work from either member');
   for(const [name,idea] of [['Solar Orb','orb-flameblast'],['Lightning Warp','ball-warp'],['Shockwave Totem','jagged-totem'],['Boneshatter','slam-boneshatter'],['Tempest Bell','ice-bell'],['Toxic Growth','poison-pustules'],['Explosive Shot','grenade-detonator']]){
    await page.locator('#catalog-search').fill(name);assert.ok(await page.locator('[data-idea="'+idea+'"] .first-test').isVisible());
   }checks++;console.log('PASS: caster, bow, crossbow, quarterstaff and melee skills expose real interaction plans');
-  await page.locator('#catalog-search').fill('');const arc=await page.locator('#discovery-anchor option').evaluateAll(options=>options.find(o=>o.textContent==='Arc')?.value);assert.ok(arc);
+  await page.locator('#catalog-search').fill('');const arc=await page.locator('#discovery-anchor option').evaluateAll(options=>options.find(o=>o.textContent==='Firebolt')?.value);assert.ok(arc);
   await page.locator('#discovery-anchor').selectOption(arc);assert.match(await page.locator('#discovery-ideas').textContent(),/No researched combination/);
   assert.ok(await page.locator('#source-experiments .source-experiment').first().isVisible());
   assert.ok(await page.locator('#source-experiments .item-info .item-effect').first().isVisible());assert.match(await page.locator('#source-experiments').textContent(),/SOURCE CANDIDATE.*UNTESTED/);checks++;console.log('PASS: an uncovered spell gets distinct item experiments with visible unique modifiers');
   await page.setViewportSize({width:390,height:844});await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: expanded interaction navigation fits mobile');
   await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
-  const expandedCombos=JSON.parse(readFileSync('data/discovery/pob-bb52d6b-skill-combos2.json'));
-  const earlierComboIds=new Set(JSON.parse(readFileSync('data/discovery/pob-bb52d6b-skill-combos1.json')).recipes.map(r=>r.id));
+  const expandedCombos=JSON.parse(readFileSync('data/discovery/pob-bb52d6b-skill-combos3.json'));
+  const earlierComboIds=new Set(JSON.parse(readFileSync('data/discovery/pob-bb52d6b-skill-combos2.json')).recipes.map(r=>r.id));
   for(const idea of expandedCombos.recipes.filter(r=>!earlierComboIds.has(r.id))){
    await page.locator('#catalog-search').fill('');await page.locator('#discovery-anchor').selectOption(idea.skillIds[0]);
    assert.ok(await page.locator('[data-idea="'+idea.id+'"] .first-test').isVisible());
@@ -242,6 +242,24 @@ async function main(){
   await page.locator('#catalog-search').fill('Soul Offering');assert.match(await page.locator('[data-idea="soul-spell"]').textContent(),/does not increase your minions/);
   assert.ok(await page.locator('[data-idea="soul-spell"]').getByRole('button',{name:'Explore Spark ↗',exact:true}).isVisible());checks++;console.log('PASS: minion sacrifice is distinguished from the player spell buff it grants');
   await page.goto(base+'/?combos=pob-bb52d6b-skill-combos1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different skill combinations/);checks++;console.log('PASS: a shared older recipe version is not silently replaced');
+  await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
+  const allSkillReviews=JSON.parse(readFileSync('data/research/pob-bb52d6b-skill-reviews1.json'));
+  assert.equal(allSkillReviews.entries.length,399);assert.equal(await page.locator('#discovery-anchor option').count(),399);
+  for(const review of allSkillReviews.entries){
+   await page.locator('#discovery-anchor').selectOption(review.id);
+   const rendered=page.locator('#catalog-record .skill-review');assert.equal(await rendered.getAttribute('data-skill-review'),review.id);
+   assert.equal(await rendered.getAttribute('data-description-status'),review.descriptionStatus);
+  }checks++;console.log('PASS: every one of the 399 catalog skills renders its own source guide without a stale record');
+  await page.locator('#catalog-search').fill('Ice Fragments');assert.match(await page.locator('#catalog-record').textContent(),/no description/);assert.equal(await page.locator('#catalog-record [data-description-status="missing"]').count(),1);checks++;console.log('PASS: the missing secondary-effect description is visible and not fabricated');
+  await page.locator('#catalog-search').fill("Wildwood's Gifts");assert.match(await page.locator('#catalog-record').textContent(),/nearby Ancient Blooms/);assert.match(await page.locator('#catalog-record .skill-role').textContent(),/No specific researched combination/);
+  await page.locator('#catalog-record .skill-review > details > summary').click();assert.ok(await page.locator('#catalog-record .skill-review ol li').first().isVisible());checks++;console.log('PASS: standalone utility has its own guide without being counted as a researched combination');
+  await page.locator('#catalog-search').fill('Companion:');assert.match(await page.locator('#catalog-record').textContent(),/bound-creature template/);checks++;console.log('PASS: bound minion templates do not invent the selected monster’s abilities');
+  await page.setViewportSize({width:390,height:844});await page.locator('#catalog-search').fill('Spell Totem');await page.locator('#catalog-record .skill-review > details > summary').click();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: longer socket-and-charge skill guides fit mobile');
+  await page.locator('#catalog-search').fill('Mirror of Refraction');assert.match(await page.locator('#catalog-record').textContent(),/Item-granted skill/);
+  assert.match(await page.locator('[data-idea="staff-mirrors"] .item-info').textContent(),/Atziri's Rule/);assert.ok(await page.locator('[data-idea="staff-mirrors"] .item-info .item-effect').first().isVisible());checks++;console.log('PASS: item-granted skill combinations expose the granting unique and its current modifiers');
+  await page.goto(base+'/?reviews=missing');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different skill reviews/);checks++;console.log('PASS: unavailable guide versions fail closed');
+  await page.route('**/data/skill-reviews.json',async route=>{const response=await route.fetch();await route.fulfill({response,body:await response.text()+' '});});
+  await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/skill reviews do not match/);assert.equal(await page.locator('#workspace').isVisible(),false);await page.unroute('**/data/skill-reviews.json');checks++;console.log('PASS: tampered complete skill-guide data cannot be attached to a build');
   await page.goto(base+'/?combos=missing');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different skill combinations/);checks++;console.log('PASS: unavailable skill-combination versions fail closed');
   await page.route('**/data/skill-combos.json',async route=>{const response=await route.fetch();await route.fulfill({response,body:await response.text()+' '});});
   await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/skill combinations do not match/);assert.equal(await page.locator('#workspace').isVisible(),false);

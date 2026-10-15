@@ -1,0 +1,11 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {resolve} from 'node:path';
+import {buildSkillReviews} from '../src/skill-reviews-import.mjs';
+const path=process.argv[2];if(!path)throw new Error('Usage: npm run skills:import -- PATH-TO-PINNED-POB [--check]');
+const reference=JSON.parse(await readFile(new URL('../data/catalog/pob-bb52d6b-full-catalog1.json',import.meta.url)));
+const cwd=resolve(path),revision=execFileSync('git',['rev-parse','HEAD'],{cwd,encoding:'utf8'}).trim();if(revision!==reference.sourceRevision)throw new Error('Skill review source revision mismatch');
+const files={};for(const path of new Set(reference.entries.filter(e=>e.kind==='skill').map(e=>(e.effectEvidence||e.evidence).path)))files[path]=execFileSync('git',['show',revision+':'+path],{cwd,encoding:'utf8',maxBuffer:16*1024*1024});
+const data=buildSkillReviews(reference,files),bytes=JSON.stringify(data,null,2)+'\n',target=new URL('../data/research/'+data.id+'.json',import.meta.url);
+if(process.argv.includes('--check')){if(await readFile(target,'utf8')!==bytes)throw new Error('Skill review dataset changed');}else await writeFile(target,bytes);
+console.log(data.entries.length+' skill records checked; '+data.entries.filter(e=>e.descriptionStatus==='missing').length+' source description missing.');

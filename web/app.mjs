@@ -1,3 +1,4 @@
+import {validateSkillReviews,describeSkillReview} from './src/skill-reviews.mjs';
 import {validateSkillCombos, discoverSkillCombos, skillComboCoverage} from './src/skill-combos.mjs';
 import {validateExperimentDetails, validateCritTest, assessCriticalCadence} from './src/experiment-details.mjs';
 import {createChainDiscovery, chainDiscoveryVersion} from './src/chain-discovery.mjs';
@@ -14,7 +15,8 @@ const labels={compatible:'TYPE MATCH',incompatible:'DOES NOT MATCH',unknown:'UNK
 const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
-let skillCombos,comboCoverage,experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
+const sourceGrantCache=new Map();
+let skillReviews,skillReviewRecords,skillCombos,comboCoverage,experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
 let suggestChains,chainIdeaKey,chainIdeaOffset=0;
 let chainsData,chainExplorer,chainInput={generatorId:'frostbolt',payoffId:'comet',itemId:null,remap:false,generatorSupportId:null,payoffSupportId:null,confirmedEvents:[],focusEvent:'all'};
 let referenceCatalog,mechanicsData,exploreMechanics,ruleRecord,ruleAnchor,ruleLimit=12,supportLimit=16;
@@ -24,7 +26,7 @@ let combination={version:1,skillIds:[],supports:{},itemId:null};
 const contextInputs={sidewaysCascade:'sideways-cascade',criticalHitsDisabled:'critical-disabled',elementalAilmentsDisabled:'ailments-disabled',igniteDisabled:'ignite-disabled'};
 const contextParams={criticalHitsDisabled:'noCrit',elementalAilmentsDisabled:'noAilments',igniteDisabled:'noIgnite'};
 const readContext=()=>Object.fromEntries(Object.entries(contextInputs).map(([flag,id])=>[flag,$(id).checked]));
-function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('details',experimentDetails.id);url.searchParams.set('combos',skillCombos.id);if($('combo-only').checked)url.searchParams.set('covered','1');else url.searchParams.delete('covered');for(const [id,key] of [['chain-ideas-panel','explore'],['chain-panel','workbench'],['rule-explorer','sourceChecks'],['crit-cadence','critCheck']]){if($(id).open)url.searchParams.set(key,'1');else url.searchParams.delete(key);}url.searchParams.set('chainIdeas',chainDiscoveryVersion);for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=$(id).value;if(value!==fallback)url.searchParams.set(key,value);else url.searchParams.delete(key);}url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
+function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('details',experimentDetails.id);url.searchParams.set('combos',skillCombos.id);url.searchParams.set('reviews',skillReviews.id);if($('combo-only').checked)url.searchParams.set('covered','1');else url.searchParams.delete('covered');for(const [id,key] of [['chain-ideas-panel','explore'],['chain-panel','workbench'],['rule-explorer','sourceChecks'],['crit-cadence','critCheck']]){if($(id).open)url.searchParams.set(key,'1');else url.searchParams.delete(key);}url.searchParams.set('chainIdeas',chainDiscoveryVersion);for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=$(id).value;if(value!==fallback)url.searchParams.set(key,value);else url.searchParams.delete(key);}url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
 function choose(id) { selected=id;discoveryMode='skill';discoveryAnchor=id;render();updateUrl(); }
 function renderSkillList() {
   const query=$('skill-search').value.trim().toLowerCase();let count=0;
@@ -145,7 +147,7 @@ function renderReferenceRecord(record) {
  const box=$('catalog-record');box.replaceChildren(element('p',record.kind.toUpperCase()+' · '+record.category+(record.weaponRequirements?' · Requires '+record.weaponRequirements:record.base?' · '+record.base:''),'eyebrow'),element('h3',record.name));
  if(record.kind==='unique')box.append(itemInfo(record.id,false));
  else if(record.kind==='support')box.append(element('p',detailRecords.get(record.id)?.description||'No description is recorded in this source. Type checks are available.','muted'));
- if(record.kind==='skill'){const description=skillCombos.sources.find(s=>s.id===record.id)?.description;if(description)box.append(element('p',description,'muted'));}
+ if(record.kind==='skill')renderSkillGuide(record,box);
  if(record.id==='gas-arrow')box.append(element('p',experimentDetails.gasArrow.summary,'mechanic-note'));
  const details=element('details');details.append(element('summary','Record & source'));
  const tags=element('div',undefined,'tag-row');for(const tag of record.tags)tags.append(element('span',tag,'tag'));details.append(tags);
@@ -153,6 +155,24 @@ function renderReferenceRecord(record) {
  details.append(element('p','Imported source record; target-patch behavior remains unverified.','muted'),link('View source record ↗',record.evidence.url));
  if(record.effectEvidence)details.append(link('Skill mechanics source ↗',record.effectEvidence.url));box.append(details);
 }
+function sourceItemAccess(id){
+ if(!sourceGrantCache.has(id))sourceGrantCache.set(id,[...new Set(exploreMechanics(id).links.filter(c=>(c.kind==='grant'||c.kind==='trigger')&&c.skillId===id).map(c=>c.itemId))]);
+ return sourceGrantCache.get(id);
+}
+function renderSkillGuide(record,box){
+ const source=skillReviewRecords.get(record.id),guide=describeSkillReview(record,source,profileRecords.get(record.id));
+ const section=element('section',undefined,'skill-review');section.dataset.skillReview=record.id;section.dataset.descriptionStatus=source.descriptionStatus;
+ const recipes=referenceView('skill',record.id).ideas.length+discoverSkillCombos(referenceCatalog,skillCombos,record.id).length;
+ section.append(element('p',guide.role+' · '+(recipes?recipes+' researched combinations':'No specific researched combination established'),'skill-role'));
+ if(source.description)section.append(element('p',source.description,'muted'));
+ for(const warning of guide.warnings)section.append(element('p',warning,'warning'));
+ const details=element('details');details.append(element('summary','Skill setup & practical checks'));
+ if(guide.statements.length){details.append(element('h4','Conditions from the source'));const statements=element('ul');for(const statement of guide.statements)statements.append(element('li',statement));details.append(statements);}
+ details.append(element('h4','Test before combining'));const practical=element('ol');for(const check of guide.practical)practical.append(element('li',check));details.append(practical);
+ details.append(element('p','Source guide only. These checks do not establish a new synergy, damage gain or complete build.','muted'),link('Exact skill source ↗',(record.effectEvidence||record.evidence).url));
+ section.append(details);if(source.fromItem&&source.descriptionStatus==='recorded'&&!record.name.includes('{0}')){const items=sourceItemAccess(record.id);for(const id of items)section.append(itemInfo(id));if(!items.length)section.append(element('p','No granting unique is recognized by the partial item rules. Verify the actual item source before using this skill.','muted'));}box.append(section);
+}
+
 function syncManualAnchor(record){
  if(manualAnchorId===record.id)return;manualAnchorId=record.id;
  if(restoringManual){restoringManual=false;return;}chainInput.critTest={};chainInput.confirmedEvents=[];
@@ -221,11 +241,12 @@ function renderDiscovery() {
   renderSourceExperiments(record,query);
   $('discovery-count').textContent=ideas.length+' researched ideas for '+view.anchor.name+' · mechanics checked, performance untested';
   $('discovery-ideas').replaceChildren();
-  if(!ideas.length){$('discovery-ideas').append(element('div',allIdeas.length?'No ideas match this search.':'This record is imported. No researched combination is recorded for it yet; catalog inclusion does not establish a synergy.','empty-support'));return;}
+  if(!ideas.length){$('discovery-ideas').append(element('div',allIdeas.length?'No ideas match this search.':'No researched combination is recorded for this starting point yet. For skills, use the source setup guide above and any separate item experiments below; a setup guide is not a proven synergy.','empty-support'));return;}
   for(const idea of ideas){
     const card=element('article',undefined,'discovery-card');card.dataset.idea=idea.id;
     card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
     const chips=element('div',undefined,'tag-row');for(const skill of idea.skills)chips.append(element('span',skill.name,'tag'));card.append(chips,element('p',idea.buildPlan.playstyle,'muted'));if(idea.item)card.append(itemInfo(idea.item.id));if(skillCombos.recipes.some(r=>r.id===idea.id)){const members=element('div',undefined,'tag-row');for(const skill of idea.skills.filter(s=>s.id!==record.id)){const open=element('button','Explore '+skill.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('skill',skill.id));members.append(open);}card.append(members);}
+    const itemSkills=idea.skills.filter(s=>skillReviewRecords.get(s.id)?.fromItem);const access=new Set(itemSkills.flatMap(s=>sourceItemAccess(s.id)));if(idea.item)access.delete(idea.item.id);if(access.size)card.append(element('p','Item access · confirm the actual source variant','skill-role'));for(const id of access)card.append(itemInfo(id));if(itemSkills.some(s=>!sourceItemAccess(s.id).length))card.append(element('p','This idea includes an item-granted skill. Its granting item is not modeled here; verify that source and its equipment requirements first.','warning'));
     const firstTest=element('div',undefined,'first-test');firstTest.append(element('strong','First test'),element('p',idea.buildPlan.firstTest));card.append(firstTest);
     const more=element('details',undefined,'idea-details');more.append(element('summary',idea.supportIdeas.length?'Mechanics, supports & tradeoffs':'Mechanics & tradeoffs'));
     const body=element('div',undefined,'idea-body');body.append(element('h4','Why this is interesting'),element('p',idea.mechanics),element('h4','How to explore it'));
@@ -236,7 +257,7 @@ function renderDiscovery() {
     }
     body.append(element('h4','Conditions & costs'));const conditions=element('ul');for(const c of idea.conditions)conditions.append(element('li',c));body.append(conditions,element('h4','Avoid the tempting mistake'));
     const avoid=element('ul');for(const c of idea.avoid)avoid.append(element('li',c));body.append(avoid,element('h4','Evidence'));
-    for(const url of idea.evidenceUrls)body.append(link('Source ↗',url));
+    for(const url of new Set([...idea.evidenceUrls,...(idea.socketChecks||[]).map(c=>c.evidence.url)]))body.append(link('Source ↗',url));
     more.append(body);card.append(more);
     const plan=element('details',undefined,'idea-details');plan.append(element('summary','Turn this idea into a build experiment'));
     const planBody=element('div',undefined,'idea-body');planBody.append(element('h4','Core components'));
@@ -408,9 +429,9 @@ function renderChains(record){
 }
 
 async function start(){
-  const responses=await Promise.all([fetch('./data/snapshot.json',{cache:'no-cache'}),fetch('./data/build.json',{cache:'no-cache'}),fetch('./data/catalog.json',{cache:'no-cache'}),fetch('./data/reference.json',{cache:'no-cache'}),fetch('./data/mechanics.json',{cache:'no-cache'}),fetch('./data/chains.json',{cache:'no-cache'}),fetch('./data/experiment-details.json',{cache:'no-cache'}),fetch('./data/skill-combos.json',{cache:'no-cache'})]);
+  const responses=await Promise.all([fetch('./data/snapshot.json',{cache:'no-cache'}),fetch('./data/build.json',{cache:'no-cache'}),fetch('./data/catalog.json',{cache:'no-cache'}),fetch('./data/reference.json',{cache:'no-cache'}),fetch('./data/mechanics.json',{cache:'no-cache'}),fetch('./data/chains.json',{cache:'no-cache'}),fetch('./data/experiment-details.json',{cache:'no-cache'}),fetch('./data/skill-combos.json',{cache:'no-cache'}),fetch('./data/skill-reviews.json',{cache:'no-cache'})]);
   if(responses.some(r=>!r.ok))throw new Error('The bundled data could not be loaded.');
-  const [bytes,metadata,catalogBytes,referenceBytes,mechanicsBytes,chainsBytes,detailBytes,comboBytes]=await Promise.all([responses[0].arrayBuffer(),responses[1].json(),responses[2].arrayBuffer(),responses[3].arrayBuffer(),responses[4].arrayBuffer(),responses[5].arrayBuffer(),responses[6].arrayBuffer(),responses[7].arrayBuffer()]);meta=metadata;
+  const [bytes,metadata,catalogBytes,referenceBytes,mechanicsBytes,chainsBytes,detailBytes,comboBytes,reviewBytes]=await Promise.all([responses[0].arrayBuffer(),responses[1].json(),responses[2].arrayBuffer(),responses[3].arrayBuffer(),responses[4].arrayBuffer(),responses[5].arrayBuffer(),responses[6].arrayBuffer(),responses[7].arrayBuffer(),responses[8].arrayBuffer()]);meta=metadata;
   const sha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
   if(sha!==meta.snapshotSha256)throw new Error('The dataset does not match its saved source review. Rebuild or update the project.');
   snapshot=JSON.parse(new TextDecoder().decode(bytes));if(snapshot.id!==meta.snapshotId)throw new Error('Snapshot version mismatch.');
@@ -441,11 +462,17 @@ async function start(){
   skills=snapshot.entities.filter(s=>s.kind==='skill');
   const comboSha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',comboBytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
   if(comboSha!==meta.skillCombosSha256)throw new Error('The skill combinations do not match this build.');
-  skillCombos=validateSkillCombos(referenceCatalog,JSON.parse(new TextDecoder().decode(comboBytes)));
+  skillCombos=validateSkillCombos(referenceCatalog,JSON.parse(new TextDecoder().decode(comboBytes)),mechanicsData);
   if(skillCombos.id!==meta.skillCombosId)throw new Error('Skill combinations version mismatch.');
+  const reviewSha=[...new Uint8Array(await crypto.subtle.digest('SHA-256',reviewBytes))].map(b=>b.toString(16).padStart(2,'0')).join('');
+  if(reviewSha!==meta.skillReviewsSha256)throw new Error('The skill reviews do not match this build.');
+  skillReviews=validateSkillReviews(referenceCatalog,JSON.parse(new TextDecoder().decode(reviewBytes)));
+  if(skillReviews.id!==meta.skillReviewsId)throw new Error('Skill review version mismatch.');
+  skillReviewRecords=new Map(skillReviews.entries.map(e=>[e.id,e]));
   comboCoverage=skillComboCoverage(referenceCatalog,skillCombos,catalog);
-  $('discovery-coverage').textContent=comboCoverage.recipes+' researched combinations across '+comboCoverage.skills+' / '+comboCoverage.totalSkills+' skills. Source item experiments are listed separately; none are damage-ranked.';
+  $('discovery-coverage').textContent=skillReviews.entries.length+' / '+referenceCatalog.counts.skill+' skill source guides; '+comboCoverage.recipes+' researched combinations across '+comboCoverage.skills+' / '+comboCoverage.totalSkills+' skills. Source item experiments are listed separately; none are damage-ranked.';
   const params=new URL(location.href).searchParams;
+  if(params.has('reviews')&&params.get('reviews')!==skillReviews.id)throw new Error('This link refers to different skill reviews.');
   if(params.has('combos')&&params.get('combos')!==skillCombos.id)throw new Error('This link refers to different skill combinations.');
   $('combo-only').checked=params.get('covered')==='1';
   if(params.has('snapshot')&&params.get('snapshot')!==snapshot.id)throw new Error('This link refers to a different data snapshot. Open the lab without the link parameters to use this preview.');
