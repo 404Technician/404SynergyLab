@@ -18,6 +18,7 @@ async function main(){
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   const expand=async id=>{const box=page.locator('#'+id);if(!await box.evaluate(e=>e.open))await box.locator(':scope > summary').click();};
   await page.goto(base+'/?inspect=1');await page.locator('#workspace').waitFor({state:'visible'});
+  await page.locator('.intro-art').evaluate(image=>image.decode());assert.ok(await page.locator('.intro-art').evaluate(image=>image.naturalWidth>0));assert.equal(await page.locator('#catalog-record .record-heading svg').count(),1);checks++;console.log('PASS: bundled illustration decodes and selected record has a category graphic');
   assert.equal(await page.locator('#skill-title').textContent(),'Spark');assert.match(await page.locator('#data-notice').textContent(),/CANDIDATE DATA/);checks++;console.log('PASS: default Spark and candidate-data notice');
   assert.equal(await page.locator('.support-card').count(),8);checks++;console.log('PASS: all support cards loaded');
   await page.locator('[data-filter="compatible"]').click();assert.equal(await page.locator('.support-card.incompatible').count(),0);checks++;console.log('PASS: type-match filter');

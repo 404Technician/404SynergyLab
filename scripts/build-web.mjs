@@ -41,8 +41,10 @@ export async function buildWeb() {
   for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,details.entries.find(e=>e.id===entry.id));
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
+  await mkdir(new URL('assets/',dist),{recursive:true});
+  await copyFile(new URL('web/assets/arcane-lab.svg',root),new URL('assets/arcane-lab.svg',dist));
   for(const name of ['index.html','styles.css','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
-  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
+  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs','visuals.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
   await writeFile(new URL('data/snapshot.json',dist),snapshotBytes);
   await writeFile(new URL('data/catalog.json',dist),catalogBytes);
   await writeFile(new URL('data/reference.json',dist),referenceBytes);
