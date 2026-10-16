@@ -1,5 +1,7 @@
 # 404 Synergy Lab
 
+v0.26.0 adds **My build plans**: save any of the 389 researched recipes, retain its source components and unique modifiers, review requirements, and record your equipment, defenses, resources and personal test history. Plans save in this browser with JSON export/import and undoable removal. Each test requires a game patch, target and observations; personal outcomes never promote a source recipe to verified. Older or altered saved sources remain read-only.
+
 
 v0.25.0 adds **Find your next build direction** above the full catalog: 17 hand-reviewed interactions filtered by playstyle, core controls and required uniques. Cards show actual item effects; the selected setup shows every required unique, play steps, prerequisites and its first test. Filters and direction survive shared URLs. Labels describe the core interaction only; all listed directions still await an in-game test. The full catalog retains all 389 recipes.
 

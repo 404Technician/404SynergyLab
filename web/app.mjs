@@ -1,3 +1,5 @@
+import {buildPlanSource} from './src/build-plans.mjs';
+import {initializeBuildPlans} from './plans.mjs';
 import {finderLabels, finderVersion, validateFinderFilters, resolveBuildDirections, filterBuildDirections} from './src/build-finder.mjs';
 import {auditUniqueCoverage} from './src/unique-audit.mjs';
 import {recordVisual,recordScene,recordVignette,visualTheme,combinationVisual} from './src/visuals.mjs';
@@ -21,6 +23,7 @@ const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
 const sourceGrantCache=new Map();
+let planManager;
 let finderDirections=[],finderFilters=validateFinderFilters(),finderSelected='',finderPage=0;
 let shelfStart=0,shelfKey='',shelfAnchor='';
 let uniqueAudit,uniqueAuditRecords,uniqueCombos,skillReviews,skillReviewRecords,skillCombos,comboCoverage,experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
@@ -131,6 +134,15 @@ function renderCombination() {
 }
 
 
+const planRecipeCache=new Map();
+function sourceForPlan(recipeId){
+ if(planRecipeCache.has(recipeId))return planRecipeCache.get(recipeId);
+ const raw=[...catalog.recipes,...skillCombos.recipes,...uniqueCombos.recipes].find(r=>r.id===recipeId);if(!raw)return null;
+ const idea=[...referenceView('skill',raw.skillIds[0]).ideas,...discoverSkillCombos(referenceCatalog,skillCombos,raw.skillIds[0])].find(r=>r.id===recipeId);if(!idea)return null;
+ const source=buildPlanSource(idea,referenceCatalog,detailRecords,JSON.stringify([meta.snapshotSha256,meta.catalogSha256,meta.referenceSha256,meta.detailsSha256,meta.skillCombosSha256,meta.uniqueCombosSha256,meta.skillReviewsSha256]),snapshot.patch);
+ planRecipeCache.set(recipeId,source);return source;
+}
+function savePlanButton(recipeId){const button=element('button','Save as build plan +','save-plan');button.type='button';button.dataset.saveRecipe=recipeId;button.addEventListener('click',()=>planManager.add(recipeId));return button;}
 function finderItems(idea){return idea.items.map(item=>referenceCatalog.entries.find(e=>e.id===item.id||e.reviewedId===item.id)).filter(Boolean);}
 function finderItemPreview(item,idea){
  const box=element('div',undefined,'direction-unique');box.append(element('strong',item.name));
@@ -159,7 +171,7 @@ function renderFinderDetail(direction){
   const record=referenceCatalog.entries.find(e=>e.id===idea.skills[0].id||e.reviewedId===idea.skills[0].id);
   discoveryMode='skill';discoveryAnchor=record.id;$('combo-only').checked=false;$('catalog-search').value='';$('catalog-category').value='';$('discovery-search').value='';renderDiscovery();updateUrl();
   const card=[...$('discovery-ideas').children].find(e=>e.dataset.idea===idea.id);if(card){card.tabIndex=-1;card.focus({preventScroll:true});card.scrollIntoView({block:'start'});}
- });box.append(open);
+ });box.append(savePlanButton(idea.id),open);
 }
 function renderFinder(){
  const matches=filterBuildDirections(finderDirections,finderFilters),pages=Math.max(1,Math.ceil(matches.length/6));
@@ -389,6 +401,7 @@ function renderDiscovery() {
     const components=element('ul');for(const component of idea.buildPlan.components)components.append(element('li',component));
     planBody.append(element('p',idea.buildPlan.playstyle,'muted'),components,element('h4','Test the mechanic first'),element('p',idea.buildPlan.firstTest),element('h4','Reconsider the idea if'),element('p',idea.buildPlan.stopIf),element('h4','Before calling this a full build'));
     const checks=element('ol');for(const check of idea.buildPlan.nextChecks)checks.append(element('li',check));planBody.append(checks,element('p','Experiment only: no validated ascendancy, passive tree, gear budget or endgame rating yet.','muted'));plan.append(planBody);card.append(plan);
+    card.append(savePlanButton(idea.id));
     const inspectable=idea.skills.find(s=>skills.some(base=>base.id===s.id));
     if(!inspectable){if(!skillCombos.recipes.some(r=>r.id===idea.id))card.append(element('p','Use the source descriptions and first test above. This interaction is not included in the smaller support-and-trigger workbench yet.','muted'));$('discovery-ideas').append(card);continue;}
     const inspect=element('button','Inspect '+inspectable.name+' checks ↗','share-button');inspect.type='button';
@@ -664,6 +677,7 @@ async function start(){
   for(const button of $('filters').children)button.addEventListener('click',()=>{filter=button.dataset.filter;for(const b of $('filters').children)b.setAttribute('aria-pressed',String(b===button));renderSupports();});
   for(const id of Object.values(contextInputs))$(id).addEventListener('change',()=>{render();updateUrl();});
   $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);$('share-status').textContent='Link copied.';$('share').textContent='Link copied ✓';}catch{$('share-fallback').hidden=false;$('share-url').value=location.href;$('share-url').focus();$('share-url').select();}});
+  planManager=initializeBuildPlans({getSource:sourceForPlan});$('plan-shortcut').addEventListener('click',()=>{$('build-plans').open=true;});
   setupFinder(params);render();$('workspace').hidden=false;
 }
 start().catch(error=>{$('workspace').hidden=true;$('load-error').hidden=false;$('load-error').textContent=error.message;$('data-notice').replaceChildren(element('strong','LAB UNAVAILABLE'),element('span','Results are hidden until the data check passes.'));});

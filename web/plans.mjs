@@ -1,0 +1,65 @@
+import {planStorageKey,planFields,testOutcomes,validatePlanBook,validatePlanTest,createBuildPlan,mergePlanBooks,readPlanBook,writePlanBook} from './src/build-plans.mjs';
+const $=id=>document.getElementById(id);
+const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
+const button=(text,action)=>{const b=el('button',text);b.type='button';b.addEventListener('click',action);return b;};
+function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+export function initializeBuildPlans({getSource}){
+ let book={version:1,plans:[]},raw=null,storage,storageBlocked=false,selected='',deleted=null;
+ const status=(text,error=false)=>{$('plan-status').textContent=text;$('plan-status').dataset.error=String(error);};
+ function load(){
+  try{storage=window.localStorage;const saved=readPlanBook(storage);book=saved.book;raw=saved.raw;storageBlocked=false;status('Saved on this browser. Export a backup to keep or move your plans.');}
+  catch{storageBlocked=true;status('Saved plans could not be read. Working in memory; existing storage will not be overwritten. Export your plans before leaving.',true);}
+ }
+ function persist(){
+  try{validatePlanBook(book);if(storageBlocked)throw new Error('Working in memory. Export your plans before leaving; browser storage is unavailable or needs reloading.');raw=writePlanBook(storage,book,raw);status('Saved on this browser · your notes are not included in shared recipe links.');}
+  catch(error){storageBlocked=true;status(error.message+' Use Export plans to keep this session.',true);}
+ }
+ function active(){return book.plans.find(p=>p.id===selected);}
+ function touch(plan){plan.updated=new Date().toISOString();persist();}
+ function renderList(){
+  $('plan-total').textContent=book.plans.length+' saved';$('plan-shortcut-count').textContent=book.plans.length;
+  const list=$('plan-list');list.replaceChildren();for(const p of book.plans){const b=button('',()=>{selected=p.id;render();});b.dataset.planId=p.id;b.setAttribute('aria-pressed',String(p.id===selected));b.append(el('strong',p.name),el('small',p.tests.length?testOutcomes[p.tests.at(-1).outcome]:'Not tested in game'));list.append(b);}
+ }
+ function renderHistory(plan,box){
+  box.replaceChildren();if(!plan.tests.length){box.append(el('p','No personal test recorded. The source recipe still awaits an in-game test.'));return;}
+  for(const t of [...plan.tests].reverse()){const row=el('article');row.append(el('strong',testOutcomes[t.outcome]),el('p',t.patch+' · '+t.target+' · '+t.date.slice(0,10)),el('p',t.observations));box.append(row);}
+ }
+ function render(){
+  if(!active())selected=book.plans[0]?.id||'';renderList();
+  const editor=$('plan-editor');editor.replaceChildren();const plan=active();
+  if(!plan){editor.append(el('p','Save any researched recipe as a build plan. Then record your gear, defenses, resources and in-game tests here.','plan-empty'));return;}
+  const fresh=getSource(plan.recipeId),stale=!fresh||JSON.stringify(fresh)!==JSON.stringify(plan.source);
+  const title=el('h3',plan.name);title.id='plan-editor-title';title.tabIndex=-1;
+  editor.append(el('p','PERSONAL BUILD PLAN · '+plan.source.patch,'eyebrow'),title,el('p','Your notes and test results. This does not change the source review or rate a complete build.'));
+  if(stale)editor.append(el('p','This saved source differs from the current recipe or is unavailable. Its saved components and item modifiers are shown below. Export or keep it for reference; start a new plan from the current recipe to continue testing.','plan-stale'));
+  const actions=el('div',undefined,'plan-actions');actions.append(button('Export this plan',()=>download('synergy-build-plan.json',JSON.stringify({version:1,plans:[plan]},null,2))),button('Remove plan',()=>{deleted=structuredClone(plan);book.plans=book.plans.filter(p=>p.id!==plan.id);selected='';persist();render();renderUndo();}));editor.append(actions);
+  const core=el('details',undefined,'plan-preview');core.open=true;core.append(el('summary','Saved core · skills, uniques & first test'));
+  core.append(el('p',plan.source.skills.join(' + ')),el('h4','First test'),el('p',plan.source.firstTest),el('h4','Reconsider if…'),el('p',plan.source.stopIf));
+  const components=el('ul');for(const c of plan.source.components)components.append(el('li',c));core.append(components);
+  for(const item of plan.source.items){const box=el('section',undefined,'item-info');box.dataset.planItem=item.id;box.append(el('h4',item.name),el('p',item.base),el('p','Saved Current / common source stats. Match your actual item variant and rolls.'));const effects=el('div',undefined,'item-effects');for(const text of item.modifiers)effects.append(el('p',text,'item-effect'));box.append(effects);core.append(box);}
+  if(!plan.source.items.length)core.append(el('p','No unique required by the recorded core. Other equipment and support requirements still apply.'));editor.append(core);
+  const fields=el('fieldset');fields.disabled=stale;
+  const name=el('label','Plan name'),nameInput=el('input');nameInput.id='plan-name';nameInput.maxLength=160;nameInput.value=plan.name;nameInput.addEventListener('input',()=>{if(nameInput.value.trim()){plan.name=nameInput.value.trim();title.textContent=plan.name;touch(plan);renderList();}});name.append(nameInput);fields.append(name);
+  const checks=el('details');checks.open=true;checks.append(el('summary','Review the requirements'));const count=el('p',undefined,'plan-check-count');count.id='plan-check-count';const updateCount=()=>{count.textContent=plan.checked.length+' / '+plan.source.conditions.length+' requirements reviewed · not a viability score';};updateCount();checks.append(count);
+  for(const condition of plan.source.conditions){const label=el('label',undefined,'plan-check'),input=el('input');input.type='checkbox';input.checked=plan.checked.includes(condition);input.addEventListener('change',()=>{plan.checked=input.checked?[...plan.checked,condition]:plan.checked.filter(c=>c!==condition);updateCount();touch(plan);});label.append(input,el('span',condition));checks.append(label);}fields.append(checks);
+  const notes=el('details');notes.open=true;notes.append(el('summary','Shape your build'));
+  for(const [key,label] of Object.entries(planFields)){const field=el('label',label),input=el('textarea');input.id='plan-note-'+key;input.maxLength=5000;input.value=plan.notes[key];input.placeholder={character:'Your class, ascendancy, passive tree or PoB link…',equipment:'Actual item variants, weapon setup, support choices…',defenses:'Life / ES, resistances, recovery and what still needs testing…',resources:'Reservation, Mana cost and measured sustain…',notes:'What you want to try next…'}[key];input.addEventListener('input',()=>{plan.notes[key]=input.value;touch(plan);});field.append(input);notes.append(field);}fields.append(notes);
+  const testing=el('details');testing.open=true;testing.append(el('summary','Record an in-game test'),el('p','A result applies only to your patch, setup and target. It does not mark the source recipe or other builds as verified.'));
+  const form=el('form',undefined,'plan-test');form.id='plan-test-form';
+  for(const [key,label,type,max] of [['patch','Game patch','input',100],['target','Test target / content','input',300],['outcome','Your result','select',0],['observations','What happened? Include setup and limitations.','textarea',5000]]){
+   const field=el('label',label),input=el(type);input.name=key;input.id='plan-test-'+key;input.required=true;if(max)input.maxLength=max;
+   if(type==='select'){const empty=el('option','Choose a result');empty.value='';input.append(empty);for(const [value,text] of Object.entries(testOutcomes)){const option=el('option',text);option.value=value;input.append(option);}}
+   field.append(input);form.append(field);
+  }
+  const submit=el('button','Save test result');submit.type='submit';const message=el('p',undefined,'plan-test-message');message.setAttribute('role','status');
+  const history=el('div',undefined,'plan-history');history.id='plan-history';renderHistory(plan,history);
+  form.addEventListener('submit',event=>{event.preventDefault();try{if(plan.tests.length>=20)throw new Error('This plan already has 20 test records. Export it and start a new plan for further tests.');const data=new FormData(form),test={...Object.fromEntries(data),date:new Date().toISOString()};validatePlanTest(test);plan.tests.push(test);touch(plan);renderList();renderHistory(plan,history);form.reset();message.textContent='Personal test recorded. The source recipe remains unverified in game.';}catch(error){message.textContent=error.message;}});
+  form.append(submit,message);testing.append(form);fields.append(testing);editor.append(fields,el('h4','Your test history'),history);
+ }
+ function renderUndo(){const box=$('plan-undo');box.replaceChildren();if(deleted)box.append(el('span','Plan removed.'),button('Undo removal',()=>{if(book.plans.length>=50){status('Export or remove a plan before restoring this one.',true);return;}book.plans.push(deleted);selected=deleted.id;deleted=null;persist();render();renderUndo();}));}
+ load();render();
+ $('plan-export').addEventListener('click',()=>download('synergy-build-plans.json',JSON.stringify(book,null,2)));
+ $('plan-reload').addEventListener('click',()=>{load();render();});
+ $('plan-import').addEventListener('change',async event=>{try{const file=event.target.files?.[0];if(!file)return;if(file.size>3000000)throw new Error('Plan file is too large (maximum 3 MB).');const incoming=validatePlanBook(JSON.parse(await file.text())),count=book.plans.length;book=mergePlanBooks(book,incoming);persist();render();if(!storageBlocked)status('Imported '+(book.plans.length-count)+' plans. Existing IDs were kept; no existing notes were overwritten.');}catch(error){status('Import failed: '+error.message,true);}finally{event.target.value='';}});
+ return {add(recipeId){try{const source=getSource(recipeId);if(!source)throw new Error('The source recipe is unavailable.');let plan=book.plans.find(p=>p.recipeId===recipeId&&JSON.stringify(p.source)===JSON.stringify(source));if(!plan){if(book.plans.length>=50)throw new Error('You have 50 plans. Export and remove one before adding another.');plan=createBuildPlan(recipeId,source,crypto.randomUUID(),new Date().toISOString());book.plans.push(plan);persist();}selected=plan.id;render();$('build-plans').open=true;$('plan-editor-title').focus({preventScroll:true});$('build-plans').scrollIntoView({block:'start'});}catch(error){$('build-plans').open=true;status(error.message,true);}}};
+}
