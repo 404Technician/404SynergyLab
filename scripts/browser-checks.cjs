@@ -21,6 +21,7 @@ async function main(){
   if(process.env.SCREENSHOT_DIR)await mkdir(process.env.SCREENSHOT_DIR,{recursive:true});
   const finder=await context.newPage();await finder.goto(base);await finder.locator('#workspace').waitFor({state:'visible'});
   assert.match(await finder.locator('#finder-count').textContent(),/17 of 17/);assert.equal(await finder.locator('#finder-results .direction-card').count(),6);
+  assert.equal(await finder.locator('#finder-detail .component-copy > small').first().textContent(),'UNIQUE');assert.ok(await finder.locator('[data-direction="unearth-bone-bombs"] .vignette-minion').count()>0);
   assert.ok(await finder.locator('#finder-detail .item-effect').count()>0);assert.match(await finder.locator('#finder-detail').textContent(),/200 Base Fire/);
   assert.match(await finder.locator('#finder-results .direction-unique').first().textContent(),/Ignit/);
   await finder.locator('#finder-style').selectOption('ranged');await finder.locator('#finder-control').selectOption('low');await finder.locator('#finder-gear').selectOption('required');

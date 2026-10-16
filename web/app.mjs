@@ -183,7 +183,12 @@ function renderFinder(){
 }
 function setupFinder(params){
  const all=[...catalog.recipes,...skillCombos.recipes,...uniqueCombos.recipes];
- finderDirections=resolveBuildDirections(id=>{const raw=all.find(r=>r.id===id);if(!raw)return;return [...referenceView('skill',raw.skillIds[0]).ideas,...discoverSkillCombos(referenceCatalog,skillCombos,raw.skillIds[0])].find(r=>r.id===id);});
+ finderDirections=resolveBuildDirections(id=>{
+  const raw=all.find(r=>r.id===id);if(!raw)return;
+  const idea=[...referenceView('skill',raw.skillIds[0]).ideas,...discoverSkillCombos(referenceCatalog,skillCombos,raw.skillIds[0])].find(r=>r.id===id);if(!idea)return;
+  const canonical=record=>{const source=referenceCatalog.entries.find(e=>e.id===record.id||e.reviewedId===record.id);if(!source)throw new Error('Missing build direction component');return source;};
+  return {...idea,skills:idea.skills.map(canonical),items:(idea.items||(idea.item?[idea.item]:[])).map(canonical)};
+ });
  if(params.has('finder')&&params.get('finder')!==finderVersion)throw new Error('This link refers to different build direction labels.');
  finderFilters=validateFinderFilters(Object.fromEntries(Object.keys(finderLabels).map(k=>[k,params.get('find'+k)??'all'])));
  finderSelected=params.get('direction')||'';
