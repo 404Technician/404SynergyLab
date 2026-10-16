@@ -71,6 +71,23 @@ async function main(){
   await page.setViewportSize({width:390,height:844});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   assert.equal(await page.locator('.hero-action').isVisible(),true);await page.setViewportSize({width:1440,height:1050});
   await page.evaluate(()=>window.scrollTo(0,0));checks++;console.log('PASS: optimized cinematic artwork, keyboard-focusable lab entry and mobile hero');
+  const atlasResponse=await fetch(base+'/assets/category-atlas.webp');assert.equal(atlasResponse.status,200);assert.equal(atlasResponse.headers.get('content-type'),'image/webp');assert.ok((await atlasResponse.arrayBuffer()).byteLength<600000);
+  const collection=await context.newPage();await collection.goto(base);await collection.locator('#workspace').waitFor({state:'visible'});
+  await collection.locator('#catalog-search').fill('Cold');
+  const allowed=await collection.locator('#discovery-anchor option').evaluateAll(options=>options.map(o=>o.value));
+  for(let i=0;i<3;i++){
+   const previous=await collection.locator('#discovery-anchor').inputValue();await collection.locator('#catalog-surprise').click();
+   const next=await collection.locator('#discovery-anchor').inputValue();assert.notEqual(next,previous);assert.ok(allowed.includes(next));
+   assert.equal(await collection.locator('#catalog-search').inputValue(),'Cold');assert.equal(new URL(collection.url()).searchParams.get('anchor'),next);
+   assert.match(await collection.locator('#surprise-status').textContent(),/Selected .* from the current catalog filters/);
+  }
+  assert.ok(await collection.locator('#catalog-shelf .record-vignette').first().evaluate(e=>getComputedStyle(e).backgroundImage.includes('category-atlas.webp')));
+  await collection.locator('#catalog-search').fill('Icestorm');assert.equal(await collection.locator('#catalog-surprise').isDisabled(),true);
+  await collection.locator('#start-unique').click();const previousUnique=await collection.locator('#discovery-anchor').inputValue();await collection.locator('#catalog-surprise').click();
+  const nextUnique=await collection.locator('#discovery-anchor').inputValue();assert.notEqual(previousUnique,nextUnique);assert.equal(await collection.locator('#catalog-record [data-unique-review]').getAttribute('data-unique-review'),nextUnique);
+  await collection.emulateMedia({reducedMotion:'reduce'});assert.equal(await collection.locator('#catalog-shelf .record-vignette').first().evaluate(e=>getComputedStyle(e).transitionDuration),'0s');
+  await collection.setViewportSize({width:390,height:844});assert.equal(await collection.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+  await collection.close();checks++;console.log('PASS: category atlas, filtered surprise discovery, unique selection, reduced motion and mobile collection');
   assert.equal(await page.locator('#skill-title').textContent(),'Spark');assert.match(await page.locator('#data-notice').textContent(),/CANDIDATE DATA/);checks++;console.log('PASS: default Spark and candidate-data notice');
   assert.equal(await page.locator('.support-card').count(),8);checks++;console.log('PASS: all support cards loaded');
   await page.locator('[data-filter="compatible"]').click();assert.equal(await page.locator('.support-card.incompatible').count(),0);checks++;console.log('PASS: type-match filter');

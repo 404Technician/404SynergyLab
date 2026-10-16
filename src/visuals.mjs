@@ -40,6 +40,10 @@ export function recordVisual(record,size='small'){
  const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 24 24');svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');svg.setAttribute('stroke-width','1.35');svg.setAttribute('stroke-linecap','round');svg.setAttribute('stroke-linejoin','round');svg.setAttribute('focusable','false');
  const path=document.createElementNS(ns,'path');path.setAttribute('d',paths[symbol]);svg.append(path);box.append(svg);return box;
 }
+// Six original category paintings share one atlas; no exact game item art is inferred.
+export function recordVignette(record){
+ const art=document.createElement('span');art.className='record-vignette vignette-'+visualTheme(record).tone;art.setAttribute('aria-hidden','true');return art;
+}
 export function combinationVisual(idea){
  const box=document.createElement('ul');box.className='combination-art';box.setAttribute('aria-label','Combination components');
  const records=[...(idea.items|| (idea.item?[{...idea.item,kind:'unique'}]:[])),...idea.skills];
@@ -65,5 +69,5 @@ export function recordScene(record){
  shape('path',{d:'m140 26 4 7-4 7-4-7Zm0 164 4 7-4 7-4-7ZM49 111l7 4-7 4-7-4Zm182 0 7 4-7 4-7-4Z',fill:'currentColor',opacity:'.85'});
  shape('path',{d:paths[symbol],transform:'translate(95 70) scale(3.75)',stroke:'currentColor','stroke-width':'.8','stroke-linecap':'round','stroke-linejoin':'round'});
  for(const [cx,cy,r] of [[36,45,2],[236,38,1.5],[251,175,2],[42,190,1.5],[205,198,1],[77,28,1]])shape('circle',{cx,cy,r,fill:'currentColor',opacity:'.6'});
- box.append(svg);return box;
+ box.append(recordVignette(record),svg);return box;
 }

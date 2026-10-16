@@ -1,5 +1,5 @@
 import {auditUniqueCoverage} from './src/unique-audit.mjs';
-import {recordVisual,recordScene,visualTheme,combinationVisual} from './src/visuals.mjs';
+import {recordVisual,recordScene,recordVignette,visualTheme,combinationVisual} from './src/visuals.mjs';
 import {validateSkillReviews,describeSkillReview} from './src/skill-reviews.mjs';
 import {describeUniqueReview,uniqueModifiers} from './src/unique-reviews.mjs';
 import {validateUniqueCombos,discoverUniqueCombos} from './src/unique-combos.mjs';
@@ -252,12 +252,19 @@ function renderCatalogShelf(records){
  shelfStart=Math.min(shelfStart,Math.max(0,Math.floor((records.length-1)/4)*4));
  const shelf=$('catalog-shelf');shelf.replaceChildren();shelf.closest('.catalog-browser').hidden=records.length<=1;
  $('shelf-count').textContent=records.length?'Showing '+(shelfStart+1)+'–'+Math.min(shelfStart+4,records.length)+' of '+records.length:'No catalog matches';
+ $('surprise-status').textContent='';$('catalog-surprise').disabled=records.length<2;
+ $('catalog-surprise').onclick=()=>{
+  const choices=records.filter(entry=>entry.id!==discoveryAnchor);if(!choices.length)return;
+  const next=choices[Math.floor(Math.random()*choices.length)];discoveryAnchor=next.id;
+  if(discoveryMode==='skill'&&skills.some(skill=>skill.id===next.id))selected=next.id;
+  $('discovery-search').value='';render();updateUrl();$('surprise-status').textContent='Selected '+next.name+' from the current catalog filters.';
+ };
  $('shelf-previous').disabled=shelfStart===0;$('shelf-next').disabled=shelfStart+4>=records.length;
  $('shelf-previous').onclick=()=>{shelfStart=Math.max(0,shelfStart-4);renderCatalogShelf(records);};
  $('shelf-next').onclick=()=>{shelfStart+=4;renderCatalogShelf(records);};
  for(const record of records.slice(shelfStart,shelfStart+4)){
   const tile=element('button',undefined,'catalog-tile tone-'+visualTheme(record).tone);tile.type='button';tile.dataset.catalogTile=record.id;tile.setAttribute('aria-pressed',String(record.id===discoveryAnchor));
-  tile.append(recordVisual(record,'large'),element('small',record.kind==='unique'?record.category:record.category+' · '+(record.tags.filter(t=>['Cold','Fire','Lightning','Chaos','Minion','Projectile'].includes(t)).slice(0,2).join(' / ')||'Source record')),element('strong',record.name));
+  tile.append(recordVignette(record),recordVisual(record,'large'),element('small',record.kind==='unique'?record.category:record.category+' · '+(record.tags.filter(t=>['Cold','Fire','Lightning','Chaos','Minion','Projectile'].includes(t)).slice(0,2).join(' / ')||'Source record')),element('strong',record.name));
   tile.setAttribute('aria-label','Explore '+record.name);tile.addEventListener('click',()=>{discoveryAnchor=record.id;if(discoveryMode==='skill'&&skills.some(s=>s.id===record.id))selected=record.id;$('discovery-search').value='';render();updateUrl();});shelf.append(tile);
  }
 }
@@ -288,7 +295,7 @@ function renderDiscovery() {
   for(const idea of ideas){
     const card=element('article',undefined,'discovery-card');card.dataset.idea=idea.id;
     card.dataset.visualTone=idea.item?'unique':visualTheme(idea.skills[0]).tone;
-    card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
+    const headline=element('header',undefined,'recipe-header');headline.append(recordVignette(idea.skills[0]),element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));card.append(headline);
     card.append(combinationVisual(idea));
     const firstTest=element('div',undefined,'first-test');firstTest.append(element('strong','Try this first'),element('p',idea.buildPlan.firstTest));card.append(firstTest);if(idea.item)for(const item of idea.items||[idea.item])card.append(itemInfo(item.id));if(skillCombos.recipes.some(r=>r.id===idea.id)||uniqueCombos.recipes.some(r=>r.id===idea.id)){const members=element('div',undefined,'tag-row');for(const item of (idea.items||(idea.item?[idea.item]:[])).filter(item=>item.id!==record.id)){const open=element('button','Explore '+item.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('unique',item.id));members.append(open);}for(const skill of idea.skills.filter(s=>s.id!==record.id)){const open=element('button','Explore '+skill.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('skill',skill.id));members.append(open);}card.append(members);}
     const itemSkills=idea.skills.filter(s=>skillReviewRecords.get(s.id)?.fromItem);const suppliedItems=new Set((idea.items||(idea.item?[idea.item]:[])).map(item=>referenceCatalog.entries.find(e=>e.id===item.id||e.reviewedId===item.id)?.id));const access=new Set(itemSkills.flatMap(s=>{const sources=sourceItemAccess(s.id);return sources.some(id=>suppliedItems.has(id))?[]:sources.length===1?sources:[];}));if(itemSkills.some(s=>sourceItemAccess(s.id).length>1&&!sourceItemAccess(s.id).some(id=>suppliedItems.has(id))))card.append(element('p','Multiple item sources grant a member skill. Explore that skill to choose one compatible source; these alternatives are not a requirement to equip them all.','muted'));if(access.size)card.append(element('p','Item access · confirm the actual source variant','skill-role'));for(const id of access)card.append(itemInfo(id));if(itemSkills.some(s=>!sourceItemAccess(s.id).length))card.append(element('p','This idea includes an item-granted skill. Its granting item is not modeled here; verify that source and its equipment requirements first.','warning'));
