@@ -18,6 +18,7 @@ async function main(){
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
   const expand=async id=>{const box=page.locator('#'+id);if(!await box.evaluate(e=>e.open))await box.locator(':scope > summary').click();};
   await page.goto(base+'/?inspect=1');await page.locator('#workspace').waitFor({state:'visible'});
+  if(process.env.SCREENSHOT_DIR)await mkdir(process.env.SCREENSHOT_DIR,{recursive:true});
   const finder=await context.newPage();await finder.goto(base);await finder.locator('#workspace').waitFor({state:'visible'});
   assert.match(await finder.locator('#finder-count').textContent(),/17 of 17/);assert.equal(await finder.locator('#finder-results .direction-card').count(),6);
   assert.ok(await finder.locator('#finder-detail .item-effect').count()>0);assert.match(await finder.locator('#finder-detail').textContent(),/200 Base Fire/);

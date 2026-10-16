@@ -138,7 +138,7 @@ function finderItemPreview(item,idea){
  const modifiers=uniqueModifiers(detailRecords.get(item.id));
  const relevant=fragments?modifiers.filter(m=>fragments.some(f=>m.text.toLowerCase().includes(f.toLowerCase()))):modifiers;
  // Always show an actual effect alongside a named unique; full current stats stay visible in the selected panel.
- for(const m of (relevant.length?relevant:modifiers).slice(0,2))box.append(element('p',m.text));
+ for(const m of (relevant.length?relevant:modifiers))box.append(element('p',m.text));
  return box;
 }
 function renderFinderDetail(direction){
