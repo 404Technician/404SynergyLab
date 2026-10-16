@@ -1,5 +1,5 @@
 import {auditUniqueCoverage} from './src/unique-audit.mjs';
-import {recordVisual,visualTheme,combinationVisual} from './src/visuals.mjs';
+import {recordVisual,recordScene,visualTheme,combinationVisual} from './src/visuals.mjs';
 import {validateSkillReviews,describeSkillReview} from './src/skill-reviews.mjs';
 import {describeUniqueReview,uniqueModifiers} from './src/unique-reviews.mjs';
 import {validateUniqueCombos,discoverUniqueCombos} from './src/unique-combos.mjs';
@@ -20,6 +20,7 @@ const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
 const sourceGrantCache=new Map();
+let shelfStart=0,shelfKey='',shelfAnchor='';
 let uniqueAudit,uniqueAuditRecords,uniqueCombos,skillReviews,skillReviewRecords,skillCombos,comboCoverage,experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
 let suggestChains,chainIdeaKey,chainIdeaOffset=0;
 let chainsData,chainExplorer,chainInput={generatorId:'frostbolt',payoffId:'comet',itemId:null,remap:false,generatorSupportId:null,payoffSupportId:null,confirmedEvents:[],focusEvent:'all'};
@@ -155,10 +156,12 @@ function renderReferenceRecord(record) {
  const box=$('catalog-record'),heading=element('div',undefined,'record-heading'),copy=element('div',undefined,'record-heading-copy');
  box.dataset.visualTone=visualTheme(record).tone;
  copy.append(element('p',record.kind.toUpperCase()+' · '+record.category+(record.weaponRequirements?' · Requires '+record.weaponRequirements:record.base?' · '+record.base:''),'eyebrow'),element('h3',record.name));
- heading.append(recordVisual(record,'large'),copy);box.replaceChildren(heading);
+ const visibleTags=element('div',undefined,'record-tags');for(const tag of record.tags.slice(0,6))visibleTags.append(element('span',tag,'tag'));copy.append(visibleTags);
+ heading.append(recordVisual(record,'large'),copy);
+ const feature=element('div',undefined,'record-feature'),reading=element('div',undefined,'record-reading');reading.append(heading);feature.append(recordScene(record),reading);box.replaceChildren(feature);
  if(record.kind==='unique'){box.append(itemInfo(record.id,false));renderUniqueGuide(record,box);}
- else if(record.kind==='support')box.append(element('p',detailRecords.get(record.id)?.description||'No description is recorded in this source. Type checks are available.','muted'));
- if(record.kind==='skill')renderSkillGuide(record,box);
+ else if(record.kind==='support')reading.append(element('p',detailRecords.get(record.id)?.description||'No description is recorded in this source. Type checks are available.','skill-description'));
+ if(record.kind==='skill')renderSkillGuide(record,reading);
  if(record.id==='gas-arrow')box.append(element('p',experimentDetails.gasArrow.summary,'mechanic-note'));
  const details=element('details');details.append(element('summary','Record & source'));
  const tags=element('div',undefined,'tag-row');for(const tag of record.tags)tags.append(element('span',tag,'tag'));details.append(tags);
@@ -185,13 +188,13 @@ function renderSkillGuide(record,box){
  const section=element('section',undefined,'skill-review');section.dataset.skillReview=record.id;section.dataset.descriptionStatus=source.descriptionStatus;
  const recipes=referenceView('skill',record.id).ideas.length+discoverSkillCombos(referenceCatalog,skillCombos,record.id).length;
  section.append(element('p',guide.role+' · '+(recipes?recipes+' researched combinations':'No specific researched combination established'),'skill-role'));
- if(source.description)section.append(element('p',source.description,'muted'));
+ if(source.description){section.append(element('span','WHAT IT DOES','reading-label'),element('p',source.description,'skill-description'));}
  for(const warning of guide.warnings)section.append(element('p',warning,'warning'));
  const details=element('details');details.append(element('summary','Skill setup & practical checks'));
  if(guide.statements.length){details.append(element('h4','Conditions from the source'));const statements=element('ul');for(const statement of guide.statements)statements.append(element('li',statement));details.append(statements);}
  details.append(element('h4','Test before combining'));const practical=element('ol');for(const check of guide.practical)practical.append(element('li',check));details.append(practical);
  details.append(element('p','Source guide only. These checks do not establish a new synergy, damage gain or complete build.','muted'),link('Exact skill source ↗',(record.effectEvidence||record.evidence).url));
- section.append(details);if(source.fromItem&&source.descriptionStatus==='recorded'&&!record.name.includes('{0}')){const items=sourceItemAccess(record.id);for(const id of items)section.append(itemInfo(id));if(!items.length)section.append(element('p','No granting unique is recognized by the partial item rules. Verify the actual item source before using this skill.','muted'));}box.append(section);
+ section.append(details);if(source.fromItem&&source.descriptionStatus==='recorded'&&!record.name.includes('{0}')){const items=sourceItemAccess(record.id);for(const id of items)$('catalog-record').append(itemInfo(id));if(!items.length)section.append(element('p','No granting unique is recognized by the partial item rules. Verify the actual item source before using this skill.','muted'));}box.append(section);
 }
 
 function syncManualAnchor(record){
@@ -241,6 +244,24 @@ function renderRules(record) {
   $('rule-support-more').hidden=matched.length<=supportLimit;
 }
 
+function renderCatalogShelf(records){
+ const key=JSON.stringify([discoveryMode,$('catalog-search').value,$('catalog-category').value,$('combo-only').checked]);
+ if(key!==shelfKey){shelfStart=0;shelfKey=key;shelfAnchor='';}
+ const index=records.findIndex(r=>r.id===discoveryAnchor);
+ if(shelfAnchor!==discoveryAnchor&&index>=0){shelfStart=Math.floor(index/4)*4;shelfAnchor=discoveryAnchor;}
+ shelfStart=Math.min(shelfStart,Math.max(0,Math.floor((records.length-1)/4)*4));
+ const shelf=$('catalog-shelf');shelf.replaceChildren();
+ $('shelf-count').textContent=records.length?'Showing '+(shelfStart+1)+'–'+Math.min(shelfStart+4,records.length)+' of '+records.length:'No catalog matches';
+ $('shelf-previous').disabled=shelfStart===0;$('shelf-next').disabled=shelfStart+4>=records.length;
+ $('shelf-previous').onclick=()=>{shelfStart=Math.max(0,shelfStart-4);renderCatalogShelf(records);};
+ $('shelf-next').onclick=()=>{shelfStart+=4;renderCatalogShelf(records);};
+ for(const record of records.slice(shelfStart,shelfStart+4)){
+  const tile=element('button',undefined,'catalog-tile tone-'+visualTheme(record).tone);tile.type='button';tile.dataset.catalogTile=record.id;tile.setAttribute('aria-pressed',String(record.id===discoveryAnchor));
+  tile.append(recordVisual(record,'large'),element('small',record.kind==='unique'?record.category:record.category+' · '+(record.tags.filter(t=>['Cold','Fire','Lightning','Chaos','Minion','Projectile'].includes(t)).slice(0,2).join(' / ')||'Source record')),element('strong',record.name));
+  tile.setAttribute('aria-label','Explore '+record.name);tile.addEventListener('click',()=>{discoveryAnchor=record.id;if(discoveryMode==='skill'&&skills.some(s=>s.id===record.id))selected=record.id;$('discovery-search').value='';render();updateUrl();});shelf.append(tile);
+ }
+}
+
 function renderDiscovery() {
   for(const kind of ['skill','support','unique'])$('start-'+kind).setAttribute('aria-pressed',String(discoveryMode===kind));
   const category=$('catalog-category').value;
@@ -252,10 +273,11 @@ function renderDiscovery() {
   $('catalog-count').textContent=referenceCatalog.counts.skill+' skills · '+referenceCatalog.counts.support+' supports · '+referenceCatalog.counts.unique+' uniques in the pinned source catalog';
   $('discovery-anchor').replaceChildren(...records.map(record=>{const option=element('option',record.name+(record.base?' · '+record.base:''));option.value=record.id;return option;}));$('discovery-anchor').disabled=!records.length;
   $('discovery-ideas').replaceChildren();$('source-experiments').replaceChildren();
+  if(!records.length)renderCatalogShelf(records);
   if(!records.length){$('rule-explorer').hidden=true;$('chain-panel').hidden=true;$('chain-ideas-panel').hidden=true;$('catalog-record').replaceChildren(element('p','No source records match this search. Try another name, tag or category.','empty-note'));$('discovery-count').textContent='No catalog matches';return;}
   let record=resolveReference(referenceCatalog,discoveryMode,discoveryAnchor);
   if(!record||!records.some(e=>e.id===record.id))record=records[0];
-  discoveryAnchor=record.id;$('discovery-anchor').value=record.id;syncManualAnchor(record);renderReferenceRecord(record);renderRules(record);renderChains(record);
+  discoveryAnchor=record.id;$('discovery-anchor').value=record.id;renderCatalogShelf(records);syncManualAnchor(record);renderReferenceRecord(record);renderRules(record);renderChains(record);
   const view=referenceView(discoveryMode,discoveryAnchor),query=$('discovery-search').value.trim().toLowerCase();
   const allIdeas=[...view.ideas,...discoverSkillCombos(referenceCatalog,skillCombos,record.id)];
   const ideas=allIdeas.filter(i=>(i.title+' '+i.hook+' '+i.skills.map(s=>s.name).join(' ')).toLowerCase().includes(query));
@@ -268,9 +290,8 @@ function renderDiscovery() {
     card.dataset.visualTone=idea.item?'unique':visualTheme(idea.skills[0]).tone;
     card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
     card.append(combinationVisual(idea));
-    card.append(element('p',idea.buildPlan.playstyle,'idea-playstyle'));if(idea.item)for(const item of idea.items||[idea.item])card.append(itemInfo(item.id));if(skillCombos.recipes.some(r=>r.id===idea.id)||uniqueCombos.recipes.some(r=>r.id===idea.id)){const members=element('div',undefined,'tag-row');for(const item of (idea.items||(idea.item?[idea.item]:[])).filter(item=>item.id!==record.id)){const open=element('button','Explore '+item.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('unique',item.id));members.append(open);}for(const skill of idea.skills.filter(s=>s.id!==record.id)){const open=element('button','Explore '+skill.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('skill',skill.id));members.append(open);}card.append(members);}
+    const firstTest=element('div',undefined,'first-test');firstTest.append(element('strong','Try this first'),element('p',idea.buildPlan.firstTest));card.append(firstTest);if(idea.item)for(const item of idea.items||[idea.item])card.append(itemInfo(item.id));if(skillCombos.recipes.some(r=>r.id===idea.id)||uniqueCombos.recipes.some(r=>r.id===idea.id)){const members=element('div',undefined,'tag-row');for(const item of (idea.items||(idea.item?[idea.item]:[])).filter(item=>item.id!==record.id)){const open=element('button','Explore '+item.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('unique',item.id));members.append(open);}for(const skill of idea.skills.filter(s=>s.id!==record.id)){const open=element('button','Explore '+skill.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('skill',skill.id));members.append(open);}card.append(members);}
     const itemSkills=idea.skills.filter(s=>skillReviewRecords.get(s.id)?.fromItem);const suppliedItems=new Set((idea.items||(idea.item?[idea.item]:[])).map(item=>referenceCatalog.entries.find(e=>e.id===item.id||e.reviewedId===item.id)?.id));const access=new Set(itemSkills.flatMap(s=>{const sources=sourceItemAccess(s.id);return sources.some(id=>suppliedItems.has(id))?[]:sources.length===1?sources:[];}));if(itemSkills.some(s=>sourceItemAccess(s.id).length>1&&!sourceItemAccess(s.id).some(id=>suppliedItems.has(id))))card.append(element('p','Multiple item sources grant a member skill. Explore that skill to choose one compatible source; these alternatives are not a requirement to equip them all.','muted'));if(access.size)card.append(element('p','Item access · confirm the actual source variant','skill-role'));for(const id of access)card.append(itemInfo(id));if(itemSkills.some(s=>!sourceItemAccess(s.id).length))card.append(element('p','This idea includes an item-granted skill. Its granting item is not modeled here; verify that source and its equipment requirements first.','warning'));
-    const firstTest=element('div',undefined,'first-test');firstTest.append(element('strong','First test'),element('p',idea.buildPlan.firstTest));card.append(firstTest);
     const more=element('details',undefined,'idea-details');more.append(element('summary',idea.supportIdeas.length?'Mechanics, supports & tradeoffs':'Mechanics & tradeoffs'));
     const body=element('div',undefined,'idea-body');body.append(element('h4','Why this is interesting'),element('p',idea.mechanics),element('h4','How to explore it'));
     const steps=element('ol');for(const step of idea.play)steps.append(element('li',step));body.append(steps);if(idea.supportIdeas.length)body.append(element('h4','Support ideas — and why'));
@@ -285,7 +306,7 @@ function renderDiscovery() {
     const plan=element('details',undefined,'idea-details');plan.append(element('summary','Turn this idea into a build experiment'));
     const planBody=element('div',undefined,'idea-body');planBody.append(element('h4','Core components'));
     const components=element('ul');for(const component of idea.buildPlan.components)components.append(element('li',component));
-    planBody.append(components,element('h4','Test the mechanic first'),element('p',idea.buildPlan.firstTest),element('h4','Reconsider the idea if'),element('p',idea.buildPlan.stopIf),element('h4','Before calling this a full build'));
+    planBody.append(element('p',idea.buildPlan.playstyle,'muted'),components,element('h4','Test the mechanic first'),element('p',idea.buildPlan.firstTest),element('h4','Reconsider the idea if'),element('p',idea.buildPlan.stopIf),element('h4','Before calling this a full build'));
     const checks=element('ol');for(const check of idea.buildPlan.nextChecks)checks.append(element('li',check));planBody.append(checks,element('p','Experiment only: no validated ascendancy, passive tree, gear budget or endgame rating yet.','muted'));plan.append(planBody);card.append(plan);
     const inspectable=idea.skills.find(s=>skills.some(base=>base.id===s.id));
     if(!inspectable){if(!skillCombos.recipes.some(r=>r.id===idea.id))card.append(element('p','Use the source descriptions and first test above. This interaction is not included in the smaller support-and-trigger workbench yet.','muted'));$('discovery-ideas').append(card);continue;}
