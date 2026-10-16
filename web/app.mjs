@@ -142,6 +142,11 @@ function sourceForPlan(recipeId){
  const source=buildPlanSource(idea,referenceCatalog,detailRecords,JSON.stringify([meta.snapshotSha256,meta.catalogSha256,meta.referenceSha256,meta.detailsSha256,meta.skillCombosSha256,meta.uniqueCombosSha256,meta.skillReviewsSha256]),snapshot.patch);
  planRecipeCache.set(recipeId,source);return source;
 }
+function equipmentForPlan(ids){
+ const items=ids.map(id=>{const item=referenceCatalog.entries.find(e=>e.kind==='unique'&&e.id===id);if(!item)return null;return {id:item.id,name:item.name,base:item.base||'',category:item.category,generated:!!item.generated,modifiers:uniqueModifiers(detailRecords.get(item.id)).map(m=>m.text)};});
+ if(items.some(i=>!i))return null;
+ return {stamp:JSON.stringify([meta.referenceSha256,meta.detailsSha256]),items};
+}
 function savePlanButton(recipeId){const button=element('button','Save as build plan +','save-plan');button.type='button';button.dataset.saveRecipe=recipeId;button.addEventListener('click',()=>planManager.add(recipeId));return button;}
 function finderItems(idea){return idea.items.map(item=>referenceCatalog.entries.find(e=>e.id===item.id||e.reviewedId===item.id)).filter(Boolean);}
 function finderItemPreview(item,idea){
@@ -677,7 +682,7 @@ async function start(){
   for(const button of $('filters').children)button.addEventListener('click',()=>{filter=button.dataset.filter;for(const b of $('filters').children)b.setAttribute('aria-pressed',String(b===button));renderSupports();});
   for(const id of Object.values(contextInputs))$(id).addEventListener('change',()=>{render();updateUrl();});
   $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);$('share-status').textContent='Link copied.';$('share').textContent='Link copied ✓';}catch{$('share-fallback').hidden=false;$('share-url').value=location.href;$('share-url').focus();$('share-url').select();}});
-  planManager=initializeBuildPlans({getSource:sourceForPlan});$('plan-shortcut').addEventListener('click',()=>{$('build-plans').open=true;});
+  planManager=initializeBuildPlans({getSource:sourceForPlan,getEquipment:equipmentForPlan,equipmentOptions:referenceCatalog.entries.filter(e=>e.kind==='unique').map(e=>({id:e.id,name:e.name,category:e.category}))});$('plan-shortcut').addEventListener('click',()=>{$('build-plans').open=true;});
   setupFinder(params);render();$('workspace').hidden=false;
 }
 start().catch(error=>{$('workspace').hidden=true;$('load-error').hidden=false;$('load-error').textContent=error.message;$('data-notice').replaceChildren(element('strong','LAB UNAVAILABLE'),element('span','Results are hidden until the data check passes.'));});
