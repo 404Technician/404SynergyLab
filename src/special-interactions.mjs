@@ -31,7 +31,7 @@ export function validateSpecialInteractions(reference,details,reviews,mechanics,
 }
 export function filterSpecialInteractions(data,{tag='all',query=''}={}){
  need(Object.hasOwn(specialTags,tag)&&typeof query==='string'&&query.length<=200,'invalid discovery filters');
- const q=query.trim().toLowerCase();return data.entries.filter(i=>(tag==='all'||i.tags.includes(tag))&&(!q||[i.title,i.hook,i.why,...i.chain,...i.pitfalls,...i.components.map(c=>c.name||'')].join(' ').toLowerCase().includes(q)));
+ const q=query.trim().toLowerCase();return data.entries.filter(i=>(tag==='all'||i.tags.includes(tag))&&(!q||[i.title,i.hook,i.why,...i.chain,...i.components.map(c=>c.name||'')].join(' ').toLowerCase().includes(q)));
 }
 export function resolveSpecialInteractions(data,reference){
  const records=new Map(reference.entries.map(r=>[r.id,r]));
