@@ -27,3 +27,7 @@ Sixteen skills, ten conditional interactions, two uniques, whole-setup context t
 ## v0.30.0 — Central build check (delivered)
 
 A single actionable report combines saved unique equipment, skill/support groups, core requirements, partial item-granted skill access and personal test scope. Conflicts and missing planned components lead to concrete next actions. Resource budgets, actual trigger paths and game performance remain explicit review/test tasks. Changed source snapshots pause the report. See [Central build check](BUILD_CHECK.md).
+
+## v0.31.0 — Unusual interactions first (delivered)
+
+Eight source-bound discoveries put surprising mechanics and build-defining uniques ahead of general directions and optional planners. Theme/search filters, shared reveals, full unique effects, precise event restrictions and minimal practical tests support original build creation. See [Unusual interactions](SPECIAL_INTERACTIONS.md).
