@@ -144,7 +144,7 @@ function itemInfo(id,showName=true){
  const heading=element('div',undefined,'item-info-heading');heading.append(recordVisual(record),element('strong',showName?'Unique '+record.category+' · '+record.name:'What this item changes'));box.append(heading);if(showName)box.append(element('p',record.base,'muted'));
  if(!detail||detail.generated){box.append(element('p',detail?.generated?'Variable unique: generated modifiers are not expanded.':'Item modifiers are unavailable in this source.','muted'),link('Item source ↗',record.evidence.url));return box;}
  const current=uniqueModifiers(detail);
- for(const mod of current)box.append(element('p',mod.text,'item-effect'));
+ const effects=element('div',undefined,'item-effects');for(const mod of current)effects.append(element('p',mod.text,'item-effect'));box.append(effects);
  const variants=[...new Set(detail.modifiers.flatMap(m=>m.variants))],versions=[...new Set(detail.modifiers.flatMap(m=>m.versions||[]))];
  if(versions.length)box.append(element('small','Versioned modifiers use the source Current version. Older versions are listed separately below.'));
  if(variants.length)box.append(element('small',variants.includes('Current')?'Showing common stats + Current source variant. Other versions differ.':'Showing common stats only. Match your actual named variant against the source stats below.'));
@@ -250,7 +250,7 @@ function renderCatalogShelf(records){
  const index=records.findIndex(r=>r.id===discoveryAnchor);
  if(shelfAnchor!==discoveryAnchor&&index>=0){shelfStart=Math.floor(index/4)*4;shelfAnchor=discoveryAnchor;}
  shelfStart=Math.min(shelfStart,Math.max(0,Math.floor((records.length-1)/4)*4));
- const shelf=$('catalog-shelf');shelf.replaceChildren();
+ const shelf=$('catalog-shelf');shelf.replaceChildren();shelf.closest('.catalog-browser').hidden=records.length<=1;
  $('shelf-count').textContent=records.length?'Showing '+(shelfStart+1)+'–'+Math.min(shelfStart+4,records.length)+' of '+records.length:'No catalog matches';
  $('shelf-previous').disabled=shelfStart===0;$('shelf-next').disabled=shelfStart+4>=records.length;
  $('shelf-previous').onclick=()=>{shelfStart=Math.max(0,shelfStart-4);renderCatalogShelf(records);};

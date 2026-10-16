@@ -40,12 +40,14 @@ async function main(){
   await page.goto(base+'/?inspect=1');await page.locator('#workspace').waitFor({state:'visible'});
   checks++;console.log('PASS: compact search fields, paginated catalog cards, selection and empty results');
   const readingPreview=await context.newPage();await readingPreview.goto(base);await readingPreview.locator('#workspace').waitFor({state:'visible'});
+  if(process.env.SCREENSHOT_DIR){await mkdir(process.env.SCREENSHOT_DIR,{recursive:true});await readingPreview.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'catalog-desktop.png'),fullPage:true});}
   await readingPreview.locator('#catalog-search').fill('Icestorm');
+  assert.equal(await readingPreview.locator('.catalog-browser').isVisible(),false);
   assert.equal(await readingPreview.locator('#catalog-record .record-scene svg').count(),1);
   const previewIdea=readingPreview.locator('#discovery-ideas .discovery-card').first();
   assert.ok(await previewIdea.locator('.first-test').isVisible());
   assert.ok(await previewIdea.evaluate(card=>card.querySelector('.first-test').compareDocumentPosition(card.querySelector('.item-info')) & Node.DOCUMENT_POSITION_FOLLOWING));
-  if(process.env.SCREENSHOT_DIR){await mkdir(process.env.SCREENSHOT_DIR,{recursive:true});await readingPreview.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'catalog-desktop.png')});await readingPreview.locator('#catalog-record').screenshot({path:path.join(process.env.SCREENSHOT_DIR,'skill-reading-desktop.png')});await previewIdea.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'recipe-reading-desktop.png')});}
+  if(process.env.SCREENSHOT_DIR){await mkdir(process.env.SCREENSHOT_DIR,{recursive:true});await readingPreview.locator('#catalog-record').screenshot({path:path.join(process.env.SCREENSHOT_DIR,'skill-reading-desktop.png')});await previewIdea.screenshot({path:path.join(process.env.SCREENSHOT_DIR,'recipe-reading-desktop.png')});}
   await readingPreview.setViewportSize({width:390,height:844});
   assert.ok(await readingPreview.locator('#catalog-search').evaluate(e=>e.getBoundingClientRect().height<=60));assert.equal(await readingPreview.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   if(process.env.SCREENSHOT_DIR)await readingPreview.locator('#catalog-record').screenshot({path:path.join(process.env.SCREENSHOT_DIR,'skill-reading-mobile.png')});
