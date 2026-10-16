@@ -41,8 +41,14 @@ export function recordVisual(record,size='small'){
  const path=document.createElementNS(ns,'path');path.setAttribute('d',paths[symbol]);svg.append(path);box.append(svg);return box;
 }
 export function combinationVisual(idea){
- const box=document.createElement('div');box.className='combination-art';box.setAttribute('aria-hidden','true');
+ const box=document.createElement('ul');box.className='combination-art';box.setAttribute('aria-label','Combination components');
  const records=[...(idea.items|| (idea.item?[{...idea.item,kind:'unique'}]:[])),...idea.skills];
- records.slice(0,5).forEach((r,i)=>{if(i){const line=document.createElement('span');line.className='combination-link';line.textContent='+';box.append(line);}box.append(recordVisual(r,'node'));});
+ records.forEach(r=>{
+  const node=document.createElement('li');node.className='combination-node';
+  const copy=document.createElement('span');copy.className='component-copy';
+  const kind=document.createElement('small');kind.textContent=r.kind==='unique'?'UNIQUE':'SKILL';
+  const name=document.createElement('span');name.textContent=r.name;
+  copy.append(kind,name);node.append(recordVisual(r,'node'),copy);box.append(node);
+ });
  return box;
 }
