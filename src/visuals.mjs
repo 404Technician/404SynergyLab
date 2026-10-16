@@ -42,7 +42,7 @@ export function recordVisual(record,size='small'){
 }
 export function combinationVisual(idea){
  const box=document.createElement('div');box.className='combination-art';box.setAttribute('aria-hidden','true');
- const records=[...(idea.item?[{...idea.item,kind:'unique'}]:[]),...idea.skills];
+ const records=[...(idea.items|| (idea.item?[{...idea.item,kind:'unique'}]:[])),...idea.skills];
  records.slice(0,5).forEach((r,i)=>{if(i){const line=document.createElement('span');line.className='combination-link';line.textContent='+';box.append(line);}box.append(recordVisual(r,'node'));});
  return box;
 }
