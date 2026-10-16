@@ -1,6 +1,6 @@
 {
   "name": "404-synergy-lab",
-  "version": "0.23.0",
+  "version": "0.24.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -23,7 +23,8 @@
     "mechanics:import": "node scripts/import-mechanics.mjs",
     "chains:check": "node scripts/check-chain-sources.mjs",
     "details:import": "node scripts/import-experiment-details.mjs",
-    "skills:import": "node scripts/import-skill-reviews.mjs"
+    "skills:import": "node scripts/import-skill-reviews.mjs",
+    "skills:coverage": "node scripts/report-skill-coverage.mjs"
   },
   "devDependencies": {
     "playwright": "1.51.1"

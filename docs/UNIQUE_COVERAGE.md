@@ -2,13 +2,13 @@
 
 This is recorded source-based research coverage, not a claim to list every possible in-game combination. An open entry is not evidence that an item has no combinations.
 
-Source revision: `bb52d6b368307457eb9c54bb13f1829993d390b1`. Details: `pob-bb52d6b-details2`. Unique recipes: `pob-bb52d6b-unique-combos3`.
+Source revision: `bb52d6b368307457eb9c54bb13f1829993d390b1`. Details: `pob-bb52d6b-details2`. Unique recipes: `pob-bb52d6b-unique-combos4`.
 
 | Status | Uniques |
 |---|---:|
-| Explicit recipes | 202 |
+| Explicit recipes | 207 |
 | General equipment | 26 |
-| Open research | 195 |
+| Open research | 190 |
 | Variant selection needed | 12 |
 | Actual rolls needed | 8 |
 
@@ -201,7 +201,7 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | Hinekora's Sight / Stellar Amulet | Open research | No explicit recipe established | — |
 | Hoghunt / Felled Greatclub | Open research | No explicit recipe established | — |
 | Horns of Bynden / Rusted Greathelm | Explicit recipes | Maul, Furious Slam | — |
-| Horror's Flight / Engraved Bracers | Open research | No explicit recipe established | — |
+| Horror's Flight / Engraved Bracers | Explicit recipes | Crushing Fear | Myris Uxor + Horror's Flight |
 | Hrimnor's Hymn / Oak Greathammer | Explicit recipes | Earthquake | — |
 | Hyrri's Ire / Armoured Vest | Open research | No explicit recipe established | — |
 | Hysseg's Claw / Familial Talisman | Explicit recipes | Cackling Companions, Maul | — |
@@ -259,7 +259,7 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | Mjölner / Torment Club | Explicit recipes | Rolling Slam, Thundergod's Wrath | — |
 | Morior Invictus / Grand Regalia | Open research | No explicit recipe established | — |
 | Murkshaft / Toxic Quiver | Explicit recipes | Poisonburst Arrow | — |
-| Myris Uxor / Covert Hood | Open research | No explicit recipe established | — |
+| Myris Uxor / Covert Hood | Explicit recipes | Crushing Fear | Myris Uxor + Horror's Flight |
 | Nascent Hope / Thawing Charm | Open research | No explicit recipe established | — |
 | Nazir's Judgement / Steelpoint Quarterstaff | Open research | No explicit recipe established | — |
 | Nebuloch / Brigand Mace | Explicit recipes | Rolling Slam | — |
@@ -284,7 +284,7 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | Pillar of the Caged God / Variant: Pre 0.2.0 | Explicit recipes | Ice Strike | Pillar of the Caged God + Black Sun Crest |
 | Plaguefinger / Gauze Wraps | Explicit recipes | Poisonburst Arrow | — |
 | Polcirkeln / Sapphire Ring | Explicit recipes | Ice Shot, Herald of Ice, Poisonburst Arrow, Bow Shot | Icefang Orbit + Polcirkeln; Venopuncture + Polcirkeln |
-| Powertread / Hunting Shoes | Open research | No explicit recipe established | — |
+| Powertread / Hunting Shoes | Explicit recipes | Lingering Illusion, Spark | — |
 | Pragmatism / Explorer Armour | Open research | No explicit recipe established | — |
 | Prayers for Rain / Keth Raiment | Open research | No explicit recipe established | — |
 | Prism Guardian / Sectarian Crest Shield | Explicit recipes | Overwhelming Presence | — |
@@ -433,12 +433,12 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | Valako's Roar / Topaz Charm | Explicit recipes | Barrage, Bow Shot | — |
 | Valako's Vice / Plate Gauntlets | Explicit recipes | Fireball | — |
 | Veil of the Night / Martyr Crown | Open research | No explicit recipe established | — |
-| Veilpiercer / Amethyst Ring | Open research | No explicit recipe established | — |
+| Veilpiercer / Amethyst Ring | Explicit recipes | Elemental Weakness, Spark, Enfeeble | — |
 | Venopuncture / Iron Ring | Explicit recipes | Rake, Bow Shot, Herald of Ice | Venopuncture + Polcirkeln |
 | Ventor's Gamble / Gold Ring | Open research | No explicit recipe established | — |
 | Vestige of Darkness / Tenebrous Crown | Explicit recipes | Bonestorm | — |
 | Vigilant View / Emerald Ring | General equipment | No explicit recipe established | — |
-| Vis Mortis / Plated Raiment | Open research | No explicit recipe established | — |
+| Vis Mortis / Plated Raiment | Explicit recipes | Skeletal Reaver | — |
 | Visage of Ayah / Beaded Circlet | Open research | No explicit recipe established | — |
 | Voices / Sapphire | Variant selection needed | No explicit recipe established | — |
 | Voll's Protector / {variant:1}Ironclad Vestments | Explicit recipes | Spark, Bonestorm | — |

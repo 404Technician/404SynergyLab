@@ -33,6 +33,7 @@ jobs:
           path: .upstream-pob
       - run: npm run import:pob -- .upstream-pob --check
       - run: npm run discovery:check -- .upstream-pob
+      - run: npm run skills:coverage -- --check
       - run: npm run catalog:import -- .upstream-pob --check
       - run: npm run mechanics:import -- .upstream-pob --check
       - run: npm run chains:check -- .upstream-pob
