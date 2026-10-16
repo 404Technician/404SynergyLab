@@ -1,5 +1,7 @@
 # 404 Synergy Lab
 
+v0.30.0 adds **Check my build** to saved plans: one prioritized report for modeled conflicts, missing planned components and concrete review/test actions. It combines equipment, core skills, support restrictions, partial item-granted skill access and personal test scope. Granting uniques expand to full source modifiers. Changed saved source snapshots pause checks; Mana, Spirit, actual trigger paths and performance still require measurement. See [Central build check](docs/BUILD_CHECK.md).
+
 v0.29.0 adds **Plan skills & supports**: choose among 399 skill and 567 support source records, preserve full descriptions, assign supports to base or intended triggered roles, and inspect individual source-type matches, exclusions and context requirements. Core skills can be restored and edits undone. Skill groups are included in backups, untested variants, comparisons and new personal test snapshots. Real socket counts, skill access, combined support effects, resources and live eligibility remain separate checks.
 
 v0.28.0 adds **Plan unique equipment** to saved builds: search all 443 unique records, start from required core items, inspect saved effects and track default armour/jewellery conflicts, missing core items and explicit ring restrictions. Weapon sets and variable-capacity categories remain manual checks. Changes reset reviewed requirements with undo; personal tests retain their recorded equipment snapshot, and comparisons show planned equipment separately from recipe requirements. Existing plans and backups remain supported.
@@ -159,3 +161,5 @@ See [Conditional connections](docs/CONNECTIONS.md) for trigger assumptions, ailm
 See [Combination workbench](docs/WORKBENCH.md). Start with **Load trigger example**, then assign Controlled Destruction to Spark to see the Energy generator conflict. Assigning it only to Comet does not disable Spark's critical hits.
 
 Start with **Frostbolt** or **The Three Dragons** to try the discovery flow. See [Discovery Lab](docs/DISCOVERY.md). Skill/support type matches support the explanation; they are not sufficient evidence of a useful combination.
+
+See [Central build check](docs/BUILD_CHECK.md). In **My build plans**, choose **Check my build** for prioritized conflicts, missing planned components and concrete review/test actions.
