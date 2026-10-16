@@ -19,6 +19,14 @@ async function main(){
   const expand=async id=>{const box=page.locator('#'+id);if(!await box.evaluate(e=>e.open))await box.locator(':scope > summary').click();};
   await page.goto(base+'/?inspect=1');await page.locator('#workspace').waitFor({state:'visible'});
   await page.locator('.intro-art').evaluate(image=>image.decode());assert.ok(await page.locator('.intro-art').evaluate(image=>image.naturalWidth>0));assert.equal(await page.locator('#catalog-record .record-heading svg').count(),1);checks++;console.log('PASS: bundled illustration decodes and selected record has a category graphic');
+  assert.equal(await page.locator('#lab-coverage .coverage-stat').count(),3);
+  assert.match(await page.locator('#lab-coverage').textContent(),/380Researched combinations/);
+  assert.equal(await page.locator('.coverage-details').evaluate(e=>e.open),false);
+  await page.locator('.coverage-details > summary').click();assert.equal(await page.locator('#discovery-coverage').isVisible(),true);
+  await page.locator('.coverage-details > summary').click();
+  assert.ok(await page.locator('#discovery-ideas .combination-node').count()>0);
+  assert.equal(await page.locator('#discovery-ideas .combination-node').evaluateAll(nodes=>nodes.every(node=>node.querySelector('.component-copy > span')?.textContent.trim())),true);
+  checks++;console.log('PASS: research metrics, expandable coverage and named combination components');
   assert.equal(await page.locator('#skill-title').textContent(),'Spark');assert.match(await page.locator('#data-notice').textContent(),/CANDIDATE DATA/);checks++;console.log('PASS: default Spark and candidate-data notice');
   assert.equal(await page.locator('.support-card').count(),8);checks++;console.log('PASS: all support cards loaded');
   await page.locator('[data-filter="compatible"]').click();assert.equal(await page.locator('.support-card.incompatible').count(),0);checks++;console.log('PASS: type-match filter');
