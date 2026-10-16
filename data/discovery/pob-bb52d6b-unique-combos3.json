@@ -3013,18 +3013,18 @@
       "itemId": "unique:mace:Chober%20Chaber:Leaden%20Greathammer",
       "itemRecordSha256": "9ae38ce2173eaf261298ed3552ec357e15cb6dc90673e39673ee6176830ae10e",
       "skillIds": [
-        "skeletal-warrior",
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver",
         "gem:Metadata%2FItems%2FGems%2FSkillGemRollingSlam"
       ],
       "requiredFragments": [
         "Minion Damage also affect you"
       ],
-      "title": "Chober Chaber \u00b7 Skeletal Warrior",
+      "title": "Chober Chaber \u00b7 Skeletal Reaver",
       "hook": "The mace shares increases and reductions to Minion Damage with the player, allowing those modifiers to benefit a minion and mace-attack setup.",
       "mechanics": "The mace shares increases and reductions to Minion Damage with the player, allowing those modifiers to benefit a minion and mace-attack setup. The source modifier is: Increases and Reductions to Minion Damage also affect you",
       "play": [
         "Use the mace and check a real increase or reduction to Minion Damage on both player and minions.",
-        "Change one Minion Damage increase and compare the Warrior and Rolling Slam damage summaries."
+        "Change one Minion Damage increase and compare the Reaver and Rolling Slam damage summaries."
       ],
       "conditions": [
         "Use the source Current/common item modifiers and check the actual rolls. Keep the item equipped; item-granted skills require their granting weapon to remain active.",
@@ -3036,7 +3036,7 @@
       ],
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/mace.lua#L166",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924",
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_str.lua#L16108"
       ],
       "evidenceStatus": "Explicit pinned-source interaction; live-client performance untested.",
@@ -3044,10 +3044,10 @@
         "playstyle": "The mace shares increases and reductions to Minion Damage with the player, allowing those modifiers to benefit a minion and mace-attack setup.",
         "components": [
           "Chober Chaber",
-          "Skeletal Warrior",
+          "Skeletal Reaver",
           "Rolling Slam"
         ],
-        "firstTest": "Change one Minion Damage increase and compare the Warrior and Rolling Slam damage summaries.",
+        "firstTest": "Change one Minion Damage increase and compare the Reaver and Rolling Slam damage summaries.",
         "stopIf": "Stop if the required event, equipment setup or resource supply cannot be repeated, or if your actual item has different modifiers.",
         "nextChecks": [
           "Compare an isolated durable target with a pack; do not assume on-kill effects work continuously against bosses.",
@@ -5786,17 +5786,17 @@
       "itemId": "unique:staff:The%20Raven's%20Flock:Perching%20Staff",
       "itemRecordSha256": "9395838583284f5d60d4d1ab003f4ffc813424cd4d0bcac40a4b21660aa9ad06",
       "skillIds": [
-        "skeletal-warrior"
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
       ],
       "requiredFragments": [
         "Gruelling Madness on Hit"
       ],
-      "title": "The Raven's Flock \u00b7 Skeletal Warrior",
+      "title": "The Raven's Flock \u00b7 Skeletal Reaver",
       "hook": "Minion hits can apply Gruelling Madness while the staff boosts minion damage and reservation efficiency.",
       "mechanics": "Minion hits can apply Gruelling Madness while the staff boosts minion damage and reservation efficiency. The source modifier is: Minions have (10-20)% chance to inflict Gruelling Madness on Hit",
       "play": [
         "Use actual living minions, keep the staff active and observe the debuff chance and duration.",
-        "Let Warriors attack a durable enemy and record Gruelling Madness application and expiry."
+        "Let Reavers attack a durable enemy and record Gruelling Madness application and expiry."
       ],
       "conditions": [
         "Use the source Current/common item modifiers and check the actual rolls. Keep the item equipped; item-granted skills require their granting weapon to remain active.",
@@ -5807,16 +5807,16 @@
       ],
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/staff.lua#L55",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
       ],
       "evidenceStatus": "Explicit pinned-source interaction; live-client performance untested.",
       "buildPlan": {
         "playstyle": "Minion hits can apply Gruelling Madness while the staff boosts minion damage and reservation efficiency.",
         "components": [
           "The Raven's Flock",
-          "Skeletal Warrior"
+          "Skeletal Reaver"
         ],
-        "firstTest": "Let Warriors attack a durable enemy and record Gruelling Madness application and expiry.",
+        "firstTest": "Let Reavers attack a durable enemy and record Gruelling Madness application and expiry.",
         "stopIf": "Stop if the required event, equipment setup or resource supply cannot be repeated, or if your actual item has different modifiers.",
         "nextChecks": [
           "Compare an isolated durable target with a pack; do not assume on-kill effects work continuously against bosses.",
@@ -7917,17 +7917,17 @@
       "itemId": "unique:sceptre:Guiding%20Palm%20of%20the%20Eye:Shrine%20Sceptre",
       "itemRecordSha256": "9245058817b5a7e1bf95b333fdf4941df98d34a5888d20c214c4037b0692780c",
       "skillIds": [
-        "skeletal-warrior"
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
       ],
       "requiredFragments": [
         "added Attack Cold Damage"
       ],
-      "title": "Guiding Palm of the Eye \u00b7 Skeletal Warrior",
-      "hook": "The sceptre supplies nearby allied Warriors with flat Attack Cold damage and a share of wearer base Life regeneration.",
-      "mechanics": "The sceptre supplies nearby allied Warriors with flat Attack Cold damage and a share of wearer base Life regeneration. The item source records: Allies in your Presence deal (15-23) to (28-35) added Attack Cold Damage",
+      "title": "Guiding Palm of the Eye \u00b7 Skeletal Reaver",
+      "hook": "The sceptre supplies nearby allied Reavers with flat Attack Cold damage and a share of wearer base Life regeneration.",
+      "mechanics": "The sceptre supplies nearby allied Reavers with flat Attack Cold damage and a share of wearer base Life regeneration. The item source records: Allies in your Presence deal (15-23) to (28-35) added Attack Cold Damage",
       "play": [
         "Keep minions in Presence and compare their actual attack damage and regeneration.",
-        "Compare Warrior attack components inside and outside Presence while keeping gem levels and minion count fixed."
+        "Compare Reaver attack components inside and outside Presence while keeping gem levels and minion count fixed."
       ],
       "conditions": [
         "Use the actual Current/common item modifiers. Item-granted skills require the granting item equipped and its weapon active.",
@@ -7938,16 +7938,16 @@
       ],
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/sceptre.lua#L50",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
       ],
       "evidenceStatus": "Explicit source-based experiment; live-client performance untested.",
       "buildPlan": {
-        "playstyle": "The sceptre supplies nearby allied Warriors with flat Attack Cold damage and a share of wearer base Life regeneration.",
+        "playstyle": "The sceptre supplies nearby allied Reavers with flat Attack Cold damage and a share of wearer base Life regeneration.",
         "components": [
           "Guiding Palm of the Eye",
-          "Skeletal Warrior"
+          "Skeletal Reaver"
         ],
-        "firstTest": "Compare Warrior attack components inside and outside Presence while keeping gem levels and minion count fixed.",
+        "firstTest": "Compare Reaver attack components inside and outside Presence while keeping gem levels and minion count fixed.",
         "stopIf": "Reconsider if the actual condition cannot be repeated or the equipment, defensive and resource costs outweigh the observed benefit.",
         "nextChecks": [
           "Test actual costs, event frequency and debuff duration on an isolated durable target as well as a pack.",
@@ -7961,17 +7961,17 @@
       "itemId": "unique:sceptre:Guiding%20Palm%20of%20the%20Heart:Shrine%20Sceptre",
       "itemRecordSha256": "7b4424878427693a0a206be5bb656edbcb767578573f87c3f4ad235ab675819d",
       "skillIds": [
-        "skeletal-warrior"
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
       ],
       "requiredFragments": [
         "added Attack Fire Damage"
       ],
-      "title": "Guiding Palm of the Heart \u00b7 Skeletal Warrior",
+      "title": "Guiding Palm of the Heart \u00b7 Skeletal Reaver",
       "hook": "The sceptre supplies actual nearby ally attacks with added Fire damage and a share of base Life regeneration.",
       "mechanics": "The sceptre supplies actual nearby ally attacks with added Fire damage and a share of base Life regeneration. The item source records: Allies in your Presence deal (15-23) to (28-35) added Attack Fire Damage",
       "play": [
         "Use actual allied attack minions inside Presence and inspect their damage scope.",
-        "Compare Warrior Fire attack damage and recovery inside and outside the wearer Presence."
+        "Compare Reaver Fire attack damage and recovery inside and outside the wearer Presence."
       ],
       "conditions": [
         "Use the actual Current/common item modifiers. Item-granted skills require the granting item equipped and its weapon active.",
@@ -7982,16 +7982,16 @@
       ],
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/sceptre.lua#L63",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
       ],
       "evidenceStatus": "Explicit source-based experiment; live-client performance untested.",
       "buildPlan": {
         "playstyle": "The sceptre supplies actual nearby ally attacks with added Fire damage and a share of base Life regeneration.",
         "components": [
           "Guiding Palm of the Heart",
-          "Skeletal Warrior"
+          "Skeletal Reaver"
         ],
-        "firstTest": "Compare Warrior Fire attack damage and recovery inside and outside the wearer Presence.",
+        "firstTest": "Compare Reaver Fire attack damage and recovery inside and outside the wearer Presence.",
         "stopIf": "Reconsider if the actual condition cannot be repeated or the equipment, defensive and resource costs outweigh the observed benefit.",
         "nextChecks": [
           "Test actual costs, event frequency and debuff duration on an isolated durable target as well as a pack.",
@@ -8005,37 +8005,37 @@
       "itemId": "unique:sceptre:Guiding%20Palm%20of%20the%20Mind:Shrine%20Sceptre",
       "itemRecordSha256": "486f124b59f4c34080c49b839e7a47443aa87dd6851b9f4d77feb8a119fa1d4b",
       "skillIds": [
-        "skeletal-warrior"
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
       ],
       "requiredFragments": [
         "added Attack Lightning Damage"
       ],
-      "title": "Guiding Palm of the Mind \u00b7 Skeletal Warrior",
+      "title": "Guiding Palm of the Mind \u00b7 Skeletal Reaver",
       "hook": "The sceptre adds Lightning damage to nearby ally attacks, opening a measurable minion damage component.",
       "mechanics": "The sceptre adds Lightning damage to nearby ally attacks, opening a measurable minion damage component. The item source records: Allies in your Presence deal 1 to (56-70) added Attack Lightning Damage",
       "play": [
-        "Keep the Warriors in Presence and verify the actual attack Lightning range.",
-        "Inspect Warrior attack components with the sceptre present and with the minions outside Presence."
+        "Keep the Reavers in Presence and verify the actual attack Lightning range.",
+        "Inspect Reaver attack components with the sceptre present and with the minions outside Presence."
       ],
       "conditions": [
         "Use the actual Current/common item modifiers. Item-granted skills require the granting item equipped and its weapon active.",
-        "Keep the Warriors in Presence and verify the actual attack Lightning range."
+        "Keep the Reavers in Presence and verify the actual attack Lightning range."
       ],
       "avoid": [
         "This does not transfer all player spell or Lightning scaling to the minions."
       ],
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/sceptre.lua#L76",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
       ],
       "evidenceStatus": "Explicit source-based experiment; live-client performance untested.",
       "buildPlan": {
         "playstyle": "The sceptre adds Lightning damage to nearby ally attacks, opening a measurable minion damage component.",
         "components": [
           "Guiding Palm of the Mind",
-          "Skeletal Warrior"
+          "Skeletal Reaver"
         ],
-        "firstTest": "Inspect Warrior attack components with the sceptre present and with the minions outside Presence.",
+        "firstTest": "Inspect Reaver attack components with the sceptre present and with the minions outside Presence.",
         "stopIf": "Reconsider if the actual condition cannot be repeated or the equipment, defensive and resource costs outweigh the observed benefit.",
         "nextChecks": [
           "Test actual costs, event frequency and debuff duration on an isolated durable target as well as a pack.",
@@ -8610,7 +8610,7 @@
       "itemId": "unique:gloves:Gravebind:Rope%20Cuffs",
       "itemRecordSha256": "52d585a503e9078afa43c422c1554f3e70ce3b745671b9b73f1a4516c90ba1e9",
       "skillIds": [
-        "skeletal-warrior"
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
       ],
       "requiredFragments": [
         "killed by anyone count"
@@ -8620,7 +8620,7 @@
       "mechanics": "Nearby minion Rare kills can count as wearer kills for Headhunter modifier acquisition. The item source records: Enemies in your Presence killed by anyone count as being killed by you instead The second item records: When you kill a Rare monster, you gain its Modifiers for 60 seconds",
       "play": [
         "Keep the Rare death in Presence and observe actual kill credit and the temporary player modifier.",
-        "Let Warriors kill a Rare in Presence without player hits and inspect the acquired player modifier and expiry."
+        "Let Reavers kill a Rare in Presence without player hits and inspect the acquired player modifier and expiry."
       ],
       "conditions": [
         "Use the actual Current/common item modifiers. Item-granted skills require the granting item equipped and its weapon active.",
@@ -8633,7 +8633,7 @@
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L300",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/belt.lua#L109",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
       ],
       "evidenceStatus": "Explicit source-based experiment; live-client performance untested.",
       "buildPlan": {
@@ -8641,9 +8641,9 @@
         "components": [
           "Gravebind",
           "Headhunter",
-          "Skeletal Warrior"
+          "Skeletal Reaver"
         ],
-        "firstTest": "Let Warriors kill a Rare in Presence without player hits and inspect the acquired player modifier and expiry.",
+        "firstTest": "Let Reavers kill a Rare in Presence without player hits and inspect the acquired player modifier and expiry.",
         "stopIf": "Reconsider if the actual condition cannot be repeated or the equipment, defensive and resource costs outweigh the observed benefit.",
         "nextChecks": [
           "Test actual costs, event frequency and debuff duration on an isolated durable target as well as a pack.",
@@ -8666,7 +8666,7 @@
       "itemId": "unique:gloves:Gravebind:Rope%20Cuffs",
       "itemRecordSha256": "52d585a503e9078afa43c422c1554f3e70ce3b745671b9b73f1a4516c90ba1e9",
       "skillIds": [
-        "skeletal-warrior"
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
       ],
       "requiredFragments": [
         "killed by anyone count"
@@ -8689,7 +8689,7 @@
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L300",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/ring.lua#L132",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
       ],
       "evidenceStatus": "Explicit source-based experiment; live-client performance untested.",
       "buildPlan": {
@@ -8697,7 +8697,7 @@
         "components": [
           "Gravebind",
           "Death Rush",
-          "Skeletal Warrior"
+          "Skeletal Reaver"
         ],
         "firstTest": "Let minions kill one nearby enemy and observe the wearer Onslaught before and after its duration ends.",
         "stopIf": "Reconsider if the actual condition cannot be repeated or the equipment, defensive and resource costs outweigh the observed benefit.",
@@ -8722,7 +8722,7 @@
       "itemId": "unique:gloves:Gravebind:Rope%20Cuffs",
       "itemRecordSha256": "52d585a503e9078afa43c422c1554f3e70ce3b745671b9b73f1a4516c90ba1e9",
       "skillIds": [
-        "skeletal-warrior"
+        "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver"
       ],
       "requiredFragments": [
         "killed by anyone count"
@@ -8732,7 +8732,7 @@
       "mechanics": "Nearby minion kills can supply player on-kill attempts to start ES Recharge through the focus. The item source records: Enemies in your Presence killed by anyone count as being killed by you instead The second item records: 20% chance for Energy Shield Recharge to start when you Kill an Enemy",
       "play": [
         "Use a compatible one-handed setup, keep kills in Presence and measure the actual chance while ES is missing.",
-        "Let Warriors kill nearby enemies while below full ES and record which kills start Recharge."
+        "Let Reavers kill nearby enemies while below full ES and record which kills start Recharge."
       ],
       "conditions": [
         "Use the actual Current/common item modifiers. Item-granted skills require the granting item equipped and its weapon active.",
@@ -8745,7 +8745,7 @@
       "evidenceUrls": [
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/gloves.lua#L300",
         "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Uniques/focus.lua#L27",
-        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18924"
+        "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Data/Skills/act_int.lua#L18543"
       ],
       "evidenceStatus": "Explicit source-based experiment; live-client performance untested.",
       "buildPlan": {
@@ -8753,9 +8753,9 @@
         "components": [
           "Gravebind",
           "Deathrattle",
-          "Skeletal Warrior"
+          "Skeletal Reaver"
         ],
-        "firstTest": "Let Warriors kill nearby enemies while below full ES and record which kills start Recharge.",
+        "firstTest": "Let Reavers kill nearby enemies while below full ES and record which kills start Recharge.",
         "stopIf": "Reconsider if the actual condition cannot be repeated or the equipment, defensive and resource costs outweigh the observed benefit.",
         "nextChecks": [
           "Test actual costs, event frequency and debuff duration on an isolated durable target as well as a pack.",

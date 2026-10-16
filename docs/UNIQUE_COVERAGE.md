@@ -89,7 +89,7 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | Cat O' Nine Tails / Utility Belt | Open research | No explicit recipe established | — |
 | Chainsting / Hunting Spear | Explicit recipes | Rake, Combat Frenzy | — |
 | Chernobog's Pillar / Blacksteel Tower Shield | Explicit recipes | Fireball | — |
-| Chober Chaber / Leaden Greathammer | Explicit recipes | Skeletal Warrior, Rolling Slam | — |
+| Chober Chaber / Leaden Greathammer | Explicit recipes | Skeletal Reaver, Rolling Slam | — |
 | Choir of the Storm / Jade Amulet | Explicit recipes | Spark | — |
 | Cloak of Defiance / Havoc Raiment | Open research | No explicit recipe established | — |
 | Cloak of Flame / Silk Robe | Open research | No explicit recipe established | — |
@@ -114,10 +114,10 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | Darkness Enthroned / Fine Belt | Variant selection needed | No explicit recipe established | — |
 | Darkray Vectors / Braced Sabatons | Explicit recipes | Ice Shot, Combat Frenzy | — |
 | Death Articulated / Ornate Gauntlets | Explicit recipes | Maul, Walking Calamity | — |
-| Death Rush / Emerald Ring | Explicit recipes | Skeletal Warrior | Gravebind + Death Rush |
+| Death Rush / Emerald Ring | Explicit recipes | Skeletal Reaver | Gravebind + Death Rush |
 | Death's Harp / Dualstring Bow | Explicit recipes | Bow Shot | — |
 | Deathblow / Doubled Gauntlets | Open research | No explicit recipe established | — |
-| Deathrattle / Twig Focus | Explicit recipes | Skeletal Warrior | Gravebind + Deathrattle |
+| Deathrattle / Twig Focus | Explicit recipes | Skeletal Reaver | Gravebind + Deathrattle |
 | Decree of Acuity / Ancient Visor | Open research | No explicit recipe established | — |
 | Decree of Flight / Ancient Leggings | Open research | No explicit recipe established | — |
 | Decree of Loyalty / Ancient Mail | Open research | No explicit recipe established | — |
@@ -182,18 +182,18 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | Grand Spectrum / Emerald | Open research | No explicit recipe established | — |
 | Grand Spectrum / Ruby | Open research | No explicit recipe established | — |
 | Grand Spectrum / Sapphire | Open research | No explicit recipe established | — |
-| Gravebind / Rope Cuffs | Explicit recipes | Skeletal Warrior, Life Remnants | Gravebind + Headhunter; Gravebind + Death Rush; Gravebind + Deathrattle |
+| Gravebind / Rope Cuffs | Explicit recipes | Skeletal Warrior, Life Remnants, Skeletal Reaver | Gravebind + Headhunter; Gravebind + Death Rush; Gravebind + Deathrattle |
 | Greed's Embrace / Vaal Cuirass | General equipment | No explicit recipe established | — |
 | Greymake / Brimmed Helm | Open research | No explicit recipe established | — |
 | Grip of Kulemak / Abyssal Signet | Actual rolls needed | No explicit recipe established | — |
 | Grip of Winter / Firm Bracers | Open research | No explicit recipe established | — |
 | Guiding Palm / Shrine Sceptre | Variant selection needed | No explicit recipe established | — |
-| Guiding Palm of the Eye / Shrine Sceptre | Explicit recipes | Skeletal Warrior | — |
-| Guiding Palm of the Heart / Shrine Sceptre | Explicit recipes | Skeletal Warrior | — |
-| Guiding Palm of the Mind / Shrine Sceptre | Explicit recipes | Skeletal Warrior | — |
+| Guiding Palm of the Eye / Shrine Sceptre | Explicit recipes | Skeletal Reaver | — |
+| Guiding Palm of the Heart / Shrine Sceptre | Explicit recipes | Skeletal Reaver | — |
+| Guiding Palm of the Mind / Shrine Sceptre | Explicit recipes | Skeletal Reaver | — |
 | Hand of Wisdom and Action / Variant: Pre 0.2.0 | Explicit recipes | Ice Strike, Lightning Arrow | Hand of Wisdom and Action + Astramentis |
 | Hateforge / Moulded Mitts | Explicit recipes | Bow Shot, Barrage | — |
-| Headhunter / Heavy Belt | Explicit recipes | Skeletal Warrior | Gravebind + Headhunter |
+| Headhunter / Heavy Belt | Explicit recipes | Skeletal Reaver | Gravebind + Headhunter |
 | Heart of the Well / Diamond | Actual rolls needed | No explicit recipe established | — |
 | Heartbound Loop / Pearl Ring | Explicit recipes | Skeletal Warrior, Cast on Minion Death | — |
 | Heatshiver / Velvet Cap | Explicit recipes | Frostbolt | — |
@@ -397,7 +397,7 @@ For multi-unique entries, each semicolon-separated pair is a separate recipe, no
 | The Pandemonius / Lapis Amulet | Explicit recipes | Frostbolt | — |
 | The Prisoner's Manacles / Kalguuran Cuffs | Open research | No explicit recipe established | — |
 | The Rat Cage / Scout's Vest | Open research | No explicit recipe established | — |
-| The Raven's Flock / Perching Staff | Explicit recipes | Skeletal Warrior | — |
+| The Raven's Flock / Perching Staff | Explicit recipes | Skeletal Reaver | — |
 | The Road Warrior / Raider Plate | Open research | No explicit recipe established | — |
 | The Searing Touch / Pyrophyte Staff | Explicit recipes | Solar Orb, Flameblast | — |
 | The Sentry / Gothic Quarterstaff | Open research | No explicit recipe established | — |

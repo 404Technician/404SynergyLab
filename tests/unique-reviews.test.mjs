@@ -68,8 +68,15 @@ test('new trigger, minion and recovery routes preserve decisive counterchecks',(
  assert.match(warnings('Choir of the Storm'),/triggered.*Energy/);assert.match(warnings('Dusk Vigil'),/reset Ember duration/);assert.match(warnings("Enezun's Charge"),/not an infinite corpse loop/);assert.match(warnings('Heartbound Loop'),/Despawn.*not automatically/);assert.match(warnings('Glowswarm'),/spending flask charges.*not automatically/);assert.match(warnings('Svalinn'),/not guaranteed block/);
  assert.match(recipe('Facebreaker').conditions.join(' '),/both hand slots empty/);assert.match(recipe('Rathpith Globe').avoid.join(' '),/two-handed staff/);assert.match(recipe('The Covenant').avoid.join(' '),/Remnant on the ground/);
 });
-test('48 more routes retain the earlier 152 recipes byte-for-byte as records',()=>{
- const previous=read('data/discovery/pob-bb52d6b-unique-combos2.json');assert.deepEqual(data.recipes.slice(0,152),previous.recipes);assert.equal(data.recipes.length-previous.recipes.length,48);assert.equal(data.recipes.filter(r=>r.additionalItems?.length).length,12);
+test('earlier snapshots remain intact while two weapon-bound minion routes are corrected',()=>{
+ const previous=read('data/discovery/pob-bb52d6b-unique-combos2.json'),corrected=new Set(['unique-audit-15','unique-audit-76']);
+ for(let i=0;i<152;i++){const before=previous.recipes[i],after=data.recipes[i];if(!corrected.has(before.id))assert.deepEqual(after,before);else{assert.equal(after.id,before.id);assert.equal(after.itemRecordSha256,before.itemRecordSha256);assert.deepEqual(after.requiredFragments,before.requiredFragments);assert.ok(before.skillIds.some(id=>ref.entries.find(e=>e.id===id)?.name==='Skeletal Warrior'));assert.ok(after.skillIds.some(id=>ref.entries.find(e=>e.id===id)?.name==='Skeletal Reaver'));assert.ok(!after.skillIds.some(id=>ref.entries.find(e=>e.id===id)?.name==='Skeletal Warrior'));}}
+ assert.equal(data.recipes.length-previous.recipes.length,48);assert.equal(data.recipes.filter(r=>r.additionalItems?.length).length,12);
+});
+test('new minion routes use an independently available minion when another weapon must stay active',()=>{
+ const reaver=ref.entries.find(e=>e.kind==='skill'&&e.name==='Skeletal Reaver');assert.equal(reviews.entries.find(e=>e.id===reaver.id).fromItem,false);
+ for(const name of ['Chober Chaber',"The Raven's Flock",'Guiding Palm of the Eye','Guiding Palm of the Heart','Guiding Palm of the Mind'])assert.ok(data.recipes.find(r=>r.itemId===entry(name).id).skillIds.includes(reaver.id));
+ for(const r of data.recipes.filter(r=>r.title.startsWith('Gravebind +')))assert.ok(r.skillIds.includes(reaver.id));
 });
 test('multi-unique routes are discoverable from every required item and skill',()=>{
  for(const recipe of data.recipes.filter(r=>r.additionalItems?.length)){

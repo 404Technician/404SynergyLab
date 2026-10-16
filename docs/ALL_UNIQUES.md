@@ -36,7 +36,7 @@ Examples include Gravebind + Headhunter for nearby minion Rare-kill credit, Crow
 
 Each additional item binds its own canonical ID, exact source fingerprint and required Current/common modifier fragments. Focused validation rejects duplicate uniques, multiple items in a single equipment slot, more than two rings, Thief's Torment with another ring, and unsupported modeled weapon/off-hand combinations. These are conservative recipe checks, not a complete equipment simulator: passive and ascendancy overrides, arbitrary item stacking and unmodeled weapon arrangements are not inferred.
 
-The new immutable snapshot is `pob-bb52d6b-unique-combos3`. Its first 152 records are unchanged from combos2. Earlier recipe and detail snapshots remain present; shared links to older recipe versions fail explicitly.
+The new immutable snapshot is `pob-bb52d6b-unique-combos3`. The earlier snapshots are intact. In the current snapshot, two older routes (Chober Chaber and The Raven's Flock) replace item-granted Skeletal Warrior with the independently available Skeletal Reaver. This avoids requiring an incompatible granting sceptre while the main weapon stays active. The other 150 earlier records are unchanged. New Guiding Palm and Gravebind pair routes also use Reavers where appropriate. Earlier recipe and detail snapshots remain present; shared links to older recipe versions fail explicitly.
 
 ## Source variants and versions
 
@@ -114,7 +114,7 @@ The source has separate `{version:...}` and `{variant:...}` conditions. The new 
 | Calgyra's Arc | Parry, Rake | Calgyra's Arc · Parry |
 | Carrion Call | Skeletal Warrior | Carrion Call · Skeletal Warrior |
 | Chainsting | Rake, Combat Frenzy | Chainsting · Rake |
-| Chober Chaber | Skeletal Warrior, Rolling Slam | Chober Chaber · Skeletal Warrior |
+| Chober Chaber | Skeletal Reaver, Rolling Slam | Chober Chaber · Skeletal Reaver |
 | Choir of the Storm | Spark | Choir of the Storm · Spark |
 | Deidbell | Seismic Cry | Deidbell · Seismic Cry |
 | Demon Stitcher | Spark | Demon Stitcher · Spark |
@@ -175,7 +175,7 @@ The source has separate `{version:...}` and `{variant:...}` conditions. The new 
 | The Hollow Mask | Life Remnants | The Hollow Mask · Life Remnants |
 | The Ordained | Righteous Descent | The Ordained · Righteous Descent |
 | The Pandemonius | Frostbolt | The Pandemonius · Frostbolt |
-| The Raven's Flock | Skeletal Warrior | The Raven's Flock · Skeletal Warrior |
+| The Raven's Flock | Skeletal Reaver | The Raven's Flock · Skeletal Reaver |
 | The Searing Touch | Solar Orb, Flameblast | The Searing Touch · Solar Orb |
 | The Whispering Ice | Icestorm, Frostbolt | The Whispering Ice · Icestorm |
 | Thunderfist | Crackling Palm | Thunderfist · Crackling Palm |
@@ -221,9 +221,9 @@ The source has separate `{version:...}` and `{variant:...}` conditions. The new 
 | Fairgraves' Curse | Phantasmal Arrow, Gas Arrow | Fairgraves' Curse · Phantasmal Arrow |
 | Feathered Fortress | Shield Charge | Feathered Fortress · Shield Charge |
 | Font of Power | Spark | Font of Power · Spark |
-| Guiding Palm of the Eye | Skeletal Warrior | Guiding Palm of the Eye · Skeletal Warrior |
-| Guiding Palm of the Heart | Skeletal Warrior | Guiding Palm of the Heart · Skeletal Warrior |
-| Guiding Palm of the Mind | Skeletal Warrior | Guiding Palm of the Mind · Skeletal Warrior |
+| Guiding Palm of the Eye | Skeletal Reaver | Guiding Palm of the Eye · Skeletal Reaver |
+| Guiding Palm of the Heart | Skeletal Reaver | Guiding Palm of the Heart · Skeletal Reaver |
+| Guiding Palm of the Mind | Skeletal Reaver | Guiding Palm of the Mind · Skeletal Reaver |
 | Hateforge | Bow Shot, Barrage | Hateforge · Bow Shot |
 | Horns of Bynden | Maul, Furious Slam | Horns of Bynden · Maul |
 | Idle Hands | Bow Shot | Idle Hands · Bow Shot |
@@ -236,9 +236,9 @@ The source has separate `{version:...}` and `{variant:...}` conditions. The new 
 | Melting Maelstrom | Spark | Melting Maelstrom · Spark |
 | Mist Whisper | Crossbow Shot | Mist Whisper · Crossbow Shot |
 | Nebuloch | Rolling Slam | Nebuloch · Rolling Slam |
-| Gravebind + Headhunter | Skeletal Warrior | Gravebind + Headhunter |
-| Gravebind + Death Rush | Skeletal Warrior | Gravebind + Death Rush |
-| Gravebind + Deathrattle | Skeletal Warrior | Gravebind + Deathrattle |
+| Gravebind + Headhunter | Skeletal Reaver | Gravebind + Headhunter |
+| Gravebind + Death Rush | Skeletal Reaver | Gravebind + Death Rush |
+| Gravebind + Deathrattle | Skeletal Reaver | Gravebind + Deathrattle |
 | Icefang Orbit + Polcirkeln | Poisonburst Arrow, Bow Shot, Herald of Ice | Icefang Orbit + Polcirkeln |
 | Venopuncture + Polcirkeln | Bow Shot, Herald of Ice | Venopuncture + Polcirkeln |
 | Crown of Eyes + Doedre's Tenure | Lightning Arrow | Crown of Eyes + Doedre's Tenure |
