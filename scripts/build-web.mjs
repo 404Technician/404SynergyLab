@@ -37,7 +37,7 @@ export async function buildWeb() {
   const combos=validateSkillCombos(reference,JSON.parse(comboBytes),mechanics);
   const reviewBytes=await readFile(new URL('data/research/pob-bb52d6b-skill-reviews1.json',root));
   const skillReviews=validateSkillReviews(reference,JSON.parse(reviewBytes));
-  const uniqueBytes=await readFile(new URL('data/discovery/pob-bb52d6b-unique-combos2.json',root));
+  const uniqueBytes=await readFile(new URL('data/discovery/pob-bb52d6b-unique-combos3.json',root));
   const uniqueCombos=validateUniqueCombos(reference,details,skillReviews,JSON.parse(uniqueBytes));
   auditUniqueCoverage(reference,details,JSON.parse(catalogBytes),uniqueCombos);
   for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,details.entries.find(e=>e.id===entry.id));

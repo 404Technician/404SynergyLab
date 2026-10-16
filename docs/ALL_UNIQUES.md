@@ -1,16 +1,16 @@
 # Complete unique source guides
 
-Version 0.18.0 covers all 443 distinct unique records in the pinned catalog. A source guide explains the item and its requirements; it does not manufacture a partner skill or an endgame build.
+Version 0.19.0 covers all 443 distinct unique records in the pinned catalog. A source guide explains the item and its requirements; it does not manufacture a partner skill or an endgame build.
 
 | Coverage | Count |
 |---|---:|
 | Unique source guides | 443 / 443 |
 | Fixed item records with source stats | 435 |
 | Generated families without expanded rolls | 8 |
-| Explicit unique/skill interactions in the expanded collection | 152 |
-| Distinct uniques with recipes, including earlier curated items | 156 / 443 |
-| Overall researched recipes, including earlier skill/item work | 332 |
-| Distinct skills in all researched recipes | 262 / 399 |
+| Explicit unique/skill interactions in the expanded collection | 200 |
+| Distinct uniques with recipes, including earlier curated items | 202 / 443 |
+| Overall researched recipes, including earlier skill/item work | 380 |
+| Distinct skills in all researched recipes | 263 / 399 |
 
 ## Using a unique
 
@@ -20,13 +20,23 @@ Each researched idea shows the unique's modifiers and a visible first test. Open
 
 ## Coverage audit
 
-The [complete unique coverage report](UNIQUE_COVERAGE.md) lists every one of the 443 records and its recorded partners. It distinguishes 156 uniques with explicit recipes, 28 general equipment entries, 238 open research entries, 13 variant-dependent records and 8 generated families. Open research is not a conclusion that no combination exists. This collection is not exhaustive of every possible build.
+The [complete unique coverage report](UNIQUE_COVERAGE.md) lists every one of the 443 records and its recorded partners. It distinguishes 202 uniques with explicit recipes, 26 general equipment entries, 195 open research entries, 12 variant-dependent records and 8 generated families. Open research is not a conclusion that no combination exists. This collection is not exhaustive of every possible build.
 
-Use **Browse uniques with researched combinations**, or the unique-mode checkbox, to show the 156 items with actual recipes. The filter persists in shared links. Each selected item also shows its own status and reason. Candidate links and source setup guides do not inflate recipe coverage.
+Use **Browse uniques with researched combinations**, or the unique-mode checkbox, to show the 202 items with actual recipes. The filter persists in shared links. Each selected item also shows its own status and reason. Candidate links and source setup guides do not inflate recipe coverage.
 
 Version 0.18.0 adds 100 specific item interactions. The previous 52 recipes remain unchanged at the beginning of the new immutable `pob-bb52d6b-unique-combos2` snapshot; the combos1 file is preserved. Every addition is bound to exact Current/common modifier fragments and source-described member skills.
 
 Shared default skills such as Raise Shield and Parry can be granted by many items. A recipe using one actual granting item no longer appends every alternative source as if all must be equipped. Where a member has multiple unresolved granting sources, the UI asks the reader to explore that skill and choose a compatible source.
+
+## Multiple required uniques
+
+Version 0.19.0 adds 36 single-item routes and 12 multi-unique recipes. Both required item modifier sets appear directly on the card, and either item can open the same recipe. The combination graphic includes both items. Skill access can be satisfied by either named item without appending duplicate or alternative granting items.
+
+Examples include Gravebind + Headhunter for nearby minion Rare-kill credit, Crown of Eyes + Doedre's Tenure for transferring increased Spell Damage to attacks, and Icefang Orbit + Polcirkeln for a conditional Poison → Chill → attack-kill Shatter route. The last route does not establish an actual Freeze event, and damage-over-time kills do not satisfy Herald of Ice's non-Herald Attack Hit requirement.
+
+Each additional item binds its own canonical ID, exact source fingerprint and required Current/common modifier fragments. Focused validation rejects duplicate uniques, multiple items in a single equipment slot, more than two rings, Thief's Torment with another ring, and unsupported modeled weapon/off-hand combinations. These are conservative recipe checks, not a complete equipment simulator: passive and ascendancy overrides, arbitrary item stacking and unmodeled weapon arrangements are not inferred.
+
+The new immutable snapshot is `pob-bb52d6b-unique-combos3`. Its first 152 records are unchanged from combos2. Earlier recipe and detail snapshots remain present; shared links to older recipe versions fail explicitly.
 
 ## Source variants and versions
 
@@ -36,7 +46,7 @@ The source has separate `{version:...}` and `{variant:...}` conditions. The new 
 
 ## Concrete interactions
 
-| Unique | Skill partners | Experiment |
+| Required unique(s) | Skill partners | Experiment |
 |---|---|---|
 | Adonia's Ego | Power Siphon, Pinnacle of Power | Cull into Pinnacle of Power |
 | Alpha's Howl | Overwhelming Presence | A wider Overwhelming Presence |
@@ -190,6 +200,54 @@ The source has separate `{version:...}` and `{variant:...}` conditions. The new 
 | Glowswarm | Mana Tempest, Spark | Glowswarm · Mana Tempest |
 | Heartbound Loop | Skeletal Warrior, Cast on Minion Death | Heartbound Loop · Skeletal Warrior |
 | The Last Lament | Crossbow Shot | The Last Lament · Crossbow Shot |
+| Amor Mandragora | Maul, Furious Slam | Amor Mandragora · Maul |
+| Arvil's Wheel | Solar Orb, Flameblast | Arvil's Wheel · Solar Orb |
+| Atziri's Splendour | Spark | Atziri's Splendour · Spark |
+| Beira's Anguish | Tornado | Beira's Anguish · Tornado |
+| Blackgleam | Flame Wall, Bow Shot | Blackgleam · Flame Wall |
+| Blood of the Warrior | Maul, Furious Slam | Blood of the Warrior · Maul |
+| Bursting Decay | Lightning Arrow | Bursting Decay · Lightning Arrow |
+| Chernobog's Pillar | Fireball | Chernobog's Pillar · Fireball |
+| Crest of Ardura | Blink | Crest of Ardura · Blink |
+| Daevata's Wind | Spear Throw, Rake | Daevata's Wind · Spear Throw |
+| Darkray Vectors | Ice Shot, Combat Frenzy | Darkray Vectors · Ice Shot |
+| Death Articulated | Maul, Walking Calamity | Death Articulated · Maul |
+| Death's Harp | Bow Shot | Death's Harp · Bow Shot |
+| Dionadair | Shield Charge | Dionadair · Shield Charge |
+| Drillneck | Bow Shot | Drillneck · Bow Shot |
+| Dunkelhalt | Parry, Rake | Dunkelhalt · Parry |
+| Edyrn's Tusks | Bonestorm | Edyrn's Tusks · Bonestorm |
+| Eventide Petals | Midnight Zenith, Glacial Cascade | Eventide Petals · Midnight Zenith |
+| Fairgraves' Curse | Phantasmal Arrow, Gas Arrow | Fairgraves' Curse · Phantasmal Arrow |
+| Feathered Fortress | Shield Charge | Feathered Fortress · Shield Charge |
+| Font of Power | Spark | Font of Power · Spark |
+| Guiding Palm of the Eye | Skeletal Warrior | Guiding Palm of the Eye · Skeletal Warrior |
+| Guiding Palm of the Heart | Skeletal Warrior | Guiding Palm of the Heart · Skeletal Warrior |
+| Guiding Palm of the Mind | Skeletal Warrior | Guiding Palm of the Mind · Skeletal Warrior |
+| Hateforge | Bow Shot, Barrage | Hateforge · Bow Shot |
+| Horns of Bynden | Maul, Furious Slam | Horns of Bynden · Maul |
+| Idle Hands | Bow Shot | Idle Hands · Bow Shot |
+| Jarngreipr | Rake | Jarngreipr · Rake |
+| Leopold's Applause | Frost Bomb, Frostbolt | Leopold's Applause · Frost Bomb |
+| Lifesprig | Spark | Lifesprig · Spark |
+| Lioneye's Glare | Barrage, Bow Shot | Lioneye's Glare · Barrage |
+| Lochtonial Caress | Ice Shot, Combat Frenzy, Wolf Pack | Lochtonial Caress · Ice Shot |
+| Marohi Erqi | Rolling Slam, Seismic Cry | Marohi Erqi · Rolling Slam |
+| Melting Maelstrom | Spark | Melting Maelstrom · Spark |
+| Mist Whisper | Crossbow Shot | Mist Whisper · Crossbow Shot |
+| Nebuloch | Rolling Slam | Nebuloch · Rolling Slam |
+| Gravebind + Headhunter | Skeletal Warrior | Gravebind + Headhunter |
+| Gravebind + Death Rush | Skeletal Warrior | Gravebind + Death Rush |
+| Gravebind + Deathrattle | Skeletal Warrior | Gravebind + Deathrattle |
+| Icefang Orbit + Polcirkeln | Poisonburst Arrow, Bow Shot, Herald of Ice | Icefang Orbit + Polcirkeln |
+| Venopuncture + Polcirkeln | Bow Shot, Herald of Ice | Venopuncture + Polcirkeln |
+| Crown of Eyes + Doedre's Tenure | Lightning Arrow | Crown of Eyes + Doedre's Tenure |
+| Hand of Wisdom and Action + Astramentis | Lightning Arrow | Hand of Wisdom and Action + Astramentis |
+| Pillar of the Caged God + Black Sun Crest | Ice Strike | Pillar of the Caged God + Black Sun Crest |
+| Brutus' Lead Sprinkler + Astramentis | Rolling Slam | Brutus' Lead Sprinkler + Astramentis |
+| Indigon + Dream Fragments | Spark | Indigon + Dream Fragments |
+| Elevore + Bijouborne | Cast on Charm Use | Elevore + Bijouborne |
+| Lycosidae + Icefang Orbit | Raise Shield, Spark | Lycosidae + Icefang Orbit |
 
 ## Counterchecks that matter
 
@@ -214,4 +272,4 @@ The official [0.5.5 notes](https://www.pathofexile.com/forum/view-thread/4000864
 
 The official [0.5.0 unique changes](https://www.pathofexile.com/forum/view-thread/3932540) were cross-checked for changed items including Blackflame, Plaguefinger and Radiant Grief. Existing items may retain older modifiers, so the actual item must still be checked.
 
-Automatic trigger loops, passive trees, equipment budgets, arbitrary item stacks, generated jewel outcomes, damage simulation and endgame viability remain outside these guides. The 152 item/skill recipes are source-based experiments with explicit conditions, not in-game benchmark results.
+Automatic trigger loops, passive trees, equipment budgets, arbitrary item stacks, generated jewel outcomes, damage simulation and endgame viability remain outside these guides. The 200 item/skill recipes are source-based experiments with explicit conditions, not in-game benchmark results.

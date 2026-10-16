@@ -214,10 +214,10 @@ async function main(){
 
   await page.goto(base+'/?mechanics=unavailable-rules');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different mechanics/);checks++;console.log('PASS: unavailable rule version hides results instead of substituting newer mechanics');
   await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
-  assert.match(await page.locator('#discovery-coverage').textContent(),/399 \/ 399 skill source guides; 332 researched combinations across 262 \/ 399/);
-  await page.locator('#browse-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),262);
+  assert.match(await page.locator('#discovery-coverage').textContent(),/399 \/ 399 skill source guides; 380 researched combinations across 263 \/ 399/);
+  await page.locator('#browse-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),263);
   assert.equal(await page.locator('#combo-only').isChecked(),true);assert.match(page.url(),/covered=1/);checks++;console.log('PASS: coverage and the researched-only browser use real distinct skill counts');
-  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),262);checks++;console.log('PASS: shared links preserve the researched-skills filter');
+  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),263);checks++;console.log('PASS: shared links preserve the researched-skills filter');
   await page.locator('#catalog-search').fill("Wildwood's Gifts");assert.equal(await page.locator('#discovery-anchor').isDisabled(),true);
   assert.equal(await page.locator('#source-experiments .source-experiment').count(),0);await page.locator('#combo-only').uncheck();assert.equal(await page.locator('#discovery-anchor option').count(),1);checks++;console.log('PASS: an uncovered skill is not fabricated to fill a filtered catalog');
   await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.locator('#discovery-ideas .discovery-card').count(),4);
@@ -269,14 +269,20 @@ async function main(){
    assert.equal(await page.locator('#catalog-record .item-info').count(),1);
    assert.equal(await page.locator('#catalog-record [data-unique-coverage]').count(),1);
   }checks++;console.log('PASS: every one of the 443 uniques renders its own source guide and item details');
-  const uniqueIdeas=JSON.parse(readFileSync('data/discovery/pob-bb52d6b-unique-combos2.json')).recipes;
+  const uniqueIdeas=JSON.parse(readFileSync('data/discovery/pob-bb52d6b-unique-combos3.json')).recipes;
   for(const idea of uniqueIdeas){
    await page.locator('#discovery-anchor').selectOption(idea.itemId);
    assert.ok(await page.locator('[data-idea="'+idea.id+'"] .first-test').isVisible());
    assert.ok(await page.locator('[data-idea="'+idea.id+'"] .item-info .item-effect').first().isVisible());
-  }checks++;console.log('PASS: all 152 unique interactions display an actual first test and visible unique modifiers');
-  await page.setViewportSize({width:1440,height:1050});await page.locator('#browse-unique-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),156);assert.equal(await page.locator('#combo-only').isChecked(),true);assert.match(await page.locator('#combo-filter').textContent(),/Only uniques/);assert.match(page.url(),/covered=1/);checks++;console.log('PASS: unique-only coverage filter counts actual distinct items including the earlier curated aliases');
-  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),156);checks++;console.log('PASS: unique coverage filter survives a shared-link reload');
+  }checks++;console.log('PASS: all 200 unique interactions display an actual first test and visible unique modifiers');
+  for(const idea of uniqueIdeas.filter(r=>r.additionalItems?.length)){
+   const second=idea.additionalItems[0].itemId;await page.locator('#discovery-anchor').selectOption(second);
+   const card=page.locator('[data-idea="'+idea.id+'"]');assert.equal(await card.locator('.item-info').count(),2);
+   const shown=await card.locator('.item-info').evaluateAll(nodes=>nodes.map(e=>e.dataset.itemInfo));assert.ok(shown.includes(idea.itemId));assert.ok(shown.includes(second));
+   const firstName=allUniques.find(e=>e.id===idea.itemId).name;await card.getByRole('button',{name:'Explore '+firstName+' ↗',exact:true}).click();assert.equal(await page.locator('#discovery-anchor').inputValue(),idea.itemId);assert.equal(await page.locator('[data-idea="'+idea.id+'"] .item-info').count(),2);
+  }checks++;console.log('PASS: all 12 multi-unique routes work from either item, show both modifiers and navigate between their sources');
+  await page.setViewportSize({width:1440,height:1050});await page.locator('#browse-unique-combos').click();assert.equal(await page.locator('#discovery-anchor option').count(),202);assert.equal(await page.locator('#combo-only').isChecked(),true);assert.match(await page.locator('#combo-filter').textContent(),/Only uniques/);assert.match(page.url(),/covered=1/);checks++;console.log('PASS: unique-only coverage filter counts actual distinct items including the earlier curated aliases');
+  await page.reload();await page.locator('#workspace').waitFor({state:'visible'});assert.equal(await page.locator('#discovery-anchor option').count(),202);checks++;console.log('PASS: unique coverage filter survives a shared-link reload');
   await page.locator('#combo-only').uncheck();assert.equal(await page.locator('#discovery-anchor option').count(),443);
   for(const [name,status] of [['Goldrim','equipment'],["Saffell's Frame",'open'],['Mageblood','variant']]){await page.locator('#discovery-anchor').selectOption(allUniques.find(e=>e.name===name).id);assert.equal(await page.locator('#catalog-record [data-unique-coverage]').getAttribute('data-unique-coverage'),status);}
   checks++;console.log('PASS: equipment, unresolved and variant-dependent items keep distinct truthful coverage messages');
@@ -296,6 +302,7 @@ async function main(){
   await page.locator('#discovery-anchor').selectOption(allUniques.find(e=>e.name==='Wulfsbane').id);assert.match((await page.locator('#catalog-record .item-effect').allTextContents()).join(' '),/for 8 seconds/);assert.doesNotMatch((await page.locator('#catalog-record .item-effect').allTextContents()).join(' '),/Permanently/);
   await page.locator('#discovery-anchor').selectOption(allUniques.find(e=>e.name==="Olroth's Resolve").id);assert.doesNotMatch((await page.locator('#catalog-record .item-effect').allTextContents()).join(' '),/Instant Recovery|Excess Life Recovery/);checks++;console.log('PASS: independent source version markers exclude historical item effects');
   await page.goto(base+'/?details=pob-bb52d6b-details1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different experiment details/);checks++;console.log('PASS: older item-detail links are not silently replaced');
+  await page.goto(base+'/?uniques=pob-bb52d6b-unique-combos2');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different unique combinations/);checks++;console.log('PASS: previous unique coverage links do not silently pick different multi-item recipes');
   await page.goto(base+'/?uniques=pob-bb52d6b-unique-combos1');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different unique combinations/);checks++;console.log('PASS: older unique recipe snapshots are not silently replaced');
   await page.goto(base+'/?uniques=missing');await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/different unique combinations/);checks++;console.log('PASS: unavailable unique combination versions fail closed');
   await page.route('**/data/unique-combos.json',async route=>{const response=await route.fetch();await route.fulfill({response,body:await response.text()+' '});});await page.goto(base);await page.locator('#load-error').waitFor({state:'visible'});assert.match(await page.locator('#load-error').textContent(),/unique combinations do not match/);assert.equal(await page.locator('#workspace').isVisible(),false);await page.unroute('**/data/unique-combos.json');checks++;console.log('PASS: tampered unique recipes hide results instead of silently changing combinations');
