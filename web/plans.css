@@ -6,3 +6,5 @@
 @media(max-width:720px){.plan-comparison{padding:16px;margin-inline:-7px}.plan-compare-picker{grid-template-columns:minmax(0,1fr)}.plan-comparison>summary{font-size:21px}.plan-comparison>summary small{display:block;margin:9px 0}.compare-table{min-width:700px}.compare-table th,.compare-table td{padding:14px}.compare-table thead th:first-child,.compare-table th[scope=row]{width:130px}.compare-table[data-plans="3"]{min-width:980px}}
 @media(forced-colors:active){.plan-comparison,.plan-compare-choice,.compare-scroll,.compare-table th,.compare-table td{background:Canvas;color:CanvasText;border-color:CanvasText}.plan-compare-choice:has(input:checked){outline:2px solid Highlight}}
 .compare-shared{overflow-wrap:anywhere}
+
+@media(max-width:720px){.compare-table td::before{content:attr(data-compare-field);display:block;font-size:11px;font-weight:600;color:#d5c594;margin-bottom:12px;white-space:normal}}
