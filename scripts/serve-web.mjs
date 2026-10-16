@@ -6,7 +6,7 @@ import { resolve, sep, extname } from 'node:path';
 const root=fileURLToPath(await buildWeb());
 const port=Number(process.env.PORT || 4173);
 if(!Number.isInteger(port)||port<0||port>65535)throw new Error('Invalid PORT');
-const types={'.svg':'image/svg+xml; charset=utf-8','.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8'};
+const types={'.webp':'image/webp','.svg':'image/svg+xml; charset=utf-8','.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8'};
 const server=createServer(async(req,res)=>{
   try {
     if(!['GET','HEAD'].includes(req.method)){res.writeHead(405);res.end();return;}
