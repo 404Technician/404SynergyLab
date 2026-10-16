@@ -33,11 +33,11 @@ export async function buildWeb() {
   const chains=validateChains(reference,mechanics,JSON.parse(chainsBytes));
   const detailBytes=await readFile(new URL('data/research/pob-bb52d6b-details2.json',root));
   const details=validateExperimentDetails(reference,JSON.parse(detailBytes));
-  const comboBytes=await readFile(new URL('data/discovery/pob-bb52d6b-skill-combos3.json',root));
+  const comboBytes=await readFile(new URL('data/discovery/pob-bb52d6b-skill-combos4.json',root));
   const combos=validateSkillCombos(reference,JSON.parse(comboBytes),mechanics);
   const reviewBytes=await readFile(new URL('data/research/pob-bb52d6b-skill-reviews1.json',root));
   const skillReviews=validateSkillReviews(reference,JSON.parse(reviewBytes));
-  const uniqueBytes=await readFile(new URL('data/discovery/pob-bb52d6b-unique-combos3.json',root));
+  const uniqueBytes=await readFile(new URL('data/discovery/pob-bb52d6b-unique-combos4.json',root));
   const uniqueCombos=validateUniqueCombos(reference,details,skillReviews,JSON.parse(uniqueBytes));
   auditUniqueCoverage(reference,details,JSON.parse(catalogBytes),uniqueCombos);
   for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,details.entries.find(e=>e.id===entry.id));

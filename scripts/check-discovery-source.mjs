@@ -46,7 +46,7 @@ console.log('Discovery source fingerprints and support predicates match the pinn
 
 const reference=JSON.parse(await readFile(new URL('../data/catalog/pob-bb52d6b-full-catalog1.json',import.meta.url)));
 const comboMechanics=JSON.parse(await readFile(new URL('../data/mechanics/pob-bb52d6b-mechanics1.json',import.meta.url)));
-const combos=validateSkillCombos(reference,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-skill-combos3.json',import.meta.url))),comboMechanics);
+const combos=validateSkillCombos(reference,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-skill-combos4.json',import.meta.url))),comboMechanics);
 for(const source of combos.sources){
  const entry=reference.entries.find(e=>e.id===source.id),path=source.evidence.path;
  if(!files[path])files[path]=execFileSync('git',['show',revision+':'+path],{cwd,encoding:'utf8',maxBuffer:16*1024*1024});
@@ -74,7 +74,7 @@ if(await readFile(new URL('../data/research/'+allReviews.id+'.json',import.meta.
 console.log(allReviews.entries.length+' skill source guides match the pinned records.');
 for(const source of reference.sources)if(!files[source.path])files[source.path]=execFileSync('git',['show',revision+':'+source.path],{cwd,encoding:'utf8',maxBuffer:16*1024*1024});
 const sourceDetails=buildExperimentDetails(reference,files);
-const uniqueCombos=validateUniqueCombos(reference,sourceDetails,allReviews,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-unique-combos3.json',import.meta.url))));
+const uniqueCombos=validateUniqueCombos(reference,sourceDetails,allReviews,JSON.parse(await readFile(new URL('../data/discovery/pob-bb52d6b-unique-combos4.json',import.meta.url))));
 for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,sourceDetails.entries.find(e=>e.id===entry.id));
 console.log(reference.counts.unique+' unique guides and '+uniqueCombos.recipes.length+' item interactions match reconstructed source modifiers and skill records.');
 if(await readFile(new URL('../docs/UNIQUE_COVERAGE.md',import.meta.url),'utf8')!==renderUniqueCoverageReport(reference,sourceDetails,catalog,uniqueCombos))throw new Error('Unique coverage report differs from the verified recipes');
