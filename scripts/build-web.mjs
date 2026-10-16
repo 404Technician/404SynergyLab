@@ -45,8 +45,8 @@ export async function buildWeb() {
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
   await mkdir(new URL('assets/',dist),{recursive:true});
   for(const name of ['arcane-lab.svg','sanctum-hero.webp','category-atlas.webp'])await copyFile(new URL('web/assets/'+name,root),new URL('assets/'+name,dist));
-  for(const name of ['index.html','styles.css','discovery.css','cinematic.css','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
-  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs','unique-audit.mjs','visuals.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
+  for(const name of ['index.html','styles.css','discovery.css','cinematic.css','finder.css','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
+  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs','unique-audit.mjs','visuals.mjs','build-finder.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
   await writeFile(new URL('data/snapshot.json',dist),snapshotBytes);
   await writeFile(new URL('data/catalog.json',dist),catalogBytes);
   await writeFile(new URL('data/reference.json',dist),referenceBytes);
