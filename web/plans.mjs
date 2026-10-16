@@ -1,13 +1,16 @@
+import {createSkillPlanner,skillSnapshot} from './skill-plans.mjs';
+import {skillTestScope} from './src/skill-setup.mjs';
 import {equipmentCategories,analyzeEquipment,equipmentMatches,equipmentTestScope} from './src/equipment-plan.mjs';
 import {compareBuildPlans,createPlanVariant,planStorageKey,planFields,testOutcomes,validatePlanBook,validatePlanTest,createBuildPlan,mergePlanBooks,readPlanBook,writePlanBook} from './src/build-plans.mjs';
 const $=id=>document.getElementById(id);
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const button=(text,action)=>{const b=el('button',text);b.type='button';b.addEventListener('click',action);return b;};
 function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-export function initializeBuildPlans({getSource,getEquipment,equipmentOptions}){
+export function initializeBuildPlans({getSource,getEquipment,equipmentOptions,getSkillSetup,getCoreSkills,skillOptions,supportOptions}){
  let book={version:1,plans:[]},raw=null,storage,storageBlocked=false,selected='',deleted=null,deletedCompared=false;
  const equipmentUndo=new Map(),equipmentFilters=new Map();
  const status=(text,error=false)=>{$('plan-status').textContent=text;$('plan-status').dataset.error=String(error);};
+ const renderSkills=createSkillPlanner({getSkillSetup,getCoreSkills,skillOptions,supportOptions,onChange:touch,onRender:render,status});
  function load(){
   try{storage=window.localStorage;const saved=readPlanBook(storage);book=saved.book;raw=saved.raw;storageBlocked=false;status('Saved on this browser. Export a backup to keep or move your plans.');}
   catch{storageBlocked=true;status('Saved plans could not be read. Working in memory; existing storage will not be overwritten. Export your plans before leaving.',true);}
@@ -66,9 +69,10 @@ export function initializeBuildPlans({getSource,getEquipment,equipmentOptions}){
   row('Core skills',(td,{plan})=>{for(const skill of plan.source.skills)td.append(el('span',skill,'compare-tag'));});
   row('Required uniques',(td,{plan})=>{if(!plan.source.items.length)td.append(el('p','No unique required by this core. Other requirements still apply.','compare-empty'));for(const item of plan.source.items)td.append(savedItem(item));});
   if(view.entries.some(e=>e.plan.loadout))row('Planned unique equipment',(td,{plan})=>{if(!plan.loadout){td.append(el('p','Not recorded','compare-empty'));return;}td.append(el('p',equipmentSummary(plan.loadout,plan.source.items)));for(const item of plan.loadout.items)td.append(savedItem(item));});
+  if(view.entries.some(e=>e.plan.skillSetup))row('Planned skill groups',(td,{plan})=>{if(!plan.skillSetup){td.append(el('p','Not recorded','compare-empty'));return;}for(const group of plan.skillSetup.groups)td.append(el('p',group.skill.name+' · '+group.supports.length+' recorded supports'));const more=el('details');more.append(el('summary','Skill and support descriptions'),skillSnapshot(plan.skillSetup));td.append(more);});
   row('Requirements to review',(td,{plan,remaining})=>{td.append(el('p',plan.checked.length+' / '+plan.source.conditions.length+' reviewed · not a viability score'));if(remaining.length){const more=el('details');more.append(el('summary','Show '+remaining.length+' remaining requirements'));const list=el('ul');for(const requirement of remaining)list.append(el('li',requirement));more.append(list);td.append(more);}else td.append(el('p','All recorded requirements reviewed. Performance still needs testing.'));});
   for(const [key,label] of Object.entries(planFields))row(label,(td,{plan})=>td.append(el('p',plan.notes[key]||'Not recorded',plan.notes[key]?'':'compare-empty')));
-  row('Latest personal test',(td,{plan,latestTest:t})=>{if(!t){td.append(el('p','Not tested in game','compare-empty'));return;}td.append(el('strong',testOutcomes[t.outcome]),el('p','Patch '+t.patch+' · '+t.date.slice(0,10)),el('p',t.target),el('p',t.observations),el('p',equipmentTestScope(t,plan.loadout),'plan-status'));});
+  row('Latest personal test',(td,{plan,latestTest:t})=>{if(!t){td.append(el('p','Not tested in game','compare-empty'));return;}td.append(el('strong',testOutcomes[t.outcome]),el('p','Patch '+t.patch+' · '+t.date.slice(0,10)),el('p',t.target),el('p',t.observations),el('p',equipmentTestScope(t,plan.loadout),'plan-status'),el('p',skillTestScope(t,plan.skillSetup),'plan-status'));});
   row('First source test',(td,{plan})=>td.append(el('p',plan.source.firstTest)));
   row('Reconsider if…',(td,{plan})=>td.append(el('p',plan.source.stopIf)));
   table.append(body);wrap.append(table);results.append(el('p','Scroll sideways when needed to see every selected plan.','plan-status'),wrap,el('p','Personal results apply only to the recorded patch, setup and target. They do not verify the source recipe or rank complete builds.','plan-status'));wrap.scrollLeft=scroll;
@@ -80,7 +84,7 @@ export function initializeBuildPlans({getSource,getEquipment,equipmentOptions}){
  }
  function renderHistory(plan,box){
   box.replaceChildren();if(!plan.tests.length){box.append(el('p','No personal test recorded. The source recipe still awaits an in-game test.'));return;}
-  for(const t of [...plan.tests].reverse()){const row=el('article');row.append(el('strong',testOutcomes[t.outcome]),el('p',t.patch+' · '+t.target+' · '+t.date.slice(0,10)),el('p',t.observations),el('p',equipmentTestScope(t,plan.loadout),'plan-status'));if(t.loadout){const saved=el('details');saved.append(el('summary','Recorded equipment ('+t.loadout.items.length+' entries)'));for(const item of t.loadout.items)saved.append(savedItem(item));row.append(saved);}box.append(row);}
+  for(const t of [...plan.tests].reverse()){const row=el('article');row.append(el('strong',testOutcomes[t.outcome]),el('p',t.patch+' · '+t.target+' · '+t.date.slice(0,10)),el('p',t.observations),el('p',equipmentTestScope(t,plan.loadout),'plan-status'),el('p',skillTestScope(t,plan.skillSetup),'plan-status'));if(t.loadout){const saved=el('details');saved.append(el('summary','Recorded equipment ('+t.loadout.items.length+' entries)'));for(const item of t.loadout.items)saved.append(savedItem(item));row.append(saved);}if(t.skillSetup){const saved=el('details');saved.append(el('summary','Recorded skill groups ('+t.skillSetup.groups.length+')'),skillSnapshot(t.skillSetup));row.append(saved);}box.append(row);}
  }
  function render(){
   if(!active())selected=book.plans[0]?.id||'';renderList();
@@ -94,8 +98,8 @@ export function initializeBuildPlans({getSource,getEquipment,equipmentOptions}){
   actions.append(compare);
   if(!stale)actions.append(button('Create untested variant',()=>{if(book.plans.length>=50){status('You have 50 plans. Export and remove one before creating a variant.',true);return;}const variant=createPlanVariant(plan,crypto.randomUUID(),new Date().toISOString());book.plans.push(variant);selected=variant.id;persist();render();$('plan-editor-title').focus({preventScroll:true});}));
   editor.append(actions);editor.append(el('p','Variants copy your notes and source core, with tests and reviewed requirements reset.','plan-status'));
-  renderEquipment(plan,editor,stale);
-  const core=el('details',undefined,'plan-preview');core.open=!plan.loadout;core.append(el('summary','Saved core · skills, uniques & first test'));
+  renderEquipment(plan,editor,stale);renderSkills(plan,editor,stale);
+  const core=el('details',undefined,'plan-preview');core.open=!plan.loadout&&!plan.skillSetup;core.append(el('summary','Saved core · skills, uniques & first test'));
   core.append(el('p',plan.source.skills.join(' + ')),el('h4','First test'),el('p',plan.source.firstTest),el('h4','Reconsider if…'),el('p',plan.source.stopIf));
   const components=el('ul');for(const c of plan.source.components)components.append(el('li',c));core.append(components);
   for(const item of plan.source.items){const box=el('section',undefined,'item-info');box.dataset.planItem=item.id;box.append(el('h4',item.name),el('p',item.base),el('p','Saved Current / common source stats. Match your actual item variant and rolls.'));const effects=el('div',undefined,'item-effects');for(const text of item.modifiers)effects.append(el('p',text,'item-effect'));box.append(effects);core.append(box);}
@@ -115,7 +119,7 @@ export function initializeBuildPlans({getSource,getEquipment,equipmentOptions}){
   }
   const submit=el('button','Save test result');submit.type='submit';const message=el('p',undefined,'plan-test-message');message.setAttribute('role','status');
   const history=el('div',undefined,'plan-history');history.id='plan-history';renderHistory(plan,history);
-  form.addEventListener('submit',event=>{event.preventDefault();try{if(plan.tests.length>=20)throw new Error('This plan already has 20 test records. Export it and start a new plan for further tests.');const data=new FormData(form),test={...Object.fromEntries(data),date:new Date().toISOString(),...(plan.loadout?{loadout:structuredClone(plan.loadout)}:{})};validatePlanTest(test);plan.tests.push(test);touch(plan);renderList();renderHistory(plan,history);form.reset();message.textContent='Personal test recorded. The source recipe remains unverified in game.';}catch(error){message.textContent=error.message;}});
+  form.addEventListener('submit',event=>{event.preventDefault();try{if(plan.tests.length>=20)throw new Error('This plan already has 20 test records. Export it and start a new plan for further tests.');const data=new FormData(form),test={...Object.fromEntries(data),date:new Date().toISOString(),...(plan.loadout?{loadout:structuredClone(plan.loadout)}:{}),...(plan.skillSetup?{skillSetup:structuredClone(plan.skillSetup)}:{})};validatePlanTest(test);plan.tests.push(test);touch(plan);renderList();renderHistory(plan,history);form.reset();message.textContent='Personal test recorded. The source recipe remains unverified in game.';}catch(error){message.textContent=error.message;}});
   form.append(submit,message);testing.append(form);fields.append(testing);editor.append(fields,el('h4','Your test history'),history);
  }
  function renderUndo(){const box=$('plan-undo');box.replaceChildren();if(deleted)box.append(el('span','Plan removed.'),button('Undo removal',()=>{if(book.plans.length>=50){status('Export or remove a plan before restoring this one.',true);return;}book.plans.push(deleted);if(deletedCompared&&comparisonIds().length<3)book.compareIds=[...comparisonIds(),deleted.id];selected=deleted.id;deleted=null;deletedCompared=false;persist();render();renderUndo();}));}
