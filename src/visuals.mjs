@@ -52,3 +52,18 @@ export function combinationVisual(idea){
  });
  return box;
 }
+
+// A decorative spell seal made from original geometry and the record's category glyph.
+export function recordScene(record){
+ const {symbol,tone}=visualTheme(record),box=document.createElement('div');box.className='record-scene tone-'+tone;box.setAttribute('aria-hidden','true');
+ const svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 280 230');svg.setAttribute('fill','none');svg.setAttribute('focusable','false');
+ const shape=(tag,attrs)=>{const node=document.createElementNS(ns,tag);for(const [key,value] of Object.entries(attrs))node.setAttribute(key,String(value));svg.append(node);return node;};
+ shape('path',{d:'M0 46h280M0 92h280M0 138h280M0 184h280M46 0v230M92 0v230M138 0v230M184 0v230M230 0v230',stroke:'currentColor',opacity:'.06'});
+ for(const [radius,opacity] of [[85,.22],[71,.12],[55,.3]])shape('circle',{cx:140,cy:115,r:radius,stroke:'currentColor',opacity});
+ shape('path',{d:'m140 17 85 49v98l-85 49-85-49V66Z',stroke:'currentColor',opacity:'.24'});
+ shape('path',{d:'m140 40 65 75-65 75-65-75Z',fill:'currentColor',opacity:'.05'});
+ shape('path',{d:'m140 26 4 7-4 7-4-7Zm0 164 4 7-4 7-4-7ZM49 111l7 4-7 4-7-4Zm182 0 7 4-7 4-7-4Z',fill:'currentColor',opacity:'.85'});
+ shape('path',{d:paths[symbol],transform:'translate(95 70) scale(3.75)',stroke:'currentColor','stroke-width':'.8','stroke-linecap':'round','stroke-linejoin':'round'});
+ for(const [cx,cy,r] of [[36,45,2],[236,38,1.5],[251,175,2],[42,190,1.5],[205,198,1],[77,28,1]])shape('circle',{cx,cy,r,fill:'currentColor',opacity:'.6'});
+ box.append(svg);return box;
+}
