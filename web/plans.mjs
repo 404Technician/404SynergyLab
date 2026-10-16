@@ -27,7 +27,7 @@ export function initializeBuildPlans({getSource}){
   }
   if(focused)[...picker.querySelectorAll('input')].find(i=>i.dataset.comparePlan===focused)?.focus({preventScroll:true});
   $('plan-compare-export').disabled=ids.length<2;$('plan-compare-clear').disabled=!ids.length;
-  const status=$('plan-compare-status'),text=ids.length<2?'Choose at least two plans. Save another recipe or create an untested variant to compare setups.':ids.length+' plans compared. Selection is saved in this browser.';if(status.textContent!==text)status.textContent=text;
+  const status=$('plan-compare-status'),text=ids.length<2?'Choose at least two plans. Save another recipe or create an untested variant to compare setups.':ids.length+' plans compared. '+(storageBlocked?'Session only; export selected plans to keep them.':'Selection is saved in this browser.');if(status.textContent!==text)status.textContent=text;
   const results=$('plan-compare-results');results.replaceChildren();if(ids.length<2)return;
   const view=compareBuildPlans(book,ids),sharedItems=view.sharedItemIds.map(id=>view.entries[0].plan.source.items.find(i=>i.id===id).name);
   results.append(el('p','Shared core · '+(view.sharedSkills.length?view.sharedSkills.join(', '):'No shared skills')+' · '+(sharedItems.length?sharedItems.join(', '):'No shared required uniques'),'compare-shared'));
