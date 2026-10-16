@@ -1,7 +1,7 @@
 import {uniqueModifiers} from './unique-reviews.mjs';
-export const uniqueComboVersion='pob-bb52d6b-unique-combos1';
+export const uniqueComboVersion='pob-bb52d6b-unique-combos2';
 export function validateUniqueCombos(reference,details,reviews,data){
- if(data?.schemaVersion!==1||data.id!==uniqueComboVersion||data.referenceId!==reference.id||data.sourceRevision!==reference.sourceRevision||data.detailsId!==details.id||data.reviewsId!==reviews.id||data.status!=='candidate')throw new Error('Unique combinations version mismatch');
+ if(data?.schemaVersion!==1||!['pob-bb52d6b-unique-combos1',uniqueComboVersion].includes(data.id)||data.referenceId!==reference.id||data.sourceRevision!==reference.sourceRevision||data.detailsId!==details.id||data.reviewsId!==reviews.id||data.status!=='candidate')throw new Error('Unique combinations version mismatch');
  const entries=new Map(reference.entries.map(e=>[e.id,e])),records=new Map(details.entries.map(e=>[e.id,e])),sources=new Map(reviews.entries.map(e=>[e.id,e])),ids=new Set();
  const text=v=>typeof v==='string'&&v.trim().length>0,list=v=>Array.isArray(v)&&v.length>0&&v.every(text);
  if(!Array.isArray(data.recipes)||!data.recipes.length)throw new Error('Missing unique combinations');

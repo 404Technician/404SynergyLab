@@ -1,6 +1,6 @@
 # Skill combinations
 
-The skill-only expansion in version 0.15.0 added 103 further interactions. The current source collection has 167 recipes involving 233 distinct source skills. Together with the 13 original curated recipes there are 180 combinations across 240 of the 399 source skills. All 399 skills also have separate source setup guides; those guides are not counted as combinations. Version 0.16.0 adds 52 unique interactions in a separate collection, bringing the overall total to 232 recipes across 248 skills. See [All unique guides](ALL_UNIQUES.md). See [All skill guides](ALL_SKILLS.md).
+The skill-only expansion in version 0.15.0 added 103 further interactions. The current source collection has 167 recipes involving 233 distinct source skills. Together with the 13 original curated recipes there are 180 combinations across 240 of the 399 source skills. All 399 skills also have separate source setup guides; those guides are not counted as combinations. The unique collection now adds 152 item/skill interactions, bringing the overall total in version 0.18.0 to 332 recipes across 262 skills. See [All unique guides](ALL_UNIQUES.md). See [All skill guides](ALL_SKILLS.md).
 
 ## User flow
 

@@ -1,3 +1,4 @@
+import {auditUniqueCoverage} from '../src/unique-audit.mjs';
 import {validateSkillReviews} from '../src/skill-reviews.mjs';
 import {validateUniqueCombos} from '../src/unique-combos.mjs';
 import {describeUniqueReview} from '../src/unique-reviews.mjs';
@@ -36,15 +37,16 @@ export async function buildWeb() {
   const combos=validateSkillCombos(reference,JSON.parse(comboBytes),mechanics);
   const reviewBytes=await readFile(new URL('data/research/pob-bb52d6b-skill-reviews1.json',root));
   const skillReviews=validateSkillReviews(reference,JSON.parse(reviewBytes));
-  const uniqueBytes=await readFile(new URL('data/discovery/pob-bb52d6b-unique-combos1.json',root));
+  const uniqueBytes=await readFile(new URL('data/discovery/pob-bb52d6b-unique-combos2.json',root));
   const uniqueCombos=validateUniqueCombos(reference,details,skillReviews,JSON.parse(uniqueBytes));
+  auditUniqueCoverage(reference,details,JSON.parse(catalogBytes),uniqueCombos);
   for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,details.entries.find(e=>e.id===entry.id));
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
   await mkdir(new URL('assets/',dist),{recursive:true});
   await copyFile(new URL('web/assets/arcane-lab.svg',root),new URL('assets/arcane-lab.svg',dist));
   for(const name of ['index.html','styles.css','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
-  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs','visuals.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
+  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs','unique-audit.mjs','visuals.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
   await writeFile(new URL('data/snapshot.json',dist),snapshotBytes);
   await writeFile(new URL('data/catalog.json',dist),catalogBytes);
   await writeFile(new URL('data/reference.json',dist),referenceBytes);

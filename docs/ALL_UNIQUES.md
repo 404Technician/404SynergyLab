@@ -1,22 +1,32 @@
 # Complete unique source guides
 
-Version 0.16.0 covers all 443 distinct unique records in the pinned catalog. A source guide explains the item and its requirements; it does not manufacture a partner skill or an endgame build.
+Version 0.18.0 covers all 443 distinct unique records in the pinned catalog. A source guide explains the item and its requirements; it does not manufacture a partner skill or an endgame build.
 
 | Coverage | Count |
 |---|---:|
 | Unique source guides | 443 / 443 |
 | Fixed item records with source stats | 435 |
 | Generated families without expanded rolls | 8 |
-| New explicit unique/skill interactions | 52 |
-| Distinct uniques in the new interactions | 52 |
-| Overall researched recipes, including earlier skill/item work | 232 |
-| Distinct skills in all researched recipes | 248 / 399 |
+| Explicit unique/skill interactions in the expanded collection | 152 |
+| Distinct uniques with recipes, including earlier curated items | 156 / 443 |
+| Overall researched recipes, including earlier skill/item work | 332 |
+| Distinct skills in all researched recipes | 262 / 399 |
 
 ## Using a unique
 
 Select **A unique**, search by name or category and select the actual base. The three Grand Spectrum bases retain separate identities. Current source effects appear immediately. The setup guide identifies effect scope, literal conditions and costs, with practical checks for triggers, ailments, critical hits, resources, minions, recovery, range, sockets and utility. Items without an explicit recipe say so.
 
 Each researched idea shows the unique's modifiers and a visible first test. Open the explanation for conditions, mistakes to avoid, exact source links and a build experiment checklist. Partner buttons lead to the skill, where the same item interaction remains discoverable. General source candidates remain separately labeled; no automatic damage ranking is implied.
+
+## Coverage audit
+
+The [complete unique coverage report](UNIQUE_COVERAGE.md) lists every one of the 443 records and its recorded partners. It distinguishes 156 uniques with explicit recipes, 28 general equipment entries, 238 open research entries, 13 variant-dependent records and 8 generated families. Open research is not a conclusion that no combination exists. This collection is not exhaustive of every possible build.
+
+Use **Browse uniques with researched combinations**, or the unique-mode checkbox, to show the 156 items with actual recipes. The filter persists in shared links. Each selected item also shows its own status and reason. Candidate links and source setup guides do not inflate recipe coverage.
+
+Version 0.18.0 adds 100 specific item interactions. The previous 52 recipes remain unchanged at the beginning of the new immutable `pob-bb52d6b-unique-combos2` snapshot; the combos1 file is preserved. Every addition is bound to exact Current/common modifier fragments and source-described member skills.
+
+Shared default skills such as Raise Shield and Parry can be granted by many items. A recipe using one actual granting item no longer appends every alternative source as if all must be equipped. Where a member has multiple unresolved granting sources, the UI asks the reader to explore that skill and choose a compatible source.
 
 ## Source variants and versions
 
@@ -80,6 +90,106 @@ The source has separate `{version:...}` and `{variant:...}` conditions. The new 
 | Whisper of the Brotherhood | Frostbolt | Frostbolt hits route to Lightning |
 | Windscream | Despair | Despair without its activation delay |
 | Yriel's Fostering | Wolf Pack, Rhoa Mount | Two different Companion types |
+| Berek's Grip | Tornado | Berek's Grip · Tornado |
+| Berek's Pass | Tornado | Berek's Pass · Tornado |
+| Berek's Respite | Tornado | Berek's Respite · Tornado |
+| Beyond Reach | Poisonburst Arrow, Combat Frenzy | Beyond Reach · Poisonburst Arrow |
+| Bijouborne | Cast on Charm Use | Bijouborne · Cast on Charm Use |
+| Birth of Fury | Tornado | Birth of Fury · Tornado |
+| Blessed Bonds | Spark, Fireball | Blessed Bonds · Spark |
+| Blistering Bond | Rake | Blistering Bond · Rake |
+| Breath of the Mountains | Bonestorm | Breath of the Mountains · Bonestorm |
+| Bristleboar | Maul, Walking Calamity | Bristleboar · Maul |
+| Brynhand's Mark | Rolling Slam, Boneshatter | Brynhand's Mark · Rolling Slam |
+| Calgyra's Arc | Parry, Rake | Calgyra's Arc · Parry |
+| Carrion Call | Skeletal Warrior | Carrion Call · Skeletal Warrior |
+| Chainsting | Rake, Combat Frenzy | Chainsting · Rake |
+| Chober Chaber | Skeletal Warrior, Rolling Slam | Chober Chaber · Skeletal Warrior |
+| Choir of the Storm | Spark | Choir of the Storm · Spark |
+| Deidbell | Seismic Cry | Deidbell · Seismic Cry |
+| Demon Stitcher | Spark | Demon Stitcher · Spark |
+| Double Vision | Crossbow Shot, Gemini Surge | Double Vision · Crossbow Shot |
+| Dreadfist | Rolling Slam | Dreadfist · Rolling Slam |
+| Dusk Vigil | Firebolt, Ember Fusillade | Dusk Vigil · Firebolt |
+| Earthbound | Spark | Earthbound · Spark |
+| Effigy of Cruelty | Spark | Effigy of Cruelty · Spark |
+| Empire's Grasp | Ice Nova | Empire's Grasp · Ice Nova |
+| Enezun's Charge | Volatile Dead | Enezun's Charge · Volatile Dead |
+| Essentia Sanguis | Lightning Arrow | Essentia Sanguis · Lightning Arrow |
+| Evergrasping Ring | Skeletal Warrior | Evergrasping Ring · Skeletal Warrior |
+| Fixation of Yix | Skeletal Reaver | Fixation of Yix · Skeletal Reaver |
+| Facebreaker | Rolling Slam | Facebreaker · Rolling Slam |
+| Forgotten Warden | Spirit Vessel | Forgotten Warden · Spirit Vessel |
+| Frostbreath | Rolling Slam | Frostbreath · Rolling Slam |
+| Fury of the King | Maul, Walking Calamity | Fury of the King · Maul |
+| Gloamgown | Convalescence | Gloamgown · Convalescence |
+| Gravebind | Skeletal Warrior, Life Remnants | Gravebind · Skeletal Warrior |
+| Hysseg's Claw | Cackling Companions, Maul | Hysseg's Claw · Cackling Companions |
+| Hand of Wisdom and Action | Ice Strike | Hand of Wisdom and Action · Ice Strike |
+| Indigon | Spark, Mana Tempest | Indigon · Spark |
+| Kitoko's Current | Spark, Combat Frenzy | Kitoko's Current · Spark |
+| Levinstone | Arc | Levinstone · Arc |
+| Leer Cast | Skeletal Warrior | Leer Cast · Skeletal Warrior |
+| Mind of the Council | Lightning Arrow | Mind of the Council · Lightning Arrow |
+| Ming's Heart | Chaos Bolt | Ming's Heart · Chaos Bolt |
+| Mjölner | Rolling Slam, Thundergod's Wrath | Mjölner · Rolling Slam |
+| Murkshaft | Poisonburst Arrow | Murkshaft · Poisonburst Arrow |
+| Necromantle | Skeletal Warrior | Necromantle · Skeletal Warrior |
+| Nightscale | Spark | Nightscale · Spark |
+| Opportunity | Snipe | Opportunity · Snipe |
+| Periphery | Ice Shot | Periphery · Ice Shot |
+| Pillar of the Caged God | Ice Strike | Pillar of the Caged God · Ice Strike |
+| Prism Guardian | Overwhelming Presence | Prism Guardian · Overwhelming Presence |
+| Rathpith Globe | Spark | Rathpith Globe · Spark |
+| Saitha's Spear | Rake, Incinerate | Saitha's Spear · Rake |
+| Sands of Silk | Blink | Sands of Silk · Blink |
+| Sandstorm Visage | Spark | Sandstorm Visage · Spark |
+| Sanguine Diviner | Bonestorm | Sanguine Diviner · Bonestorm |
+| Seeing Stars | Rolling Slam, Cast on Critical | Seeing Stars · Rolling Slam |
+| Serle's Grit | Infernal Cry, Rolling Slam | Serle's Grit · Infernal Cry |
+| Serpent's Egg | Combat Frenzy, Ice Shot | Serpent's Egg · Combat Frenzy |
+| Silverthorne | Parry, Rake | Silverthorne · Parry |
+| Sine Aequo | Ice Shot | Sine Aequo · Ice Shot |
+| Slivertongue | Bow Shot | Slivertongue · Bow Shot |
+| Spire of Ire | Infernal Cry, Spear Throw | Spire of Ire · Infernal Cry |
+| Surge of the Tide | Maul, Furious Slam | Surge of the Tide · Maul |
+| Svalinn | Cast on Block | Svalinn · Cast on Block |
+| Sylvan's Effigy | Azmerian Wolf, Sniper's Mark | Sylvan's Effigy · Azmerian Wolf |
+| Temporalis | Frost Bomb | Temporalis · Frost Bomb |
+| The Black Insignia | Spark | The Black Insignia · Spark |
+| The Blood Thorn | Ice Strike | The Blood Thorn · Ice Strike |
+| The Burden of Shadows | Spark | The Burden of Shadows · Spark |
+| The Coming Calamity | Ice Shot, Herald of Ice | The Coming Calamity · Ice Shot |
+| The Covenant | Spark, Life Remnants | The Covenant · Spark |
+| The Dark Defiler | Skeletal Warrior, Chaos Bolt | The Dark Defiler · Skeletal Warrior |
+| The Hollow Mask | Life Remnants | The Hollow Mask · Life Remnants |
+| The Ordained | Righteous Descent | The Ordained · Righteous Descent |
+| The Pandemonius | Frostbolt | The Pandemonius · Frostbolt |
+| The Raven's Flock | Skeletal Warrior | The Raven's Flock · Skeletal Warrior |
+| The Searing Touch | Solar Orb, Flameblast | The Searing Touch · Solar Orb |
+| The Whispering Ice | Icestorm, Frostbolt | The Whispering Ice · Icestorm |
+| Thunderfist | Crackling Palm | Thunderfist · Crackling Palm |
+| Trephina | Rolling Slam, Seismic Cry | Trephina · Rolling Slam |
+| Twisted Empyrean | Rolling Slam | Twisted Empyrean · Rolling Slam |
+| Uhtred's Chalice | Mana Tempest, Spark | Uhtred's Chalice · Mana Tempest |
+| Umbilicus Immortalis | Skeletal Reaver | Umbilicus Immortalis · Skeletal Reaver |
+| Valako's Roar | Barrage, Bow Shot | Valako's Roar · Barrage |
+| Vestige of Darkness | Bonestorm | Vestige of Darkness · Bonestorm |
+| Voll's Protector | Spark, Bonestorm | Voll's Protector · Spark |
+| Wake of Destruction | Tornado | Wake of Destruction · Tornado |
+| Window to Paradise | Raise Shield, Fireball | Window to Paradise · Raise Shield |
+| Wulfsbane | Raise Shield, Rolling Slam | Wulfsbane · Raise Shield |
+| Wylund's Stake | Armour Breaker | Wylund's Stake · Armour Breaker |
+| Xoph's Blood | Incinerate | Xoph's Blood · Incinerate |
+| Yoke of Suffering | Spark, Frostbolt, Incinerate | Yoke of Suffering · Spark |
+| Alkem Eira | Raise Shield, Spark | Alkem Eira · Raise Shield |
+| Atziri's Acuity | Rake, Herald of the Royal Queen | Atziri's Acuity · Rake |
+| Bloodbarrier | Parry | Bloodbarrier · Parry |
+| Cursecarver | Decompose, Flame Wall | Cursecarver · Decompose |
+| Doomgate | Raise Shield | Doomgate · Raise Shield |
+| Glowswarm | Mana Tempest, Spark | Glowswarm · Mana Tempest |
+| Heartbound Loop | Skeletal Warrior, Cast on Minion Death | Heartbound Loop · Skeletal Warrior |
+| The Last Lament | Crossbow Shot | The Last Lament · Crossbow Shot |
 
 ## Counterchecks that matter
 
@@ -100,6 +210,8 @@ The unique interaction collection binds each recipe to its exact item ID, record
 
 `npm run discovery:check -- PATH-TO-PINNED-POB` reconstructs the unique detail data and all skill descriptions from source, then validates the new interactions and every guide. `npm run details:import -- PATH-TO-PINNED-POB --check` verifies reproducibility. Browser build metadata binds the new recipe and detail files by SHA-256; unavailable versions and changed bytes fail closed.
 
+The official [0.5.5 notes](https://www.pathofexile.com/forum/view-thread/4000864) were also checked for the inactive weapon-set item-skill fix. New recipes require the granting item to remain equipped and its weapon active; weapon swapping is not used to bypass item access. The [0.5.0 notes](https://www.pathofexile.com/forum/view-thread/3932540) also document a fix for triggered skills incorrectly generating Energy, so item triggers are not treated as recursive Energy sources.
+
 The official [0.5.0 unique changes](https://www.pathofexile.com/forum/view-thread/3932540) were cross-checked for changed items including Blackflame, Plaguefinger and Radiant Grief. Existing items may retain older modifiers, so the actual item must still be checked.
 
-Automatic trigger loops, passive trees, equipment budgets, arbitrary item stacks, generated jewel outcomes, damage simulation and endgame viability remain outside these guides. The 52 recipes are source-based experiments with explicit conditions, not in-game benchmark results.
+Automatic trigger loops, passive trees, equipment budgets, arbitrary item stacks, generated jewel outcomes, damage simulation and endgame viability remain outside these guides. The 152 item/skill recipes are source-based experiments with explicit conditions, not in-game benchmark results.
