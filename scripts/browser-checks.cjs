@@ -52,6 +52,19 @@ async function main(){
   assert.ok(await readingPreview.locator('#catalog-search').evaluate(e=>e.getBoundingClientRect().height<=60));assert.equal(await readingPreview.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
   if(process.env.SCREENSHOT_DIR)await readingPreview.locator('#catalog-record').screenshot({path:path.join(process.env.SCREENSHOT_DIR,'skill-reading-mobile.png')});
   await readingPreview.close();checks++;console.log('PASS: illustrated skill reading and first test above unique details fit desktop and mobile');
+  const hosted=await context.newPage(),hostErrors=[];hosted.on('pageerror',error=>hostErrors.push(error.message));
+  await hosted.route('**/*',async route=>{
+   const url=new URL(route.request().url());if(url.origin!==new URL(base).origin)return route.continue();
+   if(!url.pathname.startsWith('/404SynergyLab/'))return route.abort();
+   const response=await route.fetch({url:base+url.pathname.slice('/404SynergyLab'.length)+url.search});await route.fulfill({response});
+  });
+  await hosted.goto(base+'/404SynergyLab/?inspect=1');await hosted.locator('#workspace').waitFor({state:'visible'});
+  await hosted.locator('.intro-art').evaluate(image=>image.decode());
+  assert.ok(await hosted.locator('#catalog-search').evaluate(e=>e.getBoundingClientRect().height<=60));
+  await hosted.locator('#catalog-search').fill('Icestorm');assert.match(await hosted.locator('#catalog-record h3').textContent(),/Icestorm/);
+  await hosted.locator('#share').click();const hostedLink=await hosted.evaluate(()=>navigator.clipboard.readText());
+  assert.equal(new URL(hostedLink).pathname,'/404SynergyLab/');assert.ok(new URL(hostedLink).searchParams.get('anchor'));assert.deepEqual(hostErrors,[]);
+  await hosted.close();checks++;console.log('PASS: repository-prefix hosting loads scripts, styles, artwork, data and preserves shared-link paths');
   assert.equal(await page.locator('#skill-title').textContent(),'Spark');assert.match(await page.locator('#data-notice').textContent(),/CANDIDATE DATA/);checks++;console.log('PASS: default Spark and candidate-data notice');
   assert.equal(await page.locator('.support-card').count(),8);checks++;console.log('PASS: all support cards loaded');
   await page.locator('[data-filter="compatible"]').click();assert.equal(await page.locator('.support-card.incompatible').count(),0);checks++;console.log('PASS: type-match filter');
