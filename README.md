@@ -1,5 +1,7 @@
 # 404 Synergy Lab
 
+v0.27.0 adds **Compare plans** for two or three saved builds: skills, required uniques with every saved modifier, remaining requirements, your notes and the latest personal test. Selection survives reloads and imports, and selected plans can be exported together. **Create untested variant** copies a source core and your notes while resetting tests and reviewed requirements. Comparison does not infer damage, cost or endgame rankings.
+
 v0.26.0 adds **My build plans**: save any of the 389 researched recipes, retain its source components and unique modifiers, review requirements, and record your equipment, defenses, resources and personal test history. Plans save in this browser with JSON export/import and undoable removal. Each test requires a game patch, target and observations; personal outcomes never promote a source recipe to verified. Older or altered saved sources remain read-only.
 
 

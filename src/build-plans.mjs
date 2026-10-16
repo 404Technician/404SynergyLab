@@ -19,6 +19,7 @@ export function validatePlanBook(book){
   need(Array.isArray(p.tests)&&p.tests.length<=20,'Too many saved test results.');
   for(const t of p.tests)validatePlanTest(t);
  }
+ if(book.compareIds!==undefined)need(Array.isArray(book.compareIds)&&book.compareIds.length<=3&&new Set(book.compareIds).size===book.compareIds.length&&book.compareIds.every(id=>ids.has(id)),'Select up to three existing plans for comparison.');
  return book;
 }
 export function validatePlanTest(t){
@@ -32,7 +33,7 @@ export function createBuildPlan(recipeId,source,id,date){
 export function mergePlanBooks(existing,incoming){
  validatePlanBook(existing);validatePlanBook(incoming);
  const ids=new Set(existing.plans.map(p=>p.id));const added=incoming.plans.filter(p=>!ids.has(p.id));
- return validatePlanBook({version:1,plans:[...existing.plans,...structuredClone(added)]});
+ return validatePlanBook({...existing,plans:[...existing.plans,...structuredClone(added)]});
 }
 export function readPlanBook(storage){
  const raw=storage.getItem(planStorageKey);return {raw,book:raw===null?{version:1,plans:[]}:validatePlanBook(JSON.parse(raw))};
@@ -46,4 +47,18 @@ export function buildPlanSource(idea,reference,details,stamp,patch){
  const items=(idea.items||(idea.item?[idea.item]:[])).map(item=>reference.entries.find(e=>e.id===item.id||e.reviewedId===item.id));
  need(items.every(Boolean),'A required source item is unavailable.');
  return {stamp,patch,title:idea.title,skills:idea.skills.map(s=>s.name),components:[...idea.buildPlan.components],conditions:[...new Set([...idea.conditions,...idea.buildPlan.nextChecks])],firstTest:idea.buildPlan.firstTest,stopIf:idea.buildPlan.stopIf,items:items.map(item=>({id:item.id,name:item.name,base:item.base||'',modifiers:uniqueModifiers(details.get(item.id)).map(m=>m.text)}))};
+}
+
+export function createPlanVariant(plan,id,date){
+ validatePlanBook({version:1,plans:[plan]});
+ const variant={...structuredClone(plan),id,name:plan.name.slice(0,149)+' · variant',updated:date,checked:[],tests:[]};
+ validatePlanBook({version:1,plans:[variant]});return variant;
+}
+export function compareBuildPlans(book,ids){
+ validatePlanBook(book);
+ need(Array.isArray(ids)&&ids.length>=2&&ids.length<=3&&new Set(ids).size===ids.length,'Choose two or three different plans.');
+ const plans=ids.map(id=>book.plans.find(p=>p.id===id));need(plans.every(Boolean),'A comparison plan is unavailable.');
+ const sharedSkills=[...new Set(plans[0].source.skills)].filter(skill=>plans.every(p=>p.source.skills.includes(skill)));
+ const sharedItemIds=[...new Set(plans[0].source.items.map(i=>i.id))].filter(id=>plans.every(p=>p.source.items.some(i=>i.id===id)));
+ return {sharedSkills,sharedItemIds,entries:plans.map(p=>({plan:structuredClone(p),remaining:p.source.conditions.filter(c=>!p.checked.includes(c)),latestTest:p.tests.length?structuredClone(p.tests.at(-1)):null}))};
 }
