@@ -1,3 +1,4 @@
+import {validateSpecialInteractions} from '../src/special-interactions.mjs';
 import {auditUniqueCoverage} from '../src/unique-audit.mjs';
 import {validateSkillReviews} from '../src/skill-reviews.mjs';
 import {validateUniqueCombos} from '../src/unique-combos.mjs';
@@ -41,12 +42,14 @@ export async function buildWeb() {
   const uniqueCombos=validateUniqueCombos(reference,details,skillReviews,JSON.parse(uniqueBytes));
   auditUniqueCoverage(reference,details,JSON.parse(catalogBytes),uniqueCombos);
   for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,details.entries.find(e=>e.id===entry.id));
+  const specialBytes=await readFile(new URL('data/research/pob-bb52d6b-special-interactions1.json',root));
+  const specials=validateSpecialInteractions(reference,details,skillReviews,mechanics,JSON.parse(specialBytes));
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
   await mkdir(new URL('assets/',dist),{recursive:true});
   for(const name of ['arcane-lab.svg','sanctum-hero.webp','category-atlas.webp'])await copyFile(new URL('web/assets/'+name,root),new URL('assets/'+name,dist));
-  for(const name of ['index.html','styles.css','discovery.css','cinematic.css','finder.css','plans.css','skill-plans.mjs','build-check.mjs','plans.mjs','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
-  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs','unique-audit.mjs','visuals.mjs','build-finder.mjs','build-plans.mjs','equipment-plan.mjs','skill-setup.mjs','build-check.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
+  for(const name of ['index.html','styles.css','discovery.css','cinematic.css','finder.css','specials.css','special-discoveries.mjs','plans.css','skill-plans.mjs','build-check.mjs','plans.mjs','app.mjs'])await copyFile(new URL(`web/${name}`,root),new URL(name,dist));
+  for(const name of ['engine.mjs','validation.mjs','type-expression.mjs','combination.mjs','discovery.mjs','reference-catalog.mjs','mechanics.mjs','chains.mjs','chain-discovery.mjs','experiment-details.mjs','skill-combos.mjs','skill-reviews.mjs','unique-reviews.mjs','unique-combos.mjs','unique-audit.mjs','visuals.mjs','build-finder.mjs','build-plans.mjs','equipment-plan.mjs','skill-setup.mjs','build-check.mjs','special-interactions.mjs'])await copyFile(new URL(`src/${name}`,root),new URL(`src/${name}`,dist));
   await writeFile(new URL('data/snapshot.json',dist),snapshotBytes);
   await writeFile(new URL('data/catalog.json',dist),catalogBytes);
   await writeFile(new URL('data/reference.json',dist),referenceBytes);
@@ -56,7 +59,8 @@ export async function buildWeb() {
   await writeFile(new URL('data/skill-combos.json',dist),comboBytes);
   await writeFile(new URL('data/skill-reviews.json',dist),reviewBytes);
   await writeFile(new URL('data/unique-combos.json',dist),uniqueBytes);
-  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,uniqueCombosId:uniqueCombos.id,uniqueCombosSha256:checksum(uniqueBytes),skillReviewsId:skillReviews.id,skillReviewsSha256:checksum(reviewBytes),skillCombosId:combos.id,skillCombosSha256:checksum(comboBytes),snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id,mechanicsId:mechanics.id,mechanicsSha256:checksum(mechanicsBytes),chainsId:chains.id,chainsSha256:checksum(chainsBytes),detailsId:details.id,detailsSha256:checksum(detailBytes)},null,2)+'\n');
+  await writeFile(new URL('data/special-interactions.json',dist),specialBytes);
+  await writeFile(new URL('data/build.json',dist),JSON.stringify({appVersion:pkg.version,specialInteractionsId:specials.id,specialInteractionsSha256:checksum(specialBytes),uniqueCombosId:uniqueCombos.id,uniqueCombosSha256:checksum(uniqueBytes),skillReviewsId:skillReviews.id,skillReviewsSha256:checksum(reviewBytes),skillCombosId:combos.id,skillCombosSha256:checksum(comboBytes),snapshotId:snapshot.id,snapshotSha256:audit.snapshotSha256,corroborated:review.corroborated,catalogSha256:checksum(catalogBytes),referenceSha256:checksum(referenceBytes),referenceId:reference.id,mechanicsId:mechanics.id,mechanicsSha256:checksum(mechanicsBytes),chainsId:chains.id,chainsSha256:checksum(chainsBytes),detailsId:details.id,detailsSha256:checksum(detailBytes)},null,2)+'\n');
   return dist;
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {await buildWeb();console.log('Built the audited browser lab in dist/.');}

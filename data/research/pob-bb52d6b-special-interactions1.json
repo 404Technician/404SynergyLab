@@ -1,0 +1,475 @@
+{
+  "id": "pob-bb52d6b-special-interactions1",
+  "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "referenceId": "pob-bb52d6b-full-catalog1",
+  "checkedAt": "2026-10-16",
+  "scope": "Pinned-source experiments; target patch and live-client behavior remain unverified.",
+  "entries": [
+    {
+      "id": "chaos-spark-freeze",
+      "title": "Spark becomes freezing Chaos",
+      "tags": [
+        "chaos",
+        "freeze",
+        "unique"
+      ],
+      "hook": "Keep the projectile spell you like, change its damage, then give that Chaos a Freeze route.",
+      "chain": [
+        "Spark hits",
+        "Original Sin → Chaos",
+        "Tul’s Stillness → Freeze buildup"
+      ],
+      "why": "Original Sin converts elemental damage to Chaos. Tul’s Stillness gives Chaos hits from the supported skill a way to contribute to Freeze buildup. The combination is inferred from those separate rules; conversion alone would not preserve Spark’s usual Shock route.",
+      "components": [
+        {
+          "id": "spark",
+          "role": "Example projectile hit",
+          "recordSha256": "74069a025c0aea1d59777105f31533fbced915d9be7487a18081a88913397008",
+          "requiredFragments": [
+            "projectiles"
+          ]
+        },
+        {
+          "id": "unique:ring:Original%20Sin:Amethyst%20Ring",
+          "role": "Elemental-to-Chaos conversion",
+          "recordSha256": "4b56f9f20279b2c7968ab5b9775ff1f861552650353231bdbbf0eab0b4aa3302",
+          "requiredFragments": [
+            "Elemental Damage Converted to Chaos"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport",
+          "role": "Support the hit skill",
+          "recordSha256": "a72b272f911ceabea9521fdc82c44202f051ae40d5c2ef5353888ff1c3059fbb",
+          "requiredFragments": [
+            "Chaos damage to Contribute to Freeze Buildup"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "spark",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport"
+        }
+      ],
+      "steps": [
+        "Equip the Current Original Sin and support Spark with Tul’s Stillness.",
+        "Confirm actual Chaos hit damage, then watch Freeze buildup on one durable enemy."
+      ],
+      "pitfalls": [
+        "Freeze buildup is not an instant or guaranteed Freeze; target thresholds and repeated hits matter.",
+        "No Cold damage means the support’s Cold-as-extra-Chaos benefit has no Cold base to use.",
+        "Do not import the historical “Chaos Resistance is zero” modifier into the Current ring."
+      ],
+      "firstTest": "Compare the same Chaos Spark setup with and without Tul’s Stillness. Keep other Freeze sources out of the test.",
+      "inspiration": "Use this as a starting point for your own elemental projectile-to-Chaos caster. Compare hit size and uptime before choosing an ascendancy.",
+      "basis": "combined"
+    },
+    {
+      "id": "elemental-poison-spread",
+      "title": "Elemental hits feed spreading Poison",
+      "tags": [
+        "poison",
+        "chain",
+        "unique"
+      ],
+      "hook": "Use elemental bow damage as a Poison base, then carry that Poison into the next pack.",
+      "chain": [
+        "Lightning Arrow hits",
+        "Plaguefinger → Poison",
+        "Kill → Herald of Plague spread"
+      ],
+      "why": "Plaguefinger lets all hit damage contribute to Poison magnitude. Herald of Plague spreads Poison when you kill a Poisoned enemy. This changes what the hit can feed; it does not convert Lightning damage into Chaos damage.",
+      "components": [
+        {
+          "id": "lightning-arrow",
+          "role": "Example elemental bow hit",
+          "recordSha256": "29f0b12e6c7087f45fdcab038c72243fed219f1017a64eda0a77619b710f7b1c",
+          "requiredFragments": [
+            "Lightning"
+          ]
+        },
+        {
+          "id": "unique:gloves:Plaguefinger:Gauze%20Wraps",
+          "role": "Broadens Poison magnitude",
+          "recordSha256": "4468bbca598fd7a7aec13a20d1aeb0a08181bfe3408731f8c2310319b7221e4d",
+          "requiredFragments": [
+            "All Damage from Hits Contributes to Poison Magnitude",
+            "Cannot inflict Elemental Ailments"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfPlague",
+          "role": "Poison spread on kill",
+          "recordSha256": "2057811f1a0452ad11cdd86385e6ca87967c5ccddf3d28ea0d706097c7b3958f",
+          "requiredFragments": [
+            "killing a Poisoned enemy spreads its Poison"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Use a Bow and establish real Poison application; the gloves provide a chance, not certainty.",
+        "Reserve Herald of Plague and kill a Poisoned enemy near a fresh enemy."
+      ],
+      "pitfalls": [
+        "Current Plaguefinger forbids Elemental Ailments: do not attach Freeze, Chill, Shock or Ignite payoffs to this setup.",
+        "Poison spread needs a kill and another nearby enemy; it is not an isolated-boss damage engine.",
+        "Poison magnitude, number of active Poisons and chance to apply Poison are separate questions."
+      ],
+      "firstTest": "Apply Poison to one durable enemy with an elemental bow hit. Kill it near an untouched enemy and inspect the transferred Poison.",
+      "inspiration": "Try an elemental attack you enjoy as a Poison delivery tool. Choose between this route and ailment-based control; the gloves force that tradeoff.",
+      "basis": "combined"
+    },
+    {
+      "id": "poison-chill-shatter",
+      "title": "Poison into Chill into Shatter",
+      "tags": [
+        "poison",
+        "chain",
+        "unique"
+      ],
+      "hook": "Build an icy attack explosion around enemies that you first Poison, without claiming a real Freeze.",
+      "chain": [
+        "Poison target",
+        "Later hit → Chill",
+        "Attack-hit kill → Shatter"
+      ],
+      "why": "Icefang Orbit lets hits against Poisoned targets contribute to Chill. Polcirkeln lets enemies Chilled by your hits Shatter as though Frozen. A non-Herald Attack Hit that Shatters an enemy can then activate Herald of Ice.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow",
+          "role": "Establish Poison",
+          "recordSha256": "2fc036a0f7c5a94ed3b22cc4a732c6688f18a75b15b2c9d3bb65c2b9a225fc5b",
+          "requiredFragments": [
+            "Poison"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultBow",
+          "role": "Controlled attack killing hit",
+          "recordSha256": "72003769575aea2d43034512183764bf122d2ff467a1085022c6858a9022b3d2",
+          "requiredFragments": [
+            "arrow"
+          ]
+        },
+        {
+          "id": "unique:ring:Icefang%20Orbit:Iron%20Ring",
+          "role": "Chill after Poison",
+          "recordSha256": "b7b94a83f30ea396f2cacaa3b05053bbcddc42784e05cef7d69bd6ea33e14b72",
+          "requiredFragments": [
+            "All Damage from Hits against Poisoned targets Contributes to Chill Magnitude"
+          ]
+        },
+        {
+          "id": "unique:ring:Polcirkeln:Sapphire%20Ring",
+          "role": "Shatter without completing Freeze",
+          "recordSha256": "3a6ff0aa1c78bb6179e58768ee4ea5901f4f67dfaef5e899e7b2fd312750475f",
+          "requiredFragments": [
+            "Enemies Chilled by your Hits can be Shattered as though Frozen"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfIce",
+          "role": "Attack explosion payoff",
+          "recordSha256": "a037421591154fd33f803573a232aa0c757173387198432ba2116d0120098bf1",
+          "requiredFragments": [
+            "non-Herald Attack Hit"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip both rings, use a Bow and reserve Herald of Ice.",
+        "Poison first, apply a later hit that actually Chills, then obtain the killing hit with a non-Herald attack."
+      ],
+      "pitfalls": [
+        "A Poison damage-over-time kill is not the required attack-hit kill.",
+        "Shattering as though Frozen is not a completed Freeze event for Cast on Freeze.",
+        "Plaguefinger would block the required Chill. Both rings also occupy your normal ring slots.",
+        "Icefang’s damage-taken modifier can Chill you while you are Poisoned; that is separate from its offensive modifier."
+      ],
+      "firstTest": "Use Bow Shot to control the killing hit on an already Poisoned and Chilled enemy. Confirm the Herald explosion without any actual Freeze source.",
+      "inspiration": "Explore an attack-based Poison-and-ice clear style. First prove the kill sequence; do not assume Herald explosions recursively sustain it.",
+      "basis": "direct",
+      "recipeId": "unique-expansion-40"
+    },
+    {
+      "id": "voltaxic-freeze-shock",
+      "title": "Chaos arrows with two ailment routes",
+      "tags": [
+        "chaos",
+        "freeze",
+        "unique"
+      ],
+      "hook": "A bow that keeps a Shock route after conversion can be paired with a separate Chaos-to-Freeze support.",
+      "chain": [
+        "Voltaxic → Chaos hits",
+        "Bow permits Shock",
+        "Tul’s Stillness permits Freeze"
+      ],
+      "why": "Voltaxic Rift converts Lightning to Chaos and explicitly lets Chaos hits contribute to Shock chance. Tul’s Stillness adds a separate Freeze-buildup route to the supported attack. Whether both are useful on the same target must be tested.",
+      "components": [
+        {
+          "id": "unique:bow:Voltaxic%20Rift:Fanatic%20Bow",
+          "role": "Conversion and explicit Shock exception",
+          "recordSha256": "e8bdb1bb3564519242bda1a696c0475df0c9c59ba946031ceba38f2147250762",
+          "requiredFragments": [
+            "Lightning Damage Converted to Chaos",
+            "Chaos Damage from Hits also Contributes to Shock Chance"
+          ]
+        },
+        {
+          "id": "lightning-arrow",
+          "role": "Example supported bow attack",
+          "recordSha256": "29f0b12e6c7087f45fdcab038c72243fed219f1017a64eda0a77619b710f7b1c",
+          "requiredFragments": [
+            "Lightning"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport",
+          "role": "Freeze contribution for supported hits",
+          "recordSha256": "a72b272f911ceabea9521fdc82c44202f051ae40d5c2ef5353888ff1c3059fbb",
+          "requiredFragments": [
+            "Freeze Buildup"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "lightning-arrow",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport"
+        }
+      ],
+      "steps": [
+        "Use Voltaxic Rift with a supported Lightning Arrow and confirm the resulting damage components.",
+        "Observe actual Shock applications and Freeze buildup separately on the same durable enemy."
+      ],
+      "pitfalls": [
+        "Contribution to Shock chance does not guarantee Shock, and contribution to Freeze buildup does not guarantee Freeze.",
+        "Do not use Current Plaguefinger here: its elemental-ailment restriction defeats both payoffs.",
+        "The bow is required. No damage, ailment uptime or endgame ranking is implied."
+      ],
+      "firstTest": "First record Shock with the bow alone. Add Tul’s Stillness and look for additional Freeze buildup without changing the other ailment sources.",
+      "inspiration": "A seed for a Chaos archer with control effects. Choose the attack for its actual hit pattern, rather than treating every bow skill as interchangeable.",
+      "basis": "combined"
+    },
+    {
+      "id": "chaos-debuff-freeze",
+      "title": "A debuff opens a Chaos Freeze window",
+      "tags": [
+        "chaos",
+        "freeze"
+      ],
+      "hook": "Put the enabling support on a Chaos damage-over-time spell; supply the Freeze-building hits separately.",
+      "chain": [
+        "Contagion + Chaotic Freeze",
+        "Target takes debuff damage",
+        "Chaos hits → Freeze buildup"
+      ],
+      "why": "Chaotic Freeze supports non-Ailment Chaos damage-over-time Spells. While the target takes damage from that supported debuff, Chaos hits from any source can contribute to Freeze buildup. Essence Drain is a concrete player-hit example; its ongoing debuff is not itself repeated hits.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+          "role": "Supported non-Ailment Chaos debuff",
+          "recordSha256": "25dce175b7b10a703f888704014b47755b22253f08b6467d3b924399dd8d4b06",
+          "requiredFragments": [
+            "Chaos damage over time"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemChaoticFreezeSupport",
+          "role": "Enables Chaos hits against affected targets",
+          "recordSha256": "1f624ba6ebc74d70662f7296573fdeea287abb0eb6f79e0715602e56098b3593",
+          "requiredFragments": [
+            "non-Ailment Chaos damage over time",
+            "from any source"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+          "role": "Example separate Chaos projectile hit",
+          "recordSha256": "05422f7613c2daa387f08faba9ecdc63bf41e0f1f8dd18b8fe8ce5636ed58af1",
+          "requiredFragments": [
+            "Projectile"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemChaoticFreezeSupport"
+        }
+      ],
+      "steps": [
+        "Support Contagion with Chaotic Freeze and apply its debuff to the target.",
+        "While that debuff deals damage, hit the target with Essence Drain and inspect Freeze buildup."
+      ],
+      "pitfalls": [
+        "Poison is an Ailment; simply socketing this support into a poison attack is not this route.",
+        "The support does not support skills used by Minions. The “any source” hit wording is not permission to socket it on a minion skill.",
+        "If the enabling debuff expires, the conditional Chaos Freeze route is no longer established."
+      ],
+      "firstTest": "Compare separate Chaos hits before the supported Contagion debuff, while it is active, and after it expires.",
+      "inspiration": "This opens a two-skill design space: choose the debuff that maintains the condition, then a Chaos hit source you enjoy.",
+      "basis": "combined"
+    },
+    {
+      "id": "blackflame-wither",
+      "title": "Ignite carries Chaos and holds Wither",
+      "tags": [
+        "chaos",
+        "unique",
+        "chain"
+      ],
+      "hook": "A Fire-themed skill can maintain a Chaos-damage Ignite and stop your Wither from expiring while that Ignite lasts.",
+      "chain": [
+        "Apply your Wither",
+        "Incinerate → Ignite",
+        "Blackflame holds Wither"
+      ],
+      "why": "Current Blackflame changes the damage dealt by your Ignite to Chaos and prevents your Withered from expiring on enemies you Ignite. Incinerate supplies an explicit Ignite example. This is not conversion of the Fire hit and does not turn the skill into a Poison source.",
+      "components": [
+        {
+          "id": "unique:ring:Blackflame:Amethyst%20Ring",
+          "role": "Ignite damage route and Wither retention",
+          "recordSha256": "c08510891c7e0f242263e9600e48838630fc2dd6d334e93dac1f07e1085dd0fe",
+          "requiredFragments": [
+            "Ignite you inflict deals Chaos Damage instead of Fire Damage",
+            "Withered does not expire",
+            "reduced Ignite Duration"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIncinerate",
+          "role": "Example Ignite source",
+          "recordSha256": "e8de75d37d88648c5aae14774152de209038064b48470b735f33b694bacb395b",
+          "requiredFragments": [
+            "Ignite"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWither",
+          "role": "Apply your own Wither",
+          "recordSha256": "cff88986f7be743e53734b39c8ce71ed410139a955c069fe80559ff049fa41a4",
+          "requiredFragments": [
+            "Wither"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Prepare the current Incinerate fuel requirement by spending Mana, then apply your own Wither.",
+        "Apply and refresh an actual Ignite; inspect Wither retention during the Ignite window."
+      ],
+      "pitfalls": [
+        "The Current ring sharply reduces Ignite duration. Losing Ignite can end the retention condition.",
+        "The ring does not apply Wither by itself or prove permanent debuffs after you stop acting.",
+        "Plaguefinger forbids Ignite, so it conflicts with this particular route."
+      ],
+      "firstTest": "Apply Wither, Ignite the same target and watch its duration. Repeat after allowing the Ignite to expire.",
+      "inspiration": "Explore a Chaos-Ignite identity rather than assuming every Chaos damage build must be Poison.",
+      "basis": "direct",
+      "recipeId": "unique-study-12"
+    },
+    {
+      "id": "native-chaos-hit-freeze",
+      "title": "Freeze from a native Chaos hit",
+      "tags": [
+        "chaos",
+        "freeze"
+      ],
+      "hook": "Try the smallest version of the idea before choosing conversion gear: one Chaos hit skill and one support.",
+      "chain": [
+        "Essence Drain hit",
+        "Tul’s Stillness",
+        "Chaos → Freeze buildup"
+      ],
+      "why": "Tul’s Stillness lets Chaos damage from supported hits contribute to Freeze buildup. Essence Drain has a damaging projectile hit as well as its damage-over-time debuff; only the hit is the represented Freeze-building event.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+          "role": "Native Chaos projectile hit",
+          "recordSha256": "05422f7613c2daa387f08faba9ecdc63bf41e0f1f8dd18b8fe8ce5636ed58af1",
+          "requiredFragments": [
+            "Projectile"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport",
+          "role": "Support the hit, not Poison ticks",
+          "recordSha256": "a72b272f911ceabea9521fdc82c44202f051ae40d5c2ef5353888ff1c3059fbb",
+          "requiredFragments": [
+            "Freeze Buildup"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport"
+        }
+      ],
+      "steps": [
+        "Support Essence Drain with Tul’s Stillness.",
+        "Separate the projectile impact from the subsequent damage-over-time ticks when observing Freeze buildup."
+      ],
+      "pitfalls": [
+        "No unique is required by this core; obtaining and legally socketing the Lineage support still matters.",
+        "A small hit may build too little Freeze against a tough target. A damaging debuff does not make the hit large.",
+        "The extra-Chaos benefit needs a Cold damage base; a native Chaos-only hit does not supply that base."
+      ],
+      "firstTest": "Use an isolated durable target and compare projectile impacts with debuff-only periods. Remove other sources of Freeze.",
+      "inspiration": "Use this minimal experiment to decide whether you prefer native Chaos hits or an elemental-to-Chaos conversion route.",
+      "basis": "combined"
+    },
+    {
+      "id": "contagion-corpse-carrier",
+      "title": "A corpse becomes a debuff carrier",
+      "tags": [
+        "corpses",
+        "chain"
+      ],
+      "hook": "An infected corpse can carry Contagion into an explosion that spreads it on hit.",
+      "chain": [
+        "Contagion on enemy",
+        "Affected corpse",
+        "Detonate → spread on hit"
+      ],
+      "why": "Contagion explicitly describes spreading from reanimation or detonation of an affected corpse. Detonate Dead is the concrete explosion example here. The corpse must carry the debuff; a random nearby corpse is not interchangeable.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+          "role": "Mark the eventual corpse",
+          "recordSha256": "25dce175b7b10a703f888704014b47755b22253f08b6467d3b924399dd8d4b06",
+          "requiredFragments": [
+            "detonating a corpse affected by Contagion"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDetonateDead",
+          "role": "Explode the affected corpse",
+          "recordSha256": "fe0b0838772d0fa88a090cc8ec9941467986b4af270c48e6fb010b292eee5312",
+          "requiredFragments": [
+            "corpse"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Apply Contagion, then kill that affected enemy without consuming its corpse.",
+        "Detonate that corpse near an uninfected enemy and look for the transferred debuff."
+      ],
+      "pitfalls": [
+        "This consumes a corpse and requires a nearby target to receive the spread.",
+        "An isolated boss with no corpses does not provide the same sequence.",
+        "An explosion applying a debuff does not prove an infinite chain or player-to-minion damage conversion."
+      ],
+      "firstTest": "Keep one uninfected enemy near one known affected corpse. Detonate only that corpse and compare with an unaffected corpse.",
+      "inspiration": "A starting point for corpse-based Chaos experiments. Reanimation is another source-described branch, but this card only proposes the detonation test.",
+      "basis": "direct",
+      "recipeId": "contagion-corpse"
+    }
+  ]
+}
