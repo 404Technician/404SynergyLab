@@ -28,6 +28,23 @@ Source records, socket predicates, remapping modifiers and support restrictions 
 
 ## Open the browser lab
 
+### Open online with GitHub Pages
+
+[**Open 404 Synergy Lab**](https://404technician.github.io/404SynergyLab/)
+
+The online lab runs entirely in your browser. No terminal, installation, account or local server is needed. Use the **GitHub** link in the app to return to this repository.
+
+Repository owner, first-time setup:
+
+1. Open [Settings → Pages](https://github.com/404Technician/404SynergyLab/settings/pages).
+2. Under **Build and deployment → Source**, select **GitHub Actions**.
+3. Open [Actions → Validate and test](https://github.com/404Technician/404SynergyLab/actions/workflows/ci.yml), choose **Run workflow**, select **main**, and run it.
+4. Wait for **Publish GitHub Pages** to succeed, then open the lab link above. The deployment job also displays the published URL.
+
+Every push to `main` is published automatically after the tests, pinned-source checks and browser checks pass. Pull requests and other branches are tested without publishing. Only the generated `dist/` website is uploaded; repository files and build scripts are not part of the hosted site. If the initial deployment reports that Pages is unavailable, check the Source setting above and rerun the workflow. Refresh with Ctrl+F5 after an update.
+
+### Run locally
+
 From the project folder, run:
 
 ```powershell
@@ -36,9 +53,9 @@ npm start
 
 Open **http://127.0.0.1:4173** in your browser. Keep the terminal open; press Ctrl+C to stop. No API keys, account, npm install, or live game connection is required to start the lab. `npm start` validates the source audit, builds the static assets, and serves only that build on localhost.
 
-You can search skills and supports, filter type matches, expand the source explanations, and toggle the sideways cascade context for Ice Nova. The copy-link button preserves the skill, snapshot, and context. Links work for someone serving the same build; they are not public hosted links. Different or unavailable snapshot links show an error instead of silently switching data.
+You can search skills and supports, filter type matches, expand the source explanations, and toggle the sideways cascade context for Ice Nova. The copy-link button preserves the skill, snapshot, and context. Online links work for anyone opening the same hosted build; localhost links require a local server. Different or unavailable snapshot links show an error instead of silently switching data.
 
-Do not open `web/index.html` directly as a local file. ES modules and data loading need the local server. `npm run web:build` creates the deployable static folder `dist/`; no public hosting is configured in this version.
+Do not open `web/index.html` directly as a local file. ES modules and data loading need the local server. `npm run web:build` creates the deployable static folder `dist/` used by GitHub Pages. Asset and data URLs are relative so the lab also works under the repository path `/404SynergyLab/`.
 
 ## Command-line lab
 
