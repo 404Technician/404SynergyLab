@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {buildPlanSource,createBuildPlan,validatePlanBook,validatePlanTest,mergePlanBooks,readPlanBook,writePlanBook,planStorageKey} from '../src/build-plans.mjs';
+import {compareBuildPlans,createPlanVariant,buildPlanSource,createBuildPlan,validatePlanBook,validatePlanTest,mergePlanBooks,readPlanBook,writePlanBook,planStorageKey} from '../src/build-plans.mjs';
 import {discover} from '../src/discovery.mjs';
 import {discoverUniqueCombos} from '../src/unique-combos.mjs';
 import {discoverSkillCombos} from '../src/skill-combos.mjs';
@@ -35,4 +35,22 @@ test('storage round trips, detects concurrent edits and never overwrites corrupt
  values.set(planStorageKey,'other tab');assert.throws(()=>writePlanBook(storage,book,raw),/another tab/);assert.equal(values.get(planStorageKey),'other tab');
  assert.throws(()=>readPlanBook(storage));assert.equal(values.get(planStorageKey),'other tab');
  assert.throws(()=>writePlanBook({getItem:()=>null,setItem:()=>{throw new Error('Quota exceeded');}},book,null),/Quota exceeded/);
+});
+
+test('an untested variant copies source and notes without inheriting tests or reviewed conditions',()=>{
+ const plan=make();plan.name='x'.repeat(160);plan.notes.equipment='Try a different support';plan.checked=[plan.source.conditions[0]];plan.tests=[{outcome:'works',patch:'0.5.5e',target:'A durable target',observations:'Original setup only',date}];
+ const variant=createPlanVariant(plan,'variant',date);assert.equal(variant.id,'variant');assert.ok(variant.name.length<=160);assert.deepEqual(variant.tests,[]);assert.deepEqual(variant.checked,[]);assert.deepEqual(variant.source,plan.source);assert.deepEqual(variant.notes,plan.notes);
+ variant.notes.equipment='Changed';variant.source.items[0].modifiers=[];assert.equal(plan.notes.equipment,'Try a different support');assert.ok(plan.source.items[0].modifiers.length);assert.equal(plan.tests.length,1);
+});
+test('comparison preserves selection order and distinguishes item identities without inventing ratings',()=>{
+ const one=make('one','gas-arrow-radiant-grief'),two=createPlanVariant(one,'two',date),three=make('three');one.checked=[one.source.conditions[0]];one.tests=[{outcome:'works',patch:'0.5.5e',target:'A pack',observations:'Not tested on bosses',date}];
+ const book={version:1,plans:[one,two,three]},view=compareBuildPlans(book,['two','one']);assert.deepEqual(view.entries.map(e=>e.plan.id),['two','one']);assert.deepEqual(view.sharedSkills,one.source.skills);assert.deepEqual(view.sharedItemIds,one.source.items.map(i=>i.id));assert.equal(view.entries[0].latestTest,null);assert.equal(view.entries[1].latestTest.outcome,'works');assert.equal(view.entries[1].remaining.length,one.source.conditions.length-1);
+ view.entries[0].plan.notes.defenses='Changed outside';assert.equal(two.notes.defenses,'');
+ assert.deepEqual(compareBuildPlans(book,['one','three']).sharedItemIds,[]);const other=structuredClone(two);other.source.items[0].id='different-item-same-name';assert.deepEqual(compareBuildPlans({version:1,plans:[one,other]},['one','two']).sharedItemIds,[]);
+ for(const ids of [[],['one'],['one','one'],['one','missing'],['one','two','three','four']])assert.throws(()=>compareBuildPlans(book,ids));
+});
+test('optional comparison selections preserve older backups and survive duplicate-safe imports',()=>{
+ const book={version:1,plans:[make('one'),make('two')],compareIds:['two','one']};validatePlanBook(book);const merged=mergePlanBooks(book,{version:1,plans:[make('three')]});assert.deepEqual(merged.compareIds,['two','one']);assert.equal(merged.plans.length,3);
+ validatePlanBook({version:1,plans:[make()]});
+ for(const compareIds of [['missing'],['one','one'],['one','two','one','two']])assert.throws(()=>validatePlanBook({...book,compareIds}),/Select up to three/);
 });

@@ -1,10 +1,10 @@
-import {planStorageKey,planFields,testOutcomes,validatePlanBook,validatePlanTest,createBuildPlan,mergePlanBooks,readPlanBook,writePlanBook} from './src/build-plans.mjs';
+import {compareBuildPlans,createPlanVariant,planStorageKey,planFields,testOutcomes,validatePlanBook,validatePlanTest,createBuildPlan,mergePlanBooks,readPlanBook,writePlanBook} from './src/build-plans.mjs';
 const $=id=>document.getElementById(id);
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const button=(text,action)=>{const b=el('button',text);b.type='button';b.addEventListener('click',action);return b;};
 function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 export function initializeBuildPlans({getSource}){
- let book={version:1,plans:[]},raw=null,storage,storageBlocked=false,selected='',deleted=null;
+ let book={version:1,plans:[]},raw=null,storage,storageBlocked=false,selected='',deleted=null,deletedCompared=false;
  const status=(text,error=false)=>{$('plan-status').textContent=text;$('plan-status').dataset.error=String(error);};
  function load(){
   try{storage=window.localStorage;const saved=readPlanBook(storage);book=saved.book;raw=saved.raw;storageBlocked=false;status('Saved on this browser. Export a backup to keep or move your plans.');}
@@ -15,10 +15,41 @@ export function initializeBuildPlans({getSource}){
   catch(error){storageBlocked=true;status(error.message+' Use Export plans to keep this session.',true);}
  }
  function active(){return book.plans.find(p=>p.id===selected);}
- function touch(plan){plan.updated=new Date().toISOString();persist();}
+ function touch(plan){plan.updated=new Date().toISOString();persist();renderComparison();}
+ function comparisonIds(){return book.compareIds||[];}
+ function openComparison(){renderComparison();$('plan-comparison').open=true;$('plan-comparison-heading').focus({preventScroll:true});$('plan-comparison').scrollIntoView({block:'start'});}
+ function savedItem(item){const box=el('section',undefined,'item-info');box.dataset.compareItem=item.id;box.append(el('h4',item.name),el('p',item.base),el('p','Saved Current / common source modifiers; verify your actual variant.'));for(const text of item.modifiers)box.append(el('p',text,'item-effect'));return box;}
+ function renderComparison(){
+  const ids=comparisonIds(),picker=$('plan-compare-picker'),focused=document.activeElement?.dataset.comparePlan,scroll=$('plan-compare-results').querySelector('.compare-scroll')?.scrollLeft||0;
+  $('plan-compare-count').textContent=ids.length+' / 3 selected';picker.replaceChildren();
+  for(const p of book.plans){const label=el('label',undefined,'plan-compare-choice'),input=el('input');input.type='checkbox';input.dataset.comparePlan=p.id;input.checked=ids.includes(p.id);input.disabled=ids.length===3&&!input.checked;input.setAttribute('aria-label','Compare '+p.name);
+   input.addEventListener('change',()=>{book.compareIds=input.checked?[...comparisonIds(),p.id]:comparisonIds().filter(id=>id!==p.id);persist();renderComparison();if(comparisonIds().length>=2)$('plan-comparison').open=true;});label.append(input,el('span',p.name));picker.append(label);
+  }
+  if(focused)[...picker.querySelectorAll('input')].find(i=>i.dataset.comparePlan===focused)?.focus({preventScroll:true});
+  $('plan-compare-export').disabled=ids.length<2;$('plan-compare-clear').disabled=!ids.length;
+  const status=$('plan-compare-status'),text=ids.length<2?'Choose at least two plans. Save another recipe or create an untested variant to compare setups.':ids.length+' plans compared. '+(storageBlocked?'Session only; export selected plans to keep them.':'Selection is saved in this browser.');if(status.textContent!==text)status.textContent=text;
+  const results=$('plan-compare-results');results.replaceChildren();if(ids.length<2)return;
+  const view=compareBuildPlans(book,ids),sharedItems=view.sharedItemIds.map(id=>view.entries[0].plan.source.items.find(i=>i.id===id).name);
+  results.append(el('p','Shared core · '+(view.sharedSkills.length?view.sharedSkills.join(', '):'No shared skills')+' · '+(sharedItems.length?sharedItems.join(', '):'No shared required uniques'),'compare-shared'));
+  const wrap=el('div',undefined,'compare-scroll');wrap.tabIndex=0;wrap.setAttribute('role','region');wrap.setAttribute('aria-label','Build plan comparison; scroll horizontally for all plans');
+  const table=el('table',undefined,'compare-table');table.dataset.plans=String(ids.length);table.append(el('caption','Your saved plans · requirements and personal observations'));
+  const head=el('thead'),header=el('tr'),corner=el('th','Compare');corner.scope='col';header.append(corner);
+  for(const {plan} of view.entries){const th=el('th',plan.name);th.scope='col';const fresh=getSource(plan.recipeId),stale=!fresh||JSON.stringify(fresh)!==JSON.stringify(plan.source);th.append(el('small','Source patch '+plan.source.patch),el('small',stale?'Saved source differs from the current recipe':'Source matches the current recipe',stale?'plan-stale':''));th.append(button('Edit this plan',()=>{selected=plan.id;render();$('plan-editor-title').focus({preventScroll:true});$('plan-editor').scrollIntoView({block:'start'});}));header.append(th);}head.append(header);table.append(head);
+  const body=el('tbody');
+  function row(title,renderCell){const tr=el('tr'),th=el('th',title);th.scope='row';tr.append(th);for(const entry of view.entries){const td=el('td');td.dataset.compareField=title;renderCell(td,entry);tr.append(td);}body.append(tr);}
+  row('Core skills',(td,{plan})=>{for(const skill of plan.source.skills)td.append(el('span',skill,'compare-tag'));});
+  row('Required uniques',(td,{plan})=>{if(!plan.source.items.length)td.append(el('p','No unique required by this core. Other requirements still apply.','compare-empty'));for(const item of plan.source.items)td.append(savedItem(item));});
+  row('Requirements to review',(td,{plan,remaining})=>{td.append(el('p',plan.checked.length+' / '+plan.source.conditions.length+' reviewed · not a viability score'));if(remaining.length){const more=el('details');more.append(el('summary','Show '+remaining.length+' remaining requirements'));const list=el('ul');for(const requirement of remaining)list.append(el('li',requirement));more.append(list);td.append(more);}else td.append(el('p','All recorded requirements reviewed. Performance still needs testing.'));});
+  for(const [key,label] of Object.entries(planFields))row(label,(td,{plan})=>td.append(el('p',plan.notes[key]||'Not recorded',plan.notes[key]?'':'compare-empty')));
+  row('Latest personal test',(td,{latestTest:t})=>{if(!t){td.append(el('p','Not tested in game','compare-empty'));return;}td.append(el('strong',testOutcomes[t.outcome]),el('p','Patch '+t.patch+' · '+t.date.slice(0,10)),el('p',t.target),el('p',t.observations));});
+  row('First source test',(td,{plan})=>td.append(el('p',plan.source.firstTest)));
+  row('Reconsider if…',(td,{plan})=>td.append(el('p',plan.source.stopIf)));
+  table.append(body);wrap.append(table);results.append(el('p','Scroll sideways when needed to see every selected plan.','plan-status'),wrap,el('p','Personal results apply only to the recorded patch, setup and target. They do not verify the source recipe or rank complete builds.','plan-status'));wrap.scrollLeft=scroll;
+ }
  function renderList(){
   $('plan-total').textContent=book.plans.length+' saved';$('plan-shortcut-count').textContent=book.plans.length;
   const list=$('plan-list');list.replaceChildren();for(const p of book.plans){const b=button('',()=>{selected=p.id;render();});b.dataset.planId=p.id;b.setAttribute('aria-pressed',String(p.id===selected));b.append(el('strong',p.name),el('small',p.tests.length?testOutcomes[p.tests.at(-1).outcome]:'Not tested in game'));list.append(b);}
+  renderComparison();
  }
  function renderHistory(plan,box){
   box.replaceChildren();if(!plan.tests.length){box.append(el('p','No personal test recorded. The source recipe still awaits an in-game test.'));return;}
@@ -32,7 +63,10 @@ export function initializeBuildPlans({getSource}){
   const title=el('h3',plan.name);title.id='plan-editor-title';title.tabIndex=-1;
   editor.append(el('p','PERSONAL BUILD PLAN · '+plan.source.patch,'eyebrow'),title,el('p','Your notes and test results. This does not change the source review or rate a complete build.'));
   if(stale)editor.append(el('p','This saved source differs from the current recipe or is unavailable. Its saved components and item modifiers are shown below. Export or keep it for reference; start a new plan from the current recipe to continue testing.','plan-stale'));
-  const actions=el('div',undefined,'plan-actions');actions.append(button('Export this plan',()=>download('synergy-build-plan.json',JSON.stringify({version:1,plans:[plan]},null,2))),button('Remove plan',()=>{deleted=structuredClone(plan);book.plans=book.plans.filter(p=>p.id!==plan.id);selected='';persist();render();renderUndo();}));editor.append(actions);
+  const actions=el('div',undefined,'plan-actions');actions.append(button('Export this plan',()=>download('synergy-build-plan.json',JSON.stringify({version:1,plans:[plan]},null,2))),button('Remove plan',()=>{deleted=structuredClone(plan);deletedCompared=comparisonIds().includes(plan.id);book.compareIds=comparisonIds().filter(id=>id!==plan.id);book.plans=book.plans.filter(p=>p.id!==plan.id);selected='';persist();render();renderUndo();}));const compare=button('Add to comparison',()=>{if(!comparisonIds().includes(plan.id)){if(comparisonIds().length>=3){status('Three plans are already selected. Remove one from the comparison first.',true);openComparison();return;}book.compareIds=[...comparisonIds(),plan.id];persist();}openComparison();});
+  actions.append(compare);
+  if(!stale)actions.append(button('Create untested variant',()=>{if(book.plans.length>=50){status('You have 50 plans. Export and remove one before creating a variant.',true);return;}const variant=createPlanVariant(plan,crypto.randomUUID(),new Date().toISOString());book.plans.push(variant);selected=variant.id;persist();render();$('plan-editor-title').focus({preventScroll:true});}));
+  editor.append(actions);editor.append(el('p','Variants copy your notes and source core, with tests and reviewed requirements reset.','plan-status'));
   const core=el('details',undefined,'plan-preview');core.open=true;core.append(el('summary','Saved core · skills, uniques & first test'));
   core.append(el('p',plan.source.skills.join(' + ')),el('h4','First test'),el('p',plan.source.firstTest),el('h4','Reconsider if…'),el('p',plan.source.stopIf));
   const components=el('ul');for(const c of plan.source.components)components.append(el('li',c));core.append(components);
@@ -56,7 +90,10 @@ export function initializeBuildPlans({getSource}){
   form.addEventListener('submit',event=>{event.preventDefault();try{if(plan.tests.length>=20)throw new Error('This plan already has 20 test records. Export it and start a new plan for further tests.');const data=new FormData(form),test={...Object.fromEntries(data),date:new Date().toISOString()};validatePlanTest(test);plan.tests.push(test);touch(plan);renderList();renderHistory(plan,history);form.reset();message.textContent='Personal test recorded. The source recipe remains unverified in game.';}catch(error){message.textContent=error.message;}});
   form.append(submit,message);testing.append(form);fields.append(testing);editor.append(fields,el('h4','Your test history'),history);
  }
- function renderUndo(){const box=$('plan-undo');box.replaceChildren();if(deleted)box.append(el('span','Plan removed.'),button('Undo removal',()=>{if(book.plans.length>=50){status('Export or remove a plan before restoring this one.',true);return;}book.plans.push(deleted);selected=deleted.id;deleted=null;persist();render();renderUndo();}));}
+ function renderUndo(){const box=$('plan-undo');box.replaceChildren();if(deleted)box.append(el('span','Plan removed.'),button('Undo removal',()=>{if(book.plans.length>=50){status('Export or remove a plan before restoring this one.',true);return;}book.plans.push(deleted);if(deletedCompared&&comparisonIds().length<3)book.compareIds=[...comparisonIds(),deleted.id];selected=deleted.id;deleted=null;deletedCompared=false;persist();render();renderUndo();}));}
+ $('plan-compare-open').addEventListener('click',openComparison);
+ $('plan-compare-clear').addEventListener('click',()=>{book.compareIds=[];persist();renderComparison();});
+ $('plan-compare-export').addEventListener('click',()=>download('synergy-compared-plans.json',JSON.stringify({version:1,plans:comparisonIds().map(id=>book.plans.find(p=>p.id===id))},null,2)));
  load();render();
  $('plan-export').addEventListener('click',()=>download('synergy-build-plans.json',JSON.stringify(book,null,2)));
  $('plan-reload').addEventListener('click',()=>{load();render();});
