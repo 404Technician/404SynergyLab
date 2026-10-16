@@ -1,3 +1,4 @@
+import {finderLabels, finderVersion, validateFinderFilters, resolveBuildDirections, filterBuildDirections} from './src/build-finder.mjs';
 import {auditUniqueCoverage} from './src/unique-audit.mjs';
 import {recordVisual,recordScene,recordVignette,visualTheme,combinationVisual} from './src/visuals.mjs';
 import {validateSkillReviews,describeSkillReview} from './src/skill-reviews.mjs';
@@ -20,6 +21,7 @@ const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
 const sourceGrantCache=new Map();
+let finderDirections=[],finderFilters=validateFinderFilters(),finderSelected='',finderPage=0;
 let shelfStart=0,shelfKey='',shelfAnchor='';
 let uniqueAudit,uniqueAuditRecords,uniqueCombos,skillReviews,skillReviewRecords,skillCombos,comboCoverage,experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
 let suggestChains,chainIdeaKey,chainIdeaOffset=0;
@@ -31,7 +33,7 @@ let combination={version:1,skillIds:[],supports:{},itemId:null};
 const contextInputs={sidewaysCascade:'sideways-cascade',criticalHitsDisabled:'critical-disabled',elementalAilmentsDisabled:'ailments-disabled',igniteDisabled:'ignite-disabled'};
 const contextParams={criticalHitsDisabled:'noCrit',elementalAilmentsDisabled:'noAilments',igniteDisabled:'noIgnite'};
 const readContext=()=>Object.fromEntries(Object.entries(contextInputs).map(([flag,id])=>[flag,$(id).checked]));
-function updateUrl(){const url=new URL(location.href);url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('details',experimentDetails.id);url.searchParams.set('combos',skillCombos.id);url.searchParams.set('reviews',skillReviews.id);url.searchParams.set('uniques',uniqueCombos.id);if($('combo-only').checked)url.searchParams.set('covered','1');else url.searchParams.delete('covered');for(const [id,key] of [['chain-ideas-panel','explore'],['chain-panel','workbench'],['rule-explorer','sourceChecks'],['crit-cadence','critCheck']]){if($(id).open)url.searchParams.set(key,'1');else url.searchParams.delete(key);}url.searchParams.set('chainIdeas',chainDiscoveryVersion);for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=$(id).value;if(value!==fallback)url.searchParams.set(key,value);else url.searchParams.delete(key);}url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
+function updateUrl(){const url=new URL(location.href);for(const key of Object.keys(finderLabels)){if(finderFilters[key]!=='all')url.searchParams.set('find'+key,finderFilters[key]);else url.searchParams.delete('find'+key);}if(finderSelected){url.searchParams.set('direction',finderSelected);url.searchParams.set('finder',finderVersion);}else{url.searchParams.delete('direction');url.searchParams.delete('finder');}url.searchParams.set('skill',selected);url.searchParams.set('snapshot',snapshot.id);url.searchParams.set('reference',referenceCatalog.id);url.searchParams.set('mechanics',mechanicsData.id);url.searchParams.set('chains',chainsData.id);url.searchParams.set('details',experimentDetails.id);url.searchParams.set('combos',skillCombos.id);url.searchParams.set('reviews',skillReviews.id);url.searchParams.set('uniques',uniqueCombos.id);if($('combo-only').checked)url.searchParams.set('covered','1');else url.searchParams.delete('covered');for(const [id,key] of [['chain-ideas-panel','explore'],['chain-panel','workbench'],['rule-explorer','sourceChecks'],['crit-cadence','critCheck']]){if($(id).open)url.searchParams.set(key,'1');else url.searchParams.delete(key);}url.searchParams.set('chainIdeas',chainDiscoveryVersion);for(const [id,key,fallback] of [['chain-idea-status','ideaStatus','potential'],['chain-idea-event','ideaEvent','all'],['chain-idea-search','ideaQuery','']]){const value=$(id).value;if(value!==fallback)url.searchParams.set(key,value);else url.searchParams.delete(key);}url.searchParams.set('chain',JSON.stringify(chainInput));for(const [id,key] of [['rule-no-elemental','ruleNoElemental'],['rule-no-chaos','ruleNoChaos'],['rule-no-critical','ruleNoCrit']]){if($(id).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if($('sideways-cascade').checked)url.searchParams.set('cascade','sideways');else url.searchParams.delete('cascade');for(const [flag,key] of Object.entries(contextParams)){if($(contextInputs[flag]).checked)url.searchParams.set(key,'1');else url.searchParams.delete(key);}if(combination.skillIds.length || combination.itemId)url.searchParams.set('build',JSON.stringify(combination));else url.searchParams.delete('build');url.searchParams.set('start',discoveryMode);url.searchParams.set('anchor',discoveryAnchor);if($('advanced-checks').open)url.searchParams.set('inspect','1');else url.searchParams.delete('inspect');history.replaceState(null,'',url);}
 function choose(id) { selected=id;discoveryMode='skill';discoveryAnchor=id;render();updateUrl(); }
 function renderSkillList() {
   const query=$('skill-search').value.trim().toLowerCase();let count=0;
@@ -128,6 +130,73 @@ function renderCombination() {
   }
 }
 
+
+function finderItems(idea){return idea.items.map(item=>referenceCatalog.entries.find(e=>e.id===item.id||e.reviewedId===item.id)).filter(Boolean);}
+function finderItemPreview(item,idea){
+ const box=element('div',undefined,'direction-unique');box.append(element('strong',item.name));
+ const fragments=item.id===idea.itemId?idea.requiredFragments:(idea.additionalItems||[]).find(i=>i.itemId===item.id)?.requiredFragments;
+ const modifiers=uniqueModifiers(detailRecords.get(item.id));
+ const relevant=fragments?modifiers.filter(m=>fragments.some(f=>m.text.toLowerCase().includes(f.toLowerCase()))):modifiers;
+ // Always show an actual effect alongside a named unique; full current stats stay visible in the selected panel.
+ for(const m of (relevant.length?relevant:modifiers).slice(0,2))box.append(element('p',m.text));
+ return box;
+}
+function renderFinderDetail(direction){
+ const box=$('finder-detail');box.replaceChildren();box.hidden=!direction;if(!direction)return;
+ const idea=direction.idea;
+ const title=element('h3',idea.title);title.id='finder-detail-title';title.tabIndex=-1;
+ box.append(element('p','SELECTED DIRECTION · '+finderLabels.style[direction.style],'eyebrow'),title,element('p',direction.testStatus,'direction-status'),combinationVisual(idea));
+ const columns=element('div',undefined,'finder-columns'),left=element('div'),right=element('div');
+ left.append(element('h4','How you play it'));const steps=element('ol');for(const step of idea.play)steps.append(element('li',step));left.append(steps);
+ left.append(element('h4','Required for this interaction'),element('p',direction.requirement));
+ const needs=element('ul');for(const component of idea.buildPlan.components)needs.append(element('li',component));left.append(needs);
+ right.append(element('h4','Try this first'),element('p',idea.buildPlan.firstTest),element('h4','Reconsider the plan if…'),element('p',idea.buildPlan.stopIf));
+ const conditions=element('details');conditions.append(element('summary','Conditions, costs & pitfalls'));const list=element('ul');for(const c of [...idea.conditions,...idea.avoid])list.append(element('li',c));conditions.append(list);right.append(conditions);
+ columns.append(left,right);box.append(columns);
+ for(const item of finderItems(idea))box.append(itemInfo(item.id));
+ if(!idea.items.length)box.append(element('p','No unique is required by this recipe. Weapons, supports, reservation and other prerequisites still apply.','muted'));
+ const open=element('button','Explore this recipe in the lab ↓');open.type='button';open.addEventListener('click',()=>{
+  const record=referenceCatalog.entries.find(e=>e.id===idea.skills[0].id||e.reviewedId===idea.skills[0].id);
+  discoveryMode='skill';discoveryAnchor=record.id;$('combo-only').checked=false;$('catalog-search').value='';$('catalog-category').value='';$('discovery-search').value='';renderDiscovery();updateUrl();
+  const card=[...$('discovery-ideas').children].find(e=>e.dataset.idea===idea.id);if(card){card.tabIndex=-1;card.focus({preventScroll:true});card.scrollIntoView({block:'start'});}
+ });box.append(open);
+}
+function renderFinder(){
+ const matches=filterBuildDirections(finderDirections,finderFilters),pages=Math.max(1,Math.ceil(matches.length/6));
+ finderPage=Math.max(0,Math.min(finderPage,pages-1));
+ if(!matches.some(d=>d.recipeId===finderSelected))finderSelected=matches[0]?.recipeId||'';
+ $('finder-count').textContent=matches.length+' of '+finderDirections.length+' hand-reviewed directions · '+comboCoverage.recipes+' recipes in the full catalog';
+ $('finder-page').textContent='Page '+(finderPage+1)+' of '+pages;
+ $('finder-previous').disabled=finderPage===0;$('finder-next').disabled=finderPage>=pages-1;
+ const box=$('finder-results');box.replaceChildren();
+ if(!matches.length)box.append(element('p','No reviewed direction matches these filters yet. Try another control style or reset the filters.','finder-empty'));
+ for(const direction of matches.slice(finderPage*6,finderPage*6+6)){
+  const idea=direction.idea,card=element('article',undefined,'direction-card');card.dataset.direction=direction.recipeId;card.dataset.selected=String(direction.recipeId===finderSelected);
+  card.append(recordVignette(idea.skills[0]),element('p',finderLabels.style[direction.style]+' · '+finderLabels.control[direction.control],'direction-style'),element('h3',idea.title),element('p',direction.testStatus,'direction-status'));
+  const members=element('div',undefined,'direction-skills');for(const skill of idea.skills){members.append(recordVisual(skill,'tiny'),element('span',skill.name));}card.append(members,element('p',direction.requirement));
+  for(const item of finderItems(idea))card.append(finderItemPreview(item,idea));
+  if(!idea.items.length)card.append(element('p','No required unique','direction-style'));
+  const open=element('button','View setup & first test →');open.type='button';open.setAttribute('aria-label','View setup for '+idea.title);open.setAttribute('aria-controls','finder-detail');open.setAttribute('aria-pressed',String(direction.recipeId===finderSelected));
+  open.addEventListener('click',()=>{finderSelected=direction.recipeId;renderFinder();updateUrl();$('finder-detail-title').focus({preventScroll:true});$('finder-detail').scrollIntoView({block:'start'});});card.append(open);box.append(card);
+ }
+ renderFinderDetail(matches.find(d=>d.recipeId===finderSelected));
+}
+function setupFinder(params){
+ const all=[...catalog.recipes,...skillCombos.recipes,...uniqueCombos.recipes];
+ finderDirections=resolveBuildDirections(id=>{const raw=all.find(r=>r.id===id);if(!raw)return;return [...referenceView('skill',raw.skillIds[0]).ideas,...discoverSkillCombos(referenceCatalog,skillCombos,raw.skillIds[0])].find(r=>r.id===id);});
+ if(params.has('finder')&&params.get('finder')!==finderVersion)throw new Error('This link refers to different build direction labels.');
+ finderFilters=validateFinderFilters(Object.fromEntries(Object.keys(finderLabels).map(k=>[k,params.get('find'+k)??'all'])));
+ finderSelected=params.get('direction')||'';
+ if(finderSelected&&!filterBuildDirections(finderDirections,finderFilters).some(d=>d.recipeId===finderSelected))throw new Error('This build direction is unavailable with the saved filters.');
+ const matches=filterBuildDirections(finderDirections,finderFilters);finderPage=Math.max(0,Math.floor(matches.findIndex(d=>d.recipeId===finderSelected)/6));
+ for(const [key,labels] of Object.entries(finderLabels)){
+  const select=$('finder-'+key);select.replaceChildren(...Object.entries(labels).map(([value,label])=>{const option=element('option',label);option.value=value;return option;}));select.value=finderFilters[key];
+  select.addEventListener('change',()=>{finderFilters[key]=select.value;finderPage=0;finderSelected='';renderFinder();updateUrl();});
+ }
+ $('finder-reset').addEventListener('click',()=>{finderFilters=validateFinderFilters();for(const key of Object.keys(finderLabels))$('finder-'+key).value='all';finderPage=0;finderSelected='';renderFinder();updateUrl();});
+ for(const [id,delta] of [['finder-previous',-1],['finder-next',1]])$(id).addEventListener('click',()=>{finderPage+=delta;const match=filterBuildDirections(finderDirections,finderFilters)[finderPage*6];finderSelected=match?.recipeId||'';renderFinder();updateUrl();});
+ renderFinder();
+}
 
 function referenceView(kind,id) {
   const record=resolveReference(referenceCatalog,kind,id);
@@ -590,6 +659,6 @@ async function start(){
   for(const button of $('filters').children)button.addEventListener('click',()=>{filter=button.dataset.filter;for(const b of $('filters').children)b.setAttribute('aria-pressed',String(b===button));renderSupports();});
   for(const id of Object.values(contextInputs))$(id).addEventListener('change',()=>{render();updateUrl();});
   $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);$('share-status').textContent='Link copied.';$('share').textContent='Link copied ✓';}catch{$('share-fallback').hidden=false;$('share-url').value=location.href;$('share-url').focus();$('share-url').select();}});
-  render();$('workspace').hidden=false;
+  setupFinder(params);render();$('workspace').hidden=false;
 }
 start().catch(error=>{$('workspace').hidden=true;$('load-error').hidden=false;$('load-error').textContent=error.message;$('data-notice').replaceChildren(element('strong','LAB UNAVAILABLE'),element('span','Results are hidden until the data check passes.'));});

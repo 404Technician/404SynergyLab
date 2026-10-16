@@ -1,5 +1,8 @@
 # 404 Synergy Lab
 
+
+v0.25.0 adds **Find your next build direction** above the full catalog: 17 hand-reviewed interactions filtered by playstyle, core controls and required uniques. Cards show actual item effects; the selected setup shows every required unique, play steps, prerequisites and its first test. Filters and direction survive shared URLs. Labels describe the core interaction only; all listed directions still await an in-game test. The full catalog retains all 389 recipes.
+
 An independent open-source Path of Exile 2 project for exploring explainable skill and support combinations, tied to explicit league and patch snapshots.
 
 **v0.24.0 research review:** nine additional source-bound experiments cover Frost Darts, Bitter Dead, Grim Pillars, Ghost Dance, Wind Dancer, Elemental Weakness, Enfeeble, Lingering Illusion and Crushing Fear. The active collections now contain **389 combinations across 272 skills**, with explicit recipes for **207 uniques**. Three Icefang recipes now cite the exact offensive Chill modifier rather than the separate incoming-damage modifier. Earlier collection snapshots are preserved. See [skill coverage](docs/SKILL_COVERAGE.md), [unique coverage](docs/UNIQUE_COVERAGE.md) and the [research review](docs/RESEARCH_REVIEW_2026-10-16.md).
