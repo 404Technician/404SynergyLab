@@ -296,10 +296,11 @@ async function main(){
   for(const [name,idea] of [['Solar Orb','orb-flameblast'],['Lightning Warp','ball-warp'],['Shockwave Totem','jagged-totem'],['Boneshatter','slam-boneshatter'],['Tempest Bell','ice-bell'],['Toxic Growth','poison-pustules'],['Explosive Shot','grenade-detonator']]){
    await page.locator('#catalog-search').fill(name);assert.ok(await page.locator('[data-idea="'+idea+'"] .first-test').isVisible());
   }checks++;console.log('PASS: caster, bow, crossbow, quarterstaff and melee skills expose real interaction plans');
-  await page.locator('#catalog-search').fill('');const arc=await page.locator('#discovery-anchor option').evaluateAll(options=>options.find(o=>o.textContent==='Frost Darts')?.value);assert.ok(arc);
+  await page.locator('#catalog-search').fill('');const arc=await page.locator('#discovery-anchor option').evaluateAll(options=>options.find(o=>o.textContent==='Arctic Armour')?.value);assert.ok(arc);
   await page.locator('#discovery-anchor').selectOption(arc);assert.match(await page.locator('#discovery-ideas').textContent(),/No researched combination/);
   assert.ok(await page.locator('#source-experiments .source-experiment').first().isVisible());
-  assert.ok(await page.locator('#source-experiments .item-info .item-effect').first().isVisible());assert.match(await page.locator('#source-experiments').textContent(),/SOURCE CANDIDATE.*UNTESTED/);checks++;console.log('PASS: an uncovered spell gets distinct item experiments with visible unique modifiers');
+  assert.ok(await page.locator('#source-experiments .item-info .item-effect').first().isVisible());assert.match(await page.locator('#source-experiments').textContent(),/SOURCE CANDIDATE.*UNTESTED/);checks++;console.log('PASS: an uncovered source gets distinct item experiments with visible unique modifiers');
+  await page.locator('#catalog-search').fill('Frost Darts');assert.equal(await page.locator('[data-idea="review-frost-darts-chill"] .first-test').isVisible(),true);assert.equal(await page.locator('[data-idea="review-bitter-darts"] .first-test').isVisible(),true);checks++;console.log('PASS: Frost Darts now exposes both researched Chill setups');
   await page.setViewportSize({width:390,height:844});await page.locator('#catalog-search').fill('Essence Drain');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);checks++;console.log('PASS: expanded interaction navigation fits mobile');
   await page.goto(base);await page.locator('#workspace').waitFor({state:'visible'});
   const expandedCombos=JSON.parse(readFileSync('data/discovery/pob-bb52d6b-skill-combos4.json'));
