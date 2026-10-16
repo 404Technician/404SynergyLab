@@ -1,3 +1,4 @@
+import {createSkillSetup} from './src/skill-setup.mjs';
 import {buildPlanSource} from './src/build-plans.mjs';
 import {initializeBuildPlans} from './plans.mjs';
 import {finderLabels, finderVersion, validateFinderFilters, resolveBuildDirections, filterBuildDirections} from './src/build-finder.mjs';
@@ -134,7 +135,7 @@ function renderCombination() {
 }
 
 
-const planRecipeCache=new Map();
+const planRecipeCache=new Map();let planSkillRecords;
 function sourceForPlan(recipeId){
  if(planRecipeCache.has(recipeId))return planRecipeCache.get(recipeId);
  const raw=[...catalog.recipes,...skillCombos.recipes,...uniqueCombos.recipes].find(r=>r.id===recipeId);if(!raw)return null;
@@ -147,6 +148,10 @@ function equipmentForPlan(ids){
  if(items.some(i=>!i))return null;
  return {stamp:JSON.stringify([meta.referenceSha256,meta.detailsSha256]),items};
 }
+function skillSetupForPlan(specs){
+ try{return createSkillSetup(specs,{reference:(planSkillRecords??=new Map(referenceCatalog.entries.map(e=>[e.id,e]))),profiles:profileRecords,reviews:skillReviewRecords,details:detailRecords,stamp:JSON.stringify([meta.referenceSha256,meta.mechanicsSha256,meta.skillReviewsSha256,meta.detailsSha256])});}catch{return null;}
+}
+function coreSkillsForPlan(recipeId){return [...catalog.recipes,...skillCombos.recipes,...uniqueCombos.recipes].find(r=>r.id===recipeId)?.skillIds||[];}
 function savePlanButton(recipeId){const button=element('button','Save as build plan +','save-plan');button.type='button';button.dataset.saveRecipe=recipeId;button.addEventListener('click',()=>planManager.add(recipeId));return button;}
 function finderItems(idea){return idea.items.map(item=>referenceCatalog.entries.find(e=>e.id===item.id||e.reviewedId===item.id)).filter(Boolean);}
 function finderItemPreview(item,idea){
@@ -682,7 +687,7 @@ async function start(){
   for(const button of $('filters').children)button.addEventListener('click',()=>{filter=button.dataset.filter;for(const b of $('filters').children)b.setAttribute('aria-pressed',String(b===button));renderSupports();});
   for(const id of Object.values(contextInputs))$(id).addEventListener('change',()=>{render();updateUrl();});
   $('share').addEventListener('click',async()=>{updateUrl();try{await navigator.clipboard.writeText(location.href);$('share-status').textContent='Link copied.';$('share').textContent='Link copied ✓';}catch{$('share-fallback').hidden=false;$('share-url').value=location.href;$('share-url').focus();$('share-url').select();}});
-  planManager=initializeBuildPlans({getSource:sourceForPlan,getEquipment:equipmentForPlan,equipmentOptions:referenceCatalog.entries.filter(e=>e.kind==='unique').map(e=>({id:e.id,name:e.name,category:e.category}))});$('plan-shortcut').addEventListener('click',()=>{$('build-plans').open=true;});
+  planManager=initializeBuildPlans({getSource:sourceForPlan,getSkillSetup:skillSetupForPlan,getCoreSkills:coreSkillsForPlan,skillOptions:referenceCatalog.entries.filter(e=>e.kind==='skill').map(e=>({id:e.id,name:e.name,fromItem:!!skillReviewRecords.get(e.id)?.fromItem})),supportOptions:referenceCatalog.entries.filter(e=>e.kind==='support').map(e=>({id:e.id,name:e.name})),getEquipment:equipmentForPlan,equipmentOptions:referenceCatalog.entries.filter(e=>e.kind==='unique').map(e=>({id:e.id,name:e.name,category:e.category}))});$('plan-shortcut').addEventListener('click',()=>{$('build-plans').open=true;});
   setupFinder(params);render();$('workspace').hidden=false;
 }
 start().catch(error=>{$('workspace').hidden=true;$('load-error').hidden=false;$('load-error').textContent=error.message;$('data-notice').replaceChildren(element('strong','LAB UNAVAILABLE'),element('span','Results are hidden until the data check passes.'));});

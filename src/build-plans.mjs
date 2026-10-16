@@ -1,3 +1,4 @@
+import {validateSkillSetup} from './skill-setup.mjs';
 import {validateEquipmentPlan} from './equipment-plan.mjs';
 import {uniqueModifiers} from './unique-reviews.mjs';
 export const planStorageKey='404-synergy-lab:build-plans:1';
@@ -20,6 +21,7 @@ export function validatePlanBook(book){
   need(Array.isArray(p.tests)&&p.tests.length<=20,'Too many saved test results.');
   for(const t of p.tests)validatePlanTest(t);
   if(p.loadout!==undefined)validateEquipmentPlan(p.loadout);
+  if(p.skillSetup!==undefined)validateSkillSetup(p.skillSetup);
  }
  if(book.compareIds!==undefined)need(Array.isArray(book.compareIds)&&book.compareIds.length<=3&&new Set(book.compareIds).size===book.compareIds.length&&book.compareIds.every(id=>ids.has(id)),'Select up to three existing plans for comparison.');
  return book;
@@ -27,6 +29,7 @@ export function validatePlanBook(book){
 export function validatePlanTest(t){
  need(t&&Object.hasOwn(testOutcomes,t.outcome)&&str(t.patch,100)&&t.patch.trim()&&str(t.target,300)&&t.target.trim()&&str(t.observations)&&t.observations.trim()&&str(t.date,40),'Record the game patch, test target and observations before saving a test.');
  if(t.loadout!==undefined)validateEquipmentPlan(t.loadout);
+ if(t.skillSetup!==undefined)validateSkillSetup(t.skillSetup);
  return t;
 }
 export function createBuildPlan(recipeId,source,id,date){

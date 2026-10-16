@@ -1,5 +1,7 @@
 # 404 Synergy Lab
 
+v0.29.0 adds **Plan skills & supports**: choose among 399 skill and 567 support source records, preserve full descriptions, assign supports to base or intended triggered roles, and inspect individual source-type matches, exclusions and context requirements. Core skills can be restored and edits undone. Skill groups are included in backups, untested variants, comparisons and new personal test snapshots. Real socket counts, skill access, combined support effects, resources and live eligibility remain separate checks.
+
 v0.28.0 adds **Plan unique equipment** to saved builds: search all 443 unique records, start from required core items, inspect saved effects and track default armour/jewellery conflicts, missing core items and explicit ring restrictions. Weapon sets and variable-capacity categories remain manual checks. Changes reset reviewed requirements with undo; personal tests retain their recorded equipment snapshot, and comparisons show planned equipment separately from recipe requirements. Existing plans and backups remain supported.
 
 v0.27.0 adds **Compare plans** for two or three saved builds: skills, required uniques with every saved modifier, remaining requirements, your notes and the latest personal test. Selection survives reloads and imports, and selected plans can be exported together. **Create untested variant** copies a source core and your notes while resetting tests and reviewed requirements. Comparison does not infer damage, cost or endgame rankings.
