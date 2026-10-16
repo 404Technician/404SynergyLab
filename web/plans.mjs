@@ -1,3 +1,4 @@
+import {createBuildCheck} from './build-check.mjs';
 import {createSkillPlanner,skillSnapshot} from './skill-plans.mjs';
 import {skillTestScope} from './src/skill-setup.mjs';
 import {equipmentCategories,analyzeEquipment,equipmentMatches,equipmentTestScope} from './src/equipment-plan.mjs';
@@ -6,10 +7,11 @@ const $=id=>document.getElementById(id);
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const button=(text,action)=>{const b=el('button',text);b.type='button';b.addEventListener('click',action);return b;};
 function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-export function initializeBuildPlans({getSource,getEquipment,equipmentOptions,getSkillSetup,getCoreSkills,skillOptions,supportOptions}){
+export function initializeBuildPlans({getSource,getEquipment,equipmentOptions,getSkillSetup,getCoreSkills,getGrantingItems,skillOptions,supportOptions}){
  let book={version:1,plans:[]},raw=null,storage,storageBlocked=false,selected='',deleted=null,deletedCompared=false;
  const equipmentUndo=new Map(),equipmentFilters=new Map();
  const status=(text,error=false)=>{$('plan-status').textContent=text;$('plan-status').dataset.error=String(error);};
+ const buildCheck=createBuildCheck({getSource,getEquipment,getSkillSetup,getCoreSkills,getGrantingItems,skillOptions});
  const renderSkills=createSkillPlanner({getSkillSetup,getCoreSkills,skillOptions,supportOptions,onChange:touch,onRender:render,status});
  function load(){
   try{storage=window.localStorage;const saved=readPlanBook(storage);book=saved.book;raw=saved.raw;storageBlocked=false;status('Saved on this browser. Export a backup to keep or move your plans.');}
@@ -20,7 +22,7 @@ export function initializeBuildPlans({getSource,getEquipment,equipmentOptions,ge
   catch(error){storageBlocked=true;status(error.message+' Use Export plans to keep this session.',true);}
  }
  function active(){return book.plans.find(p=>p.id===selected);}
- function touch(plan){plan.updated=new Date().toISOString();persist();renderComparison();}
+ function touch(plan){plan.updated=new Date().toISOString();persist();renderComparison();buildCheck.update(plan);}
  function comparisonIds(){return book.compareIds||[];}
  function openComparison(){renderComparison();$('plan-comparison').open=true;$('plan-comparison-heading').focus({preventScroll:true});$('plan-comparison').scrollIntoView({block:'start'});}
  function savedItem(item){const box=el('section',undefined,'item-info');box.dataset.compareItem=item.id;box.append(el('h4',item.name),el('p',item.base),el('p','Saved Current / common source modifiers; verify your actual variant.'));for(const text of item.modifiers)box.append(el('p',text,'item-effect'));return box;}
@@ -98,6 +100,7 @@ export function initializeBuildPlans({getSource,getEquipment,equipmentOptions,ge
   actions.append(compare);
   if(!stale)actions.append(button('Create untested variant',()=>{if(book.plans.length>=50){status('You have 50 plans. Export and remove one before creating a variant.',true);return;}const variant=createPlanVariant(plan,crypto.randomUUID(),new Date().toISOString());book.plans.push(variant);selected=variant.id;persist();render();$('plan-editor-title').focus({preventScroll:true});}));
   editor.append(actions);editor.append(el('p','Variants copy your notes and source core, with tests and reviewed requirements reset.','plan-status'));
+  buildCheck.render(plan,editor);
   renderEquipment(plan,editor,stale);renderSkills(plan,editor,stale);
   const core=el('details',undefined,'plan-preview');core.open=!plan.loadout&&!plan.skillSetup;core.append(el('summary','Saved core · skills, uniques & first test'));
   core.append(el('p',plan.source.skills.join(' + ')),el('h4','First test'),el('p',plan.source.firstTest),el('h4','Reconsider if…'),el('p',plan.source.stopIf));
@@ -106,7 +109,7 @@ export function initializeBuildPlans({getSource,getEquipment,equipmentOptions,ge
   if(!plan.source.items.length)core.append(el('p','No unique required by the recorded core. Other equipment and support requirements still apply.'));editor.append(core);
   const fields=el('fieldset');fields.disabled=stale;
   const name=el('label','Plan name'),nameInput=el('input');nameInput.id='plan-name';nameInput.maxLength=160;nameInput.value=plan.name;nameInput.addEventListener('input',()=>{if(nameInput.value.trim()){plan.name=nameInput.value.trim();title.textContent=plan.name;touch(plan);renderList();}});name.append(nameInput);fields.append(name);
-  const checks=el('details');checks.open=true;checks.append(el('summary','Review the requirements'));const count=el('p',undefined,'plan-check-count');count.id='plan-check-count';const updateCount=()=>{count.textContent=plan.checked.length+' / '+plan.source.conditions.length+' requirements reviewed · not a viability score';};updateCount();checks.append(count);
+  const checks=el('details');checks.open=true;const requirementsHeading=el('summary','Review the requirements');requirementsHeading.id='plan-requirements-heading';requirementsHeading.tabIndex=-1;checks.append(requirementsHeading);const count=el('p',undefined,'plan-check-count');count.id='plan-check-count';const updateCount=()=>{count.textContent=plan.checked.length+' / '+plan.source.conditions.length+' requirements reviewed · not a viability score';};updateCount();checks.append(count);
   for(const condition of plan.source.conditions){const label=el('label',undefined,'plan-check'),input=el('input');input.type='checkbox';input.checked=plan.checked.includes(condition);input.addEventListener('change',()=>{plan.checked=input.checked?[...plan.checked,condition]:plan.checked.filter(c=>c!==condition);updateCount();touch(plan);});label.append(input,el('span',condition));checks.append(label);}fields.append(checks);
   const notes=el('details');notes.open=true;notes.append(el('summary','Shape your build'));
   for(const [key,label] of Object.entries(planFields)){const field=el('label',label),input=el('textarea');input.id='plan-note-'+key;input.maxLength=5000;input.value=plan.notes[key];input.placeholder={character:'Your class, ascendancy, passive tree or PoB link…',equipment:'Actual item variants, weapon setup, support choices…',defenses:'Life / ES, resistances, recovery and what still needs testing…',resources:'Reservation, Mana cost and measured sustain…',notes:'What you want to try next…'}[key];input.addEventListener('input',()=>{plan.notes[key]=input.value;touch(plan);});field.append(input);notes.append(field);}fields.append(notes);

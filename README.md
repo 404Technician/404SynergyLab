@@ -159,3 +159,5 @@ See [Conditional connections](docs/CONNECTIONS.md) for trigger assumptions, ailm
 See [Combination workbench](docs/WORKBENCH.md). Start with **Load trigger example**, then assign Controlled Destruction to Spark to see the Energy generator conflict. Assigning it only to Comet does not disable Spark's critical hits.
 
 Start with **Frostbolt** or **The Three Dragons** to try the discovery flow. See [Discovery Lab](docs/DISCOVERY.md). Skill/support type matches support the explanation; they are not sufficient evidence of a useful combination.
+
+See [Central build check](docs/BUILD_CHECK.md). In **My build plans**, choose **Check my build** for prioritized conflicts, missing planned components and concrete review/test actions.

@@ -23,3 +23,7 @@ Skill-to-skill interactions, weapon requirements, resource costs, passive/unique
 ## v0.4.0 — Conditional connections (delivered)
 
 Sixteen skills, ten conditional interactions, two uniques, whole-setup context toggles, source description fingerprints, trigger socket type checks and an expanded 26-record source audit. Live-client validation remains pending.
+
+## v0.30.0 — Central build check (delivered)
+
+A single actionable report combines saved unique equipment, skill/support groups, core requirements, partial item-granted skill access and personal test scope. Conflicts and missing planned components lead to concrete next actions. Resource budgets, actual trigger paths and game performance remain explicit review/test tasks. Changed source snapshots pause the report. See [Central build check](BUILD_CHECK.md).
