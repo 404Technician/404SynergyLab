@@ -1,15 +1,15 @@
 # Complete skill source guides
 
-Version 0.16.0 covers every one of the 399 skill records in the pinned catalog. This is source-based setup coverage, not a claim that every skill forms a useful damage combination or a complete endgame build.
+Version 0.18.0 covers every one of the 399 skill records in the pinned catalog. This is source-based setup coverage, not a claim that every skill forms a useful damage combination or a complete endgame build.
 
 | Coverage | Count |
 |---|---:|
 | Skill records with a setup guide | 399 / 399 |
 | Records with a source description | 398 |
 | Records explicitly missing a description | 1 |
-| Researched combination recipes, including uniques | 232 |
-| Distinct skills in researched recipes | 248 |
-| Skills without a specific researched recipe | 151 |
+| Researched combination recipes, including uniques | 332 |
+| Distinct skills in researched recipes | 262 |
+| Skills without a specific researched recipe | 137 |
 
 ## What each guide contains
 
@@ -26,7 +26,7 @@ Specific limitations remain visible:
 - Item-granted flags are read from the exact skill source. Such records are not presented as independently available gems. Recognized granting or triggering uniques show their full current modifiers in the guide and in recipes that depend on them. Unrecognized item access remains an explicit requirement.
 - Standalone utility such as Wildwood's Gifts has its own recorded function and inspection plan, without an invented damage partner.
 
-The existing **Only skills with researched combinations** filter still selects the 248 skills with actual recipes. Turning it off reveals all 399 guides. Item experiments and trigger candidates remain separately labeled and do not inflate either count.
+The existing **Only skills with researched combinations** filter still selects the 262 skills with actual recipes. Turning it off reveals all 399 guides. Item experiments and trigger candidates remain separately labeled and do not inflate either count.
 
 ## Source and integrity checks
 

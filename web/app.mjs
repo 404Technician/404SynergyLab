@@ -1,3 +1,4 @@
+import {auditUniqueCoverage} from './src/unique-audit.mjs';
 import {recordVisual,visualTheme,combinationVisual} from './src/visuals.mjs';
 import {validateSkillReviews,describeSkillReview} from './src/skill-reviews.mjs';
 import {describeUniqueReview,uniqueModifiers} from './src/unique-reviews.mjs';
@@ -19,7 +20,7 @@ const symbols={compatible:'✓',incompatible:'×',unknown:'?'};
 const family=skill=>skill.skillTypes.includes('Meta') ? 'Meta gem' : skill.skillTypes.includes('Spell') ? 'Spell' : 'Attack';
 const friendlyTypes=['Spell','Attack','Projectile','Melee','Area','Cold','Fire','Lightning','Chaos','Slam','Bow','Duration','Meta','Persistent','Buff','Triggers'];
 const sourceGrantCache=new Map();
-let uniqueCombos,skillReviews,skillReviewRecords,skillCombos,comboCoverage,experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
+let uniqueAudit,uniqueAuditRecords,uniqueCombos,skillReviews,skillReviewRecords,skillCombos,comboCoverage,experimentDetails,detailRecords,profileRecords,manualAnchorId,restoringManual=false,criticalBlocked=false;
 let suggestChains,chainIdeaKey,chainIdeaOffset=0;
 let chainsData,chainExplorer,chainInput={generatorId:'frostbolt',payoffId:'comet',itemId:null,remap:false,generatorSupportId:null,payoffSupportId:null,confirmedEvents:[],focusEvent:'all'};
 let referenceCatalog,mechanicsData,exploreMechanics,ruleRecord,ruleAnchor,ruleLimit=12,supportLimit=16;
@@ -170,9 +171,10 @@ function sourceItemAccess(id){
  return sourceGrantCache.get(id);
 }
 function renderUniqueGuide(record,box){
- const guide=describeUniqueReview(record,detailRecords.get(record.id)),count=referenceView('unique',record.id).ideas.length;
+ const guide=describeUniqueReview(record,detailRecords.get(record.id)),count=referenceView('unique',record.id).ideas.length,audit=uniqueAuditRecords.get(record.id);
  const section=element('section',undefined,'skill-review');section.dataset.uniqueReview=record.id;section.dataset.reviewStatus=guide.status;
  section.append(element('p',guide.roles.join(' · '),'skill-role'),element('p',count?count+' researched combinations below':'No specific researched combination established for this item.','muted'));
+ const coverage=element('div',undefined,'unique-coverage');coverage.dataset.uniqueCoverage=audit.status;coverage.append(element('strong',({researched:'Researched combinations',equipment:'General equipment role',open:'Open research',variant:'Variant selection needed',generated:'Actual rolls needed'})[audit.status]),element('p',audit.reason));section.append(coverage);
  for(const warning of guide.warnings)section.append(element('p',warning,'warning'));
  const details=element('details');details.append(element('summary','Unique setup & practical checks'));
  if(guide.conditions.length){details.append(element('h4','Conditions & tradeoffs from the source'));const list=element('ul');for(const line of guide.conditions)list.append(element('li',line));details.append(list);}
@@ -245,8 +247,8 @@ function renderDiscovery() {
   const categories=[...new Set(referenceCatalog.entries.filter(e=>e.kind===discoveryMode).map(e=>e.category))].sort();
   const all=element('option','All categories');all.value='';
   $('catalog-category').replaceChildren(all,...categories.map(name=>{const option=element('option',name);option.value=name;return option;}));$('catalog-category').value=categories.includes(category)?category:'';
-  $('combo-filter').hidden=discoveryMode!=='skill';
-  const records=referenceEntries(referenceCatalog,discoveryMode,$('catalog-search').value,$('catalog-category').value).filter(record=>discoveryMode!=='skill'||!$('combo-only').checked||referenceView('skill',record.id).ideas.length||discoverSkillCombos(referenceCatalog,skillCombos,record.id).length);
+  $('combo-filter').hidden=discoveryMode==='support';$('combo-filter-label').textContent=discoveryMode==='unique'?'Only uniques with researched combinations':'Only skills with researched combinations';
+  const records=referenceEntries(referenceCatalog,discoveryMode,$('catalog-search').value,$('catalog-category').value).filter(record=>!$('combo-only').checked||discoveryMode==='support'||referenceView(discoveryMode,record.id).ideas.length||(discoveryMode==='skill'&&discoverSkillCombos(referenceCatalog,skillCombos,record.id).length));
   $('catalog-count').textContent=referenceCatalog.counts.skill+' skills · '+referenceCatalog.counts.support+' supports · '+referenceCatalog.counts.unique+' uniques in the pinned source catalog';
   $('discovery-anchor').replaceChildren(...records.map(record=>{const option=element('option',record.name+(record.base?' · '+record.base:''));option.value=record.id;return option;}));$('discovery-anchor').disabled=!records.length;
   $('discovery-ideas').replaceChildren();$('source-experiments').replaceChildren();
@@ -266,7 +268,7 @@ function renderDiscovery() {
     card.prepend(combinationVisual(idea));
     card.append(element('span',idea.item?idea.item.name:'SKILL INTERACTION','discovery-item-label'),element('h3',idea.title),element('p',idea.hook,'discovery-hook'));
     const chips=element('div',undefined,'tag-row');for(const skill of idea.skills){const chip=element('span',undefined,'tag skill-tag');chip.append(recordVisual(skill,'tiny'),element('span',skill.name));chips.append(chip);}card.append(chips,element('p',idea.buildPlan.playstyle,'muted'));if(idea.item)card.append(itemInfo(idea.item.id));if(skillCombos.recipes.some(r=>r.id===idea.id)||uniqueCombos.recipes.some(r=>r.id===idea.id)){const members=element('div',undefined,'tag-row');if(idea.item&&record.id!==idea.item.id){const open=element('button','Explore '+idea.item.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('unique',idea.item.id));members.append(open);}for(const skill of idea.skills.filter(s=>s.id!==record.id)){const open=element('button','Explore '+skill.name+' ↗','rule-open');open.type='button';open.addEventListener('click',()=>openRuleReference('skill',skill.id));members.append(open);}card.append(members);}
-    const itemSkills=idea.skills.filter(s=>skillReviewRecords.get(s.id)?.fromItem);const access=new Set(itemSkills.flatMap(s=>sourceItemAccess(s.id)));if(idea.item)access.delete(idea.item.id);if(access.size)card.append(element('p','Item access · confirm the actual source variant','skill-role'));for(const id of access)card.append(itemInfo(id));if(itemSkills.some(s=>!sourceItemAccess(s.id).length))card.append(element('p','This idea includes an item-granted skill. Its granting item is not modeled here; verify that source and its equipment requirements first.','warning'));
+    const itemSkills=idea.skills.filter(s=>skillReviewRecords.get(s.id)?.fromItem);const anchorItem=idea.item?referenceCatalog.entries.find(e=>e.id===idea.item.id||e.reviewedId===idea.item.id)?.id:null;const access=new Set(itemSkills.flatMap(s=>{const sources=sourceItemAccess(s.id);return anchorItem&&sources.includes(anchorItem)?[]:sources.length===1?sources:[];}));if(itemSkills.some(s=>sourceItemAccess(s.id).length>1&&!sourceItemAccess(s.id).includes(anchorItem)))card.append(element('p','Multiple item sources grant a member skill. Explore that skill to choose one compatible source; these alternatives are not a requirement to equip them all.','muted'));if(access.size)card.append(element('p','Item access · confirm the actual source variant','skill-role'));for(const id of access)card.append(itemInfo(id));if(itemSkills.some(s=>!sourceItemAccess(s.id).length))card.append(element('p','This idea includes an item-granted skill. Its granting item is not modeled here; verify that source and its equipment requirements first.','warning'));
     const firstTest=element('div',undefined,'first-test');firstTest.append(element('strong','First test'),element('p',idea.buildPlan.firstTest));card.append(firstTest);
     const more=element('details',undefined,'idea-details');more.append(element('summary',idea.supportIdeas.length?'Mechanics, supports & tradeoffs':'Mechanics & tradeoffs'));
     const body=element('div',undefined,'idea-body');body.append(element('h4','Why this is interesting'),element('p',idea.mechanics),element('h4','How to explore it'));
@@ -493,8 +495,9 @@ async function start(){
   if(uniqueSha!==meta.uniqueCombosSha256)throw new Error('The unique combinations do not match this build.');
   uniqueCombos=validateUniqueCombos(referenceCatalog,experimentDetails,skillReviews,JSON.parse(new TextDecoder().decode(uniqueBytes)));
   if(uniqueCombos.id!==meta.uniqueCombosId)throw new Error('Unique combination version mismatch.');
+  uniqueAudit=auditUniqueCoverage(referenceCatalog,experimentDetails,catalog,uniqueCombos);uniqueAuditRecords=new Map(uniqueAudit.entries.map(e=>[e.id,e]));
   comboCoverage=skillComboCoverage(referenceCatalog,skillCombos,catalog,uniqueCombos);
-  $('discovery-coverage').textContent=skillReviews.entries.length+' / '+referenceCatalog.counts.skill+' skill source guides; '+comboCoverage.recipes+' researched combinations across '+comboCoverage.skills+' / '+comboCoverage.totalSkills+' skills. Source item experiments are listed separately; none are damage-ranked. '+referenceCatalog.counts.unique+' / '+referenceCatalog.counts.unique+' unique source guides ('+experimentDetails.entries.filter(e=>e.kind==='unique'&&!e.generated).length+' fixed items, '+experimentDetails.entries.filter(e=>e.kind==='unique'&&e.generated).length+' generated families); '+uniqueCombos.recipes.length+' new unique interactions across '+new Set(uniqueCombos.recipes.map(r=>r.itemId)).size+' uniques.';
+  $('discovery-coverage').textContent=skillReviews.entries.length+' / '+referenceCatalog.counts.skill+' skill source guides; '+comboCoverage.recipes+' researched combinations across '+comboCoverage.skills+' / '+comboCoverage.totalSkills+' skills. Source item experiments are listed separately; none are damage-ranked. '+referenceCatalog.counts.unique+' / '+referenceCatalog.counts.unique+' unique source guides ('+experimentDetails.entries.filter(e=>e.kind==='unique'&&!e.generated).length+' fixed items, '+experimentDetails.entries.filter(e=>e.kind==='unique'&&e.generated).length+' generated families); '+uniqueCombos.recipes.length+' item/skill interactions in the expanded collection. '+uniqueAudit.counts.researched+' / '+uniqueAudit.total+' uniques have explicit recipes; '+uniqueAudit.counts.equipment+' general equipment entries, '+uniqueAudit.counts.open+' open research entries, '+uniqueAudit.counts.variant+' variant-dependent entries and '+uniqueAudit.counts.generated+' generated families. This is recorded coverage, not every possible in-game combination.';
   const params=new URL(location.href).searchParams;
   if(params.has('uniques')&&params.get('uniques')!==uniqueCombos.id)throw new Error('This link refers to different unique combinations.');
   if(params.has('reviews')&&params.get('reviews')!==skillReviews.id)throw new Error('This link refers to different skill reviews.');
@@ -535,6 +538,7 @@ async function start(){
   $('start-skill').addEventListener('click',()=>{discoveryMode='skill';discoveryAnchor=selected;$('discovery-search').value='';$('catalog-search').value='';$('catalog-category').value='';renderDiscovery();updateUrl();});
   $('combo-only').addEventListener('change',()=>{renderDiscovery();updateUrl();});
   $('browse-combos').addEventListener('click',()=>{discoveryMode='skill';$('combo-only').checked=true;$('catalog-search').value='';$('catalog-category').value='';$('discovery-search').value='';renderDiscovery();updateUrl();});
+  $('browse-unique-combos').addEventListener('click',()=>{discoveryMode='unique';$('combo-only').checked=true;$('catalog-search').value='';$('catalog-category').value='';$('discovery-search').value='';renderDiscovery();updateUrl();});
   $('start-unique').addEventListener('click',()=>{discoveryMode='unique';discoveryAnchor='the-three-dragons';$('discovery-search').value='';$('catalog-search').value='';$('catalog-category').value='';renderDiscovery();updateUrl();});
   $('start-support').addEventListener('click',()=>{discoveryMode='support';discoveryAnchor='living-lightning';$('discovery-search').value='';$('catalog-search').value='';$('catalog-category').value='';renderDiscovery();updateUrl();});
   initChains();
