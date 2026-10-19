@@ -31,3 +31,7 @@ A single actionable report combines saved unique equipment, skill/support groups
 ## v0.31.0 — Unusual interactions first (delivered)
 
 Eight source-bound discoveries put surprising mechanics and build-defining uniques ahead of general directions and optional planners. Theme/search filters, shared reveals, full unique effects, precise event restrictions and minimal practical tests support original build creation. See [Unusual interactions](SPECIAL_INTERACTIONS.md).
+
+## v0.32.0 — Eight more unusual discoveries (delivered)
+
+Sixteen edited discoveries now include three minion routes and unusual projectile, Life-cost, Poison and ailment rules. A new immutable snapshot preserves the previous eight entries exactly; explicit item-granted skill requirements are checked against pinned grant mechanics. See [expanded research](SPECIAL_INTERACTIONS_EXPANSION.md).

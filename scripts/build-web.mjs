@@ -42,7 +42,7 @@ export async function buildWeb() {
   const uniqueCombos=validateUniqueCombos(reference,details,skillReviews,JSON.parse(uniqueBytes));
   auditUniqueCoverage(reference,details,JSON.parse(catalogBytes),uniqueCombos);
   for(const entry of reference.entries.filter(e=>e.kind==='unique'))describeUniqueReview(entry,details.entries.find(e=>e.id===entry.id));
-  const specialBytes=await readFile(new URL('data/research/pob-bb52d6b-special-interactions1.json',root));
+  const specialBytes=await readFile(new URL('data/research/pob-bb52d6b-special-interactions2.json',root));
   const specials=validateSpecialInteractions(reference,details,skillReviews,mechanics,JSON.parse(specialBytes));
   const pkg=JSON.parse(await readFile(new URL('package.json',root)));
   await mkdir(new URL('src/',dist),{recursive:true});await mkdir(new URL('data/',dist),{recursive:true});
