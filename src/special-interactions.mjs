@@ -1,11 +1,11 @@
 import {uniqueModifiers} from './unique-reviews.mjs';
 import {checkSupportTypes} from './mechanics.mjs';
-export const specialTags={all:'All discoveries',chaos:'Chaos',freeze:'Freeze',poison:'Poison',chain:'Chain reactions',unique:'Build-defining uniques',corpses:'Corpse mechanics'};
+export const specialTags={all:'All discoveries',chaos:'Chaos',freeze:'Freeze',poison:'Poison',chain:'Chain reactions',unique:'Build-defining uniques',corpses:'Corpse mechanics',minions:'Minions',projectiles:'Projectiles',conversion:'Damage routing'};
 const need=(ok,message)=>{if(!ok)throw new Error('Special interactions: '+message);};
 const text=v=>typeof v==='string'&&v.trim().length>0;
 const strings=v=>Array.isArray(v)&&v.length>0&&v.every(text);
 export function validateSpecialInteractions(reference,details,reviews,mechanics,data){
- need(data?.id==='pob-bb52d6b-special-interactions1'&&data.referenceId===reference.id&&data.sourceRevision===reference.sourceRevision,'source version mismatch');
+ need(['pob-bb52d6b-special-interactions1','pob-bb52d6b-special-interactions2'].includes(data?.id)&&data.referenceId===reference.id&&data.sourceRevision===reference.sourceRevision,'source version mismatch');
  need(Array.isArray(data.entries)&&data.entries.length>0&&data.entries.length<=50,'invalid entries');
  const records=new Map(reference.entries.map(r=>[r.id,r])),detailMap=new Map(details.entries.map(r=>[r.id,r])),reviewMap=new Map(reviews.entries.map(r=>[r.id,r])),profiles=new Map(mechanics.profiles.map(r=>[r.id,r])),seen=new Set();
  for(const idea of data.entries){
@@ -17,9 +17,11 @@ export function validateSpecialInteractions(reference,details,reviews,mechanics,
   for(const c of idea.components){
    const r=records.get(c.id);need(r&&text(c.role)&&strings(c.requiredFragments),'missing component');
    need(c.recordSha256===(r.effectEvidence||r.evidence).recordSha256,'changed source for '+r.name);
+   if(c.requiredItemId){const item=records.get(c.requiredItemId);need(r.kind==='skill'&&item?.kind==='unique'&&idea.components.some(x=>x.id===c.requiredItemId),'missing required granting unique');need(profiles.get(item.id)?.mechanics.some(m=>m.kind==='grant'&&m.skillName===r.name),'granting unique does not grant '+r.name);}
    const detail=detailMap.get(r.id),description=r.kind==='unique'?uniqueModifiers(detail).map(m=>m.text).join('\n'):r.kind==='skill'?reviewMap.get(r.id)?.description:detail?.description;
    need(description&&c.requiredFragments.every(f=>description.toLowerCase().includes(f.toLowerCase())),'required effect missing for '+r.name+' in '+idea.id);
   }
+  if(idea.extraEvidence)need(Array.isArray(idea.extraEvidence)&&idea.extraEvidence.every(e=>text(e.label)&&typeof e.url==='string'&&e.url.startsWith('https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/'+reference.sourceRevision+'/')),'invalid extra source evidence');
   need(Array.isArray(idea.supportPairs),'missing support assignments');
   for(const pair of idea.supportPairs){
    const skill=records.get(pair.skillId),support=records.get(pair.supportId);

@@ -1,0 +1,955 @@
+{
+  "id": "pob-bb52d6b-special-interactions2",
+  "sourceRevision": "bb52d6b368307457eb9c54bb13f1829993d390b1",
+  "referenceId": "pob-bb52d6b-full-catalog1",
+  "checkedAt": "2026-10-19",
+  "scope": "Pinned-source experiments; target patch and live-client behavior remain unverified.",
+  "entries": [
+    {
+      "id": "mirror-frostbolt-nova",
+      "title": "Mirrors turn Frostbolt into a nova network",
+      "tags": [
+        "projectiles",
+        "chain",
+        "unique"
+      ],
+      "hook": "Use Atziri’s mirrors to copy slow projectiles, then investigate Ice Nova from the resulting Frostbolts.",
+      "chain": [
+        "Cast Frostbolt into a mirror",
+        "Mirror copies spell projectiles",
+        "Aim Ice Nova near a Frostbolt"
+      ],
+      "why": "Atziri’s Rule grants Mirror of Refraction. The mirror skill copies Spell Projectiles that hit a mirror. Ice Nova explicitly moves its origin to a targeted nearby Frostbolt projectile. Combining these rules suggests more remote origins, but a copied Frostbolt’s eligibility as a Nova origin needs a direct test.",
+      "components": [
+        {
+          "id": "unique:staff:Atziri's%20Rule:Reflecting%20Staff",
+          "role": "Grants the mirror skill",
+          "recordSha256": "a94b70028e7a0e5c053db7ea218e04f69b4b4bc447c6cec3d1118a34ea17dc4a",
+          "requiredFragments": [
+            "Grants Skill: Level (1-20) Mirror of Refraction"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemMirrorOfRefraction",
+          "role": "Copies incoming Spell Projectiles",
+          "recordSha256": "a132a50a2890f44939b3c198d9acd65f6e6848914655d0feac7783fa96d64360",
+          "requiredFragments": [
+            "copying the projectiles",
+            "other mirrors"
+          ],
+          "requiredItemId": "unique:staff:Atziri's%20Rule:Reflecting%20Staff"
+        },
+        {
+          "id": "frostbolt",
+          "role": "Seed spell projectile",
+          "recordSha256": "67935cb9cd5a39f28207551e9d49a1ab893c8fbfb0e21c91a0d814f524968076",
+          "requiredFragments": [
+            "Projectile"
+          ]
+        },
+        {
+          "id": "ice-nova",
+          "role": "Test a remote Frostbolt origin",
+          "recordSha256": "024888550af2f5827d379730a715b6e0277677c88262d3fe6399267ffeaf8e68",
+          "requiredFragments": [
+            "targeting near a Frostbolt Projectile"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip the staff, activate its granted mirror skill and confirm its reservation.",
+        "Cast one Frostbolt through a mirror. Aim Ice Nova near a copied bolt separately from the original bolt."
+      ],
+      "pitfalls": [
+        "The mirrors copy projectiles; they do not cast the first Frostbolt for you or make Ice Nova automatic.",
+        "A copied Frostbolt may not be an eligible Ice Nova origin. Compare it with the original rather than assuming identical behavior.",
+        "Mirrors appear periodically in your Presence. Geometry, remaining mirrors and their destruction bound the chain.",
+        "Do not promise an infinite projectile loop or that every copied projectile can damage one enemy simultaneously."
+      ],
+      "firstTest": "On open ground, compare Ice Nova aimed near the original Frostbolt with one aimed near a clearly separated mirror copy. Observe the actual Nova origin.",
+      "inspiration": "A seed for a positional projectile caster. Keep the mirror-copy idea even if the copied-Nova extension fails; the two claims are separate.",
+      "basis": "combined"
+    },
+    {
+      "id": "sacrifice-walking-clouds",
+      "title": "Reviving minions feed walking Poison clouds",
+      "tags": [
+        "minions",
+        "poison",
+        "corpses",
+        "unique"
+      ],
+      "hook": "Explore an unusual job for your undead army: a renewable target supply for movement-triggered Decompose.",
+      "chain": [
+        "Sacrifice allows undead corpse targets",
+        "Move with Corpsewade",
+        "Decompose consumes → Poison gas"
+      ],
+      "why": "Sacrifice lets your skills use undead Reviving Minions instead of Corpses. Corpsewade grants and movement-triggers Decompose, which consumes a corpse to create Poisonous gas. The joint targeting is an experiment: the boots must actually select an eligible minion, and its revival must keep up.",
+      "components": [
+        {
+          "id": "unique:boots:Corpsewade:Iron%20Greaves",
+          "role": "Grants and movement-triggers Decompose",
+          "recordSha256": "9c69540df3d857513059f7755bd053ea61bb71c611b3d8bf0b4fbf62168cba63",
+          "requiredFragments": [
+            "Trigger Decompose every 1.2 metres travelled"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemCorpseCloud",
+          "role": "Consumes the selected target for gas",
+          "recordSha256": "633f2e297d5e945e8a8c45f9a46a77098cdecba00094c50ab1877bbed2b818d3",
+          "requiredFragments": [
+            "Consume a Corpse",
+            "flammable Poisonous gas"
+          ],
+          "requiredItemId": "unique:boots:Corpsewade:Iron%20Greaves"
+        },
+        {
+          "id": "sacrifice",
+          "role": "Makes undead revivers usable as corpse targets",
+          "recordSha256": "fd6846bb12cd028be729f27c921da47b5c745ca3a3b37c25eaa28d4626072cb0",
+          "requiredFragments": [
+            "undead Reviving Minions",
+            "Revive more slowly"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver",
+          "role": "Concrete undead reviving target",
+          "recordSha256": "54e56cb56c42207527985611680171aeb3eeeefeef94cab28a16dd62116a01a1",
+          "requiredFragments": [
+            "Reviving Skeletal Reavers"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip Corpsewade, reserve Sacrifice and Skeletal Reavers on the actual active setup.",
+        "Test movement with no natural corpses present and watch whether an eligible Reaver is consumed."
+      ],
+      "pitfalls": [
+        "If the item-triggered skill does not accept the Sacrifice target, this proposed chain fails. Test it before building around it.",
+        "Moving without an eligible target does not prove a cloud can be created. Standing still does not supply the boots’ movement trigger.",
+        "Burning effects or Detonator skills explode the gas; avoid them when testing sustained Poison clouds.",
+        "Sacrifice slows revival and consumption removes your minion screen. A self-sustaining supply or safe boss setup is not established."
+      ],
+      "firstTest": "Use an area with no natural corpses. Compare walking with Sacrifice off, then on, using only the same reviving minions and no burning effects.",
+      "inspiration": "A different take on a summoner: minions become a resource for your own gas skill. Compare this with natural-corpse mapping and reject it if targeting or revival is unreliable.",
+      "basis": "combined"
+    },
+    {
+      "id": "beyond-reach-chaos-control",
+      "title": "One quiver gives Chaos two control routes",
+      "tags": [
+        "chaos",
+        "freeze",
+        "unique"
+      ],
+      "hook": "Turn part of a physical bow hit into extra Chaos, then explore both Freeze and Electrocution buildup from it.",
+      "chain": [
+        "Physical Bow Shot",
+        "Beyond Reach adds Chaos",
+        "Chaos hit → two buildup routes"
+      ],
+      "why": "Beyond Reach gives attacks extra Chaos based on their Physical damage and explicitly lets Chaos hits contribute to Freeze and Electrocute buildup. Bow Shot supplies a controlled physical-hit example. This is extra damage and ailment eligibility, not conversion of the entire hit or proof that either threshold will be reached.",
+      "components": [
+        {
+          "id": "unique:quiver:Beyond%20Reach:Visceral%20Quiver",
+          "role": "Extra Chaos and two explicit buildup exceptions",
+          "recordSha256": "e5abf305ca5c094b028fd629d0ccc5238c47b5dd832f6d5a0f263519c4221952",
+          "requiredFragments": [
+            "Physical Damage as extra Chaos Damage",
+            "Chaos Damage from Hits also Contributes to Freeze Buildup",
+            "Chaos Damage from Hits also Contributes to Electrocute Buildup"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultBow",
+          "role": "Controlled physical bow hit",
+          "recordSha256": "72003769575aea2d43034512183764bf122d2ff467a1085022c6858a9022b3d2",
+          "requiredFragments": [
+            "arrow"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip the quiver with a compatible Bow that has actual Physical hit damage.",
+        "Use isolated Bow Shots and inspect Freeze and Electrocution buildup separately on a durable target."
+      ],
+      "pitfalls": [
+        "A tiny Physical base also gives a tiny extra-Chaos component; neither control threshold is guaranteed.",
+        "Poison damage over time is not the Chaos hit described by these modifiers.",
+        "Current Plaguefinger forbids the required elemental ailments and is not part of this control route.",
+        "The quiver reduces Attack Speed. It must share a legal equipment setup with the Bow."
+      ],
+      "firstTest": "Compare the same physical bow hit with and without Beyond Reach. Remove other Freeze and Electrocution sources so each observed buildup has an identifiable cause.",
+      "inspiration": "A starting point for a physical/Chaos control archer. Choose a hit pattern and weapon base before assuming that more projectiles mean reliable control.",
+      "basis": "combined"
+    },
+    {
+      "id": "unearth-instability-carriers",
+      "title": "Temporary bone constructs become walking bombs",
+      "tags": [
+        "minions",
+        "corpses",
+        "chain"
+      ],
+      "hook": "Make Unearth’s temporary minions approach enemies while self-damage pushes them toward a Low-Life explosion.",
+      "chain": [
+        "Unearth uses remains",
+        "Infernal Legion ignites constructs",
+        "Low Life → Minion Instability"
+      ],
+      "why": "Unearth assembles short-lived Bone Constructs from eligible remains. Infernal Legion I can Ignite supported damageable minions. Minion Instability makes supported minions explode when reduced to Low Life. The design depends on the construct reaching that state near enemies before its duration ends.",
+      "components": [
+        {
+          "id": "unearth",
+          "role": "Creates temporary Bone Constructs",
+          "recordSha256": "34f9aebb2317e2fb3932395d9a67aea837e6c9dfa5fd94a53d8b20c04cd5c6af",
+          "requiredFragments": [
+            "short-lived Bone Construct Minions"
+          ]
+        },
+        {
+          "id": "infernal-legion-1",
+          "role": "Ignites damageable supported minions",
+          "recordSha256": "26961fc4f9b38eb8ab3cfdfcae9a16590b4f5a59349bdc84d984167e223b9745",
+          "requiredFragments": [
+            "Minions which can be damaged",
+            "Ignite"
+          ]
+        },
+        {
+          "id": "minion-instability",
+          "role": "Explosion at actual Low Life",
+          "recordSha256": "aeea2a63c93f0aea21681c0d92182e9ad5f6728e25a72919260dc8f2629a662d",
+          "requiredFragments": [
+            "reduced to Low Life"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "unearth",
+          "supportId": "infernal-legion-1"
+        },
+        {
+          "skillId": "unearth",
+          "supportId": "minion-instability"
+        }
+      ],
+      "steps": [
+        "Support Unearth with both named supports and create constructs from eligible remains.",
+        "Observe their Life, movement and lifetime against a nearby target, separating natural expiry from an actual explosion."
+      ],
+      "pitfalls": [
+        "Expiry is not a Low-Life explosion. Recovery, Fire resistance and remaining lifetime can prevent the intended timing.",
+        "Temporary constructs are not the Persistent Minions required by Cast on Minion Death.",
+        "Player Fire/Chaos conversion and your own damage modifiers do not automatically apply to a minion explosion.",
+        "Corpses or dead reviving minions are still required; isolated targets may not supply them."
+      ],
+      "firstTest": "Create one small group near an isolated enemy. Compare Unearth alone, then with Infernal Legion, then both supports; identify a visible Low-Life explosion before expiry.",
+      "inspiration": "A minion delivery experiment rather than an automatic loop. Tune construct survival and travel time only after proving the explosion event.",
+      "basis": "combined"
+    },
+    {
+      "id": "life-cost-physical-spell",
+      "title": "Pay Life to unlock extra Physical spell damage",
+      "tags": [
+        "conversion",
+        "unique"
+      ],
+      "hook": "Use one unique to give a spell a Life cost and another to turn that condition into extra Physical damage.",
+      "chain": [
+        "The Covenant adds a Life cost",
+        "Cast a spell that actually costs Life",
+        "Atziri’s Rule adds Physical damage"
+      ],
+      "why": "Current The Covenant adds an extra Life cost based on a skill’s Mana cost. Atziri’s Rule grants extra Physical damage to spells which cost Life. A manually cast Spark with a genuine nonzero Life cost is a concrete test. This adds another damage component; it does not convert the Lightning hit into Physical.",
+      "components": [
+        {
+          "id": "unique:body:The%20Covenant:Altar%20Robe",
+          "role": "Adds an extra Life cost",
+          "recordSha256": "1de929085caeb6113f052eb54801c982c3103ca6a07d007e387c5f997a26ca59",
+          "requiredFragments": [
+            "Skills Gain 100% of Mana Cost as Extra Life Cost"
+          ]
+        },
+        {
+          "id": "unique:staff:Atziri's%20Rule:Reflecting%20Staff",
+          "role": "Extra Physical damage when the spell costs Life",
+          "recordSha256": "a94b70028e7a0e5c053db7ea218e04f69b4b4bc447c6cec3d1118a34ea17dc4a",
+          "requiredFragments": [
+            "Spells which cost Life Gain",
+            "Extra Physical Damage"
+          ]
+        },
+        {
+          "id": "spark",
+          "role": "Example manually cast spell",
+          "recordSha256": "74069a025c0aea1d59777105f31533fbced915d9be7487a18081a88913397008",
+          "requiredFragments": [
+            "Projectiles"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip both uniques and inspect Spark’s actual Mana and Life costs.",
+        "Cast at a controlled rate, compare the extra Physical component and observe Life recovery while hitting and while no enemy is present."
+      ],
+      "pitfalls": [
+        "The extra Life cost does not replace the Mana cost. A zero-cost skill does not establish the condition.",
+        "Life cost payment, Life regeneration, leech and damage taken are different mechanisms. Do not assume paying Life triggers on-damage effects.",
+        "Leech from the body armour is not guaranteed to cover costs, especially when no enemy is hit.",
+        "The staff occupies your weapon setup. Its mirror and corrupted-gem modifiers do not make the Life-cost interaction automatic."
+      ],
+      "firstTest": "Compare the same manually cast spell with the staff alone and with both uniques, checking actual Life cost, Physical damage and Life loss over a fixed interval.",
+      "inspiration": "Explore a mixed-element/Physical caster with a deliberate Life-cost identity. Prove sustain before considering Poison, Bleed or further damage routing.",
+      "basis": "combined"
+    },
+    {
+      "id": "command-shared-unholy-might",
+      "title": "A minion command gives both of you a Chaos buff",
+      "tags": [
+        "minions",
+        "chaos"
+      ],
+      "hook": "Turn a command you already use into a shared damage window for your minion and your own spell.",
+      "chain": [
+        "Command supported Reavers",
+        "Kurgal’s Leash grants Unholy Might",
+        "Use your own hit during the buff"
+      ],
+      "why": "Kurgal’s Leash grants Unholy Might to you and the supported commandable minion when you command it. Unholy Might grants extra Chaos damage; it is not conversion. Skeletal Reaver supplies the command, while Essence Drain is a concrete player-hit example to compare inside and outside the buff window.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver",
+          "role": "Commandable reviving minion",
+          "recordSha256": "54e56cb56c42207527985611680171aeb3eeeefeef94cab28a16dd62116a01a1",
+          "requiredFragments": [
+            "enrage on Command"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemKurgalsLeashSupport",
+          "role": "Support the commandable minion",
+          "recordSha256": "e09ca719abf6292cdab7578a661853c2c2d40ab35bd31a663d312304c38c3cc1",
+          "requiredFragments": [
+            "you and the Supported Minion",
+            "gain Unholy Might"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+          "role": "Example of your own hit during the buff",
+          "recordSha256": "05422f7613c2daa387f08faba9ecdc63bf41e0f1f8dd18b8fe8ce5636ed58af1",
+          "requiredFragments": [
+            "Projectile"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "gem:Metadata%2FItems%2FGems%2FSkillGemSkeletalReaver",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemKurgalsLeashSupport"
+        }
+      ],
+      "steps": [
+        "Support Skeletal Reaver with Kurgal’s Leash and perform its actual enrage command.",
+        "Check the player and supported minion buff separately, then compare your own hit before and during the buff."
+      ],
+      "pitfalls": [
+        "The support belongs on the commandable minion skill, not on the player’s example spell.",
+        "Automatic minion attacks are not the command event. The buff window must actually be refreshed.",
+        "The named support does not say that every other minion gains the buff. Inspect only its stated recipients.",
+        "An existing Unholy Might effect is not evidence of a second stacking copy. Reservation, command costs and actual eligibility still need checking."
+      ],
+      "firstTest": "Observe your buff display while issuing the supported Reaver command, then let it expire. Compare a fixed player hit and the supported minion separately.",
+      "inspiration": "A way to combine an active minion commander with your own caster playstyle. Test whether the extra command is enjoyable before expanding the setup.",
+      "basis": "combined",
+      "extraEvidence": [
+        {
+          "label": "Unholy Might: extra Chaos damage in the pinned calculation model",
+          "url": "https://github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/blob/bb52d6b368307457eb9c54bb13f1829993d390b1/src/Modules/CalcPerform.lua#L659-L663"
+        }
+      ]
+    },
+    {
+      "id": "lorrata-ranged-poison-stacks",
+      "title": "A thrown spear escapes the usual Poison count",
+      "tags": [
+        "poison",
+        "projectiles",
+        "unique"
+      ],
+      "hook": "An explicit weapon rule allows repeated Poisons from a ranged spear attack to coexist.",
+      "chain": [
+        "Splinter grants Spear Throw",
+        "Hits with this weapon Poison",
+        "Multiple Poisons can coexist"
+      ],
+      "why": "Splinter of Lorrata grants Spear Throw, always Poisons on hit with that weapon and allows any number of Poisons from that weapon to affect a target at once. Throwing it is a ranged way to test the weapon-specific rule. Removing a count limit does not create infinite damage or remove Poison duration.",
+      "components": [
+        {
+          "id": "unique:spear:Splinter%20of%20Lorrata:Hardwood%20Spear",
+          "role": "Grants the attack and its weapon-local Poison rules",
+          "recordSha256": "7de7fd8f9e281dc2caf36aa474fd67ce6482fe9eca2c3574d22aacb4073bc529",
+          "requiredFragments": [
+            "Grants Skill: Spear Throw",
+            "Any number of Poisons from this Weapon",
+            "Always Poison on Hit with this weapon",
+            "Deal no Elemental Damage"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultSpearThrow",
+          "role": "Ranged attack with the actual spear",
+          "recordSha256": "3053041bec4b661a54e34b1e383b0edae26c3632faa097c79199b1fd8cd98cdd",
+          "requiredFragments": [
+            "Hurl your Spear"
+          ],
+          "requiredItemId": "unique:spear:Splinter%20of%20Lorrata:Hardwood%20Spear"
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip this exact spear and use its granted Spear Throw against one durable target.",
+        "Compare isolated hits and sustained throwing over the same interval while observing Poison behavior and resource use."
+      ],
+      "pitfalls": [
+        "The exception says “from this Weapon”; it is not a global unlimited-Poison rule for spells, minions or another weapon set.",
+        "Each Poison still expires. Actual concurrent Poisons depend on successful hit rate, duration and survival.",
+        "Current Splinter deals no Elemental Damage. Do not plan an elemental damage component for this setup.",
+        "A Frenzy Charge can change Spear Throw’s payoff; hold charge conditions constant when comparing tests."
+      ],
+      "firstTest": "Use one target, a fixed throwing interval and the same charge state. Compare the damage-over-time tail after one hit and after multiple hits, without changing weapons.",
+      "inspiration": "A ranged Poison identity built around a specific weapon exception. First test whether the weapon’s real damage base supports the idea.",
+      "basis": "combined"
+    },
+    {
+      "id": "cold-fireball-ignite",
+      "title": "A Cold Fireball finds an Ignite route",
+      "tags": [
+        "conversion",
+        "unique"
+      ],
+      "hook": "Convert a Fire spell’s damage to Cold, then use a second unique to change what that Cold hit can inflict.",
+      "chain": [
+        "Fireball + Blueflame → Cold",
+        "The Three Dragons remaps Cold",
+        "Cold hit contributes to Ignite"
+      ],
+      "why": "Blueflame Bracers converts Fire damage to Cold. The Three Dragons lets Cold hits contribute to Flammability and Ignite magnitude instead of Chill and Freeze. The combination suggests a Cold-damage Fireball with an Ignite route, rather than ordinary Cold control. Test the final damage component and actual ailment separately.",
+      "components": [
+        {
+          "id": "fireball",
+          "role": "Example original Fire hit",
+          "recordSha256": "6990d1a3d74c03b66c327440319e68058a86653427e320c70eee702b6797f994",
+          "requiredFragments": [
+            "ball of Fire"
+          ]
+        },
+        {
+          "id": "blueflame-bracers",
+          "role": "Fire-to-Cold conversion",
+          "recordSha256": "be08ddcc67a97262e09ab9e6d0aa3918f6c787f5e1c38bb434e6bca5d3488bc8",
+          "requiredFragments": [
+            "100% of Fire Damage Converted to Cold Damage"
+          ]
+        },
+        {
+          "id": "the-three-dragons",
+          "role": "Remaps the Cold hit’s ailment contribution",
+          "recordSha256": "038f7a91b16333d21eabfc553c68e61b34a482fb2e6df50129718619ef28e2b4",
+          "requiredFragments": [
+            "Cold Damage from Hits Contributes to Flammability and Ignite Magnitudes instead of Chill Magnitude or Freeze Buildup"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip the gloves first and inspect Fireball’s resulting Cold damage.",
+        "Add the helmet and test actual Ignite/Flammability behavior with no other ailment sources."
+      ],
+      "pitfalls": [
+        "The helmet trades away the normal Chill/Freeze contribution of that Cold component. This is not the Cold Fireball Freeze route.",
+        "A contribution rule is not a promise of immediate Ignite, useful magnitude or boss uptime.",
+        "Current Plaguefinger forbids Ignite and cannot be substituted into the required glove slot.",
+        "Conversion, damage scaling and Ignite damage type are separate rules. No extra conversion chain is assumed."
+      ],
+      "firstTest": "Compare Fireball with the gloves alone, then with both uniques, recording final damage components and the actual ailment on the same target.",
+      "inspiration": "Use two uniques to deliberately separate a spell’s visual theme, hit damage and ailment role. Keep only the version whose observed behavior fits your build idea.",
+      "basis": "combined"
+    },
+    {
+      "id": "chaos-spark-freeze",
+      "title": "Spark becomes freezing Chaos",
+      "tags": [
+        "chaos",
+        "freeze",
+        "unique"
+      ],
+      "hook": "Keep the projectile spell you like, change its damage, then give that Chaos a Freeze route.",
+      "chain": [
+        "Spark hits",
+        "Original Sin → Chaos",
+        "Tul’s Stillness → Freeze buildup"
+      ],
+      "why": "Original Sin converts elemental damage to Chaos. Tul’s Stillness gives Chaos hits from the supported skill a way to contribute to Freeze buildup. The combination is inferred from those separate rules; conversion alone would not preserve Spark’s usual Shock route.",
+      "components": [
+        {
+          "id": "spark",
+          "role": "Example projectile hit",
+          "recordSha256": "74069a025c0aea1d59777105f31533fbced915d9be7487a18081a88913397008",
+          "requiredFragments": [
+            "projectiles"
+          ]
+        },
+        {
+          "id": "unique:ring:Original%20Sin:Amethyst%20Ring",
+          "role": "Elemental-to-Chaos conversion",
+          "recordSha256": "4b56f9f20279b2c7968ab5b9775ff1f861552650353231bdbbf0eab0b4aa3302",
+          "requiredFragments": [
+            "Elemental Damage Converted to Chaos"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport",
+          "role": "Support the hit skill",
+          "recordSha256": "a72b272f911ceabea9521fdc82c44202f051ae40d5c2ef5353888ff1c3059fbb",
+          "requiredFragments": [
+            "Chaos damage to Contribute to Freeze Buildup"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "spark",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport"
+        }
+      ],
+      "steps": [
+        "Equip the Current Original Sin and support Spark with Tul’s Stillness.",
+        "Confirm actual Chaos hit damage, then watch Freeze buildup on one durable enemy."
+      ],
+      "pitfalls": [
+        "Freeze buildup is not an instant or guaranteed Freeze; target thresholds and repeated hits matter.",
+        "No Cold damage means the support’s Cold-as-extra-Chaos benefit has no Cold base to use.",
+        "Do not import the historical “Chaos Resistance is zero” modifier into the Current ring."
+      ],
+      "firstTest": "Compare the same Chaos Spark setup with and without Tul’s Stillness. Keep other Freeze sources out of the test.",
+      "inspiration": "Use this as a starting point for your own elemental projectile-to-Chaos caster. Compare hit size and uptime before choosing an ascendancy.",
+      "basis": "combined"
+    },
+    {
+      "id": "elemental-poison-spread",
+      "title": "Elemental hits feed spreading Poison",
+      "tags": [
+        "poison",
+        "chain",
+        "unique"
+      ],
+      "hook": "Use elemental bow damage as a Poison base, then carry that Poison into the next pack.",
+      "chain": [
+        "Lightning Arrow hits",
+        "Plaguefinger → Poison",
+        "Kill → Herald of Plague spread"
+      ],
+      "why": "Plaguefinger lets all hit damage contribute to Poison magnitude. Herald of Plague spreads Poison when you kill a Poisoned enemy. This changes what the hit can feed; it does not convert Lightning damage into Chaos damage.",
+      "components": [
+        {
+          "id": "lightning-arrow",
+          "role": "Example elemental bow hit",
+          "recordSha256": "29f0b12e6c7087f45fdcab038c72243fed219f1017a64eda0a77619b710f7b1c",
+          "requiredFragments": [
+            "Lightning"
+          ]
+        },
+        {
+          "id": "unique:gloves:Plaguefinger:Gauze%20Wraps",
+          "role": "Broadens Poison magnitude",
+          "recordSha256": "4468bbca598fd7a7aec13a20d1aeb0a08181bfe3408731f8c2310319b7221e4d",
+          "requiredFragments": [
+            "All Damage from Hits Contributes to Poison Magnitude",
+            "Cannot inflict Elemental Ailments"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfPlague",
+          "role": "Poison spread on kill",
+          "recordSha256": "2057811f1a0452ad11cdd86385e6ca87967c5ccddf3d28ea0d706097c7b3958f",
+          "requiredFragments": [
+            "killing a Poisoned enemy spreads its Poison"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Use a Bow and establish real Poison application; the gloves provide a chance, not certainty.",
+        "Reserve Herald of Plague and kill a Poisoned enemy near a fresh enemy."
+      ],
+      "pitfalls": [
+        "Current Plaguefinger forbids Elemental Ailments: do not attach Freeze, Chill, Shock or Ignite payoffs to this setup.",
+        "Poison spread needs a kill and another nearby enemy; it is not an isolated-boss damage engine.",
+        "Poison magnitude, number of active Poisons and chance to apply Poison are separate questions."
+      ],
+      "firstTest": "Apply Poison to one durable enemy with an elemental bow hit. Kill it near an untouched enemy and inspect the transferred Poison.",
+      "inspiration": "Try an elemental attack you enjoy as a Poison delivery tool. Choose between this route and ailment-based control; the gloves force that tradeoff.",
+      "basis": "combined"
+    },
+    {
+      "id": "poison-chill-shatter",
+      "title": "Poison into Chill into Shatter",
+      "tags": [
+        "poison",
+        "chain",
+        "unique"
+      ],
+      "hook": "Build an icy attack explosion around enemies that you first Poison, without claiming a real Freeze.",
+      "chain": [
+        "Poison target",
+        "Later hit → Chill",
+        "Attack-hit kill → Shatter"
+      ],
+      "why": "Icefang Orbit lets hits against Poisoned targets contribute to Chill. Polcirkeln lets enemies Chilled by your hits Shatter as though Frozen. A non-Herald Attack Hit that Shatters an enemy can then activate Herald of Ice.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPoisonBurstArrow",
+          "role": "Establish Poison",
+          "recordSha256": "2fc036a0f7c5a94ed3b22cc4a732c6688f18a75b15b2c9d3bb65c2b9a225fc5b",
+          "requiredFragments": [
+            "Poison"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemPlayerDefaultBow",
+          "role": "Controlled attack killing hit",
+          "recordSha256": "72003769575aea2d43034512183764bf122d2ff467a1085022c6858a9022b3d2",
+          "requiredFragments": [
+            "arrow"
+          ]
+        },
+        {
+          "id": "unique:ring:Icefang%20Orbit:Iron%20Ring",
+          "role": "Chill after Poison",
+          "recordSha256": "b7b94a83f30ea396f2cacaa3b05053bbcddc42784e05cef7d69bd6ea33e14b72",
+          "requiredFragments": [
+            "All Damage from Hits against Poisoned targets Contributes to Chill Magnitude"
+          ]
+        },
+        {
+          "id": "unique:ring:Polcirkeln:Sapphire%20Ring",
+          "role": "Shatter without completing Freeze",
+          "recordSha256": "3a6ff0aa1c78bb6179e58768ee4ea5901f4f67dfaef5e899e7b2fd312750475f",
+          "requiredFragments": [
+            "Enemies Chilled by your Hits can be Shattered as though Frozen"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemHeraldOfIce",
+          "role": "Attack explosion payoff",
+          "recordSha256": "a037421591154fd33f803573a232aa0c757173387198432ba2116d0120098bf1",
+          "requiredFragments": [
+            "non-Herald Attack Hit"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Equip both rings, use a Bow and reserve Herald of Ice.",
+        "Poison first, apply a later hit that actually Chills, then obtain the killing hit with a non-Herald attack."
+      ],
+      "pitfalls": [
+        "A Poison damage-over-time kill is not the required attack-hit kill.",
+        "Shattering as though Frozen is not a completed Freeze event for Cast on Freeze.",
+        "Plaguefinger would block the required Chill. Both rings also occupy your normal ring slots.",
+        "Icefang’s damage-taken modifier can Chill you while you are Poisoned; that is separate from its offensive modifier."
+      ],
+      "firstTest": "Use Bow Shot to control the killing hit on an already Poisoned and Chilled enemy. Confirm the Herald explosion without any actual Freeze source.",
+      "inspiration": "Explore an attack-based Poison-and-ice clear style. First prove the kill sequence; do not assume Herald explosions recursively sustain it.",
+      "basis": "direct",
+      "recipeId": "unique-expansion-40"
+    },
+    {
+      "id": "voltaxic-freeze-shock",
+      "title": "Chaos arrows with two ailment routes",
+      "tags": [
+        "chaos",
+        "freeze",
+        "unique"
+      ],
+      "hook": "A bow that keeps a Shock route after conversion can be paired with a separate Chaos-to-Freeze support.",
+      "chain": [
+        "Voltaxic → Chaos hits",
+        "Bow permits Shock",
+        "Tul’s Stillness permits Freeze"
+      ],
+      "why": "Voltaxic Rift converts Lightning to Chaos and explicitly lets Chaos hits contribute to Shock chance. Tul’s Stillness adds a separate Freeze-buildup route to the supported attack. Whether both are useful on the same target must be tested.",
+      "components": [
+        {
+          "id": "unique:bow:Voltaxic%20Rift:Fanatic%20Bow",
+          "role": "Conversion and explicit Shock exception",
+          "recordSha256": "e8bdb1bb3564519242bda1a696c0475df0c9c59ba946031ceba38f2147250762",
+          "requiredFragments": [
+            "Lightning Damage Converted to Chaos",
+            "Chaos Damage from Hits also Contributes to Shock Chance"
+          ]
+        },
+        {
+          "id": "lightning-arrow",
+          "role": "Example supported bow attack",
+          "recordSha256": "29f0b12e6c7087f45fdcab038c72243fed219f1017a64eda0a77619b710f7b1c",
+          "requiredFragments": [
+            "Lightning"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport",
+          "role": "Freeze contribution for supported hits",
+          "recordSha256": "a72b272f911ceabea9521fdc82c44202f051ae40d5c2ef5353888ff1c3059fbb",
+          "requiredFragments": [
+            "Freeze Buildup"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "lightning-arrow",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport"
+        }
+      ],
+      "steps": [
+        "Use Voltaxic Rift with a supported Lightning Arrow and confirm the resulting damage components.",
+        "Observe actual Shock applications and Freeze buildup separately on the same durable enemy."
+      ],
+      "pitfalls": [
+        "Contribution to Shock chance does not guarantee Shock, and contribution to Freeze buildup does not guarantee Freeze.",
+        "Do not use Current Plaguefinger here: its elemental-ailment restriction defeats both payoffs.",
+        "The bow is required. No damage, ailment uptime or endgame ranking is implied."
+      ],
+      "firstTest": "First record Shock with the bow alone. Add Tul’s Stillness and look for additional Freeze buildup without changing the other ailment sources.",
+      "inspiration": "A seed for a Chaos archer with control effects. Choose the attack for its actual hit pattern, rather than treating every bow skill as interchangeable.",
+      "basis": "combined"
+    },
+    {
+      "id": "chaos-debuff-freeze",
+      "title": "A debuff opens a Chaos Freeze window",
+      "tags": [
+        "chaos",
+        "freeze"
+      ],
+      "hook": "Put the enabling support on a Chaos damage-over-time spell; supply the Freeze-building hits separately.",
+      "chain": [
+        "Contagion + Chaotic Freeze",
+        "Target takes debuff damage",
+        "Chaos hits → Freeze buildup"
+      ],
+      "why": "Chaotic Freeze supports non-Ailment Chaos damage-over-time Spells. While the target takes damage from that supported debuff, Chaos hits from any source can contribute to Freeze buildup. Essence Drain is a concrete player-hit example; its ongoing debuff is not itself repeated hits.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+          "role": "Supported non-Ailment Chaos debuff",
+          "recordSha256": "25dce175b7b10a703f888704014b47755b22253f08b6467d3b924399dd8d4b06",
+          "requiredFragments": [
+            "Chaos damage over time"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemChaoticFreezeSupport",
+          "role": "Enables Chaos hits against affected targets",
+          "recordSha256": "1f624ba6ebc74d70662f7296573fdeea287abb0eb6f79e0715602e56098b3593",
+          "requiredFragments": [
+            "non-Ailment Chaos damage over time",
+            "from any source"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+          "role": "Example separate Chaos projectile hit",
+          "recordSha256": "05422f7613c2daa387f08faba9ecdc63bf41e0f1f8dd18b8fe8ce5636ed58af1",
+          "requiredFragments": [
+            "Projectile"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemChaoticFreezeSupport"
+        }
+      ],
+      "steps": [
+        "Support Contagion with Chaotic Freeze and apply its debuff to the target.",
+        "While that debuff deals damage, hit the target with Essence Drain and inspect Freeze buildup."
+      ],
+      "pitfalls": [
+        "Poison is an Ailment; simply socketing this support into a poison attack is not this route.",
+        "The support does not support skills used by Minions. The “any source” hit wording is not permission to socket it on a minion skill.",
+        "If the enabling debuff expires, the conditional Chaos Freeze route is no longer established."
+      ],
+      "firstTest": "Compare separate Chaos hits before the supported Contagion debuff, while it is active, and after it expires.",
+      "inspiration": "This opens a two-skill design space: choose the debuff that maintains the condition, then a Chaos hit source you enjoy.",
+      "basis": "combined"
+    },
+    {
+      "id": "blackflame-wither",
+      "title": "Ignite carries Chaos and holds Wither",
+      "tags": [
+        "chaos",
+        "unique",
+        "chain"
+      ],
+      "hook": "A Fire-themed skill can maintain a Chaos-damage Ignite and stop your Wither from expiring while that Ignite lasts.",
+      "chain": [
+        "Apply your Wither",
+        "Incinerate → Ignite",
+        "Blackflame holds Wither"
+      ],
+      "why": "Current Blackflame changes the damage dealt by your Ignite to Chaos and prevents your Withered from expiring on enemies you Ignite. Incinerate supplies an explicit Ignite example. This is not conversion of the Fire hit and does not turn the skill into a Poison source.",
+      "components": [
+        {
+          "id": "unique:ring:Blackflame:Amethyst%20Ring",
+          "role": "Ignite damage route and Wither retention",
+          "recordSha256": "c08510891c7e0f242263e9600e48838630fc2dd6d334e93dac1f07e1085dd0fe",
+          "requiredFragments": [
+            "Ignite you inflict deals Chaos Damage instead of Fire Damage",
+            "Withered does not expire",
+            "reduced Ignite Duration"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemIncinerate",
+          "role": "Example Ignite source",
+          "recordSha256": "e8de75d37d88648c5aae14774152de209038064b48470b735f33b694bacb395b",
+          "requiredFragments": [
+            "Ignite"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemWither",
+          "role": "Apply your own Wither",
+          "recordSha256": "cff88986f7be743e53734b39c8ce71ed410139a955c069fe80559ff049fa41a4",
+          "requiredFragments": [
+            "Wither"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Prepare the current Incinerate fuel requirement by spending Mana, then apply your own Wither.",
+        "Apply and refresh an actual Ignite; inspect Wither retention during the Ignite window."
+      ],
+      "pitfalls": [
+        "The Current ring sharply reduces Ignite duration. Losing Ignite can end the retention condition.",
+        "The ring does not apply Wither by itself or prove permanent debuffs after you stop acting.",
+        "Plaguefinger forbids Ignite, so it conflicts with this particular route."
+      ],
+      "firstTest": "Apply Wither, Ignite the same target and watch its duration. Repeat after allowing the Ignite to expire.",
+      "inspiration": "Explore a Chaos-Ignite identity rather than assuming every Chaos damage build must be Poison.",
+      "basis": "direct",
+      "recipeId": "unique-study-12"
+    },
+    {
+      "id": "native-chaos-hit-freeze",
+      "title": "Freeze from a native Chaos hit",
+      "tags": [
+        "chaos",
+        "freeze"
+      ],
+      "hook": "Try the smallest version of the idea before choosing conversion gear: one Chaos hit skill and one support.",
+      "chain": [
+        "Essence Drain hit",
+        "Tul’s Stillness",
+        "Chaos → Freeze buildup"
+      ],
+      "why": "Tul’s Stillness lets Chaos damage from supported hits contribute to Freeze buildup. Essence Drain has a damaging projectile hit as well as its damage-over-time debuff; only the hit is the represented Freeze-building event.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+          "role": "Native Chaos projectile hit",
+          "recordSha256": "05422f7613c2daa387f08faba9ecdc63bf41e0f1f8dd18b8fe8ce5636ed58af1",
+          "requiredFragments": [
+            "Projectile"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport",
+          "role": "Support the hit, not Poison ticks",
+          "recordSha256": "a72b272f911ceabea9521fdc82c44202f051ae40d5c2ef5353888ff1c3059fbb",
+          "requiredFragments": [
+            "Freeze Buildup"
+          ]
+        }
+      ],
+      "supportPairs": [
+        {
+          "skillId": "gem:Metadata%2FItems%2FGems%2FSkillGemEssenceDrain",
+          "supportId": "gem:Metadata%2FItems%2FGems%2FSkillGemTulsStillnessSupport"
+        }
+      ],
+      "steps": [
+        "Support Essence Drain with Tul’s Stillness.",
+        "Separate the projectile impact from the subsequent damage-over-time ticks when observing Freeze buildup."
+      ],
+      "pitfalls": [
+        "No unique is required by this core; obtaining and legally socketing the Lineage support still matters.",
+        "A small hit may build too little Freeze against a tough target. A damaging debuff does not make the hit large.",
+        "The extra-Chaos benefit needs a Cold damage base; a native Chaos-only hit does not supply that base."
+      ],
+      "firstTest": "Use an isolated durable target and compare projectile impacts with debuff-only periods. Remove other sources of Freeze.",
+      "inspiration": "Use this minimal experiment to decide whether you prefer native Chaos hits or an elemental-to-Chaos conversion route.",
+      "basis": "combined"
+    },
+    {
+      "id": "contagion-corpse-carrier",
+      "title": "A corpse becomes a debuff carrier",
+      "tags": [
+        "corpses",
+        "chain"
+      ],
+      "hook": "An infected corpse can carry Contagion into an explosion that spreads it on hit.",
+      "chain": [
+        "Contagion on enemy",
+        "Affected corpse",
+        "Detonate → spread on hit"
+      ],
+      "why": "Contagion explicitly describes spreading from reanimation or detonation of an affected corpse. Detonate Dead is the concrete explosion example here. The corpse must carry the debuff; a random nearby corpse is not interchangeable.",
+      "components": [
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemContagion",
+          "role": "Mark the eventual corpse",
+          "recordSha256": "25dce175b7b10a703f888704014b47755b22253f08b6467d3b924399dd8d4b06",
+          "requiredFragments": [
+            "detonating a corpse affected by Contagion"
+          ]
+        },
+        {
+          "id": "gem:Metadata%2FItems%2FGems%2FSkillGemDetonateDead",
+          "role": "Explode the affected corpse",
+          "recordSha256": "fe0b0838772d0fa88a090cc8ec9941467986b4af270c48e6fb010b292eee5312",
+          "requiredFragments": [
+            "corpse"
+          ]
+        }
+      ],
+      "supportPairs": [],
+      "steps": [
+        "Apply Contagion, then kill that affected enemy without consuming its corpse.",
+        "Detonate that corpse near an uninfected enemy and look for the transferred debuff."
+      ],
+      "pitfalls": [
+        "This consumes a corpse and requires a nearby target to receive the spread.",
+        "An isolated boss with no corpses does not provide the same sequence.",
+        "An explosion applying a debuff does not prove an infinite chain or player-to-minion damage conversion."
+      ],
+      "firstTest": "Keep one uninfected enemy near one known affected corpse. Detonate only that corpse and compare with an unaffected corpse.",
+      "inspiration": "A starting point for corpse-based Chaos experiments. Reanimation is another source-described branch, but this card only proposes the detonation test.",
+      "basis": "direct",
+      "recipeId": "contagion-corpse"
+    }
+  ]
+}

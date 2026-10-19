@@ -1,5 +1,7 @@
 # Unusual interactions first
 
+This page records the initial eight-entry snapshot. For the active sixteen-entry edition, see [Eight more discoveries](SPECIAL_INTERACTIONS_EXPANSION.md).
+
 The primary task is discovering an unexpected mechanic and using it as a seed for an original build. The home screen now starts with eight edited discoveries. General build directions are secondary and collapsed on a fresh visit; personal planning remains optional.
 
 Each discovery explains its distinctive rule, required skills/supports/uniques and roles, limitations, a minimal test, and ways to make it your own. Required uniques show full pinned Current/common modifiers. Theme and component-name search, pagination, a surprise choice and shared selections support browsing without prescribing a finished build.
